@@ -27,7 +27,7 @@ angular
             LoopBackResourceProvider.setAuthHeader('X-Access-Token');
 
             // Change the URL where to access the LoopBack REST API server
-            LoopBackResourceProvider.setUrlBase('localhost:8000/api/');
+            LoopBackResourceProvider.setUrlBase('http://localhost:3000/api');
 
             /**
              * Configure material design theme -> @url https://material.io/guidelines/style/color.html
