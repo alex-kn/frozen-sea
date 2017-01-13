@@ -1,0 +1,36 @@
+@import "../../stylesheets/main";
+
+md-card {
+
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+}
+
+md-toolbar.toolbar {
+
+  height: 8rem;
+
+  h2 {
+    margin-left: 0;
+  }
+
+  .md-toolbar-tools {
+    font-size: 2rem;
+    font-weight: 100;
+
+    i {
+      font-size: 2rem;
+      margin-right: 1rem;
+    }
+  }
+
+  .md-button.md-fab.md-fab-bottom-right {
+    top: 5.75rem;
+    right: 22%;
+  }
+}
+

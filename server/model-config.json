@@ -1,0 +1,51 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "userstudy-db"
+  },
+  "AccessToken": {
+    "dataSource": "userstudy-db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "userstudy-db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "userstudy-db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "userstudy-db",
+    "public": false
+  },
+  "Study": {
+    "dataSource": "userstudy-db",
+    "public": true
+  },
+  "Study-date": {
+    "dataSource": "userstudy-db",
+    "public": true
+  },
+  "Participation": {
+    "dataSource": "userstudy-db",
+    "public": true
+  },
+  "Subuser": {
+    "dataSource": "userstudy-db",
+    "public": true
+  }
+}

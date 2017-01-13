@@ -1,0 +1,56 @@
+{
+  "name": "Study-date",
+  "plural": "Study-dates",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "startDate": {
+      "type": "date",
+      "required": false
+    },
+    "endDate": {
+      "type": "date",
+      "required": false
+    },
+    "location": {
+      "type": "string",
+      "required": false
+    },
+    "maxParticipants": {
+      "type": "number",
+      "required": false
+    },
+    "minParticipants": {
+      "type": "number",
+      "required": false
+    },
+    "deadline": {
+      "type": "number",
+      "required": false,
+      "description": "In hours"
+    },
+    "status": {
+      "type": "string",
+      "required": false,
+      "description": "Reserved, available, finished"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "study": {
+      "type": "belongsTo",
+      "model": "Study",
+      "foreignKey": ""
+    },
+    "participations": {
+      "type": "hasMany",
+      "model": "Participation",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

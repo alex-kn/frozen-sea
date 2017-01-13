@@ -1,0 +1,8 @@
+logs/*
+!.gitkeep
+tmp
+node_modules/
+bower_components/
+.DS_Store
+.ide
+.idea/workspace.xml

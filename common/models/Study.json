@@ -1,0 +1,48 @@
+{
+  "name": "Study",
+  "plural": "Studies",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "description": {
+      "type": "string",
+      "required": false
+    },
+    "endDate": {
+      "type": "date",
+      "required": false
+    },
+    "startDate": {
+      "type": "date",
+      "required": false,
+      "description": ""
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "dates": {
+      "type": "hasMany",
+      "model": "Study-date",
+      "foreignKey": ""
+    },
+    "creators": {
+      "type": "hasMany",
+      "model": "Subuser",
+      "foreignKey": ""
+    },
+    "advisors": {
+      "type": "hasMany",
+      "model": "Subuser",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,49 @@
+<link href="components/study-list/study-list.style.css" rel="stylesheet">
+
+<!-- START tool bar -->
+<md-toolbar class="toolbar md-hue-1" layout="row" layout-align="start center" layout-padding >
+    <div class="md-toolbar-tools" flex-offset-gt-sm="15">
+        <h2 class="md-display-3">
+            <i class="material-icons">bubble_chart</i>
+            {{ title }}
+        </h2>
+
+        <span flex></span>
+    </div>
+    <md-button ng-click="showPrompt($event)" class="create-study-fab md-fab md-fab-bottom-right" aria-label="Create study">
+        <md-icon class="material-icons">add_new</md-icon>
+    </md-button>
+</md-toolbar>
+<!-- END tool bar -->
+
+<!-- START study list -->
+<md-content layout-padding layout="column" flex-offset-gt-xs="20" flex-gt-xs="60" flex-xs="100">
+
+    <div layout="row" layout-align="start center">
+
+        <md-input-container flex-xs="100" flex-sm="50"  flex-gt-sm="30">
+            <input type="text" ng-model="search" placeholder="Search" aria-label="Search">
+        </md-input-container>
+
+    </div>
+
+    <div layout="column">
+        <md-card ng-repeat="study in studies | filter:search">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{ study.title }}</span>
+                    <span class="md-subhead">{{study.startDate | date: 'short'}} - {{study.endDate | date: 'short'}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                {{ study.description }}
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button>Teilnehmen</md-button>
+                <md-button>Details</md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+
+</md-content>
+<!-- END study list -->

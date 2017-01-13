@@ -1,0 +1,35 @@
+{
+  "name": "Subuser",
+  "plural": "Subusers",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "age": {
+      "type": "number"
+    },
+    "gender": {
+      "type": "string"
+    },
+    "matriculationNr": {
+      "type": "number"
+    },
+    "course": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string",
+      "default": "de-DE"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

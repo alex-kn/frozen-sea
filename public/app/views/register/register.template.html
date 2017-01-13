@@ -1,0 +1,55 @@
+<link href="views/register/register.style.css" rel="stylesheet">
+
+<md-content layout="row" ng-controller="RegisterController">
+
+    <!-- START app introduction -->
+    <section class="introduction" layout="column" layout-align="center center" flex-gt-sm="40" flex="100" hide-sm hide-xs>
+        <h1>Willkommen bei User Study</h1>
+        <p>
+            Schluss mit Facebook und Mundpropaganda <br/>
+            Finde und erstelle Benutzerstudien einfach online
+        </p>
+        <md-button class="md-accent md-raised">Mehr erfahren</md-button>
+
+    </section>
+    <!-- END app introduction -->
+
+    <!-- START registration -->
+    <section class="registration" layout="column" layout-padding flex="100" flex-gt-sm="60">
+
+        <!-- START switch to login -->
+        <div class="switch-to-login" layout="row" layout-align="end center">
+            <span>Du hast bereits einen Account?</span>
+            <md-button href="#!/login" class="md-accent">Einloggen</md-button>
+        </div>
+        <!-- END switch to login -->
+
+        <!-- START registration form -->
+        <div class="registration-form" layout="row" layout-align="center start">
+
+            <form  layout="column" flex-gt-xs="60" flex="100">
+
+                <h2>Registriere dich bei User Study</h2>
+
+                <md-input-container layout="row">
+                    <input type="text" aria-label="Name" ng-model="name" placeholder="Name">
+                </md-input-container>
+                <md-input-container layout="row">
+                    <input type="email" aria-label="Email" ng-model="email" placeholder="Email">
+                </md-input-container>
+                <md-input-container layout="row">
+                    <input type="password" aria-label="Passwort" ng-model="password" placeholder="Passwort">
+                </md-input-container>
+                <div layout="row" class="submit">
+                    <md-button href="#!/login" ng-click="register(name, email, password)" class="md-accent md-raised">Registrieren</md-button>
+                </div>
+
+            </form>
+        </div>
+        <!-- END registration form -->
+
+    </section>
+    <!-- END registration -->
+
+</md-content>
+

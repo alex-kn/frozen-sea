@@ -1,0 +1,52 @@
+html, body {
+  font-size: 16px;
+  font-family: "Roboto", sans-serif; }
+
+.hint {
+  position: absolute;
+  left: 2px;
+  right: auto;
+  bottom: 7px;
+  font-size: 12px;
+  line-height: 14px;
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  color: grey; }
+
+.hint-chips {
+  position: relative !important;
+  bottom: -7px !important; }
+
+.nav li {
+  float: left; }
+
+.form-control {
+  height: 2.5rem; }
+
+.container {
+  padding: 1.5em; }
+
+.profile-card {
+  background-color: #fafbfc;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  margin-top: 1.5em; }
+  .profile-card:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+
+.profile-info {
+  color: #212121;
+  padding: .5em 1em 1.5em 1em;
+  position: relative;
+  text-align: start; }
+
+.profile-info h2 {
+  color: #4f6875;
+  margin-bottom: 1rem; }
+
+.profile-info span {
+  display: block;
+  font-size: 14px;
+  margin-top: .5rem;
+  color: #9E9E9E; }
+
+/*# sourceMappingURL=main.css.map */

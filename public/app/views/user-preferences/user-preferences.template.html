@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="views/user-preferences/user-preferences.style.css">
+
+<div ng-controller="NavigationController">
+    <nav-bar></nav-bar>
+</div>
+
+<section ng-controller="UserPreferencesController">
+    <!-- START tool bar -->
+    <md-toolbar class="toolbar md-hue-1" layout="row" layout-align="start center">
+        <div class="md-toolbar-tools" flex-offset-gt-sm="15">
+            <h2 class="md-display-3">
+                <i class="material-icons">bubble_chart</i>
+                {{title}}
+            </h2>
+        </div>
+    </md-toolbar>
+    <!-- END toolbar -->
+
+    <!-- START personal information -->
+    <md-content flex-offset-gt-sm="20" flex-gt-sm="60" flex-offset-sm="100">
+        <h2 class="md-headline">Jorst Huber</h2>
+    </md-content>
+    <!-- END personal information -->
+
+    <!-- START study preferences -->
+
+    <!-- END study preferences -->
+</section>
