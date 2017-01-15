@@ -1,41 +1,38 @@
 <link href="components/navbar/navbar.style.css" rel="stylesheet">
-
 <md-toolbar class="md-hue-1">
     <div class="md-toolbar-tools">
-
         <div class="nav" flex-offset-gt-sm="15" hide-xs>
             <a class="active" href="#!/home">Studien</a>
             <a href="#!/user-preferences">Meine Kriterien</a>
             <a>Archiv</a>
         </div>
-
         <div class="nav-mobil" hide-gt-xs>
-            <md-button ng-click="logout()" class="md-icon-button" aria-label="logout">
+            <md-button class="md-icon-button" aria-label="Navigation">
                 <md-icon class="material-icons">menu</md-icon>
             </md-button>
         </div>
-
-
         <span flex></span>
-
-        <div hide-xs class="user-profil">
-            <span>
-                Jorst Huber
-                <i class="material-icons">arrow_drop_down</i>
-            </span>
-            <md-button ng-click="logout()" class="md-icon-button" aria-label="logout">
-                <md-icon class="material-icons">power_settings_new</md-icon>
-            </md-button>
-        </div>
-
-        <div hide-gt-xs class="user-profil-mobil">
-            <md-button ng-click="logout()" class="md-icon-button" aria-label="logout">
-                <md-icon class="material-icons">more_vert</md-icon>
-            </md-button>
+        <div class="user-profil">
+            <md-menu md-offset="5 50" md-position-mode="target-right target">
+                <md-button aria-label="Open user menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+                    <md-icon class="material-icons md-24">account_circle</md-icon>
+                </md-button>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button aria-label="Profil Bearbeiten">
+                            Profil bearbeiten
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="logout()" aria-label="logout">
+                            Logout
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
         </div>
     </div>
 </md-toolbar>
-
 <!--<div class="container-fluid" id="nav" ng-controller="LoginController">
     <div class="row" id="navbar">
         <div class="col-md-12">

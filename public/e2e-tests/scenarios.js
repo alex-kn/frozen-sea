@@ -1,42 +1,31 @@
 'use strict';
-
-/* https://github.com/angular/protractor/blob/master/docs/toc.md */
-
-describe('my app', function() {
-
-
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
-    browser.get('index.html');
-    expect(browser.getLocationAbsUrl()).toMatch("/view1");
-  });
-
-
-  describe('view1', function() {
-
-    beforeEach(function() {
-      browser.get('index.html#!/view1');
+describe('UserStudy Application', function () {
+    describe('authentication', function () {
+        beforeEach(function() {
+            browser.get('/#!/');
+        });
+        var username = element(by.model('email'));
+        var password = element(by.model('password'));
+        var EC = protractor.ExpectedConditions;
+        it('should login to the application as the user enters a correct username and password', function () {
+            username.sendKeys('jorst@test.de');
+            password.sendKeys('1337');
+            element(by.buttonText('Einloggen')).click();
+            expect(browser.getLocationAbsUrl()).toMatch('/home');
+        });
+        it('should logout from the application', function () {
+         element(by.css('[ng-click="openMenu($mdOpenMenu, $event)"]')).click();
+         element(by.css('[ng-click="logout()"]')).click();
+         expect(browser.getLocationAbsUrl()).toMatch('/');
+         });
+        it('should fail to login with incorrect user credentials', function () {
+         username.sendKeys('jorst');
+         password.sendKeys('3789h');
+         element(by.buttonText('Einloggen')).click();
+         expect(EC.visibilityOf($('.error-message')));
+         });
     });
-
-
-    it('should render view1 when user navigates to /view1', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 1/);
+    describe('registration', function() {
+        //test registration
     });
-
-  });
-
-
-  describe('view2', function() {
-
-    beforeEach(function() {
-      browser.get('index.html#!/view2');
-    });
-
-
-    it('should render view2 when user navigates to /view2', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 2/);
-    });
-
-  });
 });
