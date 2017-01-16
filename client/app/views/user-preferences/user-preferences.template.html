@@ -16,13 +16,57 @@
     </md-toolbar>
     <!-- END toolbar -->
 
-    <!-- START personal information -->
-    <md-content flex-offset-gt-sm="20" flex-gt-sm="60" flex-offset-sm="100">
-        <h2 class="md-headline">Jorst Huber</h2>
-    </md-content>
-    <!-- END personal information -->
-
     <!-- START study preferences -->
+    <md-content flex-offset-gt-sm="20" flex-gt-sm="60" flex-offset-sm="100">
+        <form name="userPreferencesForm" layout="column">
 
+            <h2 class="md-headline">Das Betriebsystem meines Mobilgeräts ist ...</h2>
+            <md-input-container layout="row" layout-xs="column">
+                <md-checkbox flex-xs="100" ng-model="preferences.operatingSystem.ios" aria-label="iOS">
+                    iOS
+                </md-checkbox>
+                <md-checkbox flex-xs="100" ng-model="preferences.operatingSystem.android" aria-label="Android">
+                    Android
+                </md-checkbox>
+                <!--<md-checkbox flex-xs="100" ng-model="preferences.operatingSystem.other" aria-label="Sonstiges">
+                    sonstiges
+                </md-checkbox>-->
+            </md-input-container>
+            <!--
+            <h2 class="md-headline">Ich habe ...</h2>
+            <md-input-container layout="row" layout-xs="column">
+                <md-checkbox flex-xs="100" ng-model="preferences.visualAid.none" aria-label="Keine Sehhilfe">
+                    keine Sehhilfe
+                </md-checkbox>
+                <md-checkbox flex-xs="100" ng-model="preferences.visualAid.glasses" aria-label="Brille">
+                    eine Brille
+                </md-checkbox>
+                <md-checkbox flex-xs="100" ng-model="preferences.visualAid.contactLenses" aria-label="Kontaktlinsen">
+                    Kontaktlinsen
+                </md-checkbox>
+            </md-input-container>
+            <h2 class="md-headline">Ich bin ...</h2>
+            <md-input-container layout="row" layout-xs="column">
+                <md-checkbox flex-xs="100" ng-model="preferences.handedness.leftHanded" aria-label="Linksh&auml;nder">
+                    Linksh&auml;nder
+                </md-checkbox>
+                <md-checkbox flex-xs="100" ng-model="preferences.handedness.rightHanded" aria-label="Rechtsh&auml;nder">
+                    Rechtsh&auml;nder
+                </md-checkbox>
+            </md-input-container>
+            <h2 class="md-headline">Ich spreche ...</h2>
+            <md-input-container layout="row" layout-xs="column">
+                <md-checkbox flex-xs="100" ng-model="preferences.language.german" aria-label="Deutsch">
+                    Deutsch
+                </md-checkbox>
+                <md-checkbox flex-xs="100" ng-model="preferences.language.english" aria-label="English">
+                    Englisch
+                </md-checkbox>
+            </md-input-container>-->
+            <md-input-container>
+                <md-button ng-click="savePreferences()" class="md-accent md-raised">Speichern</md-button>
+            </md-input-container>
+        </form>
+    </md-content>
     <!-- END study preferences -->
 </section>
