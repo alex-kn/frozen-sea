@@ -1,33 +1,28 @@
 {
-  "name": "Participation",
-  "plural": "Participations",
+  "name": "Preference",
+  "plural": "Preferences",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "status": {
-      "type": "string",
+    "ios": {
+      "type": "Boolean",
       "required": false,
-      "description": "Reserved, completed, ..."
+      "description": "User has iOS-Phone"
     },
-    "reward": {
-      "type": "string",
+    "android": {
+      "type": "Boolean",
       "required": false,
-      "description": "Hours or monetary compensation"
+      "description": "User has Android-Phone"
     }
   },
   "validations": [],
   "relations": {
-    "participant": {
+    "subuser": {
       "type": "belongsTo",
       "model": "Subuser",
-      "foreignKey": ""
-    },
-    "date": {
-      "type": "hasOne",
-      "model": "Study-date",
       "foreignKey": ""
     }
   },
@@ -45,15 +40,9 @@
       "permission": "ALLOW"
     },
     {
-      "accessType": "*",
-      "principalType": "ROLE",
-      "principalId": "advisor",
-      "permission": "ALLOW"
-    },
-    {
       "accessType": "READ",
       "principalType": "ROLE",
-      "principalId": "$authenticated",
+      "principalId": "$owner",
       "permission": "ALLOW"
     },
     {

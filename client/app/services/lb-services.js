@@ -1462,6 +1462,12 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "PUT",
             },
 
+            // INTERNAL. Use Study.owner() instead.
+            "prototype$__get__owner": {
+              url: urlBase + "/Studies/:id/owner",
+              method: "GET",
+            },
+
             // INTERNAL. Use Study.dates() instead.
             "prototype$__get__dates": {
               isArray: true,
@@ -2074,6 +2080,116 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
             // INTERNAL. Use Study-date.study() instead.
             "::get::Study-date::study": {
               url: urlBase + "/Study-dates/:id/study",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.created_studies.findById() instead.
+            "::findById::Subuser::created_studies": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_studies/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.createManyd_studies.findById() instead.
+            "::findById::Subuser::createManyd_studies": {
+              isArray: true,
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_studies/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.created_studies.destroyById() instead.
+            "::destroyById::Subuser::created_studies": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_studies/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.createManyd_studies.destroyById() instead.
+            "::destroyById::Subuser::createManyd_studies": {
+              isArray: true,
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_studies/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.created_studies.updateById() instead.
+            "::updateById::Subuser::created_studies": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_studies/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Subuser.createManyd_studies.updateById() instead.
+            "::updateById::Subuser::createManyd_studies": {
+              isArray: true,
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_studies/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Subuser.created_studies() instead.
+            "::get::Subuser::created_studies": {
+              isArray: true,
+              url: urlBase + "/Subusers/:id/created_studies",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.createManyd_studies() instead.
+            "::get::Subuser::createManyd_studies": {
+              isArray: true,
+              url: urlBase + "/Subusers/:id/created_studies",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.created_studies.create() instead.
+            "::create::Subuser::created_studies": {
+              url: urlBase + "/Subusers/:id/created_studies",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Subuser.createManyd_studies.create() instead.
+            "::createMany::Subuser::created_studies": {
+              isArray: true,
+              url: urlBase + "/Subusers/:id/created_studies",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Subuser.created_studies.destroyAll() instead.
+            "::delete::Subuser::created_studies": {
+              url: urlBase + "/Subusers/:id/created_studies",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.createManyd_studies.destroyAll() instead.
+            "::delete::Subuser::createManyd_studies": {
+              isArray: true,
+              url: urlBase + "/Subusers/:id/created_studies",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.created_studies.count() instead.
+            "::count::Subuser::created_studies": {
+              url: urlBase + "/Subusers/:id/created_studies/count",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.createManyd_studies.count() instead.
+            "::count::Subuser::createManyd_studies": {
+              isArray: true,
+              url: urlBase + "/Subusers/:id/created_studies/count",
               method: "GET",
             },
           }
@@ -3225,6 +3341,42 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
           return action.apply(R, arguments);
         };
 
+            /**
+             * @ngdoc method
+             * @name lbServices.Study#owner
+             * @methodOf lbServices.Study
+             *
+             * @description
+             *
+             * Fetches belongsTo relation owner.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `refresh` – `{boolean=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Subuser` object.)
+             * </em>
+             */
+        R.owner = function() {
+          var TargetResource = $injector.get("Subuser");
+          var action = TargetResource["::get::Study::owner"];
+          return action.apply(R, arguments);
+        };
+
 
         return R;
       }]);
@@ -3287,6 +3439,12 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               },
               url: urlBase + "/Study-dates/:id/participations/:fk",
               method: "PUT",
+            },
+
+            // INTERNAL. Use Study-date.owner() instead.
+            "prototype$__get__owner": {
+              url: urlBase + "/Study-dates/:id/owner",
+              method: "GET",
             },
 
             // INTERNAL. Use Study-date.participations() instead.
@@ -3937,6 +4095,116 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               url: urlBase + "/Participations/:id/date",
               method: "DELETE",
             },
+
+            // INTERNAL. Use Subuser.created_study_dates.findById() instead.
+            "::findById::Subuser::created_study_dates": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.createManyd_study_dates.findById() instead.
+            "::findById::Subuser::createManyd_study_dates": {
+              isArray: true,
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.created_study_dates.destroyById() instead.
+            "::destroyById::Subuser::created_study_dates": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.createManyd_study_dates.destroyById() instead.
+            "::destroyById::Subuser::createManyd_study_dates": {
+              isArray: true,
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.created_study_dates.updateById() instead.
+            "::updateById::Subuser::created_study_dates": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Subuser.createManyd_study_dates.updateById() instead.
+            "::updateById::Subuser::createManyd_study_dates": {
+              isArray: true,
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Subuser.created_study_dates() instead.
+            "::get::Subuser::created_study_dates": {
+              isArray: true,
+              url: urlBase + "/Subusers/:id/created_study_dates",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.createManyd_study_dates() instead.
+            "::get::Subuser::createManyd_study_dates": {
+              isArray: true,
+              url: urlBase + "/Subusers/:id/created_study_dates",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.created_study_dates.create() instead.
+            "::create::Subuser::created_study_dates": {
+              url: urlBase + "/Subusers/:id/created_study_dates",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Subuser.createManyd_study_dates.create() instead.
+            "::createMany::Subuser::created_study_dates": {
+              isArray: true,
+              url: urlBase + "/Subusers/:id/created_study_dates",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Subuser.created_study_dates.destroyAll() instead.
+            "::delete::Subuser::created_study_dates": {
+              url: urlBase + "/Subusers/:id/created_study_dates",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.createManyd_study_dates.destroyAll() instead.
+            "::delete::Subuser::createManyd_study_dates": {
+              isArray: true,
+              url: urlBase + "/Subusers/:id/created_study_dates",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.created_study_dates.count() instead.
+            "::count::Subuser::created_study_dates": {
+              url: urlBase + "/Subusers/:id/created_study_dates/count",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.createManyd_study_dates.count() instead.
+            "::count::Subuser::createManyd_study_dates": {
+              isArray: true,
+              url: urlBase + "/Subusers/:id/created_study_dates/count",
+              method: "GET",
+            },
           }
         );
 
@@ -4520,6 +4788,42 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
           return action.apply(R, arguments);
         };
 
+            /**
+             * @ngdoc method
+             * @name lbServices.Study-date#owner
+             * @methodOf lbServices.Study-date
+             *
+             * @description
+             *
+             * Fetches belongsTo relation owner.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `refresh` – `{boolean=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Subuser` object.)
+             * </em>
+             */
+        R.owner = function() {
+          var TargetResource = $injector.get("Subuser");
+          var action = TargetResource["::get::Study-date::owner"];
+          return action.apply(R, arguments);
+        };
+
 
         return R;
       }]);
@@ -4579,24 +4883,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
             "prototype$__get__participant": {
               url: urlBase + "/Participations/:id/participant",
               method: "GET",
-            },
-
-            // INTERNAL. Use Participation.participant.create() instead.
-            "prototype$__create__participant": {
-              url: urlBase + "/Participations/:id/participant",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Participation.participant.update() instead.
-            "prototype$__update__participant": {
-              url: urlBase + "/Participations/:id/participant",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Participation.participant.destroy() instead.
-            "prototype$__destroy__participant": {
-              url: urlBase + "/Participations/:id/participant",
-              method: "DELETE",
             },
 
             /**
@@ -5191,6 +5477,65 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               url: urlBase + "/Study-dates/:id/participations/count",
               method: "GET",
             },
+
+            // INTERNAL. Use Subuser.participations.findById() instead.
+            "::findById::Subuser::participations": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/participations/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.participations.destroyById() instead.
+            "::destroyById::Subuser::participations": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/participations/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.participations.updateById() instead.
+            "::updateById::Subuser::participations": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/participations/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Subuser.participations() instead.
+            "::get::Subuser::participations": {
+              isArray: true,
+              url: urlBase + "/Subusers/:id/participations",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.participations.create() instead.
+            "::create::Subuser::participations": {
+              url: urlBase + "/Subusers/:id/participations",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Subuser.participations.createMany() instead.
+            "::createMany::Subuser::participations": {
+              isArray: true,
+              url: urlBase + "/Subusers/:id/participations",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Subuser.participations.destroyAll() instead.
+            "::delete::Subuser::participations": {
+              url: urlBase + "/Subusers/:id/participations",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.participations.count() instead.
+            "::count::Subuser::participations": {
+              url: urlBase + "/Subusers/:id/participations/count",
+              method: "GET",
+            },
           }
         );
 
@@ -5631,20 +5976,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
           var action = TargetResource["::update::Participation::date"];
           return action.apply(R, arguments);
         };
-    /**
-     * @ngdoc object
-     * @name lbServices.Participation.participant
-     * @header lbServices.Participation.participant
-     * @object
-     * @description
-     *
-     * The object `Participation.participant` groups methods
-     * manipulating `Subuser` instances related to `Participation`.
-     *
-     * Call {@link lbServices.Participation#participant Participation.participant()}
-     * to query all related instances.
-     */
-
 
             /**
              * @ngdoc method
@@ -5653,7 +5984,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * @description
              *
-             * Fetches hasOne relation participant.
+             * Fetches belongsTo relation participant.
              *
              * @param {Object=} parameters Request parameters.
              *
@@ -5679,151 +6010,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         R.participant = function() {
           var TargetResource = $injector.get("Subuser");
           var action = TargetResource["::get::Participation::participant"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Participation.participant#create
-             * @methodOf lbServices.Participation.participant
-             *
-             * @description
-             *
-             * Creates a new instance in participant of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Subuser` object.)
-             * </em>
-             */
-        R.participant.create = function() {
-          var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::create::Participation::participant"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Participation.participant#createMany
-             * @methodOf lbServices.Participation.participant
-             *
-             * @description
-             *
-             * Creates a new instance in participant of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Subuser` object.)
-             * </em>
-             */
-        R.participant.createMany = function() {
-          var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::createMany::Participation::participant"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Participation.participant#destroy
-             * @methodOf lbServices.Participation.participant
-             *
-             * @description
-             *
-             * Deletes participant of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * This method returns no data.
-             */
-        R.participant.destroy = function() {
-          var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::destroy::Participation::participant"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Participation.participant#update
-             * @methodOf lbServices.Participation.participant
-             *
-             * @description
-             *
-             * Update participant of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Subuser` object.)
-             * </em>
-             */
-        R.participant.update = function() {
-          var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::update::Participation::participant"];
           return action.apply(R, arguments);
         };
 
@@ -5970,6 +6156,87 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
                 'fk': '@fk',
               },
               url: urlBase + "/Subusers/:id/accessTokens/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Subuser.created_studies.findById() instead.
+            "prototype$__findById__created_studies": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_studies/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.created_studies.destroyById() instead.
+            "prototype$__destroyById__created_studies": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_studies/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.created_studies.updateById() instead.
+            "prototype$__updateById__created_studies": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_studies/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Subuser.created_study_dates.findById() instead.
+            "prototype$__findById__created_study_dates": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.created_study_dates.destroyById() instead.
+            "prototype$__destroyById__created_study_dates": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.created_study_dates.updateById() instead.
+            "prototype$__updateById__created_study_dates": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Subuser.participations.findById() instead.
+            "prototype$__findById__participations": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/participations/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.participations.destroyById() instead.
+            "prototype$__destroyById__participations": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/participations/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.participations.updateById() instead.
+            "prototype$__updateById__participations": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Subusers/:id/participations/:fk",
               method: "PUT",
             },
 
@@ -6131,6 +6398,81 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              */
             "prototype$__count__accessTokens": {
               url: urlBase + "/Subusers/:id/accessTokens/count",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.created_studies() instead.
+            "prototype$__get__created_studies": {
+              isArray: true,
+              url: urlBase + "/Subusers/:id/created_studies",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.created_studies.create() instead.
+            "prototype$__create__created_studies": {
+              url: urlBase + "/Subusers/:id/created_studies",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Subuser.created_studies.destroyAll() instead.
+            "prototype$__delete__created_studies": {
+              url: urlBase + "/Subusers/:id/created_studies",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.created_studies.count() instead.
+            "prototype$__count__created_studies": {
+              url: urlBase + "/Subusers/:id/created_studies/count",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.created_study_dates() instead.
+            "prototype$__get__created_study_dates": {
+              isArray: true,
+              url: urlBase + "/Subusers/:id/created_study_dates",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.created_study_dates.create() instead.
+            "prototype$__create__created_study_dates": {
+              url: urlBase + "/Subusers/:id/created_study_dates",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Subuser.created_study_dates.destroyAll() instead.
+            "prototype$__delete__created_study_dates": {
+              url: urlBase + "/Subusers/:id/created_study_dates",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.created_study_dates.count() instead.
+            "prototype$__count__created_study_dates": {
+              url: urlBase + "/Subusers/:id/created_study_dates/count",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.participations() instead.
+            "prototype$__get__participations": {
+              isArray: true,
+              url: urlBase + "/Subusers/:id/participations",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Subuser.participations.create() instead.
+            "prototype$__create__participations": {
+              url: urlBase + "/Subusers/:id/participations",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Subuser.participations.destroyAll() instead.
+            "prototype$__delete__participations": {
+              url: urlBase + "/Subusers/:id/participations",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Subuser.participations.count() instead.
+            "prototype$__count__participations": {
+              url: urlBase + "/Subusers/:id/participations/count",
               method: "GET",
             },
 
@@ -6894,6 +7236,12 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "PUT",
             },
 
+            // INTERNAL. Use Study.owner() instead.
+            "::get::Study::owner": {
+              url: urlBase + "/Studies/:id/owner",
+              method: "GET",
+            },
+
             // INTERNAL. Use Study.creators() instead.
             "::get::Study::creators": {
               isArray: true,
@@ -6958,35 +7306,16 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "GET",
             },
 
+            // INTERNAL. Use Study-date.owner() instead.
+            "::get::Study-date::owner": {
+              url: urlBase + "/Study-dates/:id/owner",
+              method: "GET",
+            },
+
             // INTERNAL. Use Participation.participant() instead.
             "::get::Participation::participant": {
               url: urlBase + "/Participations/:id/participant",
               method: "GET",
-            },
-
-            // INTERNAL. Use Participation.participant.create() instead.
-            "::create::Participation::participant": {
-              url: urlBase + "/Participations/:id/participant",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Participation.participant.createMany() instead.
-            "::createMany::Participation::participant": {
-              isArray: true,
-              url: urlBase + "/Participations/:id/participant",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Participation.participant.update() instead.
-            "::update::Participation::participant": {
-              url: urlBase + "/Participations/:id/participant",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Participation.participant.destroy() instead.
-            "::destroy::Participation::participant": {
-              url: urlBase + "/Participations/:id/participant",
-              method: "DELETE",
             },
 
             // INTERNAL. Use Preference.subuser() instead.
@@ -7324,6 +7653,1331 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         */
         R.modelName = "Subuser";
 
+    /**
+     * @ngdoc object
+     * @name lbServices.Subuser.created_studies
+     * @header lbServices.Subuser.created_studies
+     * @object
+     * @description
+     *
+     * The object `Subuser.created_studies` groups methods
+     * manipulating `Study` instances related to `Subuser`.
+     *
+     * Call {@link lbServices.Subuser#created_studies Subuser.created_studies()}
+     * to query all related instances.
+     */
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser#createManyd_studies
+             * @methodOf lbServices.Subuser
+             *
+             * @description
+             *
+             * Queries created_studies of Subuser.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `filter` – `{object=}` -
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study` object.)
+             * </em>
+             */
+        R.createManyd_studies = function() {
+          var TargetResource = $injector.get("Study");
+          var action = TargetResource["::get::Subuser::createManyd_studies"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.createManyd_studies#count
+             * @methodOf lbServices.Subuser.createManyd_studies
+             *
+             * @description
+             *
+             * Counts created_studies of Subuser.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+        R.createManyd_studies.count = function() {
+          var TargetResource = $injector.get("Study");
+          var action = TargetResource["::count::Subuser::createManyd_studies"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.createManyd_studies#create
+             * @methodOf lbServices.Subuser.createManyd_studies
+             *
+             * @description
+             *
+             * Creates a new instance in created_studies of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study` object.)
+             * </em>
+             */
+        R.createManyd_studies.create = function() {
+          var TargetResource = $injector.get("Study");
+          var action = TargetResource["::createMany::Subuser::created_studies"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.createManyd_studies#destroyAll
+             * @methodOf lbServices.Subuser.createManyd_studies
+             *
+             * @description
+             *
+             * Deletes all created_studies of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.createManyd_studies.destroyAll = function() {
+          var TargetResource = $injector.get("Study");
+          var action = TargetResource["::delete::Subuser::createManyd_studies"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.createManyd_studies#destroyById
+             * @methodOf lbServices.Subuser.createManyd_studies
+             *
+             * @description
+             *
+             * Delete a related item by id for created_studies.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for created_studies
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.createManyd_studies.destroyById = function() {
+          var TargetResource = $injector.get("Study");
+          var action = TargetResource["::destroyById::Subuser::createManyd_studies"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.createManyd_studies#findById
+             * @methodOf lbServices.Subuser.createManyd_studies
+             *
+             * @description
+             *
+             * Find a related item by id for created_studies.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for created_studies
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study` object.)
+             * </em>
+             */
+        R.createManyd_studies.findById = function() {
+          var TargetResource = $injector.get("Study");
+          var action = TargetResource["::findById::Subuser::createManyd_studies"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.createManyd_studies#updateById
+             * @methodOf lbServices.Subuser.createManyd_studies
+             *
+             * @description
+             *
+             * Update a related item by id for created_studies.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for created_studies
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study` object.)
+             * </em>
+             */
+        R.createManyd_studies.updateById = function() {
+          var TargetResource = $injector.get("Study");
+          var action = TargetResource["::updateById::Subuser::createManyd_studies"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser#created_studies
+             * @methodOf lbServices.Subuser
+             *
+             * @description
+             *
+             * Queries created_studies of Subuser.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `filter` – `{object=}` -
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study` object.)
+             * </em>
+             */
+        R.created_studies = function() {
+          var TargetResource = $injector.get("Study");
+          var action = TargetResource["::get::Subuser::created_studies"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.created_studies#count
+             * @methodOf lbServices.Subuser.created_studies
+             *
+             * @description
+             *
+             * Counts created_studies of Subuser.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+        R.created_studies.count = function() {
+          var TargetResource = $injector.get("Study");
+          var action = TargetResource["::count::Subuser::created_studies"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.created_studies#create
+             * @methodOf lbServices.Subuser.created_studies
+             *
+             * @description
+             *
+             * Creates a new instance in created_studies of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study` object.)
+             * </em>
+             */
+        R.created_studies.create = function() {
+          var TargetResource = $injector.get("Study");
+          var action = TargetResource["::create::Subuser::created_studies"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.created_studies#destroyAll
+             * @methodOf lbServices.Subuser.created_studies
+             *
+             * @description
+             *
+             * Deletes all created_studies of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.created_studies.destroyAll = function() {
+          var TargetResource = $injector.get("Study");
+          var action = TargetResource["::delete::Subuser::created_studies"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.created_studies#destroyById
+             * @methodOf lbServices.Subuser.created_studies
+             *
+             * @description
+             *
+             * Delete a related item by id for created_studies.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for created_studies
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.created_studies.destroyById = function() {
+          var TargetResource = $injector.get("Study");
+          var action = TargetResource["::destroyById::Subuser::created_studies"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.created_studies#findById
+             * @methodOf lbServices.Subuser.created_studies
+             *
+             * @description
+             *
+             * Find a related item by id for created_studies.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for created_studies
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study` object.)
+             * </em>
+             */
+        R.created_studies.findById = function() {
+          var TargetResource = $injector.get("Study");
+          var action = TargetResource["::findById::Subuser::created_studies"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.created_studies#updateById
+             * @methodOf lbServices.Subuser.created_studies
+             *
+             * @description
+             *
+             * Update a related item by id for created_studies.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for created_studies
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study` object.)
+             * </em>
+             */
+        R.created_studies.updateById = function() {
+          var TargetResource = $injector.get("Study");
+          var action = TargetResource["::updateById::Subuser::created_studies"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Subuser.created_study_dates
+     * @header lbServices.Subuser.created_study_dates
+     * @object
+     * @description
+     *
+     * The object `Subuser.created_study_dates` groups methods
+     * manipulating `Study-date` instances related to `Subuser`.
+     *
+     * Call {@link lbServices.Subuser#created_study_dates Subuser.created_study_dates()}
+     * to query all related instances.
+     */
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser#createManyd_study_dates
+             * @methodOf lbServices.Subuser
+             *
+             * @description
+             *
+             * Queries created_study_dates of Subuser.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `filter` – `{object=}` -
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study-date` object.)
+             * </em>
+             */
+        R.createManyd_study_dates = function() {
+          var TargetResource = $injector.get("Study-date");
+          var action = TargetResource["::get::Subuser::createManyd_study_dates"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.createManyd_study_dates#count
+             * @methodOf lbServices.Subuser.createManyd_study_dates
+             *
+             * @description
+             *
+             * Counts created_study_dates of Subuser.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+        R.createManyd_study_dates.count = function() {
+          var TargetResource = $injector.get("Study-date");
+          var action = TargetResource["::count::Subuser::createManyd_study_dates"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.createManyd_study_dates#create
+             * @methodOf lbServices.Subuser.createManyd_study_dates
+             *
+             * @description
+             *
+             * Creates a new instance in created_study_dates of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study-date` object.)
+             * </em>
+             */
+        R.createManyd_study_dates.create = function() {
+          var TargetResource = $injector.get("Study-date");
+          var action = TargetResource["::createMany::Subuser::created_study_dates"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.createManyd_study_dates#destroyAll
+             * @methodOf lbServices.Subuser.createManyd_study_dates
+             *
+             * @description
+             *
+             * Deletes all created_study_dates of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.createManyd_study_dates.destroyAll = function() {
+          var TargetResource = $injector.get("Study-date");
+          var action = TargetResource["::delete::Subuser::createManyd_study_dates"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.createManyd_study_dates#destroyById
+             * @methodOf lbServices.Subuser.createManyd_study_dates
+             *
+             * @description
+             *
+             * Delete a related item by id for created_study_dates.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for created_study_dates
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.createManyd_study_dates.destroyById = function() {
+          var TargetResource = $injector.get("Study-date");
+          var action = TargetResource["::destroyById::Subuser::createManyd_study_dates"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.createManyd_study_dates#findById
+             * @methodOf lbServices.Subuser.createManyd_study_dates
+             *
+             * @description
+             *
+             * Find a related item by id for created_study_dates.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for created_study_dates
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study-date` object.)
+             * </em>
+             */
+        R.createManyd_study_dates.findById = function() {
+          var TargetResource = $injector.get("Study-date");
+          var action = TargetResource["::findById::Subuser::createManyd_study_dates"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.createManyd_study_dates#updateById
+             * @methodOf lbServices.Subuser.createManyd_study_dates
+             *
+             * @description
+             *
+             * Update a related item by id for created_study_dates.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for created_study_dates
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study-date` object.)
+             * </em>
+             */
+        R.createManyd_study_dates.updateById = function() {
+          var TargetResource = $injector.get("Study-date");
+          var action = TargetResource["::updateById::Subuser::createManyd_study_dates"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser#created_study_dates
+             * @methodOf lbServices.Subuser
+             *
+             * @description
+             *
+             * Queries created_study_dates of Subuser.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `filter` – `{object=}` -
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study-date` object.)
+             * </em>
+             */
+        R.created_study_dates = function() {
+          var TargetResource = $injector.get("Study-date");
+          var action = TargetResource["::get::Subuser::created_study_dates"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.created_study_dates#count
+             * @methodOf lbServices.Subuser.created_study_dates
+             *
+             * @description
+             *
+             * Counts created_study_dates of Subuser.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+        R.created_study_dates.count = function() {
+          var TargetResource = $injector.get("Study-date");
+          var action = TargetResource["::count::Subuser::created_study_dates"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.created_study_dates#create
+             * @methodOf lbServices.Subuser.created_study_dates
+             *
+             * @description
+             *
+             * Creates a new instance in created_study_dates of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study-date` object.)
+             * </em>
+             */
+        R.created_study_dates.create = function() {
+          var TargetResource = $injector.get("Study-date");
+          var action = TargetResource["::create::Subuser::created_study_dates"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.created_study_dates#destroyAll
+             * @methodOf lbServices.Subuser.created_study_dates
+             *
+             * @description
+             *
+             * Deletes all created_study_dates of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.created_study_dates.destroyAll = function() {
+          var TargetResource = $injector.get("Study-date");
+          var action = TargetResource["::delete::Subuser::created_study_dates"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.created_study_dates#destroyById
+             * @methodOf lbServices.Subuser.created_study_dates
+             *
+             * @description
+             *
+             * Delete a related item by id for created_study_dates.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for created_study_dates
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.created_study_dates.destroyById = function() {
+          var TargetResource = $injector.get("Study-date");
+          var action = TargetResource["::destroyById::Subuser::created_study_dates"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.created_study_dates#findById
+             * @methodOf lbServices.Subuser.created_study_dates
+             *
+             * @description
+             *
+             * Find a related item by id for created_study_dates.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for created_study_dates
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study-date` object.)
+             * </em>
+             */
+        R.created_study_dates.findById = function() {
+          var TargetResource = $injector.get("Study-date");
+          var action = TargetResource["::findById::Subuser::created_study_dates"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.created_study_dates#updateById
+             * @methodOf lbServices.Subuser.created_study_dates
+             *
+             * @description
+             *
+             * Update a related item by id for created_study_dates.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for created_study_dates
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Study-date` object.)
+             * </em>
+             */
+        R.created_study_dates.updateById = function() {
+          var TargetResource = $injector.get("Study-date");
+          var action = TargetResource["::updateById::Subuser::created_study_dates"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Subuser.participations
+     * @header lbServices.Subuser.participations
+     * @object
+     * @description
+     *
+     * The object `Subuser.participations` groups methods
+     * manipulating `Participation` instances related to `Subuser`.
+     *
+     * Call {@link lbServices.Subuser#participations Subuser.participations()}
+     * to query all related instances.
+     */
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser#participations
+             * @methodOf lbServices.Subuser
+             *
+             * @description
+             *
+             * Queries participations of Subuser.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `filter` – `{object=}` -
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Participation` object.)
+             * </em>
+             */
+        R.participations = function() {
+          var TargetResource = $injector.get("Participation");
+          var action = TargetResource["::get::Subuser::participations"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.participations#count
+             * @methodOf lbServices.Subuser.participations
+             *
+             * @description
+             *
+             * Counts participations of Subuser.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+        R.participations.count = function() {
+          var TargetResource = $injector.get("Participation");
+          var action = TargetResource["::count::Subuser::participations"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.participations#create
+             * @methodOf lbServices.Subuser.participations
+             *
+             * @description
+             *
+             * Creates a new instance in participations of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Participation` object.)
+             * </em>
+             */
+        R.participations.create = function() {
+          var TargetResource = $injector.get("Participation");
+          var action = TargetResource["::create::Subuser::participations"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.participations#createMany
+             * @methodOf lbServices.Subuser.participations
+             *
+             * @description
+             *
+             * Creates a new instance in participations of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Participation` object.)
+             * </em>
+             */
+        R.participations.createMany = function() {
+          var TargetResource = $injector.get("Participation");
+          var action = TargetResource["::createMany::Subuser::participations"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.participations#destroyAll
+             * @methodOf lbServices.Subuser.participations
+             *
+             * @description
+             *
+             * Deletes all participations of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.participations.destroyAll = function() {
+          var TargetResource = $injector.get("Participation");
+          var action = TargetResource["::delete::Subuser::participations"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.participations#destroyById
+             * @methodOf lbServices.Subuser.participations
+             *
+             * @description
+             *
+             * Delete a related item by id for participations.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for participations
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.participations.destroyById = function() {
+          var TargetResource = $injector.get("Participation");
+          var action = TargetResource["::destroyById::Subuser::participations"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.participations#findById
+             * @methodOf lbServices.Subuser.participations
+             *
+             * @description
+             *
+             * Find a related item by id for participations.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for participations
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Participation` object.)
+             * </em>
+             */
+        R.participations.findById = function() {
+          var TargetResource = $injector.get("Participation");
+          var action = TargetResource["::findById::Subuser::participations"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser.participations#updateById
+             * @methodOf lbServices.Subuser.participations
+             *
+             * @description
+             *
+             * Update a related item by id for participations.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for participations
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Participation` object.)
+             * </em>
+             */
+        R.participations.updateById = function() {
+          var TargetResource = $injector.get("Participation");
+          var action = TargetResource["::updateById::Subuser::participations"];
+          return action.apply(R, arguments);
+        };
     /**
      * @ngdoc object
      * @name lbServices.Subuser.preferences

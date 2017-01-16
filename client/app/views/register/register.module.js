@@ -25,8 +25,7 @@ angular.module('register', ['ngRoute'])
         $scope.register = function(name, email, password) {
             return Subuser
                 .create({
-                    name: name,
-                    username: email,
+                    username: name,
                     email: email,
                     password: password
                 })

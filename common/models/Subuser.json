@@ -1,33 +1,49 @@
 {
-  "name": "Participation",
-  "plural": "Participations",
-  "base": "PersistedModel",
+  "name": "Subuser",
+  "plural": "Subusers",
+  "base": "User",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "status": {
-      "type": "string",
-      "required": false,
-      "description": "Reserved, completed, ..."
+    "age": {
+      "type": "number"
     },
-    "reward": {
+    "gender": {
+      "type": "string"
+    },
+    "matriculationNr": {
+      "type": "number"
+    },
+    "course": {
+      "type": "string"
+    },
+    "language": {
       "type": "string",
-      "required": false,
-      "description": "Hours or monetary compensation"
+      "default": "de-DE"
     }
   },
   "validations": [],
   "relations": {
-    "participant": {
-      "type": "belongsTo",
-      "model": "Subuser",
+    "preferences": {
+      "type": "hasOne",
+      "model": "Preference",
       "foreignKey": ""
     },
-    "date": {
-      "type": "hasOne",
+    "created_studies": {
+      "type": "hasMany",
+      "model": "Study",
+      "foreignKey": ""
+    },
+    "created_study_dates": {
+      "type": "hasMany",
       "model": "Study-date",
+      "foreignKey": ""
+    },
+    "participations": {
+      "type": "hasMany",
+      "model": "Participation",
       "foreignKey": ""
     }
   },
@@ -45,7 +61,7 @@
       "permission": "ALLOW"
     },
     {
-      "accessType": "*",
+      "accessType": "READ",
       "principalType": "ROLE",
       "principalId": "advisor",
       "permission": "ALLOW"
@@ -53,7 +69,7 @@
     {
       "accessType": "READ",
       "principalType": "ROLE",
-      "principalId": "$authenticated",
+      "principalId": "$owner",
       "permission": "ALLOW"
     },
     {
@@ -61,13 +77,6 @@
       "principalType": "ROLE",
       "principalId": "$owner",
       "permission": "ALLOW"
-    },
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$authenticated",
-      "permission": "ALLOW",
-      "property": "create"
     }
   ],
   "methods": {}
