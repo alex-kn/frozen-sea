@@ -29,7 +29,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "preferences": {
+      "type": "hasOne",
+      "model": "Preference",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

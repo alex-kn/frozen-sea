@@ -47,5 +47,9 @@
   "Subuser": {
     "dataSource": "userstudy-db",
     "public": true
+  },
+  "Preference": {
+    "dataSource": "userstudy-db",
+    "public": true
   }
 }
