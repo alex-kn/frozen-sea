@@ -12,46 +12,17 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('UserPreferencesController', ['$scope', 'Preference','Subuser','User','$rootScope', function ($scope, Preference, Subuser, User, $rootScope) {
+    .controller('UserPreferencesController', ['$scope', 'Preference', 'Subuser', 'User', '$rootScope', function ($scope, Preference, Subuser, User, $rootScope) {
         $scope.title = 'Meine Kriterien';
 
-        $scope.preferences = {
-            operatingSystem: {
-                ios: false,
-                android: false
-            }
+        //Subuser.preferences.create({id: $rootScope.currentUser.id}, {});
+
+        Subuser.preferences({"id": $rootScope.currentUser.id}, function (response) {
+            $scope.preferences = response;
+        });
+
+        $scope.savePreferences = function () {
+            $scope.preferences.$save();
         }
 
-        //console.log($rootScope.currentUser.id);
-        //console.log(Subuser.findById({_id: $rootScope.currentUser.id}));
-
-
-        /*$scope.preferences = {
-            operatingSystem: {
-                ios: false,
-                android: false,
-                other: false,
-            },
-            visualAid: {
-                glasses: false,
-                contactLenses: false,
-                none: false,
-
-            },
-            handedness: {
-                leftHanded: false,
-                rightHanded: false
-            },
-            language: {
-                german: false,
-                english: false,
-            },
-            height: null,
-
-        }*/
-
-        $scope.savePreferences = function() {
-
-        }
-
-        }])
+    }])

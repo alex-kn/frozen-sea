@@ -28,12 +28,11 @@
                 <md-checkbox flex-xs="100" ng-model="preferences.operatingSystem.android" aria-label="Android">
                     Android
                 </md-checkbox>
-                <!--<md-checkbox flex-xs="100" ng-model="preferences.operatingSystem.other" aria-label="Sonstiges">
+                <md-checkbox flex-xs="100" ng-model="preferences.operatingSystem.other" aria-label="Sonstiges">
                     sonstiges
-                </md-checkbox>-->
+                </md-checkbox>
             </md-input-container>
-            <!--
-            <h2 class="md-headline">Ich habe ...</h2>
+            <h2 class="md-headline">Ich trage ...</h2>
             <md-input-container layout="row" layout-xs="column">
                 <md-checkbox flex-xs="100" ng-model="preferences.visualAid.none" aria-label="Keine Sehhilfe">
                     keine Sehhilfe
@@ -62,9 +61,9 @@
                 <md-checkbox flex-xs="100" ng-model="preferences.language.english" aria-label="English">
                     Englisch
                 </md-checkbox>
-            </md-input-container>-->
+            </md-input-container>
             <md-input-container>
-                <md-button ng-click="savePreferences()" class="md-accent md-raised">Speichern</md-button>
+                <md-button href="#!/home" ng-click="savePreferences()" class="md-accent md-raised">Speichern</md-button>
             </md-input-container>
         </form>
     </md-content>
