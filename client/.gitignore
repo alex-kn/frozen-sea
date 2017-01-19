@@ -6,3 +6,4 @@ bower_components/
 .DS_Store
 .ide
 .idea/workspace.xml
+.idea
