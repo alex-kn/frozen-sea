@@ -19,6 +19,8 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
 
         Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
             $scope.preferences = response;
+            $scope.preferences.birthDate = new Date($scope.preferences.birthDate);
+
         });
 
         $scope.savePreferences = function () {
