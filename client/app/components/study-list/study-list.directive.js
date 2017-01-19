@@ -4,16 +4,26 @@
 
 angular
     .module('studyListDirective', [])
-    .controller('StudyListController', ['$scope', 'Study', '$mdDialog', '$location', function ($scope, Study, $mdDialog, $location) {
+    .controller('StudyListController', ['$scope', 'Study', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$filter',
+        function ($scope, Study, $mdDialog, $location, Subuser, LoopBackAuth, $filter) {
 
         $scope.title = 'Studien';
 
-        $scope.studies = Study.find(
-            function (list) { /* success */
+
+
+        $scope.studiesTemp = Study.find(
+            function(list) { /* success */ //TODO: where end date not in the past
+                filter()
             },
-            function (errorResponse) { /* error */
-            }
+            function(errorResponse) { /* error */}
         );
+
+        function filter() {
+            Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
+                $scope.preferences = response;
+                $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences)
+            });
+        }
 
         $scope.showPrompt = function(ev) {
             // Appending dialog to document.body to cover sidenav in docs app

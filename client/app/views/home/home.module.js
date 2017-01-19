@@ -13,11 +13,7 @@ angular.module('home', ['ngRoute'])
         });
     }])
 
-    .controller('HomeController', ['$scope', 'Subuser', 'Study', function($scope, Subuser, Study) {
-
-        $scope.studies = Study.find(
-            function(list) { /* success */ },
-            function(errorResponse) { /* error */ }
-        );
+    .controller('HomeController', ['$scope', 'Subuser', 'Study', 'LoopBackAuth',
+        function($scope, Subuser, Study, LoopBackAuth) {
 
     }]);
