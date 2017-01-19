@@ -26,6 +26,10 @@ md-toolbar.toolbar {
 
 form {
 
+  .height-input{
+    max-width: 100px;
+  }
+
   .ng-hide{
     opacity: 0;
   }

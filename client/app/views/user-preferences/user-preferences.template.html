@@ -45,10 +45,10 @@
 
             <h2 class="md-headline">Ich bin ...</h2>
             <md-input-container layout="row" layout-xs="column">
-                <md-checkbox flex-xs="100" aria-label="m&auml;nnlich">
+                <md-checkbox flex-xs="100" ng-model="preferences.gender.male" aria-label="m&auml;nnlich">
                     m&auml;nnlich
                 </md-checkbox>
-                <md-checkbox flex-xs="100" aria-label="weiblich">
+                <md-checkbox flex-xs="100" ng-model="preferences.gender.female" aria-label="weiblich">
                     weiblich
                 </md-checkbox>
             </md-input-container>
@@ -58,18 +58,18 @@
 
 
             <md-input-container flex-gt-xs="50" flex="100">
-                <md-datepicker md-current-view="year" md-open-on-focus="true" md-max-date="maxDate" md-min-date="minDate" ng-model="birthDate"></md-datepicker>
-
+                <md-datepicker ng-model="preferences.birthDate" md-current-view="year" md-open-on-focus="true"
+                               md-max-date="maxDate" md-min-date="minDate" aria-label="Geburtsdatum"></md-datepicker>
             </md-input-container>
 
             <md-divider></md-divider>
             <h2 class="md-headline">Meine K&ouml;rpergr&ouml;&szlig;e betr&auml;gt ungef&auml;hr ...</h2>
 
             <md-input-container>
-                <input type="number" md-no-asterisk
+                <input class="height-input" type="number" md-no-asterisk ng-model="preferences.height"
                        placeholder="in cm" md-select-on-focus>
             </md-input-container>
-
+            <md-divider></md-divider>
             <h2 class="md-headline">Das Betriebsystem meines Mobilgeräts ist ...</h2>
             <md-input-container layout="row" layout-xs="column">
                 <md-checkbox flex-xs="100" ng-model="preferences.operatingSystem.ios" aria-label="iOS">

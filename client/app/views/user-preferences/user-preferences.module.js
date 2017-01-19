@@ -19,16 +19,6 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
 
         Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
             $scope.preferences = response;
-        },function (error){
-            if(error.status == 404){
-                Subuser.preferences
-                    .create({id: LoopBackAuth.currentUserId}, {})
-                    .$promise
-                    .then(function (response) {
-                        $scope.preferences = response;
-                    });
-
-            }
         });
 
         $scope.savePreferences = function () {
