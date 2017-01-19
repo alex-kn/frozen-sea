@@ -22,6 +22,16 @@ angular
             Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
                 $scope.preferences = response;
                 $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences)
+            },function (error){
+                if(error.status == 404){
+                    Subuser.preferences
+                        .create({id: LoopBackAuth.currentUserId}, {})
+                        .$promise
+                        .then(function (response) {
+                            filter()//obacht!
+                        });
+
+                }
             });
         }
 
