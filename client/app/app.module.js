@@ -9,6 +9,7 @@ angular.module('userStudy', [
     'ngRoute',
     'lbServices',
     'ngResource',
+    'ngAnimate',
     'home',
     'login',
     'createStudy',
@@ -19,6 +20,4 @@ angular.module('userStudy', [
     'AuthService',
     'register',
     'ngMaterial'
-
-
 ]);

@@ -20,6 +20,56 @@
     <md-content flex-offset-gt-sm="20" flex-gt-sm="60" flex-offset-sm="100">
         <form name="userPreferencesForm" layout="column">
 
+            <h2 class="md-headline">Ich bin ...</h2>
+
+            <div layout="row" layout-xs="column">
+
+                <md-input-container flex-gt-xs="50" flex="100">
+                    <md-checkbox flex-xs="100" ng-model="student" aria-label="iOS">
+                        Student
+                    </md-checkbox>
+                </md-input-container>
+                <div flex-gt-xs="50" flex="100">
+                    <md-autocomplete ng-show="student" md-selected-item="selectedItem"
+                                     md-search-text="searchText"
+                                     md-items="item in getMatches(searchText)" md-item-text="item" md-min-length="0"
+                                     md-require-match="true" md-floating-label="Ich studiere ..." md-autoselect="true">
+                        <md-item-template>
+                            <span md-highlight-text="searchText" md-highlight-flags="^i">{{item}}</span>
+                        </md-item-template>
+                        <md-not-found>Diesen Studiengang gibt es nicht an der LMU.</md-not-found>
+                    </md-autocomplete>
+                </div>
+            </div>
+            <md-divider></md-divider>
+
+            <h2 class="md-headline">Ich bin ...</h2>
+            <md-input-container layout="row" layout-xs="column">
+                <md-checkbox flex-xs="100" aria-label="m&auml;nnlich">
+                    m&auml;nnlich
+                </md-checkbox>
+                <md-checkbox flex-xs="100" aria-label="weiblich">
+                    weiblich
+                </md-checkbox>
+            </md-input-container>
+            <md-divider></md-divider>
+
+            <h2 class="md-headline">Ich wurde geboren am ...</h2>
+
+
+            <md-input-container flex-gt-xs="50" flex="100">
+                <md-datepicker md-current-view="year" md-open-on-focus="true" md-max-date="maxDate" md-min-date="minDate" ng-model="birthDate"></md-datepicker>
+
+            </md-input-container>
+
+            <md-divider></md-divider>
+            <h2 class="md-headline">Meine K&ouml;rpergr&ouml;&szlig;e betr&auml;gt ungef&auml;hr ...</h2>
+
+            <md-input-container>
+                <input type="number" md-no-asterisk
+                       placeholder="in cm" md-select-on-focus>
+            </md-input-container>
+
             <h2 class="md-headline">Das Betriebsystem meines Mobilgeräts ist ...</h2>
             <md-input-container layout="row" layout-xs="column">
                 <md-checkbox flex-xs="100" ng-model="preferences.operatingSystem.ios" aria-label="iOS">
@@ -32,6 +82,8 @@
                     sonstiges
                 </md-checkbox>
             </md-input-container>
+            <md-divider></md-divider>
+
             <h2 class="md-headline">Ich trage ...</h2>
             <md-input-container layout="row" layout-xs="column">
                 <md-checkbox flex-xs="100" ng-model="preferences.visualAid.none" aria-label="Keine Sehhilfe">
@@ -44,6 +96,8 @@
                     Kontaktlinsen
                 </md-checkbox>
             </md-input-container>
+            <md-divider></md-divider>
+
             <h2 class="md-headline">Ich bin ...</h2>
             <md-input-container layout="row" layout-xs="column">
                 <md-checkbox flex-xs="100" ng-model="preferences.handedness.leftHanded" aria-label="Linksh&auml;nder">
@@ -52,7 +106,12 @@
                 <md-checkbox flex-xs="100" ng-model="preferences.handedness.rightHanded" aria-label="Rechtsh&auml;nder">
                     Rechtsh&auml;nder
                 </md-checkbox>
+                <md-checkbox flex-xs="100" ng-model="preferences.handedness.bothHanded" aria-label="Beidh&auml;nder">
+                    Beidh&auml;nder
+                </md-checkbox>
             </md-input-container>
+            <md-divider></md-divider>
+
             <h2 class="md-headline">Ich spreche ...</h2>
             <md-input-container layout="row" layout-xs="column">
                 <md-checkbox flex-xs="100" ng-model="preferences.language.german" aria-label="Deutsch">
@@ -62,9 +121,12 @@
                     Englisch
                 </md-checkbox>
             </md-input-container>
+            <md-divider></md-divider>
+
             <md-input-container>
                 <md-button href="#!/home" ng-click="savePreferences()" class="md-accent md-raised">Speichern</md-button>
             </md-input-container>
+
         </form>
     </md-content>
     <!-- END study preferences -->
