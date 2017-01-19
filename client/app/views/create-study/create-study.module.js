@@ -102,4 +102,73 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
             });
         };
 
+        /**
+         * StudyProgram autocomplete
+         */
+        var self = this;
+
+        self.readonly = false;
+        self.selectedStudyProgram = null;
+        self.searchText = null;
+        self.querySearch = querySearch;
+        self.studyPrograms = loadStudyPrograms();
+        self.selectedstudyPrograms = [];
+        self.autocompleteRequireMatch = true;
+        self.transformChip = transformChip;
+
+        /**
+         * Return the proper object when the append is called.
+         */
+        function transformChip(chip) {
+            // If it is an object, it's already a known chip
+            if (angular.isObject(chip)) {
+                return chip;
+            }
+
+            // Otherwise, create a new one
+            return { name: chip, type: 'new' }
+        }
+
+        /**
+         * Search for studyPrograms.
+         */
+        function querySearch (query) {
+            var results = query ? self.studyPrograms.filter(createFilterFor(query)) : [];
+            return results;
+        }
+
+        /**
+         * Create filter function for a query string
+         */
+        function createFilterFor(query) {
+            var lowercaseQuery = angular.lowercase(query);
+
+            return function filterFn(studyProgram) {
+                return (studyProgram._lowername.indexOf(lowercaseQuery) === 0) ||
+                    (studyProgram._lowertype.indexOf(lowercaseQuery) === 0);
+            };
+
+        }
+
+        function loadStudyPrograms() {
+
+            var studyPrograms = [
+                {
+                    'name': 'Mathematik',
+                    'type': 'Bachelor'
+                },
+                {
+                    'name': 'Knödel',
+                    'type': 'Bachelor'
+                }
+            ];
+
+
+            return studyPrograms.map(function (program) {
+                program._lowername = program.name.toLowerCase();
+                program._lowertype = program.type.toLowerCase();
+                return program;
+            });
+        }
+
     }]);

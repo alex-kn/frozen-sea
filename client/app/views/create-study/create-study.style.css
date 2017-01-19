@@ -63,25 +63,23 @@ md-toolbar.toolbar {
     top: 5.75rem;
     right: 22%; }
 
-form #edit {
-  margin-left: .5rem;
-  font-size: 1.5rem;
-  cursor: pointer; }
-form .errors {
-  font-size: 12px;
-  color: #dd2c00;
-  margin-top: 10px; }
-form #duration {
-  margin-top: 3rem; }
-form md-input-container, form .mg-top-25 {
-  margin-top: 2.5rem; }
-  form md-input-container.after-chip, form .mg-top-25.after-chip {
+form {
+  margin-top: 4rem; }
+  form #edit {
+    margin-left: .5rem;
+    font-size: 1.5rem;
+    cursor: pointer; }
+  form .errors {
+    font-size: 12px;
+    color: #dd2c00;
+    margin-top: 10px; }
+  form #duration {
+    margin-top: 3rem; }
+  form .after-chips {
     margin-top: 4rem; }
-  form md-input-container .mg-top-4, form .mg-top-25 .mg-top-4 {
-    margin-top: 4rem; }
-form md-checkbox {
-  margin-right: 4rem; }
-  form md-checkbox:last-of-type {
-    margin-right: 0; }
+  form md-checkbox {
+    margin-right: 4rem; }
+    form md-checkbox:last-of-type {
+      margin-right: 0; }
 
 /*# sourceMappingURL=create-study.style.css.map */
