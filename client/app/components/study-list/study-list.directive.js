@@ -30,7 +30,7 @@ angular
             $mdDialog.show(confirm).then(function(result) {
                 $location.path('/create-study').search({'study': result})
             }, function() {
-                $scope.status = 'You didn\'t name your dog.';
+                console.log('Come on dude, it would have been a great study!');
             });
         };
 

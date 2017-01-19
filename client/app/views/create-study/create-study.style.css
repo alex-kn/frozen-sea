@@ -51,6 +51,8 @@ html, body {
 
 md-toolbar.toolbar {
   height: 8rem; }
+  md-toolbar.toolbar h2 {
+    margin-left: 0; }
   md-toolbar.toolbar .md-toolbar-tools {
     font-size: 2rem;
     font-weight: 100; }
@@ -73,11 +75,13 @@ form #duration {
   margin-top: 3rem; }
 form md-input-container, form .mg-top-25 {
   margin-top: 2.5rem; }
-  form md-input-container:first-of-type, form .mg-top-25:first-of-type {
-    margin-top: 1.5rem; }
   form md-input-container.after-chip, form .mg-top-25.after-chip {
-    margin-top: 3.5rem; }
+    margin-top: 4rem; }
   form md-input-container .mg-top-4, form .mg-top-25 .mg-top-4 {
     margin-top: 4rem; }
+form md-checkbox {
+  margin-right: 4rem; }
+  form md-checkbox:last-of-type {
+    margin-right: 0; }
 
 /*# sourceMappingURL=create-study.style.css.map */

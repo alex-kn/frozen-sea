@@ -26,7 +26,8 @@
         <form name="createStudyForm" layout="column">
 
 
-            <h2 class="md-headline" ng-model="study.name">{{ study.name }}<i id="edit" class="material-icons">edit</i></h2>
+            <h2 class="md-headline" ng-model="study.name">{{ study.name }}<i id="edit" class="material-icons">edit</i>
+            </h2>
 
             <!-- START Description -->
             <md-input-container>
@@ -42,7 +43,8 @@
 
             <!-- START keywords -->
             <div class="mg-top-25">
-                <md-chips secondary-placeholder="" placeholder="z.B. Android" name="tags" ng-model="study.tags"
+                <md-chips secondary-placeholder="" aria-label="Keywords" placeholder="z.B. Android" name="tags"
+                          ng-model="study.tags"
                           readonly="ctrl.readonly"
                           md-removable="ctrl.removable">
                 </md-chips>
@@ -80,27 +82,24 @@
 
             <!-- START dates -->
             <h2 class="md-headline">Termine</h2>
-            
+
             <div layout="row" layout-xs="column">
                 <md-input-container flex-gt-xs="50" flex="100">
                     <label>Studienbeginn</label>
-                    <md-datepicker ng-required ng-model="startDate" name="startDate" md-min-date="startDate"></md-datepicker>
+                    <md-datepicker required ng-required ng-model="startDate" name="startDate"
+                                   md-min-date="startDate"></md-datepicker>
 
                     <div ng-messages="createStudyForm.startDate.$error">
-                        <div ng-message="valid">The entered value is not a date!</div>
-                        <div ng-message="required">This date is required!</div>
-                        <div ng-message="mindate">Date is too early!</div>
+                        <div ng-message="required">Bitte gebe den Studienbeginn so TT/MM/JJJJ an</div>
                     </div>
                 </md-input-container>
 
                 <md-input-container flex-gt-xs="50" flex="100">
                     <label>Studienbeginn</label>
-                    <md-datepicker ng-required ng-model="endDate" name="endDate" md-min-date="minEndDate"></md-datepicker>
+                    <md-datepicker required ng-model="endDate" name="endDate" md-min-date="minEndDate"></md-datepicker>
 
                     <div ng-messages="createStudyForm.endDate.$error">
-                        <div ng-message="valid">The entered value is not a date!</div>
-                        <div ng-message="required">This date is required!</div>
-                        <div ng-message="mindate">Date is too early!</div>
+                        <div ng-message="required">Bitte gebe das Studienende so TT/MM/JJJJ an</div>
                     </div>
                 </md-input-container>
             </div>
@@ -110,12 +109,20 @@
             <div layout="row" layout-xs="column">
 
                 <md-input-container>
-                    <md-button ng-click="createStudy(study.name, study.description, startDate, endDate)" class="md-accent md-raised">Studie erstellen</md-button>
-                    <md-button ng-click="showCreateStudyToast()">Abbrechen</md-button>
+                    <md-button ng-click="createStudy(study.name, study.description, startDate, endDate)"
+                               ng-disabled="createStudyForm.$invalid" class="md-accent md-raised">Studie erstellen
+                    </md-button>
+                    <md-button ng-click="cancelStudy()">Abbrechen</md-button>
                 </md-input-container>
 
             </div>
             <!-- END submit -->
+
+            <!-- START Invalid form -->
+            <div layout="row" layout-xs="column" ng-if="createStudyForm.$invalid">
+                <p>Bitte fülle alle Pflichtfelder aus</p>
+            </div>
+            <!-- END Invalid form -->
 
 
         </form>
