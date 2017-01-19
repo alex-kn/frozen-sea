@@ -94,7 +94,7 @@
             <section><h2 class="md-headline after-chips">Alter</h2>
             <md-slider-container layout="row" layout-xs="column">
                 <span flex-gt-xs="20" flex-xs="100">Mindestalter</span>
-                <md-slider min="0" ng-model="study.minAge" aria-label="Mindestalter" id="min-age-slider">
+                <md-slider min="0" max="60" ng-model="study.minAge" aria-label="Mindestalter" id="min-age-slider">
                 </md-slider>
                 <md-input-container hide-xs>
                     <input flex type="number" ng-model="study.minAge" aria-label="Mindestalter"
@@ -135,8 +135,8 @@
             </md-input-container>
             <!-- END rewards -->
 
-            <!-- START dates -->
-            <h2 class="md-headline">Termine</h2>
+            <!-- START start and end dates -->
+            <h2 class="md-headline">Start- und Enddatum</h2>
 
             <div layout="row" layout-xs="column">
                 <md-input-container flex-gt-xs="50" flex="100">
@@ -158,7 +158,30 @@
                     </div>
                 </md-input-container>
             </div>
-            <!-- END dates -->
+            <!-- END start and end dates -->
+            <!-- START study dates -->
+            <h2 class="md-headline">Termine berechnen</h2>
+
+            <div layout="row" layout-xs="column" layout-padding>
+                <md-input-container flex="20">
+                    <input type="time" required aria-label="" ng-model="firstDate" md-no-asterisk placeholder="Erster Termin" md-select-on-focus>
+                </md-input-container>
+                <md-input-container flex="20">
+                    <input type="time" required aria-label="" ng-model="lastDate" md-no-asterisk placeholder="Letzter Termin" md-select-on-focus>
+                </md-input-container>
+                <md-input-container flex="20">
+                    <input type="time" required aria-label="" ng-model="lunchBreak" md-no-asterisk placeholder="Mittagspause" md-select-on-focus>
+                </md-input-container>
+                <md-input-container flex="20">
+                    <input type="time" required aria-label="" ng-model="puffer" md-no-asterisk placeholder="Puffer" md-select-on-focus>
+                </md-input-container>
+                <md-input-container flex="100">
+                    <md-button class="md-raised md-accent">Termine berechnen</md-button>
+                </md-input-container>
+            </div>
+
+
+            <!-- END study dates -->
 
             <!-- START submit -->
             <div layout="row" layout-xs="column">
