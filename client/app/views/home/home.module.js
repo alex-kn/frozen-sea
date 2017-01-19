@@ -13,23 +13,7 @@ angular.module('home', ['ngRoute'])
         });
     }])
 
-    .controller('HomeController', ['$scope', 'Subuser', 'Study', 'LoopBackAuth', 'studyFilter',
-        function($scope, Subuser, Study, LoopBackAuth, studyFilter) {
-
-        $scope.studies = Study.find(
-            function(list) { /* success */ },
-            function(errorResponse) { /* error */ }
-        );
-
-
-        Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
-            $scope.preferences = response;
-
-            //studyFilter($scope.studies, $scope.preferences)
-        });
-
-        $scope.savePreferences = function () {
-            $scope.preferences.$save();
-        }
+    .controller('HomeController', ['$scope', 'Subuser', 'Study', 'LoopBackAuth',
+        function($scope, Subuser, Study, LoopBackAuth) {
 
     }]);

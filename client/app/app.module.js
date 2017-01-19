@@ -18,7 +18,7 @@ angular.module('userStudy', [
     'studyListDirective',
     'AuthService',
     'register',
-    'ngMaterial',
-    'studyFilter'
+    'ngMaterial'
+
 
 ]);
