@@ -18,15 +18,15 @@
 
         <span flex></span>
 
-        <div hide-xs class="user-profil">
+        <div class="user-profil">
             <md-menu md-offset="5 50" md-position-mode="target-right target">
                 <md-button aria-label="Open user menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
                     <md-icon class="material-icons md-24">account_circle</md-icon>
                 </md-button>
                 <md-menu-content width="4">
                     <md-menu-item>
-                        <md-button aria-label="Profil Bearbeiten">
-                            Profil bearbeiten
+                        <md-button ng-click="goToEditProfile()" aria-label="Profil Bearbeiten">
+                           Profil bearbeiten
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>

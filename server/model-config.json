@@ -51,9 +51,5 @@
   "Preference": {
     "dataSource": "userstudy-db",
     "public": true
-  },
-  "StudyProgram": {
-    "dataSource": "userstudy-db",
-    "public": true
   }
 }

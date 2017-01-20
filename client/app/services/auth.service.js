@@ -1,6 +1,6 @@
 angular
     .module('AuthService', [])
-    .factory('AuthService', ['Subuser', '$rootScope', '$location','$window', function (User, $rootScope, $location, $window) {
+    .factory('AuthService', ['Subuser', '$rootScope','$window', function (User, $rootScope, $window) {
         //TODO: Error-Handling
 
         function logout() {
