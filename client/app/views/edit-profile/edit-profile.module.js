@@ -113,8 +113,8 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
             $mdDialog.show(confirm).then(function(result) {
                 User.prototype$updateAttributes({ id: $scope.userId }, {'name':result})
                     .$promise.then(function (){
-                        $window.location.reload();
-                     });
+                    $window.location.reload();
+                });
             }, function() {
                 // Abbrechen
             });

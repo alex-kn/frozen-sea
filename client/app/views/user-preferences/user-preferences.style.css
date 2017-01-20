@@ -75,16 +75,33 @@ md-toolbar.toolbar {
   margin-top: .5rem;
   color: #9E9E9E; }
 
-.introduction {
-  height: 100vh;
-  background-image: url("../../../resc/images/register-2.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: #fff; }
+form .height-input {
+  max-width: 100px; }
+form .ng-hide {
+  opacity: 0; }
+form .ng-hide-add, form .ng-hide-remove {
+  transition: all linear 500ms; }
+@media (max-width: 600px) {
+  form md-autocomplete {
+    position: inherit !important; } }
+form md-autocomplete {
+  position: absolute;
+  min-width: 100%; }
+form #edit {
+  margin-left: .5rem;
+  font-size: 1.5rem;
+  cursor: pointer; }
+form .errors {
+  font-size: 12px;
+  color: #dd2c00;
+  margin-top: 10px; }
+form #duration {
+  margin-top: 3rem; }
+form h2 + md-input-container {
+  margin-top: 1.5rem; }
+form md-checkbox {
+  margin-right: 4rem; }
+  form md-checkbox:last-of-type {
+    margin-right: 0; }
 
-.registration md-input-container {
-  margin-top: 2.5rem; }
-.registration .registration-form {
-  margin-top: 8rem; }
-
-/*# sourceMappingURL=register.style.css.map */
+/*# sourceMappingURL=user-preferences.style.css.map */

@@ -1,29 +1,5 @@
 @import "../../stylesheets/main";
 
-md-toolbar.toolbar {
-
-  height: 8rem;
-
-  h2 {
-    margin-left: 0;
-  }
-
-  .md-toolbar-tools {
-    font-size: 2rem;
-    font-weight: 100;
-
-    i {
-      font-size: 2rem;
-      margin-right: 1rem;
-    }
-  }
-
-  .md-button.md-fab.md-fab-bottom-right {
-    top: 5.75rem;
-    right: 22%;
-  }
-}
-
 form {
 
   margin-top: 4rem;

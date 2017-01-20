@@ -16,8 +16,34 @@ html, body {
   position: relative !important;
   bottom: -7px !important; }
 
+.material-icons.md-18 {
+  font-size: 18px; }
+
+.material-icons.md-24 {
+  font-size: 24px; }
+
+.material-icons.md-36 {
+  font-size: 36px; }
+
+.material-icons.md-48 {
+  font-size: 48px; }
+
 .nav li {
   float: left; }
+
+md-toolbar.toolbar {
+  height: 8rem; }
+  md-toolbar.toolbar h2 {
+    margin-left: 0; }
+  md-toolbar.toolbar .md-toolbar-tools {
+    font-size: 2rem;
+    font-weight: 100; }
+    md-toolbar.toolbar .md-toolbar-tools i {
+      font-size: 2rem;
+      margin-right: 1rem; }
+  md-toolbar.toolbar .md-button.md-fab.md-fab-bottom-right {
+    top: 5.75rem;
+    right: 22%; }
 
 .form-control {
   height: 2.5rem; }
@@ -48,20 +74,6 @@ html, body {
   font-size: 14px;
   margin-top: .5rem;
   color: #9E9E9E; }
-
-md-toolbar.toolbar {
-  height: 8rem; }
-  md-toolbar.toolbar h2 {
-    margin-left: 0; }
-  md-toolbar.toolbar .md-toolbar-tools {
-    font-size: 2rem;
-    font-weight: 100; }
-    md-toolbar.toolbar .md-toolbar-tools i {
-      font-size: 2rem;
-      margin-right: 1rem; }
-  md-toolbar.toolbar .md-button.md-fab.md-fab-bottom-right {
-    top: 5.75rem;
-    right: 22%; }
 
 form {
   margin-top: 4rem; }
