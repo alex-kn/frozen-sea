@@ -51,6 +51,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         var _currentUserId = LoopBackAuth.currentUserId;
 
         $scope.appointments = [];
+        $scope.appointmentDate = $scope.startDate;
 
         /**
          * Allows user to add study appointments
