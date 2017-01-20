@@ -1,0 +1,95 @@
+html, body {
+  font-size: 16px;
+  font-family: "Roboto", sans-serif; }
+
+.hint {
+  position: absolute;
+  left: 2px;
+  right: auto;
+  bottom: 7px;
+  font-size: 12px;
+  line-height: 14px;
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  color: grey; }
+
+.hint-chips {
+  position: relative !important;
+  bottom: -7px !important; }
+
+.nav li {
+  float: left; }
+
+.form-control {
+  height: 2.5rem; }
+
+.container {
+  padding: 1.5em; }
+
+.profile-card {
+  background-color: #fafbfc;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  margin-top: 1.5em; }
+  .profile-card:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+
+.profile-info {
+  color: #212121;
+  padding: .5em 1em 1.5em 1em;
+  position: relative;
+  text-align: start; }
+
+.profile-info h2 {
+  color: #4f6875;
+  margin-bottom: 1rem; }
+
+.profile-info span {
+  display: block;
+  font-size: 14px;
+  margin-top: .5rem;
+  color: #9E9E9E; }
+
+md-toolbar.toolbar {
+  height: 8rem; }
+  md-toolbar.toolbar h2 {
+    margin-left: 0; }
+  md-toolbar.toolbar .md-toolbar-tools {
+    font-size: 2rem;
+    font-weight: 100; }
+    md-toolbar.toolbar .md-toolbar-tools i {
+      font-size: 2rem;
+      margin-right: 1rem; }
+  md-toolbar.toolbar .md-button.md-fab.md-fab-bottom-right {
+    top: 5.75rem;
+    right: 22%; }
+
+form .height-input {
+  max-width: 100px; }
+form .ng-hide {
+  opacity: 0; }
+form .ng-hide-add, form .ng-hide-remove {
+  transition: all linear 500ms; }
+@media (max-width: 600px) {
+  form md-autocomplete {
+    position: inherit !important; } }
+form md-autocomplete {
+  position: absolute;
+  min-width: 100%; }
+form #edit {
+  margin-left: .5rem;
+  font-size: 1.5rem;
+  cursor: pointer; }
+form .errors {
+  font-size: 12px;
+  color: #dd2c00;
+  margin-top: 10px; }
+form #duration {
+  margin-top: 3rem; }
+form h2 + md-input-container {
+  margin-top: 1.5rem; }
+form md-checkbox {
+  margin-right: 4rem; }
+  form md-checkbox:last-of-type {
+    margin-right: 0; }
+
+/*# sourceMappingURL=user-preferences.style.css.map */
