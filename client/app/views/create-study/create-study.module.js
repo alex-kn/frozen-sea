@@ -50,6 +50,32 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         // Get current user to save as
         var _currentUserId = LoopBackAuth.currentUserId;
 
+        $scope.appointments = [];
+
+        /**
+         * Allows user to add study appointments
+         *
+         * @param date date
+         * @param time date
+         * @param duration int
+         */
+        $scope.addAppointment = function(date, time, duration) {
+
+            var appointment = {
+                'date': date,
+                'time': time,
+                'duration': duration
+            };
+
+            $scope.appointments.push(appointment);
+
+        };
+
+        $scope.removeAppointment = function(item) {
+            var index=$scope.appointments.indexOf(item)
+            $scope.appointments.splice(index,1);
+        };
+
 
         /**
          * Save study to database
