@@ -3,12 +3,12 @@
 <md-content layout="row" ng-controller="LoginController">
 
     <section class="introduction md-hue-1" layout="column" layout-align="center center" flex-gt-sm="40" flex="100" hide-sm hide-xs>
-        <h1>Willkommen bei User Study</h1>
+        <h1>{{'LOGIN.WELCOME' | translate}}</h1>
         <p>
-            Schluss mit Facebook und Mundpropaganda <br/>
-            Finde und erstelle Benutzerstudien einfach online
+            {{'LOGIN.NO_MORE' | translate}} <br/>
+            {{'LOGIN.FIND' | translate}}
         </p>
-        <md-button class="md-accent md-raised">Mehr erfahren</md-button>
+        <md-button class="md-accent md-raised">{{'LOGIN.MORE' | translate}}</md-button>
 
     </section>
 
@@ -17,8 +17,11 @@
 
         <!-- START switch to login -->
         <div class="switch-to-login" layout="row" layout-align="end center">
-            <span>Du hast noch keinen Account?</span>
-            <md-button href="#!/register" class="md-accent">Registrieren</md-button>
+            <md-switch ng-model="language" aria-label="Language" ng-true-value="'en-EN'" ng-false-value="'de-DE'" class="md-primary">
+                {{changeLanguage(language)}}
+            </md-switch>
+            <span>{{'LOGIN.NO_ACCOUNT' | translate}}</span>
+            <md-button href="#!/register" class="md-accent">{{'LOGIN.REGISTER' | translate}}</md-button>
         </div>
         <!-- END switch to login -->
 
@@ -27,16 +30,16 @@
 
             <form  layout="column" flex-gt-xs="60" flex="100">
 
-                <h2>Einloggen bei User Study</h2>
+                <h2>{{'LOGIN.LOGIN_HERE' | translate}}</h2>
 
                 <md-input-container layout="row">
-                    <input type="text" aria-label="Email" ng-model="email" placeholder="Email">
+                    <input type="text" aria-label="{{'LOGIN.MAIL' | translate}}" ng-model="email" placeholder="{{'LOGIN.MAIL' | translate}}">
                 </md-input-container>
                 <md-input-container layout="row">
-                    <input type="password" aria-label="Passwort" ng-model="password" placeholder="Passwort">
+                    <input type="password" aria-label="{{'LOGIN.PASSWORD' | translate}}" ng-model="password" placeholder="{{'LOGIN.PASSWORD' | translate}}">
                 </md-input-container>
                 <div layout="row" class="submit">
-                    <md-button ng-click="loginUser(email, password)" class="md-accent md-raised">Einloggen</md-button>
+                    <md-button ng-click="loginUser(email, password)" class="md-accent md-raised">{{'LOGIN.LOGIN' | translate}}</md-button>
                 </div>
 
                 <div layout-align="start center" ng-if="errorMessage" class="error-message">
