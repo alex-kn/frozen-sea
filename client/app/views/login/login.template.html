@@ -17,9 +17,9 @@
 
         <!-- START switch to login -->
         <div class="switch-to-login" layout="row" layout-align="end center">
-            <md-switch ng-model="language" aria-label="Language" ng-true-value="'en-EN'" ng-false-value="'de-DE'" class="md-primary">
+             <span class="lang">DE</span>   <md-switch ng-model="language" aria-label="Language" ng-true-value="'en-EN'" ng-false-value="'de-DE'" class="md-primary">
                 {{changeLanguage(language)}}
-            </md-switch>
+            </md-switch> <span class="lang spacer">EN</span>
             <span>{{'LOGIN.NO_ACCOUNT' | translate}}</span>
             <md-button href="#!/register" class="md-accent">{{'LOGIN.REGISTER' | translate}}</md-button>
         </div>

@@ -8,8 +8,8 @@ angular.module('login', ['ngRoute'])
             controller: 'LoginController'
         });
     }])
-    .controller('LoginController', ['$scope', 'Subuser', '$location','$rootScope','$translate',
-        function($scope, Subuser, $location, $rootScope, $translate) {
+    .controller('LoginController', ['$scope', 'Subuser', '$location','$rootScope','$translate', '$filter',
+        function($scope, Subuser, $location, $rootScope, $translate, $filter) {
             $scope.email="";
             $scope.password="";
             $scope.errorMessage = "";
@@ -27,7 +27,7 @@ angular.module('login', ['ngRoute'])
                     };
                     $location.path('/home');
                 }, function(err) {
-                    $scope.errorMessage = $filter('translate')('ERROR');
+                    $scope.errorMessage = $filter('translate')('LOGIN.ERROR');
                 });
             }
         }]);

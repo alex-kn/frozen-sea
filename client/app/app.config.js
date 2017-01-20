@@ -92,13 +92,13 @@ angular
 
             $translateProvider.translations('de-DE', {
                 'LOGIN': {
-                    'WELCOME' : 'Willkommen bei User Study',
+                    'WELCOME' : 'Willkommen bei Frozen Sea',
                     'NO_MORE' : 'Schluss mit Facebook und Mundpropaganda',
                     'FIND': 'Finde und erstelle Benutzerstudien einfach online',
                     'MORE': 'Mehr erfahren',
                     'NO_ACCOUNT': 'Du hast noch keinen Account?',
                     'REGISTER': 'Registrieren',
-                    'LOGIN_HERE' : 'Einloggen bei User Study',
+                    'LOGIN_HERE' : 'Einloggen bei Frozen Sea',
                     'MAIL' : 'E-Mail',
                     'PASSWORD': 'Passwort',
                     'LOGIN': 'Einloggen',
@@ -106,7 +106,7 @@ angular
                 }
             });
 
-            $translateProvider.preferredLanguage('en-EN');
+            $translateProvider.preferredLanguage('de-DE');
 
         }])
     .run(['$rootScope', '$location', 'LoopBackAuth', 'AuthService', function ($rootScope, $location, LoopBackAuth, AuthService) {
