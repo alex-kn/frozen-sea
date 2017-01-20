@@ -13,7 +13,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdToast', 'Study', function($scope, $routeParams, $location, $mdToast,  Study) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'LoopBackAuth', function($scope, $routeParams, $location, $mdDialog,  Study, LoopBackAuth) {
 
         $scope.readonly = false;
         $scope.title = 'Studie erstellen';
@@ -35,91 +35,140 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
          * Instantiate datepickers
          * minStartDate is set to current date, minEndDate to minStartDate + 1
          */
+
         $scope.startDate = new Date();
         $scope.endDate = new Date(
             $scope.startDate.getFullYear(),
             $scope.startDate.getMonth(),
             $scope.startDate.getDate() + 1);
 
-        // 1 day after startDate
         $scope.minEndDate = new Date (
             $scope.startDate.getFullYear(),
             $scope.startDate.getMonth(),
             $scope.startDate.getDate() + 1);
 
-
-        $scope.createStudy = function(title, description, startDate, endDate) {
-            return Study
-                .create({
-                    title: title,
-                    description: description,
-                    startDate: startDate,
-                    endDate: endDate
-                })
-                .$promise
-                .then(function(response) {
-                    $location.path('/home');
-                });
-        };
+        // Get current user to save as
+        var _currentUserId = LoopBackAuth.currentUserId;
 
 
         /**
-         * Show toast in the top-left corner after the study is created
+         * Save study to database
+         * @param title string
+         * @param description string
+         * @param startDate date
+         * @param endDate date
+         * @param _currentUserId string
          */
-        /*var last = {
-            bottom: false,
-            top: true,
-            left: false,
-            right: true
+        $scope.createStudy = function(title, description, startDate, endDate, _currentUserId) {
+
+            if ($scope.createStudyForm.$valid) {
+
+                return Study
+                    .create({
+                        title: title,
+                        description: description,
+                        startDate: startDate,
+                        endDate: endDate,
+                        owner: _currentUserId
+                    })
+                    .$promise
+                    .then(function (response) {
+                        $location.path('/home');
+                    });
+            } else {
+
+            }
         };
 
-        $scope.toastPosition = angular.extend({},last);
+        /**
+         * Show prompt whether user wants to delete current study
+         * @param ev event
+         */
+        $scope.cancelStudy = function(ev) {
 
-        $scope.getToastPosition = function() {
-            sanitizePosition();
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                .title('Möchtest du die Studie ' + $scope.study.name + 'löschen?' )
+                .textContent('Dein gesamter Fortschritt wird gelöscht')
+                .ariaLabel('Fortschritt löschen')
+                .targetEvent(ev)
+                .ok('Studie löschen')
+                .cancel('Abbrechen');
 
-            return Object.keys($scope.toastPosition)
-                .filter(function(pos) { return $scope.toastPosition[pos]; })
-                .join(' ');
+            $mdDialog.show(confirm).then(function() {
+                $location.path('/home');
+            }, function() {
+                console.log('Keep on creating, fool :D');
+            });
         };
 
-        function sanitizePosition() {
-            var current = $scope.toastPosition;
+        /**
+         * StudyProgram autocomplete
+         */
+        var self = this;
 
-            if ( current.bottom && last.top ) current.top = false;
-            if ( current.top && last.bottom ) current.bottom = false;
-            if ( current.right && last.left ) current.left = false;
-            if ( current.left && last.right ) current.right = false;
+        self.readonly = false;
+        self.selectedStudyProgram = null;
+        self.searchText = null;
+        self.querySearch = querySearch;
+        self.studyPrograms = loadStudyPrograms();
+        self.selectedstudyPrograms = [];
+        self.autocompleteRequireMatch = true;
+        self.transformChip = transformChip;
 
-            last = angular.extend({},current);
+        /**
+         * Return the proper object when the append is called.
+         */
+        function transformChip(chip) {
+            // If it is an object, it's already a known chip
+            if (angular.isObject(chip)) {
+                return chip;
+            }
+
+            // Otherwise, create a new one
+            return { name: chip, type: 'new' }
         }
 
+        /**
+         * Search for studyPrograms.
+         */
+        function querySearch (query) {
+            var results = query ? self.studyPrograms.filter(createFilterFor(query)) : [];
+            return results;
+        }
 
-        /!**
-         * Toast is displayed after the user creates the study
-         * If the undo button is clicked, the user is redirected to the create study containing the recent study
-         * Subsequently, the study is removed from the database
-         *!/
-        $scope.showCreateStudyToast = function() {
-            var pinTo = $scope.getToastPosition();
-            var toast = $mdToast.simple()
-                .textContent('Marked as read')
-                .action('UNDO')
-                .highlightAction(true)
-                .highlightClass('md-accent')
-                .position(pinTo);
+        /**
+         * Create filter function for a query string
+         */
+        function createFilterFor(query) {
+            var lowercaseQuery = angular.lowercase(query);
 
-            $mdToast.show(toast).then(function(response) {
-                if ( response == 'ok' ) {
-                    alert('You clicked the \'UNDO\' action.');
+            return function filterFn(studyProgram) {
+                return (studyProgram._lowername.indexOf(lowercaseQuery) === 0) ||
+                    (studyProgram._lowertype.indexOf(lowercaseQuery) === 0);
+            };
+
+        }
+
+        function loadStudyPrograms() {
+
+            var studyPrograms = [
+                {
+                    'name': 'Mathematik',
+                    'type': 'Bachelor'
+                },
+                {
+                    'name': 'Knödel',
+                    'type': 'Bachelor'
                 }
+            ];
+
+
+            return studyPrograms.map(function (program) {
+                program._lowername = program.name.toLowerCase();
+                program._lowertype = program.type.toLowerCase();
+                return program;
             });
-        };*/
+        }
 
-    }])
-
-    .controller('ToastCtrl', function($scope, $mdToast) {
-        $scope.closeToast = function() {
-            $mdToast.hide();
-        };
-    });
+    }]);

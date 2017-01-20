@@ -22,6 +22,16 @@ angular
             Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
                 $scope.preferences = response;
                 $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences)
+            },function (error){
+                if(error.status == 404){
+                    Subuser.preferences
+                        .create({id: LoopBackAuth.currentUserId}, {})
+                        .$promise
+                        .then(function (response) {
+                            filter()//obacht!
+                        });
+
+                }
             });
         }
 
@@ -40,7 +50,7 @@ angular
             $mdDialog.show(confirm).then(function(result) {
                 $location.path('/create-study').search({'study': result})
             }, function() {
-                $scope.status = 'You didn\'t name your dog.';
+                console.log('Come on dude, it would have been a great study!');
             });
         };
 

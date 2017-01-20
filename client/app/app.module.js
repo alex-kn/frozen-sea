@@ -10,6 +10,7 @@ angular.module('userStudy', [
     'lbServices',
     'ngResource',
     'pascalprecht.translate',
+    'ngAnimate',
     'home',
     'login',
     'createStudy',
@@ -20,6 +21,4 @@ angular.module('userStudy', [
     'AuthService',
     'register',
     'ngMaterial'
-
-
 ]);

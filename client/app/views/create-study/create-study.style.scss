@@ -26,6 +26,8 @@ md-toolbar.toolbar {
 
 form {
 
+  margin-top: 4rem;
+
   #edit {
     margin-left: .5rem;
     font-size: 1.5rem;
@@ -42,21 +44,8 @@ form {
     margin-top: 3rem;
   }
 
-  h2 + md-input-container {
-      margin-top: 1.5rem;
-  }
-
-  md-input-container, .mg-top-25  {
-    margin-top: 2.5rem;
-
-    &.after-chip {
-      margin-top: 4rem;
-  }
-
-    .mg-top-4 {
-      margin-top: 4rem;
-    }
-
+  .after-chips {
+    margin-top: 4rem;
   }
 
   md-checkbox {

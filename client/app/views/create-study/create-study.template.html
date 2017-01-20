@@ -26,7 +26,12 @@
         <form name="createStudyForm" layout="column">
 
 
-            <h2 class="md-headline" ng-model="study.name">{{ study.name }}<i id="edit" class="material-icons">edit</i></h2>
+            <h2 class="md-headline" ng-model="study.name">
+                Allgemeines zu
+                <span style="color:#FFC107">{{ study.name }}
+                </span>
+                <i id="edit" class="material-icons">edit</i>
+            </h2>
 
             <!-- START Description -->
             <md-input-container>
@@ -40,21 +45,8 @@
             </md-input-container>
             <!-- END description -->
 
-            <!-- START keywords -->
-            <div class="mg-top-25">
-                <md-chips secondary-placeholder="" placeholder="z.B. Android" name="tags" ng-model="study.tags"
-                          readonly="ctrl.readonly"
-                          md-removable="ctrl.removable">
-                </md-chips>
-                <div class="hint hint-chips">Mit ausagekräftigen Keywords können wir deine Studien genau den richtigen
-                    Teilnehmern
-                    anzeigen.
-                </div>
-            </div>
-            <!-- END keywords -->
-
             <!-- START duration -->
-            <md-input-container class="after-chip">
+            <md-input-container>
                 <input type="number" required aria-label="Dauer" ng-model="study.duration" md-no-asterisk
                        name="duration" placeholder="Dauer" md-select-on-focus>
                 <div class="hint" hide-xs>In Minuten = <span
@@ -62,6 +54,71 @@
             </md-input-container>
             <!-- END duration -->
 
+            <!-- START Criteria -->
+            <h2 class="md-headline">Studienvoraussetzungen</h2>
+            <md-chips ng-model="ctrl.selectedStudyPrograms" md-autocomplete-snap
+                      md-transform-chip="ctrl.transformChip($chip)"
+                      md-require-match="ctrl.autocompleteRequireMatch">
+                <md-autocomplete
+                        md-selected-item="ctrl.selectedStudyProgram"
+                        md-search-text="ctrl.searchText"
+                        md-items="item in ctrl.querySearch(ctrl.searchText)"
+                        md-item-text="item.name"
+                        placeholder="Suche nach einem Studiengang">
+                    <span md-highlight-text="ctrl.searchText">{{item.name}} ({{item.type}})</span>
+                </md-autocomplete>
+                <md-chip-template>
+                    <span>
+                      <strong>{{$chip.name}}</strong>
+                      <em>({{$chip.type}})</em>
+                    </span>
+                </md-chip-template>
+            </md-chips>
+            <!-- END Criteria -->
+
+            <!-- START keywords -->
+            <section>
+                <h2 class="md-headline">Keywords</h2>
+            <md-chips secondary-placeholder="" aria-label="Keywords" placeholder="z.B. Android" name="tags"
+                      ng-model="study.tags"
+                      readonly="ctrl.readonly"
+                      md-removable="ctrl.removable">
+            </md-chips>
+            <div class="hint hint-chips">Mit ausagekräftigen Keywords können wir deine Studien genau den richtigen
+                Teilnehmern
+                anzeigen.
+            </div></section>
+            <!-- END keywords -->
+
+            <!-- START age -->
+            <section><h2 class="md-headline after-chips">Alter</h2>
+            <md-slider-container layout="row" layout-xs="column">
+                <span flex-gt-xs="20" flex-xs="100">Mindestalter</span>
+                <md-slider min="0" max="60" ng-model="study.minAge" aria-label="Mindestalter" id="min-age-slider">
+                </md-slider>
+                <md-input-container hide-xs>
+                    <input flex type="number" ng-model="study.minAge" aria-label="Mindestalter"
+                           aria-controls="max-age-slider">
+                </md-input-container>
+            </md-slider-container>
+
+            <md-slider-container layout="row" layout-xs="column" ng-if="hasMaxAge">
+                <span flex-gt-xs="20" flex="100">Maximales Alter</span>
+                <md-slider md-invert flex ng-model="study.maxAge" min="60" max="100" aria-label="Maximales Alter"
+                           id="max-age-slider" class="md-accent">
+                </md-slider>
+                <md-input-container hide-xs>
+                    <input flex type="number" ng-model="study.maxAge" aria-label="Maximales Alter"
+                           aria-controls="max-age-slider">
+                </md-input-container>
+            </md-slider-container>
+
+            <md-input-container style="margin-top:1rem;" layout="row" layout-xs="column">
+                <md-checkbox flex-xs="100" ng-model="hasMaxAge" aria-label="Maximales Alter">
+                    Hat deine Studie ein maximales Alter?
+                </md-checkbox>
+            </md-input-container></section>
+            <!-- END age -->
 
             <!-- START rewards -->
             <h2 class="md-headline">Vergütung</h2>
@@ -78,45 +135,74 @@
             </md-input-container>
             <!-- END rewards -->
 
-            <!-- START dates -->
-            <h2 class="md-headline">Termine</h2>
-            
+            <!-- START start and end dates -->
+            <h2 class="md-headline">Start- und Enddatum</h2>
+
             <div layout="row" layout-xs="column">
                 <md-input-container flex-gt-xs="50" flex="100">
                     <label>Studienbeginn</label>
-                    <md-datepicker ng-required ng-model="startDate" name="startDate" md-min-date="startDate"></md-datepicker>
+                    <md-datepicker required ng-required ng-model="startDate" name="startDate"
+                                   md-min-date="startDate"></md-datepicker>
 
                     <div ng-messages="createStudyForm.startDate.$error">
-                        <div ng-message="valid">The entered value is not a date!</div>
-                        <div ng-message="required">This date is required!</div>
-                        <div ng-message="mindate">Date is too early!</div>
+                        <div ng-message="required">Bitte gebe den Studienbeginn so TT/MM/JJJJ an</div>
                     </div>
                 </md-input-container>
 
                 <md-input-container flex-gt-xs="50" flex="100">
                     <label>Studienbeginn</label>
-                    <md-datepicker ng-required ng-model="endDate" name="endDate" md-min-date="minEndDate"></md-datepicker>
+                    <md-datepicker required ng-model="endDate" name="endDate" md-min-date="minEndDate"></md-datepicker>
 
                     <div ng-messages="createStudyForm.endDate.$error">
-                        <div ng-message="valid">The entered value is not a date!</div>
-                        <div ng-message="required">This date is required!</div>
-                        <div ng-message="mindate">Date is too early!</div>
+                        <div ng-message="required">Bitte gebe das Studienende so TT/MM/JJJJ an</div>
                     </div>
                 </md-input-container>
             </div>
-            <!-- END dates -->
+            <!-- END start and end dates -->
+            <!-- START study dates -->
+            <h2 class="md-headline">Termine berechnen</h2>
+
+            <div layout="row" layout-xs="column" layout-padding>
+                <md-input-container flex="20">
+                    <input type="time" required aria-label="" ng-model="firstDate" md-no-asterisk placeholder="Erster Termin" md-select-on-focus>
+                </md-input-container>
+                <md-input-container flex="20">
+                    <input type="time" required aria-label="" ng-model="lastDate" md-no-asterisk placeholder="Letzter Termin" md-select-on-focus>
+                </md-input-container>
+                <md-input-container flex="20">
+                    <input type="time" required aria-label="" ng-model="lunchBreak" md-no-asterisk placeholder="Mittagspause" md-select-on-focus>
+                </md-input-container>
+                <md-input-container flex="20">
+                    <input type="time" required aria-label="" ng-model="puffer" md-no-asterisk placeholder="Puffer" md-select-on-focus>
+                </md-input-container>
+                <md-input-container flex="100">
+                    <md-button class="md-raised md-accent">Termine berechnen</md-button>
+                </md-input-container>
+            </div>
+
+            <div></div>
+
+
+            <!-- END study dates -->
 
             <!-- START submit -->
             <div layout="row" layout-xs="column">
 
                 <md-input-container>
-                    <md-button ng-click="createStudy(study.name, study.description, startDate, endDate)" class="md-accent md-raised">Studie erstellen</md-button>
-                    <md-button ng-click="showCreateStudyToast()">Abbrechen</md-button>
+                    <md-button ng-click="createStudy(study.name, study.description, startDate, endDate)"
+                               ng-disabled="createStudyForm.$invalid" class="md-accent md-raised">Studie erstellen
+                    </md-button>
+                    <md-button ng-click="cancelStudy()">Abbrechen</md-button>
                 </md-input-container>
 
             </div>
             <!-- END submit -->
 
+            <!-- START Invalid form -->
+            <div layout="row" layout-xs="column" ng-if="createStudyForm.$invalid">
+                <p>Bitte fülle alle Pflichtfelder aus</p>
+            </div>
+            <!-- END Invalid form -->
 
         </form>
 
