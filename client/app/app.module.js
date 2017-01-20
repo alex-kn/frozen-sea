@@ -15,6 +15,7 @@ angular.module('userStudy', [
     'login',
     'createStudy',
     'userPreferences',
+    'editProfile',
     'userStudy.version',
     'navBarDirective',
     'studyListDirective',

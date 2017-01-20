@@ -3,12 +3,15 @@
  */
 
 angular.module('navBarDirective', [])
-    .controller('NavigationController', ['$scope', 'AuthService', function ($scope, AuthService) {
+    .controller('NavigationController', ['$scope', 'AuthService', '$location', function ($scope, AuthService, $location) {
 
         $scope.openMenu = function ($mdOpenMenu, event) {
             $mdOpenMenu(event);
         };
 
+        $scope.goToEditProfile = function (){
+            $location.path('/edit-profile');
+        }
 
         $scope.logout = function () {
             console.log('NavigationController: logout');

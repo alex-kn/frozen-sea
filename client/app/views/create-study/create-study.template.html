@@ -159,30 +159,37 @@
                 </md-input-container>
             </div>
             <!-- END start and end dates -->
-            <!-- START study dates -->
-            <h2 class="md-headline">Termine berechnen</h2>
 
-            <div layout="row" layout-xs="column" layout-padding>
-                <md-input-container flex="20">
-                    <input type="time" required aria-label="" ng-model="firstDate" md-no-asterisk placeholder="Erster Termin" md-select-on-focus>
+            <!-- START study dates -->
+            <h2 class="md-headline">Termine hinzufügen</h2>
+
+            <div layout="row" layout-xs="column">
+                <md-input-container flex="100" flex-gt-xs="30">
+                    <label>Tag</label>
+                    <md-datepicker ng-model="appointmentDate" md-min-date="startDate"></md-datepicker>
                 </md-input-container>
-                <md-input-container flex="20">
-                    <input type="time" required aria-label="" ng-model="lastDate" md-no-asterisk placeholder="Letzter Termin" md-select-on-focus>
+                <md-input-container flex="100" flex-gt-xs="30">
+                    <input type="time" aria-label="Uhrzeit des Termins" ng-model="appointmentTime" md-no-asterisk placeholder="Uhrzeit" md-select-on-focus>
                 </md-input-container>
-                <md-input-container flex="20">
-                    <input type="time" required aria-label="" ng-model="lunchBreak" md-no-asterisk placeholder="Mittagspause" md-select-on-focus>
-                </md-input-container>
-                <md-input-container flex="20">
-                    <input type="time" required aria-label="" ng-model="puffer" md-no-asterisk placeholder="Puffer" md-select-on-focus>
-                </md-input-container>
-                <md-input-container flex="100">
-                    <md-button class="md-raised md-accent">Termine berechnen</md-button>
+                <md-input-container flex="100" flex-gt-xs="30">
+                    <md-button ng-click="addAppointment(appointmentDate, appointmentTime, study.duration)" class="md-raised md-accent">Termin hinzufügen</md-button>
                 </md-input-container>
             </div>
 
-            <div></div>
-
-
+            <div layout="row" layout-xs="column" layout-wrap>
+                <md-card ng-repeat="appointment in appointments" flex="100" flex-gt-xs="30" flex-gt-sm="20">
+                    <md-card-header style="padding-bottom: 0" layout="row" layout-align="end center">
+                        <md-button ng-click="removeAppointment(item)" class="md-icon-button md-accent" aria-label="Favorite">
+                            <md-icon class="material-icons md-24 md-primary">close</md-icon>
+                        </md-button>
+                    </md-card-header>
+                    <md-card-content style="padding-top: 0" layou="row">
+                        <h3 style="margin-top: 0">Termin am {{ appointment.date | date:'dd.MM.yy'  }}</h3>
+                        <p><strong>Uhrzeit</strong> {{ appointment.time | date:'HH:mm' }} Minuten</p>
+                        <p><strong>Dauer</strong> {{ appointment.duration }} Minuten</p>
+                    </md-card-content>
+                </md-card>
+            </div>
             <!-- END study dates -->
 
             <!-- START submit -->
