@@ -9,6 +9,7 @@ angular.module('userStudy', [
     'ngRoute',
     'lbServices',
     'ngResource',
+    'pascalprecht.translate',
     'home',
     'login',
     'createStudy',

@@ -6,8 +6,8 @@
 
 angular
     .module('userStudy')
-    .config(['$locationProvider', '$routeProvider', 'LoopBackResourceProvider', '$mdThemingProvider',
-        function ($locationProvider, $routeProvider, LoopBackResourceProvider, $mdThemingProvider) {
+    .config(['$locationProvider', '$routeProvider', 'LoopBackResourceProvider', '$mdThemingProvider', '$translateProvider',
+        function ($locationProvider, $routeProvider, LoopBackResourceProvider, $mdThemingProvider, $translateProvider) {
             $locationProvider.hashPrefix('!');
 
             $routeProvider.when('/home', {
@@ -52,6 +52,62 @@ angular
                 .backgroundPalette('white', {
                     'default': '50'
                 });
+
+
+            $translateProvider.translations('en-EN', {
+                'LOGIN': {
+                    'WELCOME' : 'Welcome to Frozen Sea',
+                    'NO_MORE' : 'No more facebook and mouth propaganda',
+                    'FIND': 'Find and create user studies online',
+                    'MORE': 'Learn more',
+                    'NO_ACCOUNT': 'You don\'t have an account yet?',
+                    'REGISTER': 'Sign up',
+                    'LOGIN_HERE' : 'Sign in to Frozen Sea',
+                    'MAIL' : 'E-Mail',
+                    'PASSWORD': 'Password',
+                    'LOGIN': 'Sign in',
+                    'ERROR': 'Your login credentials are wrong!'
+
+                },
+                'REGISTER': {
+
+                },
+                'CREATE_STUDY': {
+
+                },
+                'HOME': {
+
+                },
+                'USER_PREFERENCES': {
+
+                }
+                ,
+                'NAVBAR': {
+
+                },
+                'STUDY_LIST': {
+
+                }
+            });
+
+            $translateProvider.translations('de-DE', {
+                'LOGIN': {
+                    'WELCOME' : 'Willkommen bei User Study',
+                    'NO_MORE' : 'Schluss mit Facebook und Mundpropaganda',
+                    'FIND': 'Finde und erstelle Benutzerstudien einfach online',
+                    'MORE': 'Mehr erfahren',
+                    'NO_ACCOUNT': 'Du hast noch keinen Account?',
+                    'REGISTER': 'Registrieren',
+                    'LOGIN_HERE' : 'Einloggen bei User Study',
+                    'MAIL' : 'E-Mail',
+                    'PASSWORD': 'Passwort',
+                    'LOGIN': 'Einloggen',
+                    'ERROR': 'Ihre Anmeldedaten sind falsch!'
+                }
+            });
+
+            $translateProvider.preferredLanguage('en-EN');
+
         }])
     .run(['$rootScope', '$location', 'LoopBackAuth', 'AuthService', function ($rootScope, $location, LoopBackAuth, AuthService) {
 

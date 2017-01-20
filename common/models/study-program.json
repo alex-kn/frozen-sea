@@ -1,0 +1,26 @@
+{
+  "name": "StudyProgram",
+  "plural": "StudyPrograms",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name_de": {
+      "type": "string",
+      "required": true
+    },
+    "name_eng": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

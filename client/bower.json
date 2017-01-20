@@ -15,6 +15,10 @@
     "bootstrap": "3.3.x",
     "bower": "*",
     "install": "^1.0.4",
-    "angular-material": "master"
+    "angular-material": "master",
+    "angular-translate": "^2.13.1"
+  },
+  "resolutions": {
+    "angular": "1.6.1"
   }
 }
