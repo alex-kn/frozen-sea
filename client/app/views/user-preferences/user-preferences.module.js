@@ -13,6 +13,8 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
     }])
 
     .controller('UserPreferencesController', ['LoopBackAuth', '$scope', 'Preference', 'Subuser', 'User', '$rootScope', '$http', function (LoopBackAuth, $scope, Preference, Subuser, User, $rootScope, $http) {
+        var self = this;
+
         $scope.title = 'Meine Kriterien';
 
         $http.get('resc/files/studyprograms.txt')
@@ -25,10 +27,13 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
         Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
             $scope.preferences = response;
             $scope.preferences.birthDate = new Date($scope.preferences.birthDate);
+            self.selectedItem = $scope.preferences.studyProgram;
+            console.log("selectedItem: " + self.selectedItem);
 
         });
 
         $scope.savePreferences = function () {
+            $scope.preferences.studyProgram = self.selectedItem;
             $scope.preferences.$save();
         }
 

@@ -4,7 +4,7 @@
     <nav-bar></nav-bar>
 </div>
 
-<section ng-controller="UserPreferencesController">
+<section ng-controller="UserPreferencesController as ctrl">
     <!-- START tool bar -->
     <md-toolbar class="toolbar md-hue-1" layout="row" layout-align="start center">
         <div class="md-toolbar-tools" flex-offset-gt-sm="15">
@@ -30,7 +30,7 @@
                     </md-checkbox>
                 </md-input-container>
                 <div flex-gt-xs="50" flex="100">
-                    <md-autocomplete ng-show="preferences.student" md-selected-item="selectedItem"
+                    <md-autocomplete ng-show="preferences.student" md-selected-item="ctrl.selectedItem"
                                      md-search-text="searchText"
                                      md-items="item in getMatches(searchText)" md-item-text="item" md-min-length="1"
                                      md-require-match="true" md-floating-label="Ich studiere ..." md-autoselect="true">
