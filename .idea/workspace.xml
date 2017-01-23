@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="687351cb-c9e6-41c8-9d1b-3b5b6625b586" name="Default" comment="Reworked /edit-profile">
+    <list default="true" id="687351cb-c9e6-41c8-9d1b-3b5b6625b586" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/stylesheets/partials/_buttons.scss" afterPath="$PROJECT_DIR$/client/app/stylesheets/partials/_buttons.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.module.js" afterPath="$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.style.css" afterPath="$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.style.css.map" afterPath="$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.style.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.style.scss" afterPath="$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.style.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.template.html" afterPath="$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.template.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,8 +24,8 @@
       <file leaf-file-name="edit-profile.template.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.template.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="31" lean-forward="false" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+            <state relative-caret-position="544">
+              <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -39,8 +34,8 @@
       <file leaf-file-name="edit-profile.module.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.module.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="36" column="10" lean-forward="true" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+            <state relative-caret-position="251">
+              <caret line="78" column="46" lean-forward="false" selection-start-line="78" selection-start-column="46" selection-end-line="78" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -59,6 +54,7 @@
       <find>password</find>
       <find>dN</find>
       <find>type=&quot;</find>
+      <find>input</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -81,8 +77,8 @@
         <option value="$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.password.tmpl.html" />
         <option value="$PROJECT_DIR$/client/app/app.module.js" />
         <option value="$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.style.scss" />
-        <option value="$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.template.html" />
         <option value="$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.module.js" />
+        <option value="$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.template.html" />
       </list>
     </option>
   </component>
@@ -408,7 +404,7 @@
       <workItem from="1485002697896" duration="12985000" />
       <workItem from="1485086076831" duration="6484000" />
       <workItem from="1485125784232" duration="1854000" />
-      <workItem from="1485152021735" duration="7459000" />
+      <workItem from="1485152021735" duration="10328000" />
     </task>
     <task id="LOCAL-00001" summary="Allow users to add appointments for their studies">
       <created>1484911383083</created>
@@ -417,11 +413,18 @@
       <option name="project" value="LOCAL" />
       <updated>1484911383083</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Reworked /edit-profile">
+      <created>1485159492116</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1485159492116</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46462000" />
+    <option name="totallyTimeSpent" value="49331000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-1" width="1368" height="749" extended-state="6" />
@@ -429,13 +432,13 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3045388" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32866043" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866043" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.51104563" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866043" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21962617" sideWeight="0.48895434" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21962617" sideWeight="0.48895434" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -823,16 +826,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.template.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="31" lean-forward="false" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+        <state relative-caret-position="544">
+          <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/app/views/edit-profile/edit-profile.module.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="36" column="10" lean-forward="true" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+        <state relative-caret-position="251">
+          <caret line="78" column="46" lean-forward="false" selection-start-line="78" selection-start-column="46" selection-end-line="78" selection-end-column="46" />
           <folding />
         </state>
       </provider>

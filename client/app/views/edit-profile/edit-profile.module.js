@@ -8,7 +8,7 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
             controller: 'editProfileController'
         });
     }])
-    .controller('editProfileController', ['$scope', 'Subuser','$mdDialog','$route', function ($scope, User, $mdDialog, $route) {
+    .controller('editProfileController', ['$scope', 'Subuser','$route', function ($scope, User, $route) {
         $scope.title = 'Profil bearbeiten';
         $scope.input = {};
         $scope.error = {};
@@ -60,26 +60,27 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
         };
 
         $scope.changePassword = function() {
-            var hasPassword = false;
             var comparePassword = $scope.input.newPassword == $scope.input.repeatNewPassword;
 
             if(!comparePassword){
                 $scope.error.newPassword = 'Neues Passwort stimmt nicht überein.';
+            } else {
+                    $scope.error.newPassword = '';
             }
 
             User.login({username: $scope.currentUserData.Username, password: $scope.input.oldPassword}, function(){
-                hasPassword = true;
+                if (comparePassword) {
+                    User.prototype$updateAttributes({id: $scope.userId}, {'password': $scope.input.newPassword}, function () {
+                        $route.reload();
+                    }, function (err) {
+                        $scope.error = err.data.error.message;
+                    })
+                }
+                $scope.error.oldPassword = '';
             }, function() {
                 $scope.error.oldPassword = 'Altes Passwort stimmt nicht überein.';
             });
 
-            if (hasPassword && comparePassword) {
-                User.prototype$updateAttributes({id: $scope.userId}, {'password': $scope.input.newPassword}, function () {
-                    $route.reload();
-                }, function (err) {
-                    $scope.error = err.data.error.message;
-                })
-            }
         };
 
     }]);
