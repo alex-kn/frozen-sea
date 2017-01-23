@@ -4,7 +4,7 @@
 
     <!-- START app introduction -->
     <section class="introduction" layout="column" layout-align="center center" flex-gt-sm="40" flex="100" hide-sm hide-xs>
-        <h1>Willkommen bei User Study</h1>
+        <h1>Willkommen bei Frozen Sea</h1>
         <p>
             Schluss mit Facebook und Mundpropaganda <br/>
             Finde und erstelle Benutzerstudien einfach online
@@ -29,16 +29,17 @@
 
             <form  layout="column" flex-gt-xs="60" flex="100">
 
-                <h2>Registriere dich bei User Study</h2>
+                <h2>Registriere dich bei Frozen Sea</h2>
 
-                <md-input-container layout="row">
-                    <input type="text" aria-label="Name" ng-model="name" placeholder="Name">
-                </md-input-container>
+
                 <md-input-container layout="row">
                     <input type="email" aria-label="Email" ng-model="email" placeholder="Email">
                 </md-input-container>
                 <md-input-container layout="row">
                     <input type="password" aria-label="Passwort" ng-model="password" placeholder="Passwort">
+                </md-input-container>
+                <md-input-container layout="row">
+                    <input type="text" aria-label="Name" ng-model="name" placeholder="Name">
                 </md-input-container>
                 <div layout="row" class="submit">
                     <md-button href="#!/login" ng-click="register(name, email, password)" class="md-accent md-raised">Registrieren</md-button>
