@@ -12,10 +12,15 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('UserPreferencesController', ['LoopBackAuth', '$scope', 'Preference', 'Subuser', 'User', '$rootScope', function (LoopBackAuth, $scope, Preference, Subuser, User, $rootScope) {
+    .controller('UserPreferencesController', ['LoopBackAuth', '$scope', 'Preference', 'Subuser', 'User', '$rootScope', '$http', function (LoopBackAuth, $scope, Preference, Subuser, User, $rootScope, $http) {
         $scope.title = 'Meine Kriterien';
 
-
+        $http.get('resc/files/studyprograms.txt')
+            .then(function (response) {
+                    console.log(response.data.split("\n"))
+                    $scope.studyPrograms = response.data.split("\n");
+                }
+            );
 
         Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
             $scope.preferences = response;
@@ -27,11 +32,8 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
             $scope.preferences.$save();
         }
 
-        $scope.studyPrograms = ['Milchsauferei', 'Bundeskanzlerei', 'Bierbrauerwesen']
-
         $scope.maxDate = new Date("January 1, 2010 00:00:00");
         $scope.minDate = new Date("January 1, 1900 00:00:00");
-
 
 
         $scope.getMatches = function (text) {

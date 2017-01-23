@@ -17,7 +17,7 @@
     <!-- END toolbar -->
 
     <!-- START study preferences -->
-    <md-content flex-offset-gt-sm="20" flex-gt-sm="60" flex-offset-sm="100">
+    <md-content layout-padding flex-offset-gt-sm="20" flex-gt-sm="60" flex-offset-sm="100">
         <form name="userPreferencesForm" layout="column">
 
             <h2 class="md-headline">Ich bin ...</h2>
@@ -25,14 +25,14 @@
             <div layout="row" layout-xs="column">
 
                 <md-input-container flex-gt-xs="50" flex="100">
-                    <md-checkbox flex-xs="100" ng-model="student" aria-label="iOS">
+                    <md-checkbox flex-xs="100" ng-model="preferences.student" aria-label="iOS">
                         Student
                     </md-checkbox>
                 </md-input-container>
                 <div flex-gt-xs="50" flex="100">
-                    <md-autocomplete ng-show="student" md-selected-item="selectedItem"
+                    <md-autocomplete ng-show="preferences.student" md-selected-item="selectedItem"
                                      md-search-text="searchText"
-                                     md-items="item in getMatches(searchText)" md-item-text="item" md-min-length="0"
+                                     md-items="item in getMatches(searchText)" md-item-text="item" md-min-length="1"
                                      md-require-match="true" md-floating-label="Ich studiere ..." md-autoselect="true">
                         <md-item-template>
                             <span md-highlight-text="searchText" md-highlight-flags="^i">{{item}}</span>

@@ -86,7 +86,7 @@ form .ng-hide-add, form .ng-hide-remove {
     position: inherit !important; } }
 form md-autocomplete {
   position: absolute;
-  min-width: 100%; }
+  min-width: 400px; }
 form #edit {
   margin-left: .5rem;
   font-size: 1.5rem;
