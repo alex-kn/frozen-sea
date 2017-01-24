@@ -19,7 +19,6 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
 
         $http.get('resc/files/studyprograms.txt')
             .then(function (response) {
-                    console.log(response.data.split("\n"))
                     $scope.studyPrograms = response.data.split("\n");
                 }
             );
@@ -28,13 +27,13 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
             $scope.preferences = response;
             $scope.preferences.birthDate = new Date($scope.preferences.birthDate);
             self.selectedItem = $scope.preferences.studyProgram;
-            console.log("selectedItem: " + self.selectedItem);
 
         });
 
         $scope.savePreferences = function () {
             $scope.preferences.studyProgram = self.selectedItem;
-            $scope.preferences.$save();
+            //$scope.preferences.$save();
+            console.log($scope.preferences);
         }
 
         $scope.maxDate = new Date("January 1, 2010 00:00:00");
