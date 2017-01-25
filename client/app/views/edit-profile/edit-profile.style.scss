@@ -1,6 +1,24 @@
 @import "../../stylesheets/main";
 
+$red: rgb(244, 67, 54);
+$green: rgb(76, 175, 80);
+
 .error-message {
   color: #EF5350;
   font-size:  0.70em;
+}
+
+md-toast {
+  &.error {
+    .md-toast-content {
+      background: $red;
+      color: white;
+    }
+  }
+  &.success {
+    .md-toast-content {
+      background: $green;
+      color: white;
+    }
+  }
 }

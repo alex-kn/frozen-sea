@@ -8,7 +8,7 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
             controller: 'editProfileController'
         });
     }])
-    .controller('editProfileController', ['$scope', 'Subuser','$route', function ($scope, User, $route) {
+    .controller('editProfileController', ['$scope', 'Subuser','$route', '$mdToast', function ($scope, User, $route, $mdToast) {
         $scope.title = 'Profil bearbeiten';
         $scope.input = {};
         $scope.error = {};
@@ -24,32 +24,28 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
         };
         $scope.userId = '';
 
+        /**
+         * Get Current userdata and save to $scope.currentUserData
+         */
         User.getCurrent(function(userData){
-            console.log(userData);
             $scope.currentUserData.Username = userData.username;
             //$scope.currentUserData.Email = userData.email;
             //$scope.currentUserData.Name = userData.name;
             $scope.userId = userData.id;
         });
 
+        /**
+         * Toggle arrow for dropdown
+         * @param key Key of $scope.currentUserData
+         */
         $scope.toggleArrow = function (key) {
             $scope.toggleActive[key] = !$scope.toggleActive[key];
-        };
-
-        $scope.showPromptPassword = function(ev) {
-            var parentEl = angular.element(document.body);
-            $mdDialog.show({
-                controller: editProfileTest,
-                parent: parentEl,
-                targetEvent: ev,
-                templateURL:'index.html'
-            });
-
         };
 
         $scope.changeUsername = function(){
             User.prototype$updateAttributes({ id: $scope.userId }, {'username': $scope.input.name}, function(){
                 $route.reload();
+                showToast('Username erfolgreich geändert!', 'success');
             },function(err) {
                 if (err.data.error.status == 422) {
                     $scope.error.username ='Username existiert bereits.';
@@ -65,13 +61,14 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
             if(!comparePassword){
                 $scope.error.newPassword = 'Neues Passwort stimmt nicht überein.';
             } else {
-                    $scope.error.newPassword = '';
+                $scope.error.newPassword = '';
             }
 
             User.login({username: $scope.currentUserData.Username, password: $scope.input.oldPassword}, function(){
                 if (comparePassword) {
                     User.prototype$updateAttributes({id: $scope.userId}, {'password': $scope.input.newPassword}, function () {
                         $route.reload();
+                        showToast('Passwort erfolgreich geändert!', 'success');
                     }, function (err) {
                         $scope.error = err.data.error.message;
                     })
@@ -83,4 +80,18 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
 
         };
 
+        /**
+         * Show toast
+         * @param content Text oft the toast
+         * @param type Type of the toast 'error' or 'success'
+         */
+        function showToast(content, type) {
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent(content)
+                    .position('top right')
+                    .hideDelay(3000)
+                    .toastClass(type)
+            );
+        }
     }]);
