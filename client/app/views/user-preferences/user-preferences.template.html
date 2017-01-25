@@ -43,15 +43,16 @@
             </div>
             <md-divider></md-divider>
 
+
             <h2 class="md-headline">Ich bin ...</h2>
-            <md-input-container layout="row" layout-xs="column">
-                <md-checkbox flex-xs="100" ng-model="preferences.gender.male" aria-label="m&auml;nnlich">
+            <md-radio-group layout="row" layout-xs="column" ng-model="preferences.gender">
+                <md-radio-button flex-xs="100" value="male" aria-label="m&auml;nnlich">
                     m&auml;nnlich
-                </md-checkbox>
-                <md-checkbox flex-xs="100" ng-model="preferences.gender.female" aria-label="weiblich">
+                </md-radio-button>
+                <md-radio-button flex-xs="100" value="female" aria-label="weiblich">
                     weiblich
-                </md-checkbox>
-            </md-input-container>
+                </md-radio-button>
+            </md-radio-group>
             <md-divider></md-divider>
 
             <h2 class="md-headline">Ich wurde geboren am ...</h2>
@@ -63,6 +64,7 @@
             </md-input-container>
 
             <md-divider></md-divider>
+
             <h2 class="md-headline">Meine K&ouml;rpergr&ouml;&szlig;e betr&auml;gt ungef&auml;hr ...</h2>
 
             <md-input-container>
@@ -70,6 +72,7 @@
                        placeholder="in cm" md-select-on-focus>
             </md-input-container>
             <md-divider></md-divider>
+
             <h2 class="md-headline">Das Betriebsystem meines Mobilgeräts ist ...</h2>
             <md-input-container layout="row" layout-xs="column">
                 <md-checkbox flex-xs="100" ng-model="preferences.operatingSystem.ios" aria-label="iOS">
@@ -99,17 +102,17 @@
             <md-divider></md-divider>
 
             <h2 class="md-headline">Ich bin ...</h2>
-            <md-input-container layout="row" layout-xs="column">
-                <md-checkbox flex-xs="100" ng-model="preferences.handedness.leftHanded" aria-label="Linksh&auml;nder">
+            <md-radio-group layout="row" layout-xs="column" ng-model="preferences.handedness">
+                <md-radio-button flex-xs="100" value="left" aria-label="Linksh&auml;nder">
                     Linksh&auml;nder
-                </md-checkbox>
-                <md-checkbox flex-xs="100" ng-model="preferences.handedness.rightHanded" aria-label="Rechtsh&auml;nder">
+                </md-radio-button>
+                <md-radio-button flex-xs="100" value="right" aria-label="Rechtsh&auml;nder">
                     Rechtsh&auml;nder
-                </md-checkbox>
-                <md-checkbox flex-xs="100" ng-model="preferences.handedness.bothHanded" aria-label="Beidh&auml;nder">
+                </md-radio-button>
+                <md-radio-button flex-xs="100" value="both" aria-label="Beidh&auml;nder">
                     Beidh&auml;nder
-                </md-checkbox>
-            </md-input-container>
+                </md-radio-button>
+            </md-radio-group>
             <md-divider></md-divider>
 
             <h2 class="md-headline">Ich spreche ...</h2>
