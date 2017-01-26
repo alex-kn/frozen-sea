@@ -22,7 +22,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         $scope.study = {
 
             name: $routeParams.study,
-            duration: '',
+            duration: 30,
             tags: [],
             rewards: {
                 money: false,
@@ -53,6 +53,44 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         $scope.appointments = [];
         $scope.appointmentDate = $scope.startDate;
 
+
+
+
+
+        $scope.appointmentTime = '08:30';
+
+        /**
+         * Add the appointment duration time to the previous appointment time
+         *
+         * @param appointmentTime {string}
+         * @param duration {int}
+         * @returns {string}
+         */
+        function addDurationToAppointmentTime(appointmentTime, duration) {
+
+
+            var time = appointmentTime.split(':');
+            console.log(time);
+            var hours = parseInt(time[0]);
+            var minutes = parseInt(time[1]);
+
+            if(minutes + duration >= 60) {
+
+                hours++;
+                minutes = minutes + duration - 60;
+
+            } else {
+
+                minutes += duration;
+
+            }
+
+            if(hours < 10) hours = '0' + hours
+            if(minutes < 10) minutes = '0' + minutes;
+
+            return hours + ':' + minutes;
+        }
+
         /**
          * Allows user to add study appointments
          *
@@ -68,12 +106,14 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 'duration': duration
             };
 
-            $scope.appointments.push(appointment);
+            $scope.appointments.unshift(appointment);
+            $scope.appointmentTime = addDurationToAppointmentTime(time, duration);
 
         };
 
+
         $scope.removeAppointment = function(item) {
-            var index=$scope.appointments.indexOf(item)
+            var index=$scope.appointments.indexOf(item);
             $scope.appointments.splice(index,1);
         };
 

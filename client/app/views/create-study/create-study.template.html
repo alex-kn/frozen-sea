@@ -154,7 +154,7 @@
                     <md-datepicker required ng-model="endDate" name="endDate" md-min-date="minEndDate"></md-datepicker>
 
                     <div ng-messages="createStudyForm.endDate.$error">
-                        <div ng-message="required">Bitte gebe das Studienende so TT/MM/JJJJ an</div>
+                        <div ng-message="required">Bitte gebe das Studienende so TT.MM.JJJJ an</div>
                     </div>
                 </md-input-container>
             </div>
@@ -169,7 +169,7 @@
                     <md-datepicker ng-model="appointmentDate" md-min-date="startDate"></md-datepicker>
                 </md-input-container>
                 <md-input-container flex="100" flex-gt-xs="30">
-                    <input type="time" aria-label="Uhrzeit des Termins" ng-model="appointmentTime" md-no-asterisk placeholder="Uhrzeit" md-select-on-focus>
+                    <input type="text" aria-label="Uhrzeit des Termins" ng-model="appointmentTime" md-no-asterisk placeholder="Uhrzeit" md-select-on-focus>
                 </md-input-container>
                 <md-input-container flex="100" flex-gt-xs="30">
                     <md-button ng-click="addAppointment(appointmentDate, appointmentTime, study.duration)" class="md-raised md-accent">Termin hinzufügen</md-button>
