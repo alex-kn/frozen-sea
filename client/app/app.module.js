@@ -19,6 +19,7 @@ angular.module('userStudy', [
     'userStudy.version',
     'navBarDirective',
     'studyListDirective',
+    'archiveListDirective',
     'AuthService',
     'register',
     'ngMaterial'

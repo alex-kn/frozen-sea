@@ -139,9 +139,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                         owner: _currentUserId
                     })
                     .$promise
-                    .then(function (response) {
-                        $location.path('/home');
-                    });
+
             } else {
 
             }

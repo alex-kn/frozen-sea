@@ -26,11 +26,11 @@
     },
     "rewards": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "duration": {
-      "type": "string",
-      "required": true
+      "type": "number",
+      "required": false
     },
     "comma_separated_keywords": {
       "type": "string",

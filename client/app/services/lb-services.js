@@ -1381,33 +1381,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
           { 'id': '@id' },
           {
 
-            // INTERNAL. Use Study.dates.findById() instead.
-            "prototype$__findById__dates": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/dates/:fk",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Study.dates.destroyById() instead.
-            "prototype$__destroyById__dates": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/dates/:fk",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Study.dates.updateById() instead.
-            "prototype$__updateById__dates": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/dates/:fk",
-              method: "PUT",
-            },
-
             // INTERNAL. Use Study.creators.findById() instead.
             "prototype$__findById__creators": {
               params: {
@@ -1465,31 +1438,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
             // INTERNAL. Use Study.owner() instead.
             "prototype$__get__owner": {
               url: urlBase + "/Studies/:id/owner",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Study.dates() instead.
-            "prototype$__get__dates": {
-              isArray: true,
-              url: urlBase + "/Studies/:id/dates",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Study.dates.create() instead.
-            "prototype$__create__dates": {
-              url: urlBase + "/Studies/:id/dates",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Study.dates.destroyAll() instead.
-            "prototype$__delete__dates": {
-              url: urlBase + "/Studies/:id/dates",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Study.dates.count() instead.
-            "prototype$__count__dates": {
-              url: urlBase + "/Studies/:id/dates/count",
               method: "GET",
             },
 
@@ -2077,9 +2025,9 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "POST",
             },
 
-            // INTERNAL. Use Study-date.study() instead.
-            "::get::Study-date::study": {
-              url: urlBase + "/Study-dates/:id/study",
+            // INTERNAL. Use StudyDate.study() instead.
+            "::get::StudyDate::study": {
+              url: urlBase + "/StudyDates/:id/study",
               method: "GET",
             },
 
@@ -2437,307 +2385,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         */
         R.modelName = "Study";
 
-    /**
-     * @ngdoc object
-     * @name lbServices.Study.dates
-     * @header lbServices.Study.dates
-     * @object
-     * @description
-     *
-     * The object `Study.dates` groups methods
-     * manipulating `Study-date` instances related to `Study`.
-     *
-     * Call {@link lbServices.Study#dates Study.dates()}
-     * to query all related instances.
-     */
-
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study#dates
-             * @methodOf lbServices.Study
-             *
-             * @description
-             *
-             * Queries dates of Study.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             *  - `filter` – `{object=}` -
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.dates = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::get::Study::dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.dates#count
-             * @methodOf lbServices.Study.dates
-             *
-             * @description
-             *
-             * Counts dates of Study.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             *  - `where` – `{object=}` - Criteria to match model instances
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * Data properties:
-             *
-             *  - `count` – `{number=}` -
-             */
-        R.dates.count = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::count::Study::dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.dates#create
-             * @methodOf lbServices.Study.dates
-             *
-             * @description
-             *
-             * Creates a new instance in dates of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.dates.create = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::create::Study::dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.dates#createMany
-             * @methodOf lbServices.Study.dates
-             *
-             * @description
-             *
-             * Creates a new instance in dates of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.dates.createMany = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::createMany::Study::dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.dates#destroyAll
-             * @methodOf lbServices.Study.dates
-             *
-             * @description
-             *
-             * Deletes all dates of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * This method returns no data.
-             */
-        R.dates.destroyAll = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::delete::Study::dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.dates#destroyById
-             * @methodOf lbServices.Study.dates
-             *
-             * @description
-             *
-             * Delete a related item by id for dates.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             *  - `fk` – `{*}` - Foreign key for dates
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * This method returns no data.
-             */
-        R.dates.destroyById = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::destroyById::Study::dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.dates#findById
-             * @methodOf lbServices.Study.dates
-             *
-             * @description
-             *
-             * Find a related item by id for dates.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             *  - `fk` – `{*}` - Foreign key for dates
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.dates.findById = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::findById::Study::dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.dates#updateById
-             * @methodOf lbServices.Study.dates
-             *
-             * @description
-             *
-             * Update a related item by id for dates.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             *  - `fk` – `{*}` - Foreign key for dates
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.dates.updateById = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::updateById::Study::dates"];
-          return action.apply(R, arguments);
-        };
     /**
      * @ngdoc object
      * @name lbServices.Study.creators
@@ -3383,13 +3030,13 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
 /**
  * @ngdoc object
- * @name lbServices.Study-date
- * @header lbServices.Study-date
+ * @name lbServices.StudyDate
+ * @header lbServices.StudyDate
  * @object
  *
  * @description
  *
- * A $resource object for interacting with the `Study-date` model.
+ * A $resource object for interacting with the `StudyDate` model.
  *
  * ## Example
  *
@@ -3399,83 +3046,83 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
  *
  */
   module.factory(
-    "Study-date",
+    "StudyDate",
     [
       'LoopBackResource', 'LoopBackAuth', '$injector', '$q',
       function(LoopBackResource, LoopBackAuth, $injector, $q) {
         var R = LoopBackResource(
-        urlBase + "/Study-dates/:id",
+        urlBase + "/StudyDates/:id",
           { 'id': '@id' },
           {
 
-            // INTERNAL. Use Study-date.study() instead.
+            // INTERNAL. Use StudyDate.study() instead.
             "prototype$__get__study": {
-              url: urlBase + "/Study-dates/:id/study",
+              url: urlBase + "/StudyDates/:id/study",
               method: "GET",
             },
 
-            // INTERNAL. Use Study-date.participations.findById() instead.
+            // INTERNAL. Use StudyDate.participations.findById() instead.
             "prototype$__findById__participations": {
               params: {
                 'fk': '@fk',
               },
-              url: urlBase + "/Study-dates/:id/participations/:fk",
+              url: urlBase + "/StudyDates/:id/participations/:fk",
               method: "GET",
             },
 
-            // INTERNAL. Use Study-date.participations.destroyById() instead.
+            // INTERNAL. Use StudyDate.participations.destroyById() instead.
             "prototype$__destroyById__participations": {
               params: {
                 'fk': '@fk',
               },
-              url: urlBase + "/Study-dates/:id/participations/:fk",
+              url: urlBase + "/StudyDates/:id/participations/:fk",
               method: "DELETE",
             },
 
-            // INTERNAL. Use Study-date.participations.updateById() instead.
+            // INTERNAL. Use StudyDate.participations.updateById() instead.
             "prototype$__updateById__participations": {
               params: {
                 'fk': '@fk',
               },
-              url: urlBase + "/Study-dates/:id/participations/:fk",
+              url: urlBase + "/StudyDates/:id/participations/:fk",
               method: "PUT",
             },
 
-            // INTERNAL. Use Study-date.owner() instead.
+            // INTERNAL. Use StudyDate.owner() instead.
             "prototype$__get__owner": {
-              url: urlBase + "/Study-dates/:id/owner",
+              url: urlBase + "/StudyDates/:id/owner",
               method: "GET",
             },
 
-            // INTERNAL. Use Study-date.participations() instead.
+            // INTERNAL. Use StudyDate.participations() instead.
             "prototype$__get__participations": {
               isArray: true,
-              url: urlBase + "/Study-dates/:id/participations",
+              url: urlBase + "/StudyDates/:id/participations",
               method: "GET",
             },
 
-            // INTERNAL. Use Study-date.participations.create() instead.
+            // INTERNAL. Use StudyDate.participations.create() instead.
             "prototype$__create__participations": {
-              url: urlBase + "/Study-dates/:id/participations",
+              url: urlBase + "/StudyDates/:id/participations",
               method: "POST",
             },
 
-            // INTERNAL. Use Study-date.participations.destroyAll() instead.
+            // INTERNAL. Use StudyDate.participations.destroyAll() instead.
             "prototype$__delete__participations": {
-              url: urlBase + "/Study-dates/:id/participations",
+              url: urlBase + "/StudyDates/:id/participations",
               method: "DELETE",
             },
 
-            // INTERNAL. Use Study-date.participations.count() instead.
+            // INTERNAL. Use StudyDate.participations.count() instead.
             "prototype$__count__participations": {
-              url: urlBase + "/Study-dates/:id/participations/count",
+              url: urlBase + "/StudyDates/:id/participations/count",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#create
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#create
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -3502,18 +3149,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
             "create": {
-              url: urlBase + "/Study-dates",
+              url: urlBase + "/StudyDates",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#createMany
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#createMany
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -3540,19 +3187,19 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
             "createMany": {
               isArray: true,
-              url: urlBase + "/Study-dates",
+              url: urlBase + "/StudyDates",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#upsert
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#upsert
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -3579,18 +3226,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
             "upsert": {
-              url: urlBase + "/Study-dates",
+              url: urlBase + "/StudyDates",
               method: "PUT",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#replaceOrCreate
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#replaceOrCreate
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -3617,18 +3264,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
             "replaceOrCreate": {
-              url: urlBase + "/Study-dates/replaceOrCreate",
+              url: urlBase + "/StudyDates/replaceOrCreate",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#upsertWithWhere
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#upsertWithWhere
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -3654,18 +3301,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
             "upsertWithWhere": {
-              url: urlBase + "/Study-dates/upsertWithWhere",
+              url: urlBase + "/StudyDates/upsertWithWhere",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#exists
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#exists
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -3690,14 +3337,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *  - `exists` – `{boolean=}` -
              */
             "exists": {
-              url: urlBase + "/Study-dates/:id/exists",
+              url: urlBase + "/StudyDates/:id/exists",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#findById
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#findById
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -3721,18 +3368,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
             "findById": {
-              url: urlBase + "/Study-dates/:id",
+              url: urlBase + "/StudyDates/:id",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#replaceById
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#replaceById
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -3758,18 +3405,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
             "replaceById": {
-              url: urlBase + "/Study-dates/:id/replace",
+              url: urlBase + "/StudyDates/:id/replace",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#find
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#find
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -3791,19 +3438,19 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
             "find": {
               isArray: true,
-              url: urlBase + "/Study-dates",
+              url: urlBase + "/StudyDates",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#findOne
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#findOne
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -3825,18 +3472,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
             "findOne": {
-              url: urlBase + "/Study-dates/findOne",
+              url: urlBase + "/StudyDates/findOne",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#updateAll
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#updateAll
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -3863,14 +3510,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              * Information related to the outcome of the operation
              */
             "updateAll": {
-              url: urlBase + "/Study-dates/update",
+              url: urlBase + "/StudyDates/update",
               method: "POST",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#deleteById
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#deleteById
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -3892,18 +3539,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
             "deleteById": {
-              url: urlBase + "/Study-dates/:id",
+              url: urlBase + "/StudyDates/:id",
               method: "DELETE",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#count
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#count
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -3928,14 +3575,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *  - `count` – `{number=}` -
              */
             "count": {
-              url: urlBase + "/Study-dates/count",
+              url: urlBase + "/StudyDates/count",
               method: "GET",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#prototype$updateAttributes
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#prototype$updateAttributes
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -3961,18 +3608,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
             "prototype$updateAttributes": {
-              url: urlBase + "/Study-dates/:id",
+              url: urlBase + "/StudyDates/:id",
               method: "PUT",
             },
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#createChangeStream
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#createChangeStream
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -4002,208 +3649,8 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *  - `changes` – `{ReadableStream=}` -
              */
             "createChangeStream": {
-              url: urlBase + "/Study-dates/change-stream",
+              url: urlBase + "/StudyDates/change-stream",
               method: "POST",
-            },
-
-            // INTERNAL. Use Study.dates.findById() instead.
-            "::findById::Study::dates": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/dates/:fk",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Study.dates.destroyById() instead.
-            "::destroyById::Study::dates": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/dates/:fk",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Study.dates.updateById() instead.
-            "::updateById::Study::dates": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/dates/:fk",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Study.dates() instead.
-            "::get::Study::dates": {
-              isArray: true,
-              url: urlBase + "/Studies/:id/dates",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Study.dates.create() instead.
-            "::create::Study::dates": {
-              url: urlBase + "/Studies/:id/dates",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Study.dates.createMany() instead.
-            "::createMany::Study::dates": {
-              isArray: true,
-              url: urlBase + "/Studies/:id/dates",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Study.dates.destroyAll() instead.
-            "::delete::Study::dates": {
-              url: urlBase + "/Studies/:id/dates",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Study.dates.count() instead.
-            "::count::Study::dates": {
-              url: urlBase + "/Studies/:id/dates/count",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Participation.date() instead.
-            "::get::Participation::date": {
-              url: urlBase + "/Participations/:id/date",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Participation.date.create() instead.
-            "::create::Participation::date": {
-              url: urlBase + "/Participations/:id/date",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Participation.date.createMany() instead.
-            "::createMany::Participation::date": {
-              isArray: true,
-              url: urlBase + "/Participations/:id/date",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Participation.date.update() instead.
-            "::update::Participation::date": {
-              url: urlBase + "/Participations/:id/date",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Participation.date.destroy() instead.
-            "::destroy::Participation::date": {
-              url: urlBase + "/Participations/:id/date",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Subuser.created_study_dates.findById() instead.
-            "::findById::Subuser::created_study_dates": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Subuser.createManyd_study_dates.findById() instead.
-            "::findById::Subuser::createManyd_study_dates": {
-              isArray: true,
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Subuser.created_study_dates.destroyById() instead.
-            "::destroyById::Subuser::created_study_dates": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Subuser.createManyd_study_dates.destroyById() instead.
-            "::destroyById::Subuser::createManyd_study_dates": {
-              isArray: true,
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Subuser.created_study_dates.updateById() instead.
-            "::updateById::Subuser::created_study_dates": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Subuser.createManyd_study_dates.updateById() instead.
-            "::updateById::Subuser::createManyd_study_dates": {
-              isArray: true,
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Subuser.created_study_dates() instead.
-            "::get::Subuser::created_study_dates": {
-              isArray: true,
-              url: urlBase + "/Subusers/:id/created_study_dates",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Subuser.createManyd_study_dates() instead.
-            "::get::Subuser::createManyd_study_dates": {
-              isArray: true,
-              url: urlBase + "/Subusers/:id/created_study_dates",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Subuser.created_study_dates.create() instead.
-            "::create::Subuser::created_study_dates": {
-              url: urlBase + "/Subusers/:id/created_study_dates",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Subuser.createManyd_study_dates.create() instead.
-            "::createMany::Subuser::created_study_dates": {
-              isArray: true,
-              url: urlBase + "/Subusers/:id/created_study_dates",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Subuser.created_study_dates.destroyAll() instead.
-            "::delete::Subuser::created_study_dates": {
-              url: urlBase + "/Subusers/:id/created_study_dates",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Subuser.createManyd_study_dates.destroyAll() instead.
-            "::delete::Subuser::createManyd_study_dates": {
-              isArray: true,
-              url: urlBase + "/Subusers/:id/created_study_dates",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Subuser.created_study_dates.count() instead.
-            "::count::Subuser::created_study_dates": {
-              url: urlBase + "/Subusers/:id/created_study_dates/count",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Subuser.createManyd_study_dates.count() instead.
-            "::count::Subuser::createManyd_study_dates": {
-              isArray: true,
-              url: urlBase + "/Subusers/:id/created_study_dates/count",
-              method: "GET",
             },
           }
         );
@@ -4212,8 +3659,8 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#patchOrCreate
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#patchOrCreate
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -4240,15 +3687,15 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
         R["patchOrCreate"] = R["upsert"];
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#updateOrCreate
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#updateOrCreate
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -4275,15 +3722,15 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
         R["updateOrCreate"] = R["upsert"];
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#patchOrCreateWithWhere
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#patchOrCreateWithWhere
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -4309,15 +3756,15 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
         R["patchOrCreateWithWhere"] = R["upsertWithWhere"];
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#update
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#update
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -4347,8 +3794,8 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#destroyById
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#destroyById
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -4370,15 +3817,15 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
         R["destroyById"] = R["deleteById"];
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#removeById
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#removeById
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -4400,15 +3847,15 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
         R["removeById"] = R["deleteById"];
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#patchAttributes
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#patchAttributes
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -4434,7 +3881,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * <em>
              * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
+             * This usually means the response is a `StudyDate` object.)
              * </em>
              */
         R["patchAttributes"] = R["prototype$updateAttributes"];
@@ -4442,19 +3889,19 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
         /**
         * @ngdoc property
-        * @name lbServices.Study-date#modelName
-        * @propertyOf lbServices.Study-date
+        * @name lbServices.StudyDate#modelName
+        * @propertyOf lbServices.StudyDate
         * @description
         * The name of the model represented by this $resource,
-        * i.e. `Study-date`.
+        * i.e. `StudyDate`.
         */
-        R.modelName = "Study-date";
+        R.modelName = "StudyDate";
 
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#study
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#study
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -4483,32 +3930,32 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              */
         R.study = function() {
           var TargetResource = $injector.get("Study");
-          var action = TargetResource["::get::Study-date::study"];
+          var action = TargetResource["::get::StudyDate::study"];
           return action.apply(R, arguments);
         };
     /**
      * @ngdoc object
-     * @name lbServices.Study-date.participations
-     * @header lbServices.Study-date.participations
+     * @name lbServices.StudyDate.participations
+     * @header lbServices.StudyDate.participations
      * @object
      * @description
      *
-     * The object `Study-date.participations` groups methods
-     * manipulating `Participation` instances related to `Study-date`.
+     * The object `StudyDate.participations` groups methods
+     * manipulating `Participation` instances related to `StudyDate`.
      *
-     * Call {@link lbServices.Study-date#participations Study-date.participations()}
+     * Call {@link lbServices.StudyDate#participations StudyDate.participations()}
      * to query all related instances.
      */
 
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#participations
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#participations
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
-             * Queries participations of Study-date.
+             * Queries participations of StudyDate.
              *
              * @param {Object=} parameters Request parameters.
              *
@@ -4533,18 +3980,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              */
         R.participations = function() {
           var TargetResource = $injector.get("Participation");
-          var action = TargetResource["::get::Study-date::participations"];
+          var action = TargetResource["::get::StudyDate::participations"];
           return action.apply(R, arguments);
         };
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date.participations#count
-             * @methodOf lbServices.Study-date.participations
+             * @name lbServices.StudyDate.participations#count
+             * @methodOf lbServices.StudyDate.participations
              *
              * @description
              *
-             * Counts participations of Study-date.
+             * Counts participations of StudyDate.
              *
              * @param {Object=} parameters Request parameters.
              *
@@ -4568,14 +4015,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              */
         R.participations.count = function() {
           var TargetResource = $injector.get("Participation");
-          var action = TargetResource["::count::Study-date::participations"];
+          var action = TargetResource["::count::StudyDate::participations"];
           return action.apply(R, arguments);
         };
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date.participations#create
-             * @methodOf lbServices.Study-date.participations
+             * @name lbServices.StudyDate.participations#create
+             * @methodOf lbServices.StudyDate.participations
              *
              * @description
              *
@@ -4606,14 +4053,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              */
         R.participations.create = function() {
           var TargetResource = $injector.get("Participation");
-          var action = TargetResource["::create::Study-date::participations"];
+          var action = TargetResource["::create::StudyDate::participations"];
           return action.apply(R, arguments);
         };
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date.participations#createMany
-             * @methodOf lbServices.Study-date.participations
+             * @name lbServices.StudyDate.participations#createMany
+             * @methodOf lbServices.StudyDate.participations
              *
              * @description
              *
@@ -4644,14 +4091,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              */
         R.participations.createMany = function() {
           var TargetResource = $injector.get("Participation");
-          var action = TargetResource["::createMany::Study-date::participations"];
+          var action = TargetResource["::createMany::StudyDate::participations"];
           return action.apply(R, arguments);
         };
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date.participations#destroyAll
-             * @methodOf lbServices.Study-date.participations
+             * @name lbServices.StudyDate.participations#destroyAll
+             * @methodOf lbServices.StudyDate.participations
              *
              * @description
              *
@@ -4675,14 +4122,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              */
         R.participations.destroyAll = function() {
           var TargetResource = $injector.get("Participation");
-          var action = TargetResource["::delete::Study-date::participations"];
+          var action = TargetResource["::delete::StudyDate::participations"];
           return action.apply(R, arguments);
         };
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date.participations#destroyById
-             * @methodOf lbServices.Study-date.participations
+             * @name lbServices.StudyDate.participations#destroyById
+             * @methodOf lbServices.StudyDate.participations
              *
              * @description
              *
@@ -4708,14 +4155,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              */
         R.participations.destroyById = function() {
           var TargetResource = $injector.get("Participation");
-          var action = TargetResource["::destroyById::Study-date::participations"];
+          var action = TargetResource["::destroyById::StudyDate::participations"];
           return action.apply(R, arguments);
         };
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date.participations#findById
-             * @methodOf lbServices.Study-date.participations
+             * @name lbServices.StudyDate.participations#findById
+             * @methodOf lbServices.StudyDate.participations
              *
              * @description
              *
@@ -4744,14 +4191,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              */
         R.participations.findById = function() {
           var TargetResource = $injector.get("Participation");
-          var action = TargetResource["::findById::Study-date::participations"];
+          var action = TargetResource["::findById::StudyDate::participations"];
           return action.apply(R, arguments);
         };
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date.participations#updateById
-             * @methodOf lbServices.Study-date.participations
+             * @name lbServices.StudyDate.participations#updateById
+             * @methodOf lbServices.StudyDate.participations
              *
              * @description
              *
@@ -4784,14 +4231,14 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              */
         R.participations.updateById = function() {
           var TargetResource = $injector.get("Participation");
-          var action = TargetResource["::updateById::Study-date::participations"];
+          var action = TargetResource["::updateById::StudyDate::participations"];
           return action.apply(R, arguments);
         };
 
             /**
              * @ngdoc method
-             * @name lbServices.Study-date#owner
-             * @methodOf lbServices.Study-date
+             * @name lbServices.StudyDate#owner
+             * @methodOf lbServices.StudyDate
              *
              * @description
              *
@@ -4820,7 +4267,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              */
         R.owner = function() {
           var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::get::Study-date::owner"];
+          var action = TargetResource["::get::StudyDate::owner"];
           return action.apply(R, arguments);
         };
 
@@ -4854,30 +4301,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         urlBase + "/Participations/:id",
           { 'id': '@id' },
           {
-
-            // INTERNAL. Use Participation.date() instead.
-            "prototype$__get__date": {
-              url: urlBase + "/Participations/:id/date",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Participation.date.create() instead.
-            "prototype$__create__date": {
-              url: urlBase + "/Participations/:id/date",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Participation.date.update() instead.
-            "prototype$__update__date": {
-              url: urlBase + "/Participations/:id/date",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Participation.date.destroy() instead.
-            "prototype$__destroy__date": {
-              url: urlBase + "/Participations/:id/date",
-              method: "DELETE",
-            },
 
             // INTERNAL. Use Participation.participant() instead.
             "prototype$__get__participant": {
@@ -5419,62 +4842,62 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "POST",
             },
 
-            // INTERNAL. Use Study-date.participations.findById() instead.
-            "::findById::Study-date::participations": {
+            // INTERNAL. Use StudyDate.participations.findById() instead.
+            "::findById::StudyDate::participations": {
               params: {
                 'fk': '@fk',
               },
-              url: urlBase + "/Study-dates/:id/participations/:fk",
+              url: urlBase + "/StudyDates/:id/participations/:fk",
               method: "GET",
             },
 
-            // INTERNAL. Use Study-date.participations.destroyById() instead.
-            "::destroyById::Study-date::participations": {
+            // INTERNAL. Use StudyDate.participations.destroyById() instead.
+            "::destroyById::StudyDate::participations": {
               params: {
                 'fk': '@fk',
               },
-              url: urlBase + "/Study-dates/:id/participations/:fk",
+              url: urlBase + "/StudyDates/:id/participations/:fk",
               method: "DELETE",
             },
 
-            // INTERNAL. Use Study-date.participations.updateById() instead.
-            "::updateById::Study-date::participations": {
+            // INTERNAL. Use StudyDate.participations.updateById() instead.
+            "::updateById::StudyDate::participations": {
               params: {
                 'fk': '@fk',
               },
-              url: urlBase + "/Study-dates/:id/participations/:fk",
+              url: urlBase + "/StudyDates/:id/participations/:fk",
               method: "PUT",
             },
 
-            // INTERNAL. Use Study-date.participations() instead.
-            "::get::Study-date::participations": {
+            // INTERNAL. Use StudyDate.participations() instead.
+            "::get::StudyDate::participations": {
               isArray: true,
-              url: urlBase + "/Study-dates/:id/participations",
+              url: urlBase + "/StudyDates/:id/participations",
               method: "GET",
             },
 
-            // INTERNAL. Use Study-date.participations.create() instead.
-            "::create::Study-date::participations": {
-              url: urlBase + "/Study-dates/:id/participations",
+            // INTERNAL. Use StudyDate.participations.create() instead.
+            "::create::StudyDate::participations": {
+              url: urlBase + "/StudyDates/:id/participations",
               method: "POST",
             },
 
-            // INTERNAL. Use Study-date.participations.createMany() instead.
-            "::createMany::Study-date::participations": {
+            // INTERNAL. Use StudyDate.participations.createMany() instead.
+            "::createMany::StudyDate::participations": {
               isArray: true,
-              url: urlBase + "/Study-dates/:id/participations",
+              url: urlBase + "/StudyDates/:id/participations",
               method: "POST",
             },
 
-            // INTERNAL. Use Study-date.participations.destroyAll() instead.
-            "::delete::Study-date::participations": {
-              url: urlBase + "/Study-dates/:id/participations",
+            // INTERNAL. Use StudyDate.participations.destroyAll() instead.
+            "::delete::StudyDate::participations": {
+              url: urlBase + "/StudyDates/:id/participations",
               method: "DELETE",
             },
 
-            // INTERNAL. Use Study-date.participations.count() instead.
-            "::count::Study-date::participations": {
-              url: urlBase + "/Study-dates/:id/participations/count",
+            // INTERNAL. Use StudyDate.participations.count() instead.
+            "::count::StudyDate::participations": {
+              url: urlBase + "/StudyDates/:id/participations/count",
               method: "GET",
             },
 
@@ -5781,201 +5204,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         */
         R.modelName = "Participation";
 
-    /**
-     * @ngdoc object
-     * @name lbServices.Participation.date
-     * @header lbServices.Participation.date
-     * @object
-     * @description
-     *
-     * The object `Participation.date` groups methods
-     * manipulating `Study-date` instances related to `Participation`.
-     *
-     * Call {@link lbServices.Participation#date Participation.date()}
-     * to query all related instances.
-     */
-
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Participation#date
-             * @methodOf lbServices.Participation
-             *
-             * @description
-             *
-             * Fetches hasOne relation date.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             *  - `refresh` – `{boolean=}` -
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.date = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::get::Participation::date"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Participation.date#create
-             * @methodOf lbServices.Participation.date
-             *
-             * @description
-             *
-             * Creates a new instance in date of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.date.create = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::create::Participation::date"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Participation.date#createMany
-             * @methodOf lbServices.Participation.date
-             *
-             * @description
-             *
-             * Creates a new instance in date of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.date.createMany = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::createMany::Participation::date"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Participation.date#destroy
-             * @methodOf lbServices.Participation.date
-             *
-             * @description
-             *
-             * Deletes date of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * This method returns no data.
-             */
-        R.date.destroy = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::destroy::Participation::date"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Participation.date#update
-             * @methodOf lbServices.Participation.date
-             *
-             * @description
-             *
-             * Update date of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.date.update = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::update::Participation::date"];
-          return action.apply(R, arguments);
-        };
 
             /**
              * @ngdoc method
@@ -6183,33 +5411,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
                 'fk': '@fk',
               },
               url: urlBase + "/Subusers/:id/created_studies/:fk",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Subuser.created_study_dates.findById() instead.
-            "prototype$__findById__created_study_dates": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Subuser.created_study_dates.destroyById() instead.
-            "prototype$__destroyById__created_study_dates": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Subuser.created_study_dates.updateById() instead.
-            "prototype$__updateById__created_study_dates": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Subusers/:id/created_study_dates/:fk",
               method: "PUT",
             },
 
@@ -6423,31 +5624,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
             // INTERNAL. Use Subuser.created_studies.count() instead.
             "prototype$__count__created_studies": {
               url: urlBase + "/Subusers/:id/created_studies/count",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Subuser.created_study_dates() instead.
-            "prototype$__get__created_study_dates": {
-              isArray: true,
-              url: urlBase + "/Subusers/:id/created_study_dates",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Subuser.created_study_dates.create() instead.
-            "prototype$__create__created_study_dates": {
-              url: urlBase + "/Subusers/:id/created_study_dates",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Subuser.created_study_dates.destroyAll() instead.
-            "prototype$__delete__created_study_dates": {
-              url: urlBase + "/Subusers/:id/created_study_dates",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Subuser.created_study_dates.count() instead.
-            "prototype$__count__created_study_dates": {
-              url: urlBase + "/Subusers/:id/created_study_dates/count",
               method: "GET",
             },
 
@@ -7306,9 +6482,9 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "GET",
             },
 
-            // INTERNAL. Use Study-date.owner() instead.
-            "::get::Study-date::owner": {
-              url: urlBase + "/Study-dates/:id/owner",
+            // INTERNAL. Use StudyDate.owner() instead.
+            "::get::StudyDate::owner": {
+              url: urlBase + "/StudyDates/:id/owner",
               method: "GET",
             },
 
@@ -8163,518 +7339,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         R.created_studies.updateById = function() {
           var TargetResource = $injector.get("Study");
           var action = TargetResource["::updateById::Subuser::created_studies"];
-          return action.apply(R, arguments);
-        };
-    /**
-     * @ngdoc object
-     * @name lbServices.Subuser.created_study_dates
-     * @header lbServices.Subuser.created_study_dates
-     * @object
-     * @description
-     *
-     * The object `Subuser.created_study_dates` groups methods
-     * manipulating `Study-date` instances related to `Subuser`.
-     *
-     * Call {@link lbServices.Subuser#created_study_dates Subuser.created_study_dates()}
-     * to query all related instances.
-     */
-
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser#createManyd_study_dates
-             * @methodOf lbServices.Subuser
-             *
-             * @description
-             *
-             * Queries created_study_dates of Subuser.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             *  - `filter` – `{object=}` -
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.createManyd_study_dates = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::get::Subuser::createManyd_study_dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser.createManyd_study_dates#count
-             * @methodOf lbServices.Subuser.createManyd_study_dates
-             *
-             * @description
-             *
-             * Counts created_study_dates of Subuser.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             *  - `where` – `{object=}` - Criteria to match model instances
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * Data properties:
-             *
-             *  - `count` – `{number=}` -
-             */
-        R.createManyd_study_dates.count = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::count::Subuser::createManyd_study_dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser.createManyd_study_dates#create
-             * @methodOf lbServices.Subuser.createManyd_study_dates
-             *
-             * @description
-             *
-             * Creates a new instance in created_study_dates of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.createManyd_study_dates.create = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::createMany::Subuser::created_study_dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser.createManyd_study_dates#destroyAll
-             * @methodOf lbServices.Subuser.createManyd_study_dates
-             *
-             * @description
-             *
-             * Deletes all created_study_dates of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * This method returns no data.
-             */
-        R.createManyd_study_dates.destroyAll = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::delete::Subuser::createManyd_study_dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser.createManyd_study_dates#destroyById
-             * @methodOf lbServices.Subuser.createManyd_study_dates
-             *
-             * @description
-             *
-             * Delete a related item by id for created_study_dates.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             *  - `fk` – `{*}` - Foreign key for created_study_dates
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * This method returns no data.
-             */
-        R.createManyd_study_dates.destroyById = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::destroyById::Subuser::createManyd_study_dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser.createManyd_study_dates#findById
-             * @methodOf lbServices.Subuser.createManyd_study_dates
-             *
-             * @description
-             *
-             * Find a related item by id for created_study_dates.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             *  - `fk` – `{*}` - Foreign key for created_study_dates
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.createManyd_study_dates.findById = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::findById::Subuser::createManyd_study_dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser.createManyd_study_dates#updateById
-             * @methodOf lbServices.Subuser.createManyd_study_dates
-             *
-             * @description
-             *
-             * Update a related item by id for created_study_dates.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             *  - `fk` – `{*}` - Foreign key for created_study_dates
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.createManyd_study_dates.updateById = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::updateById::Subuser::createManyd_study_dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser#created_study_dates
-             * @methodOf lbServices.Subuser
-             *
-             * @description
-             *
-             * Queries created_study_dates of Subuser.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             *  - `filter` – `{object=}` -
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.created_study_dates = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::get::Subuser::created_study_dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser.created_study_dates#count
-             * @methodOf lbServices.Subuser.created_study_dates
-             *
-             * @description
-             *
-             * Counts created_study_dates of Subuser.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             *  - `where` – `{object=}` - Criteria to match model instances
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * Data properties:
-             *
-             *  - `count` – `{number=}` -
-             */
-        R.created_study_dates.count = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::count::Subuser::created_study_dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser.created_study_dates#create
-             * @methodOf lbServices.Subuser.created_study_dates
-             *
-             * @description
-             *
-             * Creates a new instance in created_study_dates of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.created_study_dates.create = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::create::Subuser::created_study_dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser.created_study_dates#destroyAll
-             * @methodOf lbServices.Subuser.created_study_dates
-             *
-             * @description
-             *
-             * Deletes all created_study_dates of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * This method returns no data.
-             */
-        R.created_study_dates.destroyAll = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::delete::Subuser::created_study_dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser.created_study_dates#destroyById
-             * @methodOf lbServices.Subuser.created_study_dates
-             *
-             * @description
-             *
-             * Delete a related item by id for created_study_dates.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             *  - `fk` – `{*}` - Foreign key for created_study_dates
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * This method returns no data.
-             */
-        R.created_study_dates.destroyById = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::destroyById::Subuser::created_study_dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser.created_study_dates#findById
-             * @methodOf lbServices.Subuser.created_study_dates
-             *
-             * @description
-             *
-             * Find a related item by id for created_study_dates.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             *  - `fk` – `{*}` - Foreign key for created_study_dates
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.created_study_dates.findById = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::findById::Subuser::created_study_dates"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser.created_study_dates#updateById
-             * @methodOf lbServices.Subuser.created_study_dates
-             *
-             * @description
-             *
-             * Update a related item by id for created_study_dates.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             *  - `fk` – `{*}` - Foreign key for created_study_dates
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study-date` object.)
-             * </em>
-             */
-        R.created_study_dates.updateById = function() {
-          var TargetResource = $injector.get("Study-date");
-          var action = TargetResource["::updateById::Subuser::created_study_dates"];
           return action.apply(R, arguments);
         };
     /**
@@ -10056,816 +8720,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
           var action = TargetResource["::get::Preference::subuser"];
           return action.apply(R, arguments);
         };
-
-
-        return R;
-      }]);
-
-/**
- * @ngdoc object
- * @name lbServices.StudyProgram
- * @header lbServices.StudyProgram
- * @object
- *
- * @description
- *
- * A $resource object for interacting with the `StudyProgram` model.
- *
- * ## Example
- *
- * See
- * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
- * for an example of using this object.
- *
- */
-  module.factory(
-    "StudyProgram",
-    [
-      'LoopBackResource', 'LoopBackAuth', '$injector', '$q',
-      function(LoopBackResource, LoopBackAuth, $injector, $q) {
-        var R = LoopBackResource(
-        urlBase + "/StudyPrograms/:id",
-          { 'id': '@id' },
-          {
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#create
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Create a new instance of the model and persist it into the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *   This method does not accept any parameters.
-             *   Supply an empty object or omit this argument altogether.
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-            "create": {
-              url: urlBase + "/StudyPrograms",
-              method: "POST",
-            },
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#createMany
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Create a new instance of the model and persist it into the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *   This method does not accept any parameters.
-             *   Supply an empty object or omit this argument altogether.
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-            "createMany": {
-              isArray: true,
-              url: urlBase + "/StudyPrograms",
-              method: "POST",
-            },
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#upsert
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Patch an existing model instance or insert a new one into the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *   This method does not accept any parameters.
-             *   Supply an empty object or omit this argument altogether.
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-            "upsert": {
-              url: urlBase + "/StudyPrograms",
-              method: "PUT",
-            },
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#replaceOrCreate
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Replace an existing model instance or insert a new one into the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *   This method does not accept any parameters.
-             *   Supply an empty object or omit this argument altogether.
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-            "replaceOrCreate": {
-              url: urlBase + "/StudyPrograms/replaceOrCreate",
-              method: "POST",
-            },
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#upsertWithWhere
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Update an existing model instance or insert a new one into the data source based on the where criteria.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `where` – `{object=}` - Criteria to match model instances
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-            "upsertWithWhere": {
-              url: urlBase + "/StudyPrograms/upsertWithWhere",
-              method: "POST",
-            },
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#exists
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Check whether a model instance exists in the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - Model id
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * Data properties:
-             *
-             *  - `exists` – `{boolean=}` -
-             */
-            "exists": {
-              url: urlBase + "/StudyPrograms/:id/exists",
-              method: "GET",
-            },
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#findById
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Find a model instance by {{id}} from the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - Model id
-             *
-             *  - `filter` – `{object=}` - Filter defining fields and include
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-            "findById": {
-              url: urlBase + "/StudyPrograms/:id",
-              method: "GET",
-            },
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#replaceById
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Replace attributes for a model instance and persist it into the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - Model id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-            "replaceById": {
-              url: urlBase + "/StudyPrograms/:id/replace",
-              method: "POST",
-            },
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#find
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Find all instances of the model matched by filter from the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-            "find": {
-              isArray: true,
-              url: urlBase + "/StudyPrograms",
-              method: "GET",
-            },
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#findOne
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Find first instance of the model matched by filter from the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-            "findOne": {
-              url: urlBase + "/StudyPrograms/findOne",
-              method: "GET",
-            },
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#updateAll
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Update instances of the model matched by {{where}} from the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `where` – `{object=}` - Criteria to match model instances
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * Information related to the outcome of the operation
-             */
-            "updateAll": {
-              url: urlBase + "/StudyPrograms/update",
-              method: "POST",
-            },
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#deleteById
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Delete a model instance by {{id}} from the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - Model id
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-            "deleteById": {
-              url: urlBase + "/StudyPrograms/:id",
-              method: "DELETE",
-            },
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#count
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Count instances of the model matched by where from the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `where` – `{object=}` - Criteria to match model instances
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * Data properties:
-             *
-             *  - `count` – `{number=}` -
-             */
-            "count": {
-              url: urlBase + "/StudyPrograms/count",
-              method: "GET",
-            },
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#prototype$updateAttributes
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Patch attributes for a model instance and persist it into the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-            "prototype$updateAttributes": {
-              url: urlBase + "/StudyPrograms/:id",
-              method: "PUT",
-            },
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#createChangeStream
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Create a change stream.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *   This method does not accept any parameters.
-             *   Supply an empty object or omit this argument altogether.
-             *
-             * @param {Object} postData Request data.
-             *
-             *  - `options` – `{object=}` -
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * Data properties:
-             *
-             *  - `changes` – `{ReadableStream=}` -
-             */
-            "createChangeStream": {
-              url: urlBase + "/StudyPrograms/change-stream",
-              method: "POST",
-            },
-          }
-        );
-
-
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#patchOrCreate
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Patch an existing model instance or insert a new one into the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *   This method does not accept any parameters.
-             *   Supply an empty object or omit this argument altogether.
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-        R["patchOrCreate"] = R["upsert"];
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#updateOrCreate
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Patch an existing model instance or insert a new one into the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *   This method does not accept any parameters.
-             *   Supply an empty object or omit this argument altogether.
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-        R["updateOrCreate"] = R["upsert"];
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#patchOrCreateWithWhere
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Update an existing model instance or insert a new one into the data source based on the where criteria.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `where` – `{object=}` - Criteria to match model instances
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-        R["patchOrCreateWithWhere"] = R["upsertWithWhere"];
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#update
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Update instances of the model matched by {{where}} from the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `where` – `{object=}` - Criteria to match model instances
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * Information related to the outcome of the operation
-             */
-        R["update"] = R["updateAll"];
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#destroyById
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Delete a model instance by {{id}} from the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - Model id
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-        R["destroyById"] = R["deleteById"];
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#removeById
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Delete a model instance by {{id}} from the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - Model id
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-        R["removeById"] = R["deleteById"];
-
-            /**
-             * @ngdoc method
-             * @name lbServices.StudyProgram#patchAttributes
-             * @methodOf lbServices.StudyProgram
-             *
-             * @description
-             *
-             * Patch attributes for a model instance and persist it into the data source.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `StudyProgram` object.)
-             * </em>
-             */
-        R["patchAttributes"] = R["prototype$updateAttributes"];
-
-
-        /**
-        * @ngdoc property
-        * @name lbServices.StudyProgram#modelName
-        * @propertyOf lbServices.StudyProgram
-        * @description
-        * The name of the model represented by this $resource,
-        * i.e. `StudyProgram`.
-        */
-        R.modelName = "StudyProgram";
-
 
 
         return R;
