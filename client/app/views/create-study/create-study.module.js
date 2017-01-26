@@ -52,6 +52,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
 
         $scope.appointments = [];
         $scope.appointmentDate = $scope.startDate;
+        $scope.bufferTime = 0;
 
 
 
@@ -64,9 +65,10 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
          *
          * @param appointmentTime {string}
          * @param duration {int}
+         * @param buffer {int}
          * @returns {string}
          */
-        function addDurationToAppointmentTime(appointmentTime, duration) {
+        function addDurationToAppointmentTime(appointmentTime, duration, buffer) {
 
 
             var time = appointmentTime.split(':');
@@ -74,18 +76,19 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
             var hours = parseInt(time[0]);
             var minutes = parseInt(time[1]);
 
-            if(minutes + duration >= 60) {
+            if(minutes + duration + buffer >= 60) {
 
                 hours++;
-                minutes = minutes + duration - 60;
+                minutes = minutes + duration + buffer - 60;
 
             } else {
 
-                minutes += duration;
+                minutes = minutes + duration + buffer;
 
             }
 
-            if(hours < 10) hours = '0' + hours
+            if(hours > 23) hours = 0;
+            if(hours < 10) hours = '0' + hours;
             if(minutes < 10) minutes = '0' + minutes;
 
             return hours + ':' + minutes;
@@ -107,7 +110,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
             };
 
             $scope.appointments.unshift(appointment);
-            $scope.appointmentTime = addDurationToAppointmentTime(time, duration);
+            $scope.appointmentTime = addDurationToAppointmentTime(time, duration, $scope.bufferTime);
 
         };
 
