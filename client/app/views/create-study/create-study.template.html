@@ -199,7 +199,7 @@
             <div layout="row" layout-xs="column">
 
                 <md-input-container>
-                    <md-button ng-click="createStudy(study.name, study.description, startDate, endDate)"
+                    <md-button ng-click="createStudy(study.name, study.description, startDate, endDate, study.duration, '10€')"
                                ng-disabled="createStudyForm.$invalid" class="md-accent md-raised">Studie erstellen
                     </md-button>
                     <md-button ng-click="cancelStudy()">Abbrechen</md-button>
