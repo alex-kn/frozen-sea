@@ -75,23 +75,13 @@ md-toolbar.toolbar {
   margin-top: .5rem;
   color: #9E9E9E; }
 
-form {
-  margin-top: 4rem; }
-  form #edit {
-    margin-left: .5rem;
-    font-size: 1.5rem;
-    cursor: pointer; }
-  form .errors {
-    font-size: 12px;
-    color: #dd2c00;
-    margin-top: 10px; }
-  form #duration {
-    margin-top: 3rem; }
-  form .after-chips {
-    margin-top: 4rem; }
-  form md-checkbox {
-    margin-right: 4rem; }
-    form md-checkbox:last-of-type {
-      margin-right: 0; }
+form .errors {
+  font-size: 12px;
+  color: #dd2c00;
+  margin-top: 10px; }
+form md-checkbox {
+  margin-right: 4rem; }
+  form md-checkbox:last-of-type {
+    margin-right: 0; }
 
 /*# sourceMappingURL=create-study.style.css.map */
