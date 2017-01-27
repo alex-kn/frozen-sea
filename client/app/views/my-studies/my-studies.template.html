@@ -1,0 +1,46 @@
+<link href="/views/my-studies/my-studies.style.css" rel="stylesheet">
+
+<div ng-controller="NavigationController">
+    <nav-bar></nav-bar>
+</div>
+
+<md-content ng-controller="MyStudiesController">
+    <!-- START tool bar -->
+    <md-toolbar class="toolbar md-hue-1" layout="row" layout-align="start center">
+        <div class="md-toolbar-tools" flex-offset-gt-sm="15">
+            <h2 class="md-display-3">
+                <i class="material-icons">bubble_chart</i>
+                {{title}}
+            </h2>
+        </div>
+    </md-toolbar>
+
+    <div layout-padding layout="column" flex-offset-gt-xs="20" flex-gt-xs="60" flex-xs="100">
+
+        <div layout="row" layout-align="start center">
+
+            <md-input-container flex-xs="100" flex-sm="50"  flex-gt-sm="30">
+                <input type="text" ng-model="search" placeholder="Search" aria-label="Search">
+            </md-input-container>
+
+        </div>
+
+        <div layout="column">
+            <md-card ng-repeat="study in studies | filter:search">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{ study.title }}</span>
+                        <span class="md-subhead">{{study.startDate | date: 'short'}} - {{study.endDate | date: 'short'}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    {{ study.description }}
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button>Details</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+
+    </div>
+</md-content>
