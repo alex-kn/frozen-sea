@@ -1,0 +1,81 @@
+{
+  "LOGIN": {
+    "WELCOME": "Welcome to Frozen Sea",
+    "NO_MORE": "No more facebook and mouth propaganda",
+    "FIND": "Find and create user studies online",
+    "MORE": "Learn more",
+    "NO_ACCOUNT": "You don't have an account yet?",
+    "REGISTER": "Sign up",
+    "LOGIN_HERE": "Sign in to Frozen Sea",
+    "MAIL": "E-Mail",
+    "PASSWORD": "Password",
+    "LOGIN": "Sign in",
+    "ERROR": "Your login credentials are wrong!"
+  },
+  "REGISTER": {
+    "WELCOME": "Welcome to Frozen Sea",
+    "NO_MORE": "No more facebook and mouth propaganda",
+    "FIND": "Find and create user studies online",
+    "MORE": "Learn more",
+    "ACCOUNT": "You already have an account?",
+    "LOGIN": "Sign in",
+    "REGISTER_HERE": "Sign up to Frozen Sea",
+    "MAIL" : "E-Mail",
+    "PASSWORD": "Password",
+    "REGISTER": "Sign up",
+    "ERROR": "Sign up failed, your username might be taken or there is already an account with this e-mail address!"
+  },
+  "CREATE_STUDY": {
+
+  },
+  "HOME": {
+  },
+  "USER_PREFERENCES": {
+    "TITLE" : "My preferences",
+    "I_AM": "I am ...",
+    "STUDENT": "Student at LMU",
+    "I_STUDY": "I study ...",
+    "STUDY_NOT_EXIST": "This study program doesn't exist at LMU.",
+    "MALE": "male",
+    "FEMALE": "female",
+    "BORN": "I was born on the ...",
+    "BIRTHDAY": "Birthday",
+    "HEIGHT": "My height is approximately ...",
+    "CM": "in cm",
+    "OS": "The operating system of my mobile is ...",
+    "IOS": "iOS",
+    "ANDROID":"Android",
+    "OTHER": "other",
+    "I_WEAR": "I wear",
+    "NO_GLASSES" : "no glasses",
+    "GLASSES" : "glasses",
+    "CONTACTS" : "contact lenses",
+    "LEFTY" : "right handed",
+    "RIGHTY" : "left handed",
+    "BOTH": "both",
+    "I_SPEAK": "I speak ...",
+    "GERMAN": "German",
+    "ENGLISH": "English",
+    "SAVE": "Save"
+  },
+  "NAVBAR": {
+    "STUDIES" : "Studies",
+    "MY_PREFERENCES": "My Preferences",
+    "ARCHIVE" : "Archive",
+    "OPEN_MENU" : "Open user menu",
+    "PROFILE_EDIT": "User profile",
+    "LOGOUT": "Logout"
+  },
+  "STUDY_LIST": {
+    "TITLE" : "Studies",
+    "CREATE" : "Create study",
+    "SEARCH" : "Search",
+    "PARTICIPATE" : "Participate",
+    "DETAILS" : "Details"
+  },
+  "ARCHIVE": {
+    "TITLE" : "Archive",
+    "SEARCH" : "Search",
+    "DETAILS" : "Details"
+  }
+}

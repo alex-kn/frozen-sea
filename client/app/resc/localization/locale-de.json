@@ -1,0 +1,81 @@
+{
+  "LOGIN": {
+    "WELCOME" : "Willkommen bei Frozen Sea",
+    "NO_MORE" : "Schluss mit Facebook und Mundpropaganda",
+    "FIND": "Finde und erstelle Benutzerstudien einfach online",
+    "MORE": "Mehr erfahren",
+    "NO_ACCOUNT": "Du hast noch keinen Account?",
+    "REGISTER": "Registrieren",
+    "LOGIN_HERE" : "Einloggen bei Frozen Sea",
+    "MAIL" : "E-Mail",
+    "PASSWORD": "Passwort",
+    "LOGIN": "Einloggen",
+    "ERROR": "Ihre Anmeldedaten sind falsch!"
+  },
+  "REGISTER": {
+    "WELCOME" : "Willkommen bei Frozen Sea",
+    "NO_MORE" : "Schluss mit Facebook und Mundpropaganda",
+    "FIND": "Finde und erstelle Benutzerstudien einfach online",
+    "MORE": "Mehr erfahren",
+    "ACCOUNT": "Du hast bereits einen Account?",
+    "LOGIN": "Einloggen",
+    "REGISTER_HERE": "Registriere dich bei Frozen Sea",
+    "MAIL" : "E-Mail",
+    "PASSWORD": "Passwort",
+    "REGISTER": "Registrieren",
+    "ERROR": "Registrierung fehlgeschlagen, existiert bereits ein Account mit diesem Benutzernamen oder mit dieser E-Mail Adresse?"
+  },
+  "CREATE_STUDY": {
+
+  },
+  "HOME": {
+  },
+  "USER_PREFERENCES": {
+    "TITLE" : "Meine Kriterien",
+    "I_AM": "Ich bin ...",
+    "STUDENT": "Student an der LMU",
+    "I_STUDY": "Ich studiere ...",
+    "STUDY_NOT_EXIST": "Diesen Studiengang gibt es nicht an der LMU.",
+    "MALE": "männlich",
+    "FEMALE": "weiblich",
+    "BORN": "Ich wurde geboren am ...",
+    "BIRTHDAY": "Geburtsdatum",
+    "HEIGHT": "Meine K&ouml;rpergr&ouml;&szlig;e betr&auml;gt ungef&auml;hr ...",
+    "CM": "in cm",
+    "OS": "Das Betriebsystem meines Mobilgeräts ist ...",
+    "IOS": "iOS",
+    "ANDROID":"Android",
+    "OTHER": "sonstiges",
+    "I_WEAR": "Ich trage",
+    "NO_GLASSES" : "keine Sehhilfe",
+    "GLASSES" : "eine Brille",
+    "CONTACTS" : "Kontaktlinsen",
+    "LEFTY" : "Linkshänder",
+    "RIGHTY" : "Rechtshänder",
+    "BOTH": "Beidhänder",
+    "I_SPEAK": "Ich spreche ...",
+    "GERMAN": "Deutsch",
+    "ENGLISH": "Englisch",
+    "SAVE": "Speichern"
+  },
+  "NAVBAR": {
+    "STUDIES" : "Studien",
+    "MY_PREFERENCES": "Meine Kriterien",
+    "ARCHIVE" : "Archiv",
+    "OPEN_MENU" : "Öffne Benutzereinstellungen",
+    "PROFILE_EDIT": "Benutzereinstellungen",
+    "LOGOUT": "Logout"
+  },
+  "STUDY_LIST": {
+    "TITLE" : "Studien",
+    "CREATE" : "Studie erstellen",
+    "SEARCH" : "Suchen",
+    "PARTICIPATE" : "Teilnehmen",
+    "DETAILS" : "Details"
+  },
+  "ARCHIVE": {
+    "TITLE" : "Archiv",
+    "SEARCH" : "Suchen",
+    "DETAILS" : "Details"
+  }
+}
