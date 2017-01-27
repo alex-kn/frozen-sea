@@ -10,9 +10,16 @@ angular.module('register', ['ngRoute'])
             controller: 'RegisterController'
         });
     }])
-    .controller('RegisterController', ['$scope', 'Subuser', '$location','$rootScope', function($scope, Subuser) {
+    .controller('RegisterController', ['$scope', 'Subuser', '$location','$rootScope', '$translate',
+        function($scope, Subuser, $location, $rootScope, $translate) {
 
         $scope.errorMessage = "";
+
+
+        $scope.changeLanguage = function(langKey) {
+            $translate.use(langKey);
+        };
+
 
         /**
          * Create new user in data base

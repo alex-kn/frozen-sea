@@ -6,14 +6,15 @@
 
 angular.module('createStudy', ['ngRoute', 'ngMaterial'])
 
-    .config(['$routeProvider', function($routeProvider) {
+    .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/create-study/:study', {
             templateUrl: 'views/home/create-study.template.html',
             controller: 'CreateStudyController'
         });
     }])
 
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'LoopBackAuth', function($scope, $routeParams, $location, $mdDialog,  Study, LoopBackAuth) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http',
+        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http) {
 
         $scope.readonly = false;
         $scope.title = 'Studie erstellen';
@@ -29,7 +30,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 voucher: false,
                 hours: false
             }
-       };
+        };
 
         /**
          * Instantiate datepickers
@@ -42,23 +43,22 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
             $scope.startDate.getMonth(),
             $scope.startDate.getDate() + 1);
 
-        $scope.minEndDate = new Date (
+        $scope.minEndDate = new Date(
             $scope.startDate.getFullYear(),
             $scope.startDate.getMonth(),
             $scope.startDate.getDate() + 1);
-
-        // Get current user to save as
-        var _currentUserId = LoopBackAuth.currentUserId;
 
         $scope.appointments = [];
         $scope.appointmentDate = $scope.startDate;
         $scope.bufferTime = 0;
 
 
-
-
-
         $scope.appointmentTime = '08:30';
+
+        $http.get('resc/files/studyprograms.txt')
+            .then(function (response) {
+                    $scope.studyPrograms = response.data.split("\n");
+            });
 
         /**
          * Add the appointment duration time to the previous appointment time
@@ -76,7 +76,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
             var hours = parseInt(time[0]);
             var minutes = parseInt(time[1]);
 
-            if(minutes + duration + buffer >= 60) {
+            if (minutes + duration + buffer >= 60) {
 
                 hours++;
                 minutes = minutes + duration + buffer - 60;
@@ -87,9 +87,9 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
 
             }
 
-            if(hours > 23) hours = 0;
-            if(hours < 10) hours = '0' + hours;
-            if(minutes < 10) minutes = '0' + minutes;
+            if (hours > 23) hours = 0;
+            if (hours < 10) hours = '0' + hours;
+            if (minutes < 10) minutes = '0' + minutes;
 
             return hours + ':' + minutes;
         }
@@ -101,7 +101,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
          * @param time date
          * @param duration int
          */
-        $scope.addAppointment = function(date, time, duration) {
+        $scope.addAppointment = function (date, time, duration) {
 
             var appointment = {
                 'date': date,
@@ -115,9 +115,9 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         };
 
 
-        $scope.removeAppointment = function(item) {
-            var index=$scope.appointments.indexOf(item);
-            $scope.appointments.splice(index,1);
+        $scope.removeAppointment = function (item) {
+            var index = $scope.appointments.indexOf(item);
+            $scope.appointments.splice(index, 1);
         };
 
 
@@ -127,11 +127,12 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
          * @param description string
          * @param startDate date
          * @param endDate date
-         * @param _currentUserId string
          */
-        $scope.createStudy = function(title, description, startDate, endDate, _currentUserId) {
+        $scope.createStudy = function (title, description, startDate, endDate, duration, reward) {
 
             if ($scope.createStudyForm.$valid) {
+
+                console.log('create');
 
                 return Study
                     .create({
@@ -139,10 +140,31 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                         description: description,
                         startDate: startDate,
                         endDate: endDate,
-                        owner: _currentUserId
+                        owner: LoopBackAuth.currentUserId,
+                        rewards: reward,
+                        duration: duration
                     })
                     .$promise
                     .then(function (response) {
+
+                        console.log(response.id);
+
+                        for (var i = 0; i < $scope.appointments.length; i++) {
+
+                            StudyDate
+                                .create({
+                                    studyId: response.id,
+                                    ownerId: LoopBackAuth.currentUserId,
+                                    status: 'available',
+                                    startDate: $scope.appointments[i].date
+                                })
+                                .$promise
+                                .then(function (response) {
+                                    console.log(response);
+                                });
+
+                        }
+
                         $location.path('/home');
                     });
             } else {
@@ -154,20 +176,20 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
          * Show prompt whether user wants to delete current study
          * @param ev event
          */
-        $scope.cancelStudy = function(ev) {
+        $scope.cancelStudy = function (ev) {
 
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
-                .title('Möchtest du die Studie ' + $scope.study.name + 'löschen?' )
+                .title('Möchtest du die Studie ' + $scope.study.name + 'löschen?')
                 .textContent('Dein gesamter Fortschritt wird gelöscht')
                 .ariaLabel('Fortschritt löschen')
                 .targetEvent(ev)
                 .ok('Studie löschen')
                 .cancel('Abbrechen');
 
-            $mdDialog.show(confirm).then(function() {
+            $mdDialog.show(confirm).then(function () {
                 $location.path('/home');
-            }, function() {
+            }, function () {
                 console.log('Keep on creating, fool :D');
             });
         };
@@ -196,13 +218,13 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
             }
 
             // Otherwise, create a new one
-            return { name: chip, type: 'new' }
+            return {name: chip, type: 'new'}
         }
 
         /**
          * Search for studyPrograms.
          */
-        function querySearch (query) {
+        function querySearch(query) {
             var results = query ? self.studyPrograms.filter(createFilterFor(query)) : [];
             return results;
         }

@@ -75,31 +75,24 @@ md-toolbar.toolbar {
   margin-top: .5rem;
   color: #9E9E9E; }
 
-.introduction {
-  height: 100vh;
-  background-image: url("../../../resc/images/register-2.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: #fff; }
+md-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+  md-card:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
 
-.registration md-input-container {
-  margin-top: 2.5rem; }
-.registration .registration-form {
-  margin-top: 8rem; }
+md-toolbar.toolbar {
+  height: 8rem; }
+  md-toolbar.toolbar h2 {
+    margin-left: 0; }
+  md-toolbar.toolbar .md-toolbar-tools {
+    font-size: 2rem;
+    font-weight: 100; }
+    md-toolbar.toolbar .md-toolbar-tools i {
+      font-size: 2rem;
+      margin-right: 1rem; }
+  md-toolbar.toolbar .md-button.md-fab.md-fab-bottom-right {
+    top: 5.75rem;
+    right: 22%; }
 
-
-.lang {
-  font-size: 14px;
-  margin: 0.33rem;
-  display: inline-block;
-}
-
-.spacer {
-  margin-right: 2rem;
-}
-
-.flag {
-  height: 0.9rem;
-  width: 1.3rem
-}
-/*# sourceMappingURL=register.style.css.map */
+/*# sourceMappingURL=study-list.style.css.map */

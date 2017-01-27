@@ -12,10 +12,10 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('UserPreferencesController', ['LoopBackAuth', '$scope', 'Preference', 'Subuser', 'User', '$rootScope', '$http', function (LoopBackAuth, $scope, Preference, Subuser, User, $rootScope, $http) {
+    .controller('UserPreferencesController', ['LoopBackAuth', '$scope', 'Preference', 'Subuser', 'User', '$rootScope', '$http',
+        function (LoopBackAuth, $scope, Preference, Subuser, User, $rootScope, $http) {
         var self = this;
 
-        $scope.title = 'Meine Kriterien';
 
         $http.get('resc/files/studyprograms.txt')
             .then(function (response) {
@@ -32,8 +32,7 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
 
         $scope.savePreferences = function () {
             $scope.preferences.studyProgram = self.selectedItem;
-            //$scope.preferences.$save();
-            console.log($scope.preferences);
+            $scope.preferences.$save();
         }
 
         $scope.maxDate = new Date("January 1, 2010 00:00:00");

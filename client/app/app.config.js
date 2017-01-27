@@ -11,15 +11,22 @@ angular
             $locationProvider.hashPrefix('!');
 
             $routeProvider.when('/home', {
-                templateUrl: 'views/home/home.template.html'
+                templateUrl: 'views/home/home.template.html',
+                activeTab: 'home'
             }).when('/register', {
                 templateUrl: 'views/register/register.template.html'
+            }).when('/archive', {
+                templateUrl: 'views/archive/archive.template.html',
+                activeTab: 'archive'
             }).when('/', {
                 templateUrl: 'views/login/login.template.html'
             }).when('/create-study', {
                 templateUrl: 'views/create-study/create-study.template.html'
             }).when('/user-preferences', {
-                templateUrl: 'views/user-preferences/user-preferences.template.html'
+                templateUrl: 'views/user-preferences/user-preferences.template.html',
+                activeTab: 'user-preferences'
+            }).when('/study-details', {
+                templateUrl: 'views/study-details/study-details.template.html'
             }).otherwise({redirectTo: '/'});
 
 
@@ -54,59 +61,14 @@ angular
                 });
 
 
-            $translateProvider.translations('en-EN', {
-                'LOGIN': {
-                    'WELCOME' : 'Welcome to Frozen Sea',
-                    'NO_MORE' : 'No more facebook and mouth propaganda',
-                    'FIND': 'Find and create user studies online',
-                    'MORE': 'Learn more',
-                    'NO_ACCOUNT': 'You don\'t have an account yet?',
-                    'REGISTER': 'Sign up',
-                    'LOGIN_HERE' : 'Sign in to Frozen Sea',
-                    'MAIL' : 'E-Mail',
-                    'PASSWORD': 'Password',
-                    'LOGIN': 'Sign in',
-                    'ERROR': 'Your login credentials are wrong!'
+            $translateProvider.useStaticFilesLoader( {
+                files: [{
+                prefix: './resc/localization/locale-',
+                suffix: '.json'
+            }]});
 
-                },
-                'REGISTER': {
+            $translateProvider.preferredLanguage('de');
 
-                },
-                'CREATE_STUDY': {
-
-                },
-                'HOME': {
-
-                },
-                'USER_PREFERENCES': {
-
-                }
-                ,
-                'NAVBAR': {
-
-                },
-                'STUDY_LIST': {
-
-                }
-            });
-
-            $translateProvider.translations('de-DE', {
-                'LOGIN': {
-                    'WELCOME' : 'Willkommen bei Frozen Sea',
-                    'NO_MORE' : 'Schluss mit Facebook und Mundpropaganda',
-                    'FIND': 'Finde und erstelle Benutzerstudien einfach online',
-                    'MORE': 'Mehr erfahren',
-                    'NO_ACCOUNT': 'Du hast noch keinen Account?',
-                    'REGISTER': 'Registrieren',
-                    'LOGIN_HERE' : 'Einloggen bei Frozen Sea',
-                    'MAIL' : 'E-Mail',
-                    'PASSWORD': 'Passwort',
-                    'LOGIN': 'Einloggen',
-                    'ERROR': 'Ihre Anmeldedaten sind falsch!'
-                }
-            });
-
-            $translateProvider.preferredLanguage('de-DE');
 
         }])
     .run(['$rootScope', '$location', 'LoopBackAuth', 'AuthService', function ($rootScope, $location, LoopBackAuth, AuthService) {

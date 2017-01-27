@@ -3,9 +3,13 @@
  */
 
 angular
-    .module('studyListDirective', [])
-    .controller('StudyListController', ['$scope', 'Study', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$translate', '$filter',
-        function ($scope, Study, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter) {
+    .module('archiveListDirective', [])
+    .controller('ArchiveListController', ['$scope', 'Study', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$filter',
+        function ($scope, Study, $mdDialog, $location, Subuser, LoopBackAuth, $filter) {
+
+        $scope.title = 'Studien';
+
+
 
         $scope.studiesTemp = Study.find(
             function(list) { /* success */ //TODO: where end date not in the past
@@ -31,10 +35,6 @@ angular
             });
         }
 
-            $scope.showDetails = function (title, ev) {
-                $location.path('/study-details').search({'study': title});
-            }
-
         $scope.showPrompt = function(ev) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.prompt()
@@ -55,9 +55,9 @@ angular
         };
 
     }])
-    .directive('studyList', function () {
+    .directive('archiveList', function () {
         return {
-            templateUrl: 'components/study-list/study-list.template.html'
+            templateUrl: 'components/archive-list/archive-list.template.html'
         }
     });
 

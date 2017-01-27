@@ -1,6 +1,6 @@
 {
-  "name": "Study-date",
-  "plural": "Study-dates",
+  "name": "StudyDate",
+  "plural": "StudyDates",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
