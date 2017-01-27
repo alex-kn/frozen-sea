@@ -16,7 +16,9 @@
     "bower": "*",
     "install": "^1.0.4",
     "angular-material": "master",
-    "angular-translate": "^2.13.1"
+    "angular-translate": "^2.13.1",
+    "angular-translate-loader-url": "^2.13.1",
+    "angular-translate-loader-static-files": "^2.13.1"
   },
   "resolutions": {
     "angular": "1.6.1"

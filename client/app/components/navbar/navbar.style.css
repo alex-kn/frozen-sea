@@ -76,6 +76,21 @@ md-toolbar.toolbar {
   margin-top: .5rem;
   color: #9E9E9E; }
 
+.lang {
+  margin: 0.33rem;
+  display: inline-block;
+}
+
+.spacer {
+  margin-right: 2rem;
+}
+
+.flag {
+  height: 1rem;
+  width: 1.3rem
+}
+
+
 nav-bar .md-toolbar-tools {
   font-size: 1rem; }
 nav-bar .nav, nav-bar .user-profil {

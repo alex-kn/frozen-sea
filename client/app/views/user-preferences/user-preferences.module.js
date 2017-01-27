@@ -12,10 +12,10 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('UserPreferencesController', ['LoopBackAuth', '$scope', 'Preference', 'Subuser', 'User', '$rootScope', '$http', function (LoopBackAuth, $scope, Preference, Subuser, User, $rootScope, $http) {
+    .controller('UserPreferencesController', ['LoopBackAuth', '$scope', 'Preference', 'Subuser', 'User', '$rootScope', '$http',
+        function (LoopBackAuth, $scope, Preference, Subuser, User, $rootScope, $http) {
         var self = this;
 
-        $scope.title = 'Meine Kriterien';
 
         $http.get('resc/files/studyprograms.txt')
             .then(function (response) {

@@ -4,12 +4,8 @@
 
 angular
     .module('studyListDirective', [])
-    .controller('StudyListController', ['$scope', 'Study', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$filter',
-        function ($scope, Study, $mdDialog, $location, Subuser, LoopBackAuth, $filter) {
-
-        $scope.title = 'Studien';
-
-
+    .controller('StudyListController', ['$scope', 'Study', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$translate', '$filter',
+        function ($scope, Study, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter) {
 
         $scope.studiesTemp = Study.find(
             function(list) { /* success */ //TODO: where end date not in the past

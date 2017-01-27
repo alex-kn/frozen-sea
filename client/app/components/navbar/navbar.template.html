@@ -4,13 +4,13 @@
     <div class="md-toolbar-tools">
 
         <div class="nav" flex-offset-gt-sm="15" hide-xs>
-            <a ng-class="{active: $route.current.activeTab == 'home'}" href="#!/home">Studien</a>
-            <a ng-class="{active: $route.current.activeTab == 'user-preferences'}" href="#!/user-preferences">Meine Kriterien</a>
-            <a ng-class="{active: $route.current.activeTab == 'archive'}" href="#!/archive" ng-click="">Archiv</a>
+            <a ng-class="{active: $route.current.activeTab == 'NAVBAR'}" href="#!/NAVBAR">{{'NAVBAR.STUDIES' | translate}}</a>
+            <a ng-class="{active: $route.current.activeTab == 'user-preferences'}" href="#!/user-preferences">{{'NAVBAR.MY_PREFERENCES' | translate}}</a>
+            <a ng-class="{active: $route.current.activeTab == 'archive'}" href="#!/archive" ng-click="">{{'NAVBAR.ARCHIVE' | translate}}</a>
         </div>
 
         <div class="nav-mobil" hide-gt-xs>
-            <md-button class="md-icon-button" aria-label="logout">
+            <md-button class="md-icon-button" aria-label="{{'NAVBAR.LOGOUT' | translate}}">
                 <md-icon class="material-icons">menu</md-icon>
             </md-button>
         </div>
@@ -18,19 +18,29 @@
 
         <span flex></span>
 
+
+        <span class="lang" ng-click="changeLanguage('de')">
+            <img class="flag" src="../../resc/images/german_lang.svg.png" class="md-card-image" alt="german language">
+        </span>
+
+        <span class="lang spacer" ng-click="changeLanguage('en')">
+            <img class="flag" src="../../resc/images/english_lang.svg.png" class="md-card-image" alt="english language">
+        </span>
+
+
         <div class="user-profil">
             <md-menu md-offset="5 50" md-position-mode="target-right target">
-                <md-button aria-label="Open user menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+                <md-button aria-label="{{'NAVBAR.OPEN_MENU' | translate}}" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
                     <md-icon class="material-icons md-24">account_circle</md-icon>
                 </md-button>
                 <md-menu-content width="4">
                     <md-menu-item>
-                        <md-button ng-click="goToEditProfile()" aria-label="Profil Bearbeiten">
-                            Profil bearbeiten
+                        <md-button ng-click="goToEditProfile()" aria-label="{{'NAVBAR.PROFILE_EDIT' | translate}}">
+                            {{'NAVBAR.PROFILE_EDIT' | translate}}
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="logout()" aria-label="logout">
+                        <md-button ng-click="logout()" aria-label="{{'NAVBAR.LOGOUT' | translate}}">
                             Logout
                         </md-button>
                     </md-menu-item>

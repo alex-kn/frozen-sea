@@ -3,8 +3,12 @@
  */
 
 angular.module('navBarDirective', [])
-    .controller('NavigationController', ['$scope', 'AuthService', '$location', '$route', function ($scope, AuthService, $location, $route) {
+    .controller('NavigationController', ['$scope', 'AuthService', '$location', '$route', '$translate',
+        function ($scope, AuthService, $location, $route, $translate) {
 
+        $scope.changeLanguage = function(langKey) {
+            $translate.use(langKey);
+        };
 
         $scope.$route = $route;
 

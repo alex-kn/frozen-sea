@@ -4,12 +4,12 @@
 
     <!-- START app introduction -->
     <section class="introduction" layout="column" layout-align="center center" flex-gt-sm="40" flex="100" hide-sm hide-xs>
-        <h1>Willkommen bei Frozen Sea</h1>
+        <h1>{{'REGISTER.WELCOME' | translate}}</h1>
         <p>
-            Schluss mit Facebook und Mundpropaganda <br/>
-            Finde und erstelle Benutzerstudien einfach online
+            {{'REGISTER.NO_MORE' | translate}} <br/>
+            {{'REGISTER.FIND' | translate}}
         </p>
-        <md-button class="md-accent md-raised">Mehr erfahren</md-button>
+        <md-button class="md-accent md-raised">{{'REGISTER.MORE' | translate}}</md-button>
 
     </section>
     <!-- END app introduction -->
@@ -19,8 +19,18 @@
 
         <!-- START switch to login -->
         <div class="switch-to-login" layout="row" layout-align="end center">
-            <span>Du hast bereits einen Account?</span>
-            <md-button href="#!/login" class="md-accent">Einloggen</md-button>
+
+            <span class="lang" ng-click="changeLanguage('de')">DE
+                <img class="flag" src="../../resc/images/german_lang.svg.png" class="md-card-image" alt="german language">
+            </span>
+
+            <span class="lang spacer" ng-click="changeLanguage('en')">EN
+                <img class="flag" src="../../resc/images/english_lang.svg.png" class="md-card-image" alt="english language">
+            </span>
+
+
+            <span>{{'REGISTER.ACCOUNT' | translate}}</span>
+            <md-button href="#!/login" class="md-accent">{{'REGISTER.LOGIN' | translate}}</md-button>
         </div>
         <!-- END switch to login -->
 
@@ -29,20 +39,20 @@
 
             <form  layout="column" flex-gt-xs="60" flex="100">
 
-                <h2>Registriere dich bei Frozen Sea</h2>
+                <h2>{{'REGISTER.REGISTER_HERE' | translate}}</h2>
 
 
                 <md-input-container layout="row">
-                    <input type="email" aria-label="Email" ng-model="email" placeholder="Email">
+                    <input type="email" aria-label="{{'REGISTER.MAIL' | translate}}" ng-model="email" placeholder="{{'REGISTER.MAIL' | translate}}">
                 </md-input-container>
                 <md-input-container layout="row">
-                    <input type="password" aria-label="Passwort" ng-model="password" placeholder="Passwort">
+                    <input type="password" aria-label="{{'REGISTER.PASSWORD' | translate}}" ng-model="password" placeholder="{{'REGISTER.PASSWORD' | translate}}">
                 </md-input-container>
                 <md-input-container layout="row">
                     <input type="text" aria-label="Name" ng-model="name" placeholder="Name">
                 </md-input-container>
                 <div layout="row" class="submit">
-                    <md-button href="#!/login" ng-click="register(name, email, password)" class="md-accent md-raised">Registrieren</md-button>
+                    <md-button href="#!/login" ng-click="register(name, email, password)" class="md-accent md-raised">{{'REGISTER.REGISTER' | translate}}</md-button>
                 </div>
 
             </form>
