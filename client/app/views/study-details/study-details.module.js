@@ -12,9 +12,10 @@ angular.module('studyDetails', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsController', ['$routeParams', '$scope', 'Preference', 'Subuser', 'User', '$rootScope', '$http',
-        function ($routeParams, $scope, Preference, Subuser, User, $rootScope, $http) {
+    .controller('StudyDetailsController', ['$routeParams', '$scope', 'Subuser', '$http',
+        function ($routeParams, $scope, Subuser, $http) {
 
             $scope.title = $routeParams.study;
+
 
         }])

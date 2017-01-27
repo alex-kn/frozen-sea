@@ -32,8 +32,7 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
 
         $scope.savePreferences = function () {
             $scope.preferences.studyProgram = self.selectedItem;
-            //$scope.preferences.$save();
-            console.log($scope.preferences);
+            $scope.preferences.$save();
         }
 
         $scope.maxDate = new Date("January 1, 2010 00:00:00");
