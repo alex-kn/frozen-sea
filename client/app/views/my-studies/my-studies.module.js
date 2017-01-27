@@ -6,8 +6,8 @@ angular
             controller: 'MyStudiesController'
         });
     }])
-    .controller('MyStudiesController', ['$scope', 'Study','Study-date', '$mdDialog','Participation', '$location', 'Subuser', 'LoopBackAuth',
-        function ($scope, Study, StudyDate, $mdDialog, Participation, $location, Subuser, LoopBackAuth) {
+    .controller('MyStudiesController', ['$scope', 'Study', '$mdDialog', 'Participation', '$location', 'Subuser', 'LoopBackAuth',
+        function ($scope, Study, $mdDialog, Participation, $location, Subuser, LoopBackAuth) {
 
             $scope.title = 'Meine Studien';
             $scope.studies = Participation.find({
