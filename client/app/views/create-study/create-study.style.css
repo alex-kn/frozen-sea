@@ -83,5 +83,7 @@ form md-checkbox {
   margin-right: 4rem; }
   form md-checkbox:last-of-type {
     margin-right: 0; }
+form .margin-btm-0 {
+  margin-bottom: 0; }
 
 /*# sourceMappingURL=create-study.style.css.map */
