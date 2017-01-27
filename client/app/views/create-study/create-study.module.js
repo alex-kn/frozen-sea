@@ -13,8 +13,8 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth',
-        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http',
+        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http) {
 
         $scope.readonly = false;
         $scope.title = 'Studie erstellen';
@@ -54,6 +54,11 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
 
 
         $scope.appointmentTime = '08:30';
+
+        $http.get('resc/files/studyprograms.txt')
+            .then(function (response) {
+                    $scope.studyPrograms = response.data.split("\n");
+            });
 
         /**
          * Add the appointment duration time to the previous appointment time
