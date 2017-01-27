@@ -3,7 +3,10 @@
  */
 
 angular.module('navBarDirective', [])
-    .controller('NavigationController', ['$scope', 'AuthService', '$location', function ($scope, AuthService, $location) {
+    .controller('NavigationController', ['$scope', 'AuthService', '$location', '$route', function ($scope, AuthService, $location, $route) {
+
+
+        $scope.$route = $route;
 
         $scope.openMenu = function ($mdOpenMenu, event) {
             $mdOpenMenu(event);

@@ -11,15 +11,20 @@ angular
             $locationProvider.hashPrefix('!');
 
             $routeProvider.when('/home', {
-                templateUrl: 'views/home/home.template.html'
+                templateUrl: 'views/home/home.template.html',
+                activeTab: 'home'
             }).when('/register', {
                 templateUrl: 'views/register/register.template.html'
+            }).when('/archive', {
+                templateUrl: 'views/archive/archive.template.html',
+                activeTab: 'archive'
             }).when('/', {
                 templateUrl: 'views/login/login.template.html'
             }).when('/create-study', {
                 templateUrl: 'views/create-study/create-study.template.html'
             }).when('/user-preferences', {
-                templateUrl: 'views/user-preferences/user-preferences.template.html'
+                templateUrl: 'views/user-preferences/user-preferences.template.html',
+                activeTab: 'user-preferences'
             }).otherwise({redirectTo: '/'});
 
 
@@ -54,6 +59,14 @@ angular
                 });
 
 
+/**
+            $http.get('resc/files/studyprograms.txt')
+                .then(function (response) {
+                        $scope.studyPrograms = response.data.split("\n");
+                    }
+                );
+
+        */
             $translateProvider.translations('en-EN', {
                 'LOGIN': {
                     'WELCOME' : 'Welcome to Frozen Sea',
