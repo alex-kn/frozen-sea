@@ -31,6 +31,10 @@ angular
             });
         }
 
+            $scope.showDetails = function (title, ev) {
+                $location.path('/study-details').search({'study': title});
+            }
+
         $scope.showPrompt = function(ev) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.prompt()

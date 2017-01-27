@@ -25,6 +25,8 @@ angular
             }).when('/user-preferences', {
                 templateUrl: 'views/user-preferences/user-preferences.template.html',
                 activeTab: 'user-preferences'
+            }).when('/study-details', {
+                templateUrl: 'views/study-details/study-details.template.html'
             }).otherwise({redirectTo: '/'});
 
 

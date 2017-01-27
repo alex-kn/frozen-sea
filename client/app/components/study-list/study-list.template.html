@@ -40,7 +40,7 @@
             </md-card-content>
             <md-card-actions layout="row" layout-align="end center">
                 <md-button>{{'STUDY_LIST.PARTICIPATE' | translate}}</md-button>
-                <md-button>{{'STUDY_LIST.DETAILS' | translate}}</md-button>
+                <md-button ng-click="showDetails(study.title)">{{'STUDY_LIST.DETAILS' | translate}}</md-button>
             </md-card-actions>
         </md-card>
     </div>

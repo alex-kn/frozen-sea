@@ -14,6 +14,7 @@ angular.module('userStudy', [
     'home',
     'login',
     'createStudy',
+    'studyDetails',
     'userPreferences',
     'editProfile',
     'userStudy.version',
