@@ -34,7 +34,7 @@
                     <!-- START general information -->
                     <md-content class="md-padding">
 
-                        <h2 class="md-headline">Allgemeine Informationen zu {{ study.name }}</h2>
+                        <h2 class="md-headline">Allgemeine Informationen zu <span md-colors="{color: 'accent'}">{{ study.name }}</span></h2>
 
 
                         <div layout-gt-xs="row">
@@ -245,10 +245,10 @@
                 <!-- START requirements tab -->
                 <md-tab label="Voraussetzungen" class="md-padding">
                     <md-content class="md-padding">
-                        <h2 class="md-headline">Voraussetzungen für {{ study.name }}</h2>
+                        <h2 class="md-headline">Voraussetzungen für <span md-colors="{color: 'accent'}">{{ study.name }}</span></h2>
                         <p>Bitte gebe die Voraussetzungen an, die Bewerber erfüllen müssen, um an deiner Studie
-                            teilnehmen zu können. Basierend auf diesen Kriterien zeigen wir deine Studie nur geeigneten
-                            Bewerbern.</p>
+                            teilnehmen zu können. Basierend auf diesen Kriterien schlagen wir deine Studie nur geeigneten
+                            Bewerbern vor.</p>
                     </md-content>
 
                     <!-- START general requirements -->
@@ -260,15 +260,17 @@
                             <div layout-gt-xs="row" flex="100" layout-align="start center">
 
                                 <div flex-gt-xs="25" flex="100">
-                                <md-checkbox ng-model="preferencesStudent">
-                                    Student
-                                </md-checkbox>
+
+                                    <md-switch ng-model="preferencesStudent" aria-label="Studentstatus" ng-true-value="'Ja'" ng-false-value="'Nein'" >
+                                        Student: {{ preferencesStudent }}
+                                    </md-switch>
+
                                 </div>
 
-                                <md-input-container flex-gt-xs="75" flex="100" ng-if="preferencesStudent">
+                                <md-input-container flex-gt-xs="75" flex="100" ng-if="preferencesStudent === 'Ja'">
                                     <label>Studiengang</label>
                                     <md-select name="student" ng-model="preferences.student">
-                                        <md-option value="1" selected>Mathematik</md-option>
+                                        <md-option value="1">Mathematik</md-option>
                                         <md-option value="2">Informatik</md-option>
                                         <md-option value="3">Industrial Design</md-option>
                                     </md-select>
@@ -279,12 +281,14 @@
                             <div layout-gt-xs="row" flex="100" layout-align="start center">
 
                                 <div flex-gt-xs="25" flex="100">
-                                    <md-checkbox ng-model="preferencesAge">
-                                        Alter
-                                    </md-checkbox>
+
+                                    <md-switch ng-model="preferencesAge" aria-label="Mindestalter" ng-true-value="'Ja'" ng-false-value="'Nein'" >
+                                        Alter: {{ preferencesAge }}
+                                    </md-switch>
+
                                 </div>
 
-                                <md-slider-container ng-if="preferencesAge" flex="75" flex-xs="100">
+                                <md-slider-container ng-if="preferencesAge === 'Ja'" flex="75" flex-xs="100">
 
                                     <span>Jahre</span>
                                     <md-slider flex min="0" max="50" ng-model="preferences.age" aria-label="Alter" id="age-slider">
@@ -300,19 +304,42 @@
                             <div layout-gt-xs="row" flex="100" layout-align="start center">
 
                                 <div flex-gt-xs="25" flex="100">
-                                    <md-checkbox ng-model="preferencesNationality">
-                                        Nationalität
-                                    </md-checkbox>
+
+                                    <md-switch ng-model="preferencesNationality" aria-label="Nationalität" ng-true-value="'Ja'" ng-false-value="'Nein'" >
+                                        Nationalität: {{ preferencesNationality }}
+                                    </md-switch>
+
                                 </div>
 
-                                <md-input-container flex-gt-xs="75" flex="100" ng-if="preferencesNationality">
+                                <md-input-container flex-gt-xs="75" flex="100" ng-if="preferencesNationality === 'Ja'">
                                     <label>Nationalität</label>
                                     <md-select name="nationality" ng-model="preferences.nationality">
-                                        <md-option value="1" selected>Deutschland</md-option>
+                                        <md-option value="1">Deutschland</md-option>
                                         <md-option value="2">United States of America</md-option>
                                         <md-option value="3">Zimbabwe</md-option>
                                     </md-select>
                                 </md-input-container>
+
+                            </div>
+
+                            <div layout-gt-xs="row" flex="100" layout-align="start center">
+
+                                    <div flex-gt-xs="25" flex="100">
+
+                                        <md-switch ng-model="preferencesLanguage" aria-label="Sprache" ng-true-value="'Ja'" ng-false-value="'Nein'" >
+                                            Sprache: {{ preferencesLanguage }}
+                                        </md-switch>
+
+                                    </div>
+
+                                    <md-input-container flex-gt-xs="75" flex="100" ng-if="preferencesLanguage === 'Ja'">
+                                        <label>Nationalität</label>
+                                        <md-select name="language" ng-model="preferences.languages">
+                                            <md-option value="1">Englisch</md-option>
+                                            <md-option value="2">Deutsch</md-option>
+                                            <md-option value="3">Arabisch</md-option>
+                                        </md-select>
+                                    </md-input-container>
 
                             </div>
 
@@ -332,22 +359,20 @@
 
                                 <div flex-gt-xs="25" flex="100">
 
-                                    <md-switch ng-model="preferencesGender" aria-label="Sehhilfe" ng-true-value="'Ja'" ng-false-value="'Nein'" >
+                                    <md-switch ng-model="preferencesGender" aria-label="Geschlecht" ng-true-value="'Ja'" ng-false-value="'Nein'" >
                                         Geschlecht: {{ preferencesGender }}
                                     </md-switch>
 
                                 </div>
 
-                                <div flex-gt-xs="75" flex="100" ng-if="preferencesGender">
+                                <div flex-gt-xs="75" flex="100" ng-if="preferencesGender === 'Ja'">
 
-                                    <div style="margin-top: 10px">
-                                        <md-checkbox ng-model="preferences.female">
-                                            Weiblich
-                                        </md-checkbox>
-                                        <md-checkbox ng-model="preferences.male">
-                                            Männlich
-                                        </md-checkbox>
-                                    </div>
+                                    <md-radio-group ng-model="preferences.gender" layout-gt-xs="row">
+
+                                        <md-radio-button value="female">Männlich</md-radio-button>
+                                        <md-radio-button value="male">Weiblich</md-radio-button>
+
+                                    </md-radio-group>
 
                                 </div>
 
@@ -360,14 +385,16 @@
                             <div layout-gt-xs="row" flex="100" layout-align="start center">
 
                                 <div flex-gt-xs="25" flex="100">
-                                    <md-checkbox ng-model="preferencesHeight">
-                                        Körpergröße
-                                    </md-checkbox>
+
+                                    <md-switch ng-model="preferencesHeight" aria-label="Größe" ng-true-value="'Ja'" ng-false-value="'Nein'" >
+                                        Größe: {{ preferencesHeight }}
+                                    </md-switch>
+
                                 </div>
 
                                 <md-slider-container ng-if="preferencesHeight" flex="75" flex-xs="100">
                                     <span>in cm</span>
-                                    <md-slider flex min="0" max="220" ng-model="preferences.height" aria-label="Körpergröße" id="heihgt-slider">
+                                    <md-slider flex min="0" max="220" ng-model="preferences.height" aria-label="Körpergröße" id="height-slider">
                                     </md-slider>
                                     <md-input-container>
                                         <input flex type="number" ng-model="preferences.height" aria-label="Körpergröße" aria-controls="height-slider">
@@ -390,15 +417,17 @@
 
                                 </div>
 
-                                <div flex-gt-xs="75" flex="100" ng-if="preferencesVisualAid">
+                                <div flex-gt-xs="75" flex="100" ng-if="preferencesVisualAid === 'Ja'">
 
                                     <div style="margin-top: 10px">
+
                                         <md-checkbox ng-model="preferences.glasses">
                                             Brille
                                         </md-checkbox>
                                         <md-checkbox ng-model="preferences.contacts">
                                             Kontaktlinsen
                                         </md-checkbox>
+
                                     </div>
 
                                 </div>
@@ -419,15 +448,17 @@
 
                                 </div>
 
-                                <div flex-gt-xs="75" flex="100" ng-if="preferencesHand">
+                                <div flex-gt-xs="75" flex="100" ng-if="preferencesHand === 'Ja'">
 
                                     <div style="margin-top: 10px">
-                                        <md-checkbox ng-model="preferences.righty">
-                                            Rechtshänder
-                                        </md-checkbox>
-                                        <md-checkbox ng-model="preferences.lefty">
-                                            Linkshänder
-                                        </md-checkbox>
+
+                                        <md-radio-group ng-model="preferences.hand" layout-gt-xs="row">
+
+                                            <md-radio-button value="righty">Rechtshänder</md-radio-button>
+                                            <md-radio-button value="lefty">Linkshänder</md-radio-button>
+
+                                        </md-radio-group>
+
                                     </div>
 
                                 </div>
@@ -438,6 +469,48 @@
 
                     </md-content>
                     <!-- END physical requirements -->
+
+                    <!-- START technical requirements -->
+                    <md-content class="md-padding">
+
+                        <h2 class="md-headline">Technische Voraussetzungen</h2>
+
+                        <div layout-gt-xs="row">
+
+                            <div layout-gt-xs="row" flex="100" layout-align="start center">
+
+                                <div flex-gt-xs="25" flex="100">
+
+                                    <md-switch ng-model="preferencesSmartphone" aria-label="Mobiltelefon" ng-true-value="'Ja'" ng-false-value="'Nein'" >
+                                        Mobiltelefon: {{ preferencesSmartphone }}
+                                    </md-switch>
+
+                                </div>
+
+                                <div flex-gt-xs="75" flex="100" ng-if="preferencesSmartphone === 'Ja'">
+
+                                    <div style="margin-top: 10px">
+
+                                        <md-checkbox ng-model="preferences.android">
+                                            Android
+                                        </md-checkbox>
+                                        <md-checkbox ng-model="preferences.ios">
+                                            iOS
+                                        </md-checkbox>
+                                        <md-checkbox ng-model="preferences.windows">
+                                            Windows Phone
+                                        </md-checkbox>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </md-content>
+                    <!-- END technical requirements -->
 
                 </md-tab>
                 <!-- START requirements tab -->
