@@ -19,17 +19,10 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
             $scope.readonly = false;
             $scope.title = 'Studie erstellen';
 
-
             $scope.study = {
-
                 name: $routeParams.study,
                 duration: 30,
-                tags: [],
-                rewards: {
-                    money: false,
-                    voucher: false,
-                    hours: false
-                }
+                tags: []
             };
 
             /**
@@ -127,8 +120,10 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
              * @param description string
              * @param startDate date
              * @param endDate date
+             * @param duration int
+             * @param reward string
              */
-            $scope.createStudy = function (title, description, startDate, endDate, duration, reward) {
+            $scope.createStudy = function (title, description, startDate, endDate, duration, money, voucher, hours, studyProgram, age, nationality, language, gender, height, glasses, contacts, handedness, android, ios) {
 
                 if ($scope.createStudyForm.$valid) {
 
@@ -141,8 +136,21 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                             startDate: startDate,
                             endDate: endDate,
                             owner: LoopBackAuth.currentUserId,
-                            rewards: reward,
-                            duration: duration
+                            reward_money: money,
+                            reward_voucher: voucher,
+                            reward_hours: hours,
+                            duration: duration,
+                            required_study_program: studyProgram,
+                            required_age: age,
+                            required_nationality: nationality,
+                            required_language: language,
+                            required_gender: gender,
+                            required_height: height,
+                            required_glasses: glasses,
+                            required_contact_lenses: contacts,
+                            required_handedness: handedness,
+                            required_android: android,
+                            required_ios: ios
                         })
                         .$promise
                         .then(function (response) {

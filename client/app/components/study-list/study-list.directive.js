@@ -11,7 +11,11 @@ angular
             function(list) { /* success */ //TODO: where end date not in the past
                 filter()
             },
-            function(errorResponse) { /* error */}
+            function(errorResponse) {
+
+                console.log(errorResponse);
+
+            }
         );
 
         function filter() {
@@ -33,7 +37,7 @@ angular
 
             $scope.showDetails = function (title, ev) {
                 $location.path('/study-details').search({'study': title});
-            }
+            };
 
         $scope.showPrompt = function(ev) {
             // Appending dialog to document.body to cover sidenav in docs app

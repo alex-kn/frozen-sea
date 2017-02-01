@@ -24,8 +24,16 @@
       "type": "string",
       "required": true
     },
-    "rewards": {
-      "type": "string",
+    "reward_money": {
+      "type": "number",
+      "required": false
+    },
+    "reward_voucher": {
+      "type": "number",
+      "required": false
+    },
+    "reward_hours": {
+      "type": "number",
       "required": false
     },
     "duration": {
@@ -36,72 +44,52 @@
       "type": "string",
       "required": false
     },
-    "age_requirement_min_years": {
+    "minimum_age": {
       "type": "number",
       "required": false
     },
-    "age_requirement_max_years": {
+    "minimum_height": {
       "type": "number",
       "required": false
     },
-    "height_requirement_min_cm": {
-      "type": "number",
+    "required_ios_experience": {
+      "type": "string",
       "required": false
     },
-    "height_requirement_max_cm": {
-      "type": "number",
+    "required_android_experience": {
+      "type": "string",
       "required": false
     },
-    "requires_ios_experience": {
-      "type": "Boolean",
+    "required_glasses": {
+      "type": "string",
       "required": false
     },
-    "requires_android_experience": {
-      "type": "Boolean",
-      "required": false
-    },
-    "requires_excellent_vision": {
-      "type": "Boolean",
+    "required_contact_lenses": {
+      "type": "string",
       "required": false
     },
     "requires_glasses": {
-      "type": "Boolean",
+      "type": "string",
       "required": false
     },
-    "requires_english_skills": {
-      "type": "Boolean",
+    "required_language": {
+      "type": "string",
       "required": false
     },
-    "requires_german_skills": {
-      "type": "Boolean",
+    "required_nationality": {
+      "type": "string",
       "required": false
     },
-    "requires_lefty": {
-      "type": "Boolean",
+    "required_handedness": {
+      "type": "string",
       "required": false
     },
-    "requires_righty": {
-      "type": "Boolean",
+    "required_study_program": {
+      "type": "string",
       "required": false
     },
-    "requires_student": {
-      "type": "Boolean",
-      "required": false
-    },
-    "requires_non_student": {
-      "type": "Boolean",
-      "required": false
-    },
-    "requires_study_programme_comma_seperated": {
-      "type": "String",
-      "required": false
-    },
-    "requires_only_male_participants": {
-      "type": "Boolean",
-      "required": false
-    },
-    "requires_only_female_participants": {
-      "type": "Boolean",
+    "required_gender": {
+      "type": "string",
       "required": false
     }
   },
