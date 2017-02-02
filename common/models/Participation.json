@@ -12,10 +12,17 @@
       "required": false,
       "description": "Reserved, completed, ..."
     },
-    "reward": {
-      "type": "string",
-      "required": false,
-      "description": "Hours or monetary compensation"
+    "reward_money": {
+      "type": "number",
+      "required": false
+    },
+    "reward_voucher": {
+      "type": "number",
+      "required": false
+    },
+    "reward_hours": {
+      "type": "number",
+      "required": false
     }
   },
   "validations": [],
@@ -25,9 +32,14 @@
       "model": "Subuser",
       "foreignKey": ""
     },
+    "study": {
+      "type": "belongsTo",
+      "model": "Study",
+      "foreignKey": ""
+    },
     "date": {
       "type": "hasOne",
-      "model": "Study-date",
+      "model": "StudyDate",
       "foreignKey": ""
     }
   },

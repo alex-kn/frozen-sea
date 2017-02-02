@@ -97,7 +97,7 @@
   "relations": {
     "dates": {
       "type": "hasMany",
-      "model": "Study-date",
+      "model": "StudyDate",
       "foreignKey": ""
     },
     "creators": {
@@ -113,6 +113,11 @@
     "owner": {
       "type": "belongsTo",
       "model": "Subuser",
+      "foreignKey": ""
+    },
+    "participations": {
+      "type": "hasMany",
+      "model": "Participation",
       "foreignKey": ""
     }
   },
