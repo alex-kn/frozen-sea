@@ -38,7 +38,7 @@
     },
     "created_study_dates": {
       "type": "hasMany",
-      "model": "Study-date",
+      "model": "StudyDate",
       "foreignKey": ""
     },
     "participations": {

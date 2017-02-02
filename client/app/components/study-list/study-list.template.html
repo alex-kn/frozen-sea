@@ -10,7 +10,7 @@
 
         <span flex></span>
     </div>
-    <md-button ng-click="showPrompt($event)" class="create-study-fab md-fab md-fab-bottom-right" aria-label="{{'STUDY_LIST.CREATE' | translate}}">
+    <md-button ng-click="showCreateStudyPrompt($event)" class="create-study-fab md-fab md-fab-bottom-right" aria-label="{{'STUDY_LIST.CREATE' | translate}}">
         <md-icon class="material-icons">add_new</md-icon>
     </md-button>
 </md-toolbar>
@@ -39,7 +39,7 @@
                 {{ study.description }}
             </md-card-content>
             <md-card-actions layout="row" layout-align="end center">
-                <md-button>{{'STUDY_LIST.PARTICIPATE' | translate}}</md-button>
+                <md-button ng-click="showParticipationDialog(study)">{{'STUDY_LIST.PARTICIPATE' | translate}}</md-button>
                 <md-button ng-click="showDetails(study.title)">{{'STUDY_LIST.DETAILS' | translate}}</md-button>
             </md-card-actions>
         </md-card>

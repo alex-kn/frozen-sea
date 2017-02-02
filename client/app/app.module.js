@@ -22,6 +22,7 @@ angular.module('userStudy', [
     'navBarDirective',
     'studyListDirective',
     'archiveListDirective',
+    'participateDialogDirective',
     'AuthService',
     'register',
     'ngMaterial'

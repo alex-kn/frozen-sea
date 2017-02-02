@@ -1,0 +1,13 @@
+<md-dialog aria-label="Participate">
+    <md-dialog-content>
+        <md-list>
+            <md-list-item ng-repeat="date in dates">
+                <p>{{date.startDate}}</p>
+            </md-list-item>
+        </md-list>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-click="participate()" class="md-primary">Participate</md-button>
+        <md-button ng-click="closeDialog()" class="md-primary">Cancel</md-button>
+    </md-dialog-actions>
+</md-dialog>
