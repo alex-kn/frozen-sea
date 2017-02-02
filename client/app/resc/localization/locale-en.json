@@ -71,7 +71,10 @@
     "CREATE" : "Create study",
     "SEARCH" : "Search",
     "PARTICIPATE" : "Participate",
-    "DETAILS" : "Details"
+    "DETAILS" : "Details",
+    "DURATION": "Minutes",
+    "REWARD": "Rewards",
+    "REWARD_HOURS": "Hours"
   },
   "ARCHIVE": {
     "TITLE" : "Archive",

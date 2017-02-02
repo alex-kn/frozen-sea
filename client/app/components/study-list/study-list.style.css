@@ -95,4 +95,12 @@ md-toolbar.toolbar {
     top: 5.75rem;
     right: 22%; }
 
+.align-items {
+  display: inline-flex; }
+  .align-items i {
+    margin-right: .5rem; }
+
+md-card-title-text div {
+  margin-top: 1rem; }
+
 /*# sourceMappingURL=study-list.style.css.map */

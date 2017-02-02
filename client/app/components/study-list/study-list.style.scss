@@ -34,3 +34,18 @@ md-toolbar.toolbar {
   }
 }
 
+.align-items {
+  display: inline-flex;
+
+  i {
+    margin-right: .5rem;
+  }
+}
+
+md-card-title-text {
+
+  div {
+    margin-top: 1rem;
+  }
+}
+

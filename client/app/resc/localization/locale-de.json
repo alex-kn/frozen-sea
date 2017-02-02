@@ -71,7 +71,10 @@
     "CREATE" : "Studie erstellen",
     "SEARCH" : "Suchen",
     "PARTICIPATE" : "Teilnehmen",
-    "DETAILS" : "Details"
+    "DETAILS" : "Details",
+    "DURATION": "Minuten",
+    "REWARD": "Vergütung",
+    "REWARD_HOURS": "Stunden"
   },
   "ARCHIVE": {
     "TITLE" : "Archiv",
