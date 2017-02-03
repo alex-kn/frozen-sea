@@ -89,14 +89,28 @@
 
                         <div layout-gt-xs="row">
 
+                            <md-input-container class="md-block" flex-gt-xs="100">
+                                <label>{{'CREATE_STUDY.LOCATION' | translate}}</label>
+                                <input type="text" required ng-model="study.location" name="studyLocation"
+                                       aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}" placeholder="{{'CREATE_STUDY.LOCATION_PLACEHOLDER' | translate}}" md-select-on-focus>
+
+                                <div ng-messages="createStudyForm.studyLocation.$error">
+                                    <div ng-message="required">{{'CREATE_STUDY.LOCATION_MESSAGE' | translate}}</div>
+                                </div>
+                            </md-input-container>
+
+                        </div>
+
+                        <div layout-gt-xs="row">
+
                             <md-input-container flex="100" flex-xs="100">
                                 <label>{{'CREATE_STUDY.ADVISER' | translate}}</label>
-                                <md-select name="advisor" ng-model="advisor" aria-label="{{'CREATE_STUDY.ADVISER_ARIA_LABEL' | translate}}" required>
+                                <md-select name="adviser" ng-model="study.advisor" aria-label="{{'CREATE_STUDY.ADVISER_ARIA_LABEL' | translate}}" required>
                                     <md-option value="hansHuber">Hans Huber</md-option>
                                     <md-option value="horstGurkner">Horst Gurkner</md-option>
                                     <md-option value="Fred Sack">Fred Sack</md-option>
                                 </md-select>
-                                <div class="errors" ng-messages="createStudyForm.advisor.$error">
+                                <div class="errors" ng-messages="createStudyForm.adviser.$error">
                                     <div ng-message="required">{{'CREATE_STUDY.ADVISER_MESSAGE' | translate}}</div>
                                 </div>
                             </md-input-container>
@@ -133,17 +147,17 @@
 
                             <md-input-container class="md-block" ng-if="money" flex="100" flex-gt-xs="33">
                                 <label>{{'CREATE_STUDY.AMOUNT' | translate}}</label>
-                                <input required type="number" ng-model="study.rewards.money" name="money" placeholder="{{'CREATE_STUDY.AMOUNT_PLACEHOLDER' | translate}}">
+                                <input required type="number" ng-model="study.money" name="money" placeholder="{{'CREATE_STUDY.AMOUNT_PLACEHOLDER' | translate}}">
 
                                 <div ng-messages="createStudyForm.money.$error">
                                     <div ng-message="required">{{'CREATE_STUDY.AMOUNT_MESSAGE' | translate}}</div>
                                 </div>
                             </md-input-container>
 
-                            <md-input-container class="md-block" ng-if="study.rewards.voucher" flex="100"
+                            <md-input-container class="md-block" ng-if="voucher" flex="100"
                                                 flex-gt-xs="33">
                                 <label>{{'CREATE_STUDY.VOUCHER_AMOUNT' | translate}}</label>
-                                <input required type="number" ng-model="study.rewards.voucher" name="voucher" placeholder="{{'CREATE_STUDY.VOUCHER_AMOUNT_PLACEHOLDER' | translate}}">
+                                <input required type="number" ng-model="study.voucher" name="voucher" placeholder="{{'CREATE_STUDY.VOUCHER_AMOUNT_PLACEHOLDER' | translate}}">
 
                                 <div ng-messages="createStudyForm.voucher.$error">
                                     <div ng-message="required">{{'CREATE_STUDY.VOUCHER_AMOUNT_MESSAGE' | translate}}</div>
@@ -152,7 +166,7 @@
 
                             <md-input-container class="md-block" ng-if="hours" flex="100" flex-gt-xs="33">
                                 <label>{{'CREATE_STUDY.HOURS_AMOUNT' | translate}}</label>
-                                <input required type="number" ng-model="study.rewards.hours" name="hours" placeholder="{{'CREATE_STUDY.HOURS_AMOUNT_PLACEHOLDER' | translate}}">
+                                <input required type="number" ng-model="study.hours" name="hours" placeholder="{{'CREATE_STUDY.HOURS_AMOUNT_PLACEHOLDER' | translate}}">
 
                                 <div ng-messages="createStudyForm.hours.$error">
                                     <div ng-message="required">{{'CREATE_STUDY.HOURS_AMOUNT_MESSAGE' | translate}}</div>
@@ -173,8 +187,8 @@
 
                             <md-input-container class="md-block">
                                 <label>{{'CREATE_STUDY.STUDY_START' | translate}}</label>
-                                <md-datepicker required ng-model="startDate"
-                                               md-min-date="startDate"></md-datepicker>
+                                <md-datepicker name="startDate" required ng-model="study.startDate"
+                                               md-min-date="study.startDate"></md-datepicker>
 
                                 <div ng-messages="createStudyForm.startDate.$error">
                                     <div ng-message="required">{{'CREATE_STUDY.STUDY_START_MESSAGE' | translate}}</div>
@@ -183,7 +197,7 @@
 
                             <md-input-container class="md-block">
                                 <label>{{'CREATE_STUDY.STUDY_END' | translate}}</label>
-                                <md-datepicker required ng-model="endDate" md-min-date="minEndDate"></md-datepicker>
+                                <md-datepicker name="endDate" required ng-model="study.endDate" md-min-date="study.minEndDate"></md-datepicker>
 
                                 <div ng-messages="createStudyForm.endDate.$error">
                                     <div ng-message="required">{{'CREATE_STUDY.STUDY_END_MESSAGE' | translate}}</div>
@@ -196,23 +210,23 @@
 
                             <md-input-container class="md-block margin-btm-0" flex="100" flex-gt-xs="33">
                                 <label>{{'CREATE_STUDY.APPOINTMENT_TIME' | translate}}</label>
-                                <input type="text" aria-label="{{'CREATE_STUDY.APPOINTMENT_TIME_ARIA_LABEL' | translate}}" ng-model="appointmentTime"
+                                <input type="text" aria-label="{{'CREATE_STUDY.APPOINTMENT_TIME_ARIA_LABEL' | translate}}" ng-model="appointment.time"
                                        placeholder="{{'CREATE_STUDY.APPOINTMENT_TIME_PLACEHOLDER' | translate}}" md-select-on-focus>
                             </md-input-container>
 
                             <md-input-container class="md-block margin-btm-0" flex="100" flex-gt-xs="33">
                                 <label>{{'CREATE_STUDY.APPOINTMENT_BUFFER' | translate}}</label>
-                                <input type="number" aria-label="{{'CREATE_STUDY.APPOINTMENT_BUFFER_ARIA_LABEL' | translate}}" ng-model="bufferTime"
+                                <input type="number" aria-label="{{'CREATE_STUDY.APPOINTMENT_BUFFER_ARIA_LABEL' | translate}}" ng-model="appointment.bufferTime"
                                        placeholder="{{'CREATE_STUDY.APPOINTMENT_BUFFER_PLACEHOLDER' | translate}}" md-select-on-focus>
                             </md-input-container>
 
                             <md-input-container class="md-block margin-btm-0" flex="100" flex-gt-xs="33">
                                 <label>{{'CREATE_STUDY.APPOINTMENT_DAY' | translate}}</label>
-                                <md-datepicker ng-model="appointmentDate" md-min-date="startDate"></md-datepicker>
+                                <md-datepicker ng-model="appointment.date" md-min-date="study.startDate"></md-datepicker>
                             </md-input-container>
 
                             <md-input-container class="md-block" flex="100" style="margin-top:0px">
-                                <md-button ng-click="addAppointment(appointmentDate, appointmentTime, study.duration)"
+                                <md-button ng-click="addAppointment()"
                                            class="md-raised md-accent">{{'CREATE_STUDY.ADD_APPOINTMENT_BUTTON' | translate}}
                                 </md-button>
                             </md-input-container>
@@ -537,7 +551,7 @@
 
                     <md-input-container>
                         <md-button
-                                ng-click="createStudy(study.name, study.description, startDate, endDate, study.duration, study.rewards.money, study.rewards.voucher, study.rewards.hours, preferences.language, preferences.studyProgram, preferences.age, preferences.nationality, preferences.language, preferences.gender, preferences.height, preferences.glasses, preferences.contacts, preferences.handedness, preferences.amdroid, preferences.ios)"
+                                ng-click="createStudy()"
                                 ng-disabled="createStudyForm.$invalid" class="md-accent md-raised">{{'CREATE_STUDY.CREATE_STUDY_BUTTON' | translate}}
                         </md-button>
                         <md-button ng-click="cancelStudy()">{{'CREATE_STUDY.CANCEL_STUDY_BUTTON' | translate}}</md-button>

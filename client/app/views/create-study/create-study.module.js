@@ -16,37 +16,64 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
     .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http',
         function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http) {
 
-            $scope.readonly = false;
-            $scope.title = 'Studie erstellen';
+            var startDate = new Date();
+            var endDate = new Date(
+                startDate.getFullYear(),
+                startDate.getMonth(),
+                startDate.getDate() + 1);
+
+            var minEndDate = new Date(
+                startDate.getFullYear(),
+                startDate.getMonth(),
+                startDate.getDate() + 1);
 
             $scope.study = {
                 name: $routeParams.study,
                 duration: 30,
-                tags: []
+                location: null,
+                tags: [],
+                description: '',
+                startDate: startDate,
+                endDate: endDate,
+                minEndDate: minEndDate,
+                adviser: '',
+                money: null,
+                voucher: null,
+                hours: null
             };
+
+            $scope.appointment = {
+                date: $scope.study.startDate,
+                time: '08:30',
+                bufferTime: null,
+                duration: $scope.study.duration
+            };
+
+            $scope.appointments = [];
+
+            $scope.preferences = {
+                studyProgram: null,
+                age: null,
+                nationality: null,
+                language: null,
+                gender: null,
+                height: null,
+                handedness: null,
+                glasses: null,
+                contacts: null,
+                android: null,
+                ios: null
+            };
+
+            $scope.readonly = false;
+            $scope.title = 'Studie erstellen';
+
 
             /**
              * Instantiate datepickers
              * minStartDate is set to current date, minEndDate to minStartDate + 1
              */
 
-            $scope.startDate = new Date();
-            $scope.endDate = new Date(
-                $scope.startDate.getFullYear(),
-                $scope.startDate.getMonth(),
-                $scope.startDate.getDate() + 1);
-
-            $scope.minEndDate = new Date(
-                $scope.startDate.getFullYear(),
-                $scope.startDate.getMonth(),
-                $scope.startDate.getDate() + 1);
-
-            $scope.appointments = [];
-            $scope.appointmentDate = $scope.startDate;
-            $scope.bufferTime = 0;
-
-
-            $scope.appointmentTime = '08:30';
 
             $http.get('resc/files/studyprograms.txt')
                 .then(function (response) {
@@ -94,16 +121,17 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
              * @param time date
              * @param duration int
              */
-            $scope.addAppointment = function (date, time, duration) {
+            $scope.addAppointment = function () {
 
                 var appointment = {
-                    'date': date,
-                    'time': time,
-                    'duration': duration
-                };
+                    'date': $scope.appointment.date,
+                    'time': $scope.appointment.time,
+                    'bufferTime': $scope.appointment.bufferTime,
+                    'duration': $scope.study.duration
+                }
 
                 $scope.appointments.unshift(appointment);
-                $scope.appointmentTime = addDurationToAppointmentTime(time, duration, $scope.bufferTime);
+                $scope.appointment.time = addDurationToAppointmentTime(appointment.time, appointment.duration, appointment.bufferTime);
 
             };
 
@@ -123,7 +151,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
              * @param duration int
              * @param reward string
              */
-            $scope.createStudy = function (title, description, startDate, endDate, duration, money, voucher, hours, studyProgram, age, nationality, language, gender, height, glasses, contacts, handedness, android, ios) {
+            $scope.createStudy = function () {
 
                 if ($scope.createStudyForm.$valid) {
 
@@ -131,26 +159,26 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
 
                     return Study
                         .create({
-                            title: title,
-                            description: description,
-                            startDate: startDate,
-                            endDate: endDate,
+                            title: $scope.study.name,
+                            description: $scope.study.description,
+                            startDate: $scope.study.startDate,
+                            endDate: $scope.study.endDate,
                             owner: LoopBackAuth.currentUserId,
-                            reward_money: money,
-                            reward_voucher: voucher,
-                            reward_hours: hours,
-                            duration: duration,
-                            required_study_program: studyProgram,
-                            required_age: age,
-                            required_nationality: nationality,
-                            required_language: language,
-                            required_gender: gender,
-                            required_height: height,
-                            required_glasses: glasses,
-                            required_contact_lenses: contacts,
-                            required_handedness: handedness,
-                            required_android: android,
-                            required_ios: ios
+                            reward_money: $scope.study.money,
+                            reward_voucher: $scope.study.voucher,
+                            reward_hours: $scope.study.hours,
+                            duration: $scope.study.duration,
+                            required_study_program: $scope.preferences.studyProgram,
+                            required_age: $scope.preferences.age,
+                            required_nationality: $scope.preferences.nationality,
+                            required_language: $scope.preferences.language,
+                            required_gender: $scope.preferences.gender,
+                            required_height: $scope.preferences.height,
+                            required_glasses: $scope.preferences.glasses,
+                            required_contact_lenses: $scope.preferences.contacts,
+                            required_handedness: $scope.preferences.handedness,
+                            required_android: $scope.preferences.android,
+                            required_ios: $scope.preferences.ios
                         })
                         .$promise
                         .then(function (response) {
@@ -164,7 +192,9 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                                         studyId: response.id,
                                         ownerId: LoopBackAuth.currentUserId,
                                         status: 'available',
-                                        startDate: $scope.appointments[i].date
+                                        startDate: $scope.appointments[i].date,
+                                        duration: $scope.appointments[i].duration,
+                                        startTime: $scope.appointments[i].time
                                     })
                                     .$promise
                                     .then(function (response) {
@@ -175,8 +205,6 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
 
                             $location.path('/home');
                         });
-                } else {
-
                 }
             };
 
