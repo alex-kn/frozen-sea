@@ -87,14 +87,14 @@ angular
 
                 var confirm = $mdDialog.confirm({
                     controller: "ParticipateDialogController",
-                    template: '<participate-dialog></participate-dialog>',
-                    clickOutsideToClose: true,
+                    template: '<participate-dialog class="container"></participate-dialog>',
                     scope: $scope,
                     preserveScope: true,
                     parent: angular.element(document.body)
                 });
                 $mdDialog.show(confirm).then(function() {
-
+                    $scope.currentStudy = {};
+                    $scope.datesGroupedByDay = [];
                 });
             };
 

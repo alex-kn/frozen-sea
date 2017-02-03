@@ -52,7 +52,20 @@ md-toolbar.toolbar .md-button.md-fab.md-fab-bottom-right {
     padding: 1.5em; }
 
 .small-container {
-    padding: 0.5em;
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+}
+
+.headline{
+    font-size: 1.35rem;
+}
+
+.day{
+
+}
+.sub-headline{
+    font-size: 1.1rem;
+    margin-bottom: 0.3em;
 }
 
 .time-row {
@@ -108,6 +121,7 @@ md-toolbar.toolbar .md-button.md-fab.md-fab-bottom-right {
     margin-right: .5rem; }
 
 md-dialog-content h3 {
+    margin-top: 0.5rem;
     margin-left: 0.5rem;
 }
 
