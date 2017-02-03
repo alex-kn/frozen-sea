@@ -174,5 +174,8 @@
     "TITLE" : "Archiv",
     "SEARCH" : "Suchen",
     "DETAILS" : "Details"
+  },
+  "STUDY_DETAILS": {
+    "DESCRIPTION" : "Beschreibung"
   }
 }
