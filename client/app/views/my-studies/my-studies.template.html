@@ -4,7 +4,7 @@
     <nav-bar></nav-bar>
 </div>
 
-<md-content ng-controller="MyStudiesController">
+<md-content>
     <!-- START tool bar -->
     <md-toolbar class="toolbar md-hue-1" layout="row" layout-align="start center">
         <div class="md-toolbar-tools" flex-offset-gt-sm="15">
@@ -26,7 +26,7 @@
         </div>
 
         <div layout="column">
-            <md-card ng-repeat="study in studies | filter:search">
+            <md-card ng-repeat="study in myStudies | filter:search">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">{{ study.title }}</span>
