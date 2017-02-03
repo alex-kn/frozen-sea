@@ -100,8 +100,8 @@ angular
 
 
 
-            $scope.showDetails = function (title, ev) {
-                $location.path('/study-details').search({'study': title});
+            $scope.showDetails = function (study, ev) {
+                $location.path('/study-details').search({'study': study});
             };
 
             $scope.showCreateStudyPrompt = function(ev) {
