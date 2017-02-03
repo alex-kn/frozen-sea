@@ -27,6 +27,12 @@ angular
                 activeTab: 'user-preferences'
             }).when('/study-details', {
                 templateUrl: 'views/study-details/study-details.template.html'
+            }).when('/my-studies', {
+                templateUrl: 'views/my-studies/my-studies.template.html',
+                controller: 'MyStudiesController'
+            }).when('/edit-profile', {
+                templateUrl: 'views/edit-profile/edit-profile.template.html',
+                controller: 'editProfileController'
             }).otherwise({redirectTo: '/'});
 
 

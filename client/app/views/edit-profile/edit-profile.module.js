@@ -2,12 +2,6 @@
 'use strict';
 
 angular.module('editProfile', ['ngRoute', 'ngMaterial'])
-    .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/edit-profile', {
-            templateUrl: 'views/edit-profile/edit-profile.template.html',
-            controller: 'editProfileController'
-        });
-    }])
     .controller('editProfileController', ['$scope', 'Subuser','$route', '$mdToast', function ($scope, User, $route, $mdToast) {
         $scope.title = 'Profil bearbeiten';
         $scope.input = {};
