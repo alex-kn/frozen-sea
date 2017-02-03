@@ -18,40 +18,24 @@ angular
                         for (var j = 0; j < allStudies.length; j++) {
                             if (allStudies[j].id == userParticipations[i].studyId) {
                                 $scope.myStudies.push(allStudies[j]);
+                                $scope.myStudies = removeDuplicates($scope.myStudies, 'id');
                             }
                         }
                     }
                 });
-
-
-                /* Query for every StudyId
-
-                 var myStudies = [];
-
-                 for(i = 0; i < result.length; i++){
-                 $scope.studies = Study.find({
-                 filter: {
-                 where: {
-                 id: result[i].studyId
-                 }
-                 }
-                 }, function(result){
-                 console.log(result);
-                 var resultLength = result.length;
-                 for(j = 0; j < resultLength; j++){
-
-                 myStudies.push(result[j]);
-                 myStudies = myStudies.filter(function( item, index, inputArray ) {
-                 return inputArray.indexOf(item) == index;
-                 });
-
-                 $scope.studies = myStudies;
-
-                 }
-                 });
-                 }
-                 */
-
             });
+
+            function removeDuplicates(array, property) {
+                var new_array = [];
+                var lookup  = {};
+
+                for (var i in array) {
+                    lookup[array[i][property]] = array[i];
+                }
+                for (i in lookup) {
+                    new_array.push(lookup[i]);
+                }
+                return new_array;
+            }
 
         }]);
