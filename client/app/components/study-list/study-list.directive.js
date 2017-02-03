@@ -36,44 +36,68 @@ angular
             }
 
 
-            //<form ng-submit="submit()" ng-controller="AppCtrl" ng-cloak>
-
             var options = {
                 weekday: "long", year: "numeric", month: "short",
                 day: "numeric", hour: "2-digit", minute: "2-digit"
             };
 
-            $scope.showParticipationDialog = function(study) {
+            $scope.datesGroupedByDay = [];
+            $scope.currentStudy = {};
 
-                $scope.dates = StudyDate.find({where: {studyId: study.id}});
+            $scope.showParticipationDialog = function(study) {
+                $scope.currentStudy = study;
+                $scope.dates = StudyDate.find(
+                    {
+                        filter: {
+                            where: {
+                                studyId: study.id
+                            }
+                        }
+                    }, function() {
+
+                        $scope.datesGroupedByDay = [];
+
+                        var days = [];
+                        var day;
+                        var lastDay;
+
+                        var tempDates = $scope.dates;
+                        tempDates.reverse();
+                        tempDates.forEach(function(date) {
+                            day = $filter('date')(date.startDate, "shortDate");
+                            if(lastDay == undefined) {
+                                lastDay = day;
+                            }
+                            if(day != lastDay) {
+                                $scope.datesGroupedByDay.push(days);
+                                days = [];
+                                days.push(date);
+                                lastDay = day;
+                            } else {
+                                days.push(date);
+                            }
+                        });
+                        $scope.datesGroupedByDay.push(days);
+                    });
+
+
+                $scope.calculateEndDate = function(startDate) {
+                    return startDate;
+                };
 
                 var confirm = $mdDialog.confirm({
                     controller: "ParticipateDialogController",
-                    template:   '<md-dialog aria-label="Participate">' +
-                    '<md-dialog-content>' +
-                    '<md-radio-group ng-model="data.group1">' +
-                    '<md-radio-button ng-repeat="date in dates" value={{date.startDate}} class="md-primary">' +
-                    '{{date.startDate | date: "short"}}' +
-                    '</md-radio-button> ' +
-                    '</md-radio-group>' +
-                    '<p>Selected Date: <span class="radioValue">{{ data.group1 | date: "short"}}</span> </p>' +
-                    '</md-dialog-content>' +
-                    '<md-dialog-actions>' +
-                    '<md-button ng-click="participate()" class="md-primary">Participate</md-button>' +
-                    '<md-button ng-click="close()" class="md-primary">Cancel</md-button>' +
-                    '</md-dialog-actions>' +
-                    '</md-dialog>',
-
+                    template: '<participate-dialog></participate-dialog>',
                     clickOutsideToClose: true,
                     scope: $scope,
                     preserveScope: true,
                     parent: angular.element(document.body)
                 });
                 $mdDialog.show(confirm).then(function() {
+
                 });
             };
 
-            //try to use templateURL: "components/participate-dialog/participate-dialog.template.html",
 
 
             $scope.showDetails = function (title, ev) {

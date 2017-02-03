@@ -9,16 +9,35 @@ angular
 
 
 
+            var mapReward = function(testThis, userChoice) {
+                switch(testThis) {
+                    case "reward_money":
+                        if(userChoice == "reward_money") {
+                            return $scope.currentStudy.reward_money;
+                        }
+                        break;
+                    case "reward_voucher":
+                        if(userChoice == "reward_voucher") {
+                            return $scope.currentStudy.reward_voucher;
+                        }
+                        break;
+                    case "reward_hours":
+                            if(userChoice == "reward_hours") {
+                                return $scope.currentStudy.reward_hours;
+                            }
+                }
+                return 0
+            };
 
-            $scope.participate = function (title, studyId, ev) { //TODO: prompt which lets you choose a study date
+            $scope.participate = function(studyDate, reward) {
                 Participation.create(
                     {
                         "status": "reserved",
-                        "reward_money": 0,
-                        "reward_voucher": 0,
-                        "reward_hours": 0,
-                        "studyId": studyId,
-                        "studyDateId": "TODO",
+                        "reward_money": mapReward("reward_money", reward),
+                        "reward_voucher": mapReward("reward_voucher", reward),
+                        "reward_hours": mapReward("reward_hours", reward),
+                        "studyId": $scope.currentStudy.id,
+                        "studyDateId": studyDate.id,
                         "subuserId": LoopBackAuth.currentUserId,
                         "participantId": LoopBackAuth.currentUserId
                     }

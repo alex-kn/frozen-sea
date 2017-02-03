@@ -1,13 +1,35 @@
-<md-dialog aria-label="Participate">
-    <md-dialog-content>
-        <md-list>
-            <md-list-item ng-repeat="date in dates">
-                <p>{{date.startDate}}</p>
-            </md-list-item>
-        </md-list>
-    </md-dialog-content>
-    <md-dialog-actions>
-        <md-button ng-click="participate()" class="md-primary">Participate</md-button>
-        <md-button ng-click="closeDialog()" class="md-primary">Cancel</md-button>
-    </md-dialog-actions>
-</md-dialog>
+<link href="components/participate-dialog/participate-dialog.style.css" rel="stylesheet">
+
+<md-dialog-content class="container">
+    <h3 class="md-title">Participate in {{currentStudy.title}}</h3>
+    <div class="small-container">
+        Duration: {{currentStudy.duration}} min <br>
+        Location: {{currentStudy.location}}
+    </div>
+    <md-divider></md-divider>
+    <div class="small-container">
+        Pick a reward:
+        <md-radio-group ng-model="data.reward" layout="row">
+            <md-radio-button value="reward_money" ng-show="currentStudy.reward_money > 0"> Money</md-radio-button>
+            <md-radio-button value="reward_voucher" ng-show="currentStudy.reward_voucher > 0"> Amazon gift card</md-radio-button>
+            <md-radio-button value="reward_hours" ng-show="currentStudy.reward_hours > 0"> Experiment hours</md-radio-button>
+        </md-radio-group>
+    </div>
+    <md-divider></md-divider>
+    <div class="small-container">
+        Pick a date:
+        <md-radio-group ng-model="data.date" layout="row">
+            <div ng-repeat="day in datesGroupedByDay" layout="column" layout-align="start start" class="time-row">
+                {{day[1].startDate | date: "dd MMM"}}
+                <md-radio-button ng-repeat="date in day" value={{date.startDate}}>
+                    {{date.startDate | date: "HH:mm"}}
+                </md-radio-button>
+            </div>
+        </md-radio-group>
+    </div>
+    <md-divider></md-divider>
+</md-dialog-content>
+<md-dialog-actions>
+    <md-button ng-click="close()">Cancel</md-button>
+    <md-button ng-click="participate(data.date, data.reward)">Participate</md-button>
+</md-dialog-actions>
