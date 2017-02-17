@@ -20,8 +20,11 @@
     "strong-error-handler": "^1.0.1"
   },
   "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "browsersync": "0.0.1-security",
     "eslint": "^2.13.1",
     "eslint-config-loopback": "^4.0.0",
+    "gulp": "^3.9.1",
     "nsp": "^2.1.0"
   },
   "repository": {
