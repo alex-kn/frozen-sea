@@ -12,10 +12,31 @@ angular.module('studyDetails', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsController', ['$routeParams', '$scope', 'Subuser', '$http','Study',
+    .controller('StudyDetailsController', ['$routeParams', '$scope', 'Subuser', '$http', 'Study',
         function ($routeParams, $scope, Subuser, $http, Study) {
 
+            //TODO if authorized to edit (Creator or Supervisor)
+            $scope.editing = false;
 
-        $scope.study = $routeParams.study;
+            //TODO replace with Supervisors (Subusers)
+            $scope.supervisors = [
+                {id: 1, name: 'Horst'},
+                {id: 2, name: 'Herbert'},
+                {id: 3, name: 'Ivanka'}
+            ]
 
-    }])
+            $scope.study = $routeParams.study;
+            $scope.study.startDate = new Date($scope.study.startDate);
+            $scope.study.endDate = new Date($scope.study.endDate);
+
+            $scope.removeAppointment = function () {
+
+            }
+
+            console.log($scope.study)
+
+            $scope.updateStudy = function () {
+                console.log("update study!")
+            }
+
+        }])
