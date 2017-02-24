@@ -180,6 +180,9 @@
     "DETAILS" : "Details"
   },
   "STUDY_DETAILS": {
-    "DESCRIPTION" : "Beschreibung"
+    "DESCRIPTION" : "Beschreibung",
+    "UPDATE_STUDY_BUTTON" : "Änderungen speichern",
+    "EDIT_STUDY" : "Studiendetails editieren"
+
   }
 }

@@ -23,7 +23,7 @@ angular.module('studyDetails', ['ngRoute', 'ngMaterial'])
                 {id: 1, name: 'Horst'},
                 {id: 2, name: 'Herbert'},
                 {id: 3, name: 'Ivanka'}
-            ]
+            ];
 
             $scope.study = $routeParams.study;
             $scope.study.startDate = new Date($scope.study.startDate);
@@ -31,12 +31,17 @@ angular.module('studyDetails', ['ngRoute', 'ngMaterial'])
 
             $scope.removeAppointment = function () {
 
-            }
+            };
 
-            console.log($scope.study)
+
+            $scope.dates = Study.dates({id: $scope.study.id});
 
             $scope.updateStudy = function () {
-                console.log("update study!")
+                $scope.editing = false;
             }
 
-        }])
+            $scope.editStudy = function () {
+                $scope.editing = true;
+            }
+
+        }]);
