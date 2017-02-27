@@ -12,11 +12,11 @@ angular.module('studyDetails', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsController', ['$routeParams', '$scope', 'Subuser', '$http', 'Study',
-        function ($routeParams, $scope, Subuser, $http, Study) {
+    .controller('StudyDetailsController', ['$routeParams', '$scope', 'Subuser','Participation','LoopBackAuth', '$http', 'Study',
+        function ($routeParams, $scope, Subuser, Participation, LoopBackAuth, $http, Study) {
 
             //TODO if authorized to edit (Creator or Supervisor)
-            $scope.editing = false;
+            $scope.canEdit = true;
 
             //TODO replace with Supervisors (Subusers)
             $scope.supervisors = [
@@ -29,12 +29,17 @@ angular.module('studyDetails', ['ngRoute', 'ngMaterial'])
             $scope.study.startDate = new Date($scope.study.startDate);
             $scope.study.endDate = new Date($scope.study.endDate);
 
+            $scope.appointments = Study.dates({id: $scope.study.id});
+
+            $scope.participate = function(date){
+                //TODO create participation
+            }
+
+            //----------------------------------------
+            //EDIT STUDY
             $scope.removeAppointment = function () {
 
             };
-
-
-            $scope.dates = Study.dates({id: $scope.study.id});
 
             $scope.updateStudy = function () {
                 $scope.editing = false;
