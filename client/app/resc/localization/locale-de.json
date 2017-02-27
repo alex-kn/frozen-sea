@@ -180,6 +180,15 @@
     "DETAILS" : "Details"
   },
   "STUDY_DETAILS": {
-    "DESCRIPTION" : "Beschreibung"
+    "DESCRIPTION" : "Beschreibung",
+    "UPDATE_STUDY_BUTTON" : "Änderungen speichern",
+    "EDIT_STUDY" : "Studiendetails editieren",
+    "DATES" : "Termine",
+    "CHOOSE_REWARD" : "Vergütung auswählen",
+    "CHOOSE_REWARD_MONEY" : "Euro",
+    "CHOOSE_REWARD_VOUCHER" : "Euro Amazon Gutschein",
+    "CHOOSE_REWARD_HOURS" : "Versuchspersonenstunden",
+    "PARTICIPATE" : "Teilnehmen",
+    "MINUTES" : "Minuten"
   }
 }

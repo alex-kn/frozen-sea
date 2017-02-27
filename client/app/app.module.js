@@ -22,6 +22,8 @@ angular.module('userStudy', [
     'navBarDirective',
     'studyListDirective',
     'archiveListDirective',
+    'studyDetailsViewDirective',
+    'studyDetailsEditDirective',
     'participateDialogDirective',
     'AuthService',
     'register',

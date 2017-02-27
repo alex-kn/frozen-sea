@@ -180,6 +180,7 @@
     "DETAILS" : "Details"
   },
   "STUDY_DETAILS": {
-    "DESCRIPTION" : "Description"
+    "DESCRIPTION" : "Description",
+    "UPDATE_STUDY_BUTTON" : "Save Changes"
   }
 }
