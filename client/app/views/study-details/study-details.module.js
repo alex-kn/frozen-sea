@@ -12,8 +12,8 @@ angular.module('studyDetails', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsController', ['$routeParams', '$scope', 'Subuser','Participation','LoopBackAuth', '$http', 'Study',
-        function ($routeParams, $scope, Subuser, Participation, LoopBackAuth, $http, Study) {
+    .controller('StudyDetailsController', ['$location','$routeParams', '$scope', 'Subuser','Participation','LoopBackAuth', '$http', 'Study',
+        function ($location, $routeParams, $scope, Subuser, Participation, LoopBackAuth, $http, Study) {
 
             //TODO if authorized to edit (Creator or Supervisor)
             $scope.canEdit = true;
@@ -32,7 +32,18 @@ angular.module('studyDetails', ['ngRoute', 'ngMaterial'])
             $scope.appointments = Study.dates({id: $scope.study.id});
 
             $scope.participate = function(date){
-                //TODO create participation
+                //TODO add reward? and studyDate
+                Participation.create({
+                    participantId: LoopBackAuth.currentUserId,
+                    studyId: $scope.study.id,
+                    status: "pending",
+                })
+                    .$promise
+                    .then(function (response){
+                        $location.path('/home');
+                        console.log(response);
+                    });
+
             }
 
             //----------------------------------------
