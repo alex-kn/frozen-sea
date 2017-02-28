@@ -182,6 +182,7 @@
   "STUDY_DETAILS": {
     "DESCRIPTION" : "Beschreibung",
     "UPDATE_STUDY_BUTTON" : "Änderungen speichern",
+    "DISCARD_CHANGES" : "Änderungen verwerfen",
     "EDIT_STUDY" : "Studiendetails editieren",
     "DATES" : "Termine",
     "CHOOSE_REWARD" : "Vergütung auswählen",

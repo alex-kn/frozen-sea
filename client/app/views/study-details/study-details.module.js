@@ -15,17 +15,17 @@ angular.module('studyDetails', ['ngRoute', 'ngMaterial'])
     .controller('StudyDetailsController', ['$location','$routeParams', '$scope', 'Subuser','Participation','LoopBackAuth', '$http', 'Study',
         function ($location, $routeParams, $scope, Subuser, Participation, LoopBackAuth, $http, Study) {
 
-            //TODO if authorized to edit (Creator or Supervisor)
-            $scope.canEdit = true;
-
-            //TODO replace with Supervisors (Subusers)
-            $scope.supervisors = [
-                {id: 1, name: 'Horst'},
-                {id: 2, name: 'Herbert'},
-                {id: 3, name: 'Ivanka'}
-            ];
 
             $scope.study = $routeParams.study;
+
+            console.log($scope.study);
+
+            $scope.canEdit = false;
+
+            if($scope.study.ownerId == LoopBackAuth.currentUserId){
+                $scope.canEdit = true;
+            }
+
             $scope.study.startDate = new Date($scope.study.startDate);
             $scope.study.endDate = new Date($scope.study.endDate);
 
@@ -33,17 +33,9 @@ angular.module('studyDetails', ['ngRoute', 'ngMaterial'])
                 return Promise.all(response.map(function (res){
                     res.startDate = new Date(res.startDate);
                     res.endDate = new Date(res.endDate);
-
-                    var time = res.startTime.split(':');
-                    var hours = parseInt(time[0]);
-                    var minutes = parseInt(time[1]);
-
-                    res.startDate.setMinutes(minutes);
-                    res.startDate.setHours(hours);
                     return res;
                 }));
             });
-
 
             $scope.participate = function(date){
                 //TODO add reward and studyDate
@@ -62,11 +54,40 @@ angular.module('studyDetails', ['ngRoute', 'ngMaterial'])
 
             //----------------------------------------
             //EDIT STUDY
+
+            //rewards
+            if ($scope.study.reward_money) $scope.money = true;
+            if ($scope.study.reward_voucher) $scope.voucher = true;
+            if ($scope.study.reward_hours) $scope.hours = true;
+            $scope.resetMoney = function(){
+                $scope.study.reward_money = null;
+            }
+            $scope.resetVoucher = function(){
+                $scope.study.reward_voucher = null;
+            }
+            $scope.resetHours = function(){
+                $scope.study.reward_hours = null;
+            }
+
+
             $scope.removeAppointment = function () {
 
             };
 
             $scope.updateStudy = function () {
+                $scope.study
+                    .$save()
+                    .then(function(res)  {
+                        console.log("changes saved");
+                        $scope.editing = false;
+                        //TODO notify participants
+                    }).catch(function(req) {
+                        console.log("error saving changes");
+                    });
+                $scope.editing = false;
+            }
+
+            $scope.discardChanges = function () {
                 $scope.editing = false;
             }
 

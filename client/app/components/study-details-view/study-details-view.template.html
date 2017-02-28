@@ -19,17 +19,6 @@
 
         </div>
 
-        <div layout-gt-xs="row">
-
-
-            <p class="md-block" flex-gt-xs="100"
-               aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
-                {{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}: {{study.location}}
-            </p>
-
-
-        </div>
-
     </md-content>
     <!-- END general information -->
 
@@ -76,7 +65,7 @@
                     <span class="md-subhead">{{ appointment.startDate | date:'HH:mm' }} - {{ appointment.endDate | date:'HH:mm' }}</span>
                 </md-card-title>
                 <md-card-content>
-                    <p>{{ appointment.duration }} {{'STUDY_DETAILS.MINUTES' | translate}}</p>
+                    <p>{{ appointment.location }} Location</p>
                 </md-card-content>
                 <md-card-action>
                     <md-button class="md-accent" ng-click="participate(appointment)">{{'STUDY_DETAILS.PARTICIPATE' |
