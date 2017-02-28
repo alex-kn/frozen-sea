@@ -29,14 +29,28 @@ angular.module('studyDetails', ['ngRoute', 'ngMaterial'])
             $scope.study.startDate = new Date($scope.study.startDate);
             $scope.study.endDate = new Date($scope.study.endDate);
 
-            $scope.appointments = Study.dates({id: $scope.study.id});
+            $scope.appointments = Study.dates({id: $scope.study.id}, function (response){
+                return Promise.all(response.map(function (res){
+                    res.startDate = new Date(res.startDate);
+                    res.endDate = new Date(res.endDate);
+
+                    var time = res.startTime.split(':');
+                    var hours = parseInt(time[0]);
+                    var minutes = parseInt(time[1]);
+
+                    res.startDate.setMinutes(minutes);
+                    res.startDate.setHours(hours);
+                    return res;
+                }));
+            });
+
 
             $scope.participate = function(date){
-                //TODO add reward? and studyDate
+                //TODO add reward and studyDate
                 Participation.create({
                     participantId: LoopBackAuth.currentUserId,
                     studyId: $scope.study.id,
-                    status: "pending",
+                    status: "pending"
                 })
                     .$promise
                     .then(function (response){

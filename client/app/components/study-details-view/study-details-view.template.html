@@ -73,7 +73,7 @@
             <md-card ng-repeat="appointment in appointments" flex="100" flex-gt-xs="30" flex-gt-sm="20">
                 <md-card-title layout="column">
                     <span class="md-headline">{{ appointment.startDate | date:'dd.MM.yy' }}</span>
-                    <span class="md-subhead">{{ appointment.startTime }}</span>
+                    <span class="md-subhead">{{ appointment.startDate | date:'HH:mm' }} - {{ appointment.endDate | date:'HH:mm' }}</span>
                 </md-card-title>
                 <md-card-content>
                     <p>{{ appointment.duration }} {{'STUDY_DETAILS.MINUTES' | translate}}</p>
