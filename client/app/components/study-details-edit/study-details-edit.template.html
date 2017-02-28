@@ -41,18 +41,7 @@
 
             <div layout-gt-xs="row">
 
-                <md-input-container class="md-block" flex-gt-xs="30">
-                    <input type="number" required
-                           aria-label="{{'CREATE_STUDY.DURATION_ARIA_LABEL' | translate}}"
-                           ng-model="study.duration"
-                           name="duration" placeholder="{{'CREATE_STUDY.DURATION_PLACEHOLDER' | translate}}">
-
-                    <div ng-messages="editStudyForm.duration.$error">
-                        <div ng-message="required">{{'CREATE_STUDY.DURATION_MESSAGE' | translate}}</div>
-                    </div>
-                </md-input-container>
-
-                <md-chips class="md-block" style="margin-top: 1px" flex-gt-xs="70"
+                <md-chips class="md-block" flex-gt-xs="100"
                           secondary-placeholder="z.B. Android"
                           aria-label="{{'CREATE_STUDY.KEYWORDS_ARIA_LABEL' | translate}}"
                           placeholder="{{'CREATE_STUDY.KEYWORDS_PLACEHOLDER' | translate}}"
@@ -60,37 +49,6 @@
                           readonly="ctrl.readonly"
                           md-removable="ctrl.removable">
                 </md-chips>
-
-            </div>
-
-            <div layout-gt-xs="row">
-
-                <md-input-container class="md-block" flex-gt-xs="100">
-                    <label>{{'CREATE_STUDY.LOCATION' | translate}}</label>
-                    <input type="text" required ng-model="study.location" name="studyLocation"
-                           aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}"
-                           placeholder="{{'CREATE_STUDY.LOCATION_PLACEHOLDER' | translate}}">
-
-                    <div ng-messages="editStudyForm.studyLocation.$error">
-                        <div ng-message="required">{{'CREATE_STUDY.LOCATION_MESSAGE' | translate}}</div>
-                    </div>
-                </md-input-container>
-
-            </div>
-
-            <div layout-gt-xs="row">
-
-                <md-input-container flex="100" flex-xs="100">
-                    <label>{{'CREATE_STUDY.ADVISER' | translate}}</label>
-                    <md-select ng-model="study.advisor"
-                               aria-label="{{'CREATE_STUDY.ADVISER_ARIA_LABEL' | translate}}" required>
-                        <md-option ng-value="supervisor" ng-repeat="supervisor in supervisors">{{supervisor.name}}
-                        </md-option>
-                    </md-select>
-                    <div class="errors" ng-messages="editStudyForm.adviser.$error">
-                        <div ng-message="required">{{'CREATE_STUDY.ADVISER_MESSAGE' | translate}}</div>
-                    </div>
-                </md-input-container>
 
             </div>
 
@@ -104,17 +62,17 @@
 
             <md-input-container class="md-block" layout-gt-xs="row">
 
-                <md-checkbox flex="100" flex-gt-xs="33" ng-model="money"
+                <md-checkbox flex="100" flex-gt-xs="33" ng-model="money" ng-change="resetMoney()"
                              aria-label="{{'CREATE_STUDY.MONEY_ARIA_LABEL' | translate}}">
                     {{'CREATE_STUDY.MONEY' | translate}}
                 </md-checkbox>
 
-                <md-checkbox flex-xs="100" flex-gt-xs="33" ng-model="voucher"
+                <md-checkbox flex-xs="100" flex-gt-xs="33" ng-model="voucher" ng-change="resetVoucher()"
                              aria-label="{{'CREATE_STUDY.VOUCHER_ARIA_LABEL' | translate}}">
                     {{'CREATE_STUDY.VOUCHER' | translate}}
                 </md-checkbox>
 
-                <md-checkbox flex-xs="100" flex-gt-xs="33" ng-model="hours"
+                <md-checkbox flex-xs="100" flex-gt-xs="33" ng-model="hours" ng-change="resetHours()"
                              aria-label="{{'CREATE_STUDY.HOURS_ARIA_LABEL' | translate}}">
                     {{'CREATE_STUDY.HOURS' | translate}}
                 </md-checkbox>
@@ -125,7 +83,7 @@
 
                 <md-input-container class="md-block" ng-if="money" flex="100" flex-gt-xs="33">
                     <label>{{'CREATE_STUDY.AMOUNT' | translate}}</label>
-                    <input required type="number" ng-model="study.money" name="money"
+                    <input required type="number" ng-model="study.reward_money" name="money"
                            placeholder="{{'CREATE_STUDY.AMOUNT_PLACEHOLDER' | translate}}">
 
                     <div ng-messages="editStudyForm.money.$error">
@@ -136,7 +94,7 @@
                 <md-input-container class="md-block" ng-if="voucher" flex="100"
                                     flex-gt-xs="33">
                     <label>{{'CREATE_STUDY.VOUCHER_AMOUNT' | translate}}</label>
-                    <input required type="number" ng-model="study.voucher" name="voucher"
+                    <input required type="number" ng-model="study.reward_voucher" name="voucher"
                            placeholder="{{'CREATE_STUDY.VOUCHER_AMOUNT_PLACEHOLDER' | translate}}">
 
                     <div ng-messages="editStudyForm.voucher.$error">
@@ -146,7 +104,7 @@
 
                 <md-input-container class="md-block" ng-if="hours" flex="100" flex-gt-xs="33">
                     <label>{{'CREATE_STUDY.HOURS_AMOUNT' | translate}}</label>
-                    <input required type="number" ng-model="study.hours" name="hours"
+                    <input required type="number" ng-model="study.reward_hours" name="hours"
                            placeholder="{{'CREATE_STUDY.HOURS_AMOUNT_PLACEHOLDER' | translate}}">
 
                     <div ng-messages="editStudyForm.hours.$error">
@@ -159,7 +117,7 @@
         </md-content>
         <!-- END rewards -->
 
-        <!-- START add dates -->
+        <!-- START modify dates TODO
         <md-content class="md-padding">
 
             <h2 class="md-headline">{{'STUDY_DETAILS.DATES' | translate}}</h2>
@@ -241,7 +199,7 @@
             </div>
 
         </md-content>
-        <!-- END add dates -->
+        <!-- END modify dates -->
 
         <md-content class="md-padding">
             <h2 class="md-headline">{{'CREATE_STUDY.REQUIREMENTS_TAB_LABEL' | translate}} <span
@@ -249,7 +207,7 @@
             <p>{{'CREATE_STUDY.REQUIREMENTS_DESCRIPTION' | translate}}</p>
         </md-content>
 
-        <!-- START requirements -->
+        <!-- START requirements TODO
         <md-content class="md-padding">
 
         </md-content>
@@ -266,6 +224,13 @@
                             ng-click="updateStudy()"
                             ng-disabled="editStudyForm.$invalid" class="md-accent md-raised">
                         {{'STUDY_DETAILS.UPDATE_STUDY_BUTTON' | translate}}
+                    </md-button>
+                </md-input-container>
+                <md-input-container>
+                    <md-button
+                            ng-click="discardChanges()"
+                            class="md-raised">
+                        {{'STUDY_DETAILS.DISCARD_CHANGES' | translate}}
                     </md-button>
                 </md-input-container>
 
