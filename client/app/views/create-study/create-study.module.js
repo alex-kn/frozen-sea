@@ -163,7 +163,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                             description: $scope.study.description,
                             startDate: $scope.study.startDate,
                             endDate: $scope.study.endDate,
-                            owner: LoopBackAuth.currentUserId,
+                            ownerId: LoopBackAuth.currentUserId,
                             reward_money: $scope.study.money,
                             reward_voucher: $scope.study.voucher,
                             reward_hours: $scope.study.hours,
