@@ -2,28 +2,12 @@
   "name": "Subuser",
   "plural": "Subusers",
   "base": "User",
+  "strict": true,
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
-  "properties": {
-    "age": {
-      "type": "number"
-    },
-    "gender": {
-      "type": "string"
-    },
-    "matriculationNr": {
-      "type": "number"
-    },
-    "course": {
-      "type": "string"
-    },
-    "language": {
-      "type": "string",
-      "default": "de-DE"
-    }
-  },
+  "properties": {},
   "validations": [],
   "relations": {
     "preferences": {
@@ -34,17 +18,21 @@
     "created_studies": {
       "type": "hasMany",
       "model": "Study",
-      "foreignKey": ""
+      "foreignKey": "ownerId"
     },
     "created_study_dates": {
       "type": "hasMany",
       "model": "StudyDate",
-      "foreignKey": ""
+      "foreignKey": "ownerId"
     },
     "participations": {
       "type": "hasMany",
       "model": "Participation",
-      "foreignKey": ""
+      "foreignKey": "participantId"
+    },
+    "supervised_studies": {
+      "type": "hasAndBelongsToMany",
+      "model": "Study"
     }
   },
   "acls": [

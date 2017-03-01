@@ -2,6 +2,7 @@
   "name": "Study",
   "plural": "Studies",
   "base": "PersistedModel",
+  "strict": true,
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -11,86 +12,89 @@
       "type": "string",
       "required": true
     },
-    "endDate": {
-      "type": "date",
-      "required": false
-    },
     "startDate": {
       "type": "date",
       "required": false,
-      "description": ""
+      "description": "first date of the study"
+    },
+    "endDate": {
+      "type": "date",
+      "required": false,
+      "description": "last date of the study"
+    },
+    "duration": {
+      "type": "number",
+      "required": false,
+      "description": "duration of a single study in minutes"
+    },
+    "locations_array": {
+      "type": "array",
+      "required": false
     },
     "title": {
       "type": "string",
       "required": true
     },
-    "reward_money": {
-      "type": "number",
-      "required": false
+    "reward": {
+      "type": {
+        "reward_money": "number",
+        "reward_voucher":  "number",
+        "reward_hours":  "number"
+      }
     },
-    "reward_voucher": {
-      "type": "number",
-      "required": false
-    },
-    "reward_hours": {
-      "type": "number",
-      "required": false
-    },
-    "duration": {
-      "type": "number",
-      "required": false
-    },
-    "comma_separated_keywords": {
-      "type": "string",
+    "keywords_array": {
+      "type": "array",
       "required": false
     },
     "minimum_age": {
       "type": "number",
-      "required": false
+      "required": false,
+      "description": "in cm"
     },
     "minimum_height": {
       "type": "number",
+      "required": false,
+      "description": "in cm"
+    },
+    "operatingSystem_required": {
+      "type": {
+        "android": "boolean",
+        "ios": "boolean",
+        "windows": "boolean"
+      },
       "required": false
     },
-    "required_ios_experience": {
-      "type": "string",
+    "visualAid_required": {
+      "type": {
+        "glasses": "boolean",
+        "contactLenses": "boolean",
+        "none": "boolean"
+      },
       "required": false
     },
-    "required_android_experience": {
-      "type": "string",
-      "required": false
-    },
-    "required_glasses": {
-      "type": "string",
-      "required": false
-    },
-    "required_contact_lenses": {
-      "type": "string",
-      "required": false
-    },
-    "requires_glasses": {
-      "type": "string",
-      "required": false
-    },
-    "required_language": {
-      "type": "string",
-      "required": false
-    },
-    "required_nationality": {
-      "type": "string",
+    "language_required": {
+      "type": {
+        "english": "boolean",
+        "german": "boolean"
+      },
       "required": false
     },
     "required_handedness": {
       "type": "string",
-      "required": false
+      "required": false,
+      "description": "lefty, righty, both"
     },
-    "required_study_program": {
-      "type": "string",
+    "required_study_programs_array": {
+      "type": "array",
       "required": false
     },
     "required_gender": {
-      "type": "string",
-      "required": false
+      "type": {
+        "male": "boolean",
+        "female": "boolean"
+      },
+      "required": false,
+      "description": "could be expanded to accept ratios"
     }
   },
   "validations": [],
@@ -98,17 +102,11 @@
     "dates": {
       "type": "hasMany",
       "model": "StudyDate",
-      "foreignKey": ""
-    },
-    "creators": {
-      "type": "hasMany",
-      "model": "Subuser",
-      "foreignKey": ""
+      "foreignKey": "studyId"
     },
     "advisors": {
-      "type": "hasMany",
-      "model": "Subuser",
-      "foreignKey": ""
+      "type": "hasAndBelongsToMany",
+      "model": "Subuser"
     },
     "owner": {
       "type": "belongsTo",
@@ -118,7 +116,7 @@
     "participations": {
       "type": "hasMany",
       "model": "Participation",
-      "foreignKey": ""
+      "foreignKey": "studyId"
     }
   },
   "acls": [

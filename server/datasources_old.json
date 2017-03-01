@@ -4,10 +4,10 @@
     "connector": "memory"
   },
   "userstudy-db": {
-    "host": "ds027145.mlab.com",
-    "port": 27145,
-    "url": "mongodb://userstudy:hallo123@ds027145.mlab.com:27145/userstudy_new",
-    "database": "userstudy_new",
+    "host": "ds133378.mlab.com",
+    "port": 33378,
+    "url": "mongodb://userstudy:hallo123@ds133378.mlab.com:33378/userstudy-api",
+    "database": "userstudy-api",
     "password": "hallo123",
     "name": "userstudy-db",
     "user": "userstudy",

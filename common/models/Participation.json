@@ -3,6 +3,7 @@
   "plural": "Participations",
   "base": "PersistedModel",
   "idInjection": true,
+  "strict": true,
   "options": {
     "validateUpsert": true
   },
@@ -37,8 +38,8 @@
       "model": "Study",
       "foreignKey": ""
     },
-    "date": {
-      "type": "hasOne",
+    "studyDate": {
+      "type": "belongsTo",
       "model": "StudyDate",
       "foreignKey": ""
     }
