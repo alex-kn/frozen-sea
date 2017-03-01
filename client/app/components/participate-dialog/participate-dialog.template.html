@@ -11,7 +11,7 @@
 
     <div class="small-container sub-headline">
         {{'PARTICIPATION_DIALOG.DURATION' | translate}} {{currentStudy.duration}} {{'PARTICIPATION_DIALOG.MIN' | translate}} <br>
-        {{'PARTICIPATION_DIALOG.LOCATION' | translate}} {{currentStudy.locations_array.join(", ")}}
+        {{'PARTICIPATION_DIALOG.LOCATION' | translate}} {{currentStudy.locations_array.join(",  ")}}
     </div>
 
     <md-divider></md-divider>
@@ -19,9 +19,9 @@
     <div class="small-container">
         <div class="sub-headline">{{'PARTICIPATION_DIALOG.PICK' | translate}}</div>
         <md-radio-group ng-model="data.reward" layout="row" layout-xs="column">
-            <md-radio-button value="reward_money" ng-show="currentStudy.reward.reward_money > 0"> {{'PARTICIPATION_DIALOG.MONEY' | translate}}</md-radio-button>
-            <md-radio-button value="reward_voucher" ng-show="currentStudy.reward.reward_voucher > 0"> {{'PARTICIPATION_DIALOG.VOUCHER' | translate}}</md-radio-button>
-            <md-radio-button value="reward_hours" ng-show="currentStudy.reward.reward_hours > 0"> {{'PARTICIPATION_DIALOG.VPS' | translate}}</md-radio-button>
+            <md-radio-button value="reward_money" ng-show="currentStudy.reward.reward_money > 0"> {{'PARTICIPATION_DIALOG.MONEY' | translate}}: {{currentStudy.reward.reward_money}}€</md-radio-button>
+            <md-radio-button value="reward_voucher" ng-show="currentStudy.reward.reward_voucher > 0"> {{'PARTICIPATION_DIALOG.VOUCHER' | translate}}: {{currentStudy.reward.reward_voucher}}€</md-radio-button>
+            <md-radio-button value="reward_hours" ng-show="currentStudy.reward.reward_hours > 0"> {{'PARTICIPATION_DIALOG.VPS' | translate}}: {{currentStudy.reward.reward_hours}}</md-radio-button>
         </md-radio-group>
     </div>
 

@@ -13,11 +13,11 @@
     },
     "student": {
       "type": "boolean",
-      "required": "false"
+      "required": false
     },
     "gender": {
       "type": "string",
-      "required": "false"
+      "required": false
     },
     "matriculationNr": {
       "type": "number"
@@ -55,7 +55,7 @@
     },
     "height": {
       "type": "number",
-      "required": "false",
+      "required": false,
       "description": "in cm"
     }
   },
