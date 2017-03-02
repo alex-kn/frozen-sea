@@ -12,8 +12,8 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsViewController', ['$q', '$location', '$routeParams', '$scope', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter','ToastService',
-        function ($q, $location, $routeParams, $scope, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService) {
+    .controller('StudyDetailsViewController', ['$q', '$location', '$routeParams', '$scope', 'StudyDate', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter','ToastService',
+        function ($q, $location, $routeParams, $scope, StudyDate, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService) {
 
             $scope.isOwner = false;
 
@@ -30,13 +30,18 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     return $q.all(response.map(function (response) {
                         response.startDate = new Date(response.startDate);
                         response.endDate = new Date(response.startDate.getTime() + response.duration*60000);
+                        response.participants = 0;
 
                         //for testing
-                        response.location = "Klinikum Großhadern, Pathologie";
+                        response.location = "Klinikum Großhadern";
                         response.minParticipants = 1;
                         response.maxParticipants = 6;
                         response.deadline = 24;
                         //--
+
+                        StudyDate.participations.count({id: response.id},function (res) {
+                            response.participants = res.count;
+                        });
 
                         return response;
                     }));
@@ -111,7 +116,8 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     studyDateId: studyDate.id,
                     participantId: LoopBackAuth.currentUserId
                 }, function (response) {
-                    ToastService.setToastText($scope.study.name, 'participate');
+                    ToastService.setToastText($scope.study.title, 'participate');
+                    ToastService.displayToast();
                     console.log("Participation created.");
                 }, function (error) {
                     console.log("Participation could not be created.");

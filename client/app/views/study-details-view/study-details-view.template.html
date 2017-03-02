@@ -92,17 +92,22 @@
 
                 <div layout="row" layout-xs="column" layout-wrap>
 
-                    <md-card ng-repeat="date in day" flex="100" flex-gt-xs="30" flex-gt-sm="20">
+                    <md-card ng-repeat="date in day" flex="100" flex-gt-xs="45" flex-gt-sm="30">
                         <md-card-title layout="column">
-                            <span class="md-headline">{{ date.startDate | date:'dd.MM.yy' }}</span>
-                            <span class="md-subhead">{{ date.startDate | date: 'HH:mm'}} -
-                            {{ date.endDate | date: 'HH:mm'}}</span>
+                            <span class="md-headline">{{ date.startDate | date:'HH:mm' }} -
+                                {{ date.endDate | date: 'HH:mm'}}</span>
+                            <span class="md-subhead align-items"><i class="material-icons" md-colors="{color: 'accent'}">timelapse</i>{{ date.duration }} {{'STUDY_DETAILS.MINUTES' | translate}}</span>
                         </md-card-title>
                         <md-card-content>
-                            <p>{{ date.location }} </p>
-                        </md-card-content>
+                            <md-divider></md-divider>
+                            <div layout="column" layout-align="start start">
+                                <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">room</i>{{ date.location }} </span>
+                                <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">group</i>{{ date.participants }}/{{ date.maxParticipants }}</span>
+                            </div>
+                            </md-card-content>
                         <md-card-action>
-                            <md-button class="md-accent" ng-click="participate(date)">
+                            <md-button class="md-accent" ng-click="participate(date)"
+                                       ng-disabled="date.status != 'available'">
                                 {{'STUDY_DETAILS.PARTICIPATE' |
                                 translate}}
                             </md-button>

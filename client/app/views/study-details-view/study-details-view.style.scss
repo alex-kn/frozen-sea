@@ -1,19 +1,19 @@
 @import "../../stylesheets/main";
 
-form {
+.align-items {
+  display: inline-flex;
 
-  .errors {
-    font-size: 12px;
-    color: #dd2c00;
-    margin-top: 10px;
+  i {
+    margin-right: .5rem;
   }
+}
 
-  md-checkbox {
-    margin-right: 4rem;
+md-divider {
+    margin-bottom: 1rem;
+}
 
-    &:last-of-type {
-      margin-right: 0;
-    }
+md-card {
+  span {
+    margin-top: .5rem;
   }
-
 }
