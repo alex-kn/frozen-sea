@@ -12,8 +12,8 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsViewController', ['$q', '$location', '$routeParams', '$scope', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter',
-        function ($q, $location, $routeParams, $scope, Subuser, Participation, LoopBackAuth, $http, Study, $filter) {
+    .controller('StudyDetailsViewController', ['$q', '$location', '$routeParams', '$scope', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter','ToastService',
+        function ($q, $location, $routeParams, $scope, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService) {
 
             $scope.isOwner = false;
 
@@ -77,14 +77,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     }));
                     $scope.datesGroupedByDay.push(days);
                 })
-
-
-
-
-
-
-
-
             }
 
             function mapReward(testThis, userChoice) {
@@ -131,6 +123,5 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.editStudy = function () {
                 $location.path('/study-details-edit').search({'study': $scope.study.id});
             };
-
 
         }]);
