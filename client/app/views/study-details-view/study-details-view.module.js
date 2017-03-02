@@ -66,6 +66,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     studyDateId: studyDate.id,
                     participantId: LoopBackAuth.currentUserId
                 }, function (response) {
+                    ToastService.setToastText($scope.study.name, 'participate');
                     console.log("Participation created.");
                 }, function (error) {
                     console.log("Participation could not be created.");
