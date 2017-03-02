@@ -60,7 +60,7 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                     .$save()
                     .then(function(res)  {
                         console.log("changes saved");
-                        $location.path('/study-details-view').search({'study': study.id});
+                        $location.path('/study-details-view').search({'study': $scope.study.id});
                         //TODO notify participants
                     }).catch(function(req) {
                     console.log("error saving changes");
@@ -68,7 +68,7 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
             }
 
             $scope.discardChanges = function () {
-                $location.path('/study-details-view').search({'study': study.id});
+                $location.path('/study-details-view').search({'study': $scope.study.id});
             }
 
             $scope.deleteStudy = function () {
