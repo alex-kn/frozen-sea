@@ -113,7 +113,7 @@ angular
 
 
             $scope.showDetails = function (study, ev) {
-                $location.path('/study-details').search({'study': study});
+                $location.path('/study-details-view').search({'study': study.id});
             };
 
             $scope.showCreateStudyPrompt = function(ev) {

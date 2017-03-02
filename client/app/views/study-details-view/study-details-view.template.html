@@ -1,0 +1,146 @@
+<link rel="stylesheet" href="views/study-details-view/study-details-view.style.css">
+
+<div ng-controller="NavigationController">
+    <nav-bar></nav-bar>
+</div>
+
+<section ng-controller="StudyDetailsViewController as ctrl">
+    <!-- START tool bar -->
+    <md-toolbar class="toolbar md-hue-1" layout="row" layout-align="start center">
+        <div class="md-toolbar-tools" flex-offset-gt-sm="15">
+            <h2 class="md-display-3">
+                <i class="material-icons">bubble_chart</i>
+                {{study.title}}
+            </h2>
+        </div>
+    </md-toolbar>
+    <!-- END toolbar -->
+
+    <!-- START edit study form -->
+    <md-content flex-offset-gt-sm="20" flex-gt-sm="60" flex="100">
+
+        <!-- START general information -->
+        <md-content class="md-padding">
+
+            <div layout-gt-xs="row">
+                <p class="md-block" flex-gt-xs="100"
+                   aria-label="{{'CREATE_STUDY.DESCRIPTION_ARIA_LABEL' | translate}}">
+                    {{study.description}}
+                </p>
+
+
+            </div>
+
+            <div layout-gt-xs="row">
+
+                <!-- TODO KEYWORDS-->
+
+            </div>
+
+            <div layout-gt-xs="row">
+
+
+                <p class="md-block" flex-gt-xs="100"
+                   aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
+                    {{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}: {{study.locations_array.join(", ")}}
+                </p>
+
+
+            </div>
+
+        </md-content>
+        <!-- END general information -->
+
+        <!-- START rewards -->
+        <md-content class="md-padding">
+
+            <h2 class="md-headline">{{'STUDY_DETAILS.CHOOSE_REWARD' | translate}}</h2>
+
+            <md-radio-group class="md-block" layout-gt-xs="row" ng-model="chosenReward">
+
+                <md-radio-button flex="100" flex-gt-xs="33" value="money" ng-show="study.reward.reward_money"
+                                 aria-label="{{'CREATE_STUDY.MONEY_ARIA_LABEL' | translate}}">
+                    {{study.reward.reward_money}}
+                    {{'STUDY_DETAILS.CHOOSE_REWARD_MONEY' | translate}}
+                </md-radio-button>
+
+                <md-radio-button flex-xs="100" flex-gt-xs="33" value="voucher" ng-show="study.reward.reward_voucher"
+                                 aria-label="{{'CREATE_STUDY.VOUCHER_ARIA_LABEL' | translate}}">
+                    {{study.reward.reward_voucher}}
+                    {{'STUDY_DETAILS.CHOOSE_REWARD_VOUCHER' | translate}}
+                </md-radio-button>
+
+                <md-radio-button flex-xs="100" flex-gt-xs="33" value="hours" ng-show="study.reward.reward_hours"
+                                 aria-label="{{'CREATE_STUDY.HOURS_ARIA_LABEL' | translate}}">
+                    {{study.reward.reward_hours}}
+                    {{'STUDY_DETAILS.CHOOSE_REWARD_HOURS' | translate}}
+                </md-radio-button>
+
+            </md-radio-group>
+
+        </md-content>
+        <!-- END rewards -->
+
+        <!-- START add dates -->
+        <md-content class="md-padding">
+
+            <h2 class="md-headline">{{'STUDY_DETAILS.DATES' | translate}}</h2>
+
+            <div layout="row" layout-xs="column" layout-wrap>
+
+                <md-card ng-repeat="appointment in appointments" flex="100" flex-gt-xs="30" flex-gt-sm="20">
+                    <md-card-title layout="column">
+                        <span class="md-headline">{{ appointment.startDate | date:'dd.MM.yy' }}</span>
+                        <span class="md-subhead">{{ appointment.startDate | date: 'HH:mm'}} -
+                            {{ appointment.endDate | date: 'HH:mm'}}</span>
+                    </md-card-title>
+                    <md-card-content>
+                        <p>{{ appointment.location }} </p>
+                    </md-card-content>
+                    <md-card-action>
+                        <md-button class="md-accent" ng-click="participate(appointment)">{{'STUDY_DETAILS.PARTICIPATE' |
+                            translate}}
+                        </md-button>
+                    </md-card-action>
+                </md-card>
+
+            </div>
+
+        </md-content>
+        <!-- END add dates -->
+
+        <md-content class="md-padding">
+            <h2 class="md-headline">{{'CREATE_STUDY.REQUIREMENTS_TAB_LABEL' | translate}} <span
+                    md-colors="{color: 'accent'}">{{ study.name }}</span></h2>
+        </md-content>
+
+        <!-- START requirements -->
+        <md-content class="md-padding">
+
+        </md-content>
+        <!-- END requirements -->
+
+
+        <!-- START button -->
+        <md-content class="md-padding" ng-show="isOwner">
+
+            <div layout="row" layout-xs="column">
+
+                <md-input-container>
+                    <md-button
+                            ng-click="editStudy()"
+                            class="md-accent md-raised">
+                        {{'STUDY_DETAILS.EDIT_STUDY' | translate}}
+                    </md-button>
+                </md-input-container>
+
+            </div>
+
+        </md-content>
+        <!-- END button -->
+
+
+    </md-content>
+    <!-- END create study form -->
+
+</section>

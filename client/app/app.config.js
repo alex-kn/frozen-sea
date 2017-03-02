@@ -25,8 +25,10 @@ angular
             }).when('/user-preferences', {
                 templateUrl: 'views/user-preferences/user-preferences.template.html',
                 activeTab: 'user-preferences'
-            }).when('/study-details', {
-                templateUrl: 'views/study-details/study-details.template.html'
+            }).when('/study-details-view', {
+                templateUrl: 'views/study-details-view/study-details-view.template.html'
+            }).when('/study-details-edit', {
+                templateUrl: 'views/study-details-edit/study-details-edit.template.html'
             }).when('/my-studies', {
                 templateUrl: 'views/my-studies/my-studies.template.html',
                 controller: 'MyStudiesController'

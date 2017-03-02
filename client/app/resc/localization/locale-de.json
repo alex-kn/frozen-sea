@@ -193,7 +193,8 @@
     "CHOOSE_REWARD_VOUCHER" : "Euro Amazon Gutschein",
     "CHOOSE_REWARD_HOURS" : "Versuchspersonenstunden",
     "PARTICIPATE" : "Teilnehmen",
-    "MINUTES" : "Minuten"
+    "MINUTES" : "Minuten",
+    "DELETE_STUDY" : "Studie löschen"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",
