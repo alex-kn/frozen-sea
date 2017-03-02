@@ -44,6 +44,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             }
 
 
+
             function groupDatesByDay(){
 
                 $scope.datesGroupedByDay = [];
@@ -90,17 +91,17 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 switch (testThis) {
                     case "reward_money":
                         if (userChoice == "reward_money") {
-                            return $scope.currentStudy.reward.reward_money;
+                            return $scope.study.reward.reward_money;
                         }
                         break;
                     case "reward_voucher":
                         if (userChoice == "reward_voucher") {
-                            return $scope.currentStudy.reward.reward_voucher;
+                            return $scope.study.reward.reward_voucher;
                         }
                         break;
                     case "reward_hours":
                         if (userChoice == "reward_hours") {
-                            return $scope.currentStudy.reward.reward_hours;
+                            return $scope.study.reward.reward_hours;
                         }
                 }
                 return 0
