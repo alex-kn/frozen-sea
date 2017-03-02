@@ -218,22 +218,8 @@
     "CHOOSE_REWARD_MONEY" : "Euro",
     "CHOOSE_REWARD_VOUCHER" : "Euro Amazon Gutschein",
     "CHOOSE_REWARD_HOURS" : "Versuchspersonenstunden",
-    "PARTICIPATE" : "Teilnehmen",
     "MINUTES" : "Minuten",
     "DELETE_STUDY" : "Studie löschen"
-  },
-  "PARTICIPATION_DIALOG": {
-    "CANCEL": "Abbrechen",
-    "PARTICIPATE": "Teilnehmen",
-    "PARTICIPATE_IN": "Teilnehmen an ",
-    "DURATION": "Dauer: ",
-    "MIN": "min",
-    "LOCATION": "Ort(e): ",
-    "PICK": "Wähle eine Bezahlung: ",
-    "MONEY": "Geld",
-    "VOUCHER": "Amazon Gutschein",
-    "VPS": "Versuchspersonenstunden",
-    "PICK_DATE": "Wähle einen Termin: "
   },
   "EDIT_PROFILE": {
     "PASSWORD" : "Passwort",
