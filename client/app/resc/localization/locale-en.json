@@ -210,7 +210,7 @@
     "CHANGE" :"Change",
     "OLD_PASSWORD_NOMATCH" :"Old password doesn't match.",
     "NEW_PASSWORD_NOMATCH" :"New password doesn't match.",
-    "USERNAME_EXISTS" :"Username already exists."
+    "USERNAME_EXISTS" :"Username already exists.",
     "DESCRIPTION" : "Description",
     "UPDATE_STUDY_BUTTON" : "Save Changes"
   },
