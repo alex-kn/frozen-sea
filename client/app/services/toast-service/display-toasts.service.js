@@ -21,7 +21,7 @@ angular
             } else if(origin === 'participate') {
 
                 participateInStudy = true;
-                toastText = 'Du nimmst an der ' + studyTitle + ' teil.'
+                toastText = 'Du nimmst an der Studie ' + studyTitle + ' teil.'
             }
 
         }

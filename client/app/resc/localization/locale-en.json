@@ -211,5 +211,20 @@
     "OLD_PASSWORD_NOMATCH" :"Old password doesn't match.",
     "NEW_PASSWORD_NOMATCH" :"New password doesn't match.",
     "USERNAME_EXISTS" :"Username already exists."
+    "DESCRIPTION" : "Description",
+    "UPDATE_STUDY_BUTTON" : "Save Changes"
+  },
+  "PARTICIPATION_DIALOG": {
+    "CANCEL": "Cancel",
+    "PARTICIPATE": "Participate",
+    "PARTICIPATE_IN": "Participate in ",
+    "DURATION": "Duration: ",
+    "MIN": "min",
+    "LOCATION": "Location(s): ",
+    "PICK": "Pick a reward: ",
+    "MONEY": "Money",
+    "VOUCHER": "Amazon voucher",
+    "VPS": "Experiment hours",
+    "PICK_DATE": "Choose a date: "
   }
 }

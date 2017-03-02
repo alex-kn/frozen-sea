@@ -4,8 +4,8 @@
 
 angular
     .module('studyListDirective', ['participateDialogDirective'])
-    .controller('StudyListController', ['$scope', 'Participation', 'Study', 'StudyDate', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$translate', '$filter',
-        function ($scope, Participation, Study, StudyDate, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter) {
+    .controller('StudyListController', ['$scope', '$routeParams', 'Participation', 'Study', 'StudyDate', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$translate', '$filter', 'ToastService',
+        function ($scope, $routeParams, Participation, Study, StudyDate, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter, ToastService) {
 
             $scope.studiesTemp = Study.find(
                 function(list) { /* success */ //TODO: where end date not in the past
@@ -18,6 +18,10 @@ angular
                 }
             );
 
+            $scope.displayToast = function() {
+                ToastService.displayToast();
+            };
+
             function filter() {
                 Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
                     $scope.preferences = response;
@@ -29,7 +33,7 @@ angular
                             .$promise
                             .then(function (response) {
                                 filter()//obacht!
-                            });
+                            });;
 
                     }
                 });
@@ -109,7 +113,7 @@ angular
 
 
             $scope.showDetails = function (study, ev) {
-                $location.path('/study-details').search({'study': study});
+                $location.path('/study-details-view').search({'study': study.id});
             };
 
             $scope.showCreateStudyPrompt = function(ev) {

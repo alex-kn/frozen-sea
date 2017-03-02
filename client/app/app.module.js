@@ -14,7 +14,8 @@ angular.module('userStudy', [
     'home',
     'login',
     'createStudy',
-    'studyDetails',
+    'studyDetailsView',
+    'studyDetailsEdit',
     'userPreferences',
     'myStudies',
     'editProfile',
@@ -25,6 +26,7 @@ angular.module('userStudy', [
     'studyDetailsViewDirective',
     'studyDetailsEditDirective',
     'participateDialogDirective',
+    'ToastService',
     'AuthService',
     'register',
     'ngMaterial'

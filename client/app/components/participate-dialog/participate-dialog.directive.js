@@ -4,10 +4,8 @@
 
 angular
     .module('participateDialogDirective', [])
-    .controller('ParticipateDialogController', ['$scope', 'Participation', 'Study', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$translate', '$filter', '$mdToast',
-        function ($scope, Participation, Study, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter, $mdToast) {
-
-
+    .controller('ParticipateDialogController', ['$scope', 'Participation', 'Study', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$translate', '$filter', 'ToastService',
+        function ($scope, Participation, Study, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter, ToastService) {
 
             var mapReward = function(testThis, userChoice) {
                 switch(testThis) {
@@ -41,7 +39,8 @@ angular
                         "studyDateId": studyDate.id,
                         "participantId": LoopBackAuth.currentUserId
                     }, function() {
-                        //showToast('You reserved' + $filter('date')(studyDate, 'shortDate') +  '. Wait on the confirmation by the creator of the study.', 'success');
+                        ToastService.setToastText($scope.currentStudy.title, 'participate');
+                        ToastService.displayToast();
                     }
                 );
                 $mdDialog.hide();
@@ -54,17 +53,6 @@ angular
                 $scope.currentStudy = {};
                 $scope.datesGroupedByDay = [];
             };
-
-
-            function showToast(content, type) {
-                $mdToast.show(
-                    $mdToast.simple()
-                        .textContent(content)
-                        .hideDelay(3000)
-                        .toastClass(type)
-                );
-            }
-
 
         }])
     .directive('participateDialog', function () {

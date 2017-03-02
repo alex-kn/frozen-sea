@@ -21,4 +21,4 @@ describe('StudyListController', function () {
     it('should not be empty',function(){
         expect(element.html()).not.toBe('');
     });
-})
+});

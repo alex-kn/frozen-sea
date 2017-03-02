@@ -13,7 +13,7 @@ angular.module('home', ['ngRoute'])
         });
     }])
 
-    .controller('HomeController', ['$scope', 'Subuser', 'Study', 'LoopBackAuth',
-        function($scope, Subuser, Study, LoopBackAuth) {
+    .controller('HomeController', ['$scope', '$window', '$routeParams', 'Subuser', 'Study', 'LoopBackAuth',
+        function($scope, $window, $routeParams, Subuser, Study, LoopBackAuth) {
 
     }]);

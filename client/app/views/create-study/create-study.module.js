@@ -13,8 +13,8 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http',
-        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService',
+        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService) {
 
             var startDate = new Date();
             var endDate = new Date(
@@ -72,7 +72,6 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
             $scope.readonly = false;
             $scope.title = 'Studie erstellen';
 
-
             /**
              * Instantiate datepickers
              * minStartDate is set to current date, minEndDate to minStartDate + 1
@@ -93,7 +92,6 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
              * @returns {string}
              */
             function addDurationToAppointmentTime(appointmentTime, duration, buffer) {
-
 
                 var time = appointmentTime.split(':');
                 console.log(time);
@@ -140,7 +138,6 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
             };
 
 
-
             $scope.createStudy = function () {
 
                 if ($scope.createStudyForm.$valid) {
@@ -153,7 +150,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                             description: $scope.study.description,
                             startDate: $scope.study.startDate,
                             endDate: $scope.study.endDate,
-                            owner: LoopBackAuth.currentUserId,
+                            ownerId: LoopBackAuth.currentUserId,
                             duration: $scope.study.duration,
 
                             keywords_array: $scope.study.keywords,
@@ -192,7 +189,8 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                         .$promise
                         .then(function (response) {
 
-                            console.log(response.id);
+                            // log study title to show in toast on home
+                            ToastService.setToastText($scope.study.name, 'create');
 
                             for (var i = 0; i < $scope.appointments.length; i++) {
 
