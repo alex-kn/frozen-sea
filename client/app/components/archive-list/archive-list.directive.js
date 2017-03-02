@@ -29,7 +29,7 @@ angular
                         .$promise
                         .then(function (response) {
                             filter()//obacht!
-                        });
+                        });;
 
                 }
             });

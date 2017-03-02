@@ -50,7 +50,7 @@ angular.module('studyDetails', ['ngRoute', 'ngMaterial'])
                         console.log(response);
                     });
 
-            }
+            };
 
             //----------------------------------------
             //EDIT STUDY
@@ -61,13 +61,13 @@ angular.module('studyDetails', ['ngRoute', 'ngMaterial'])
             if ($scope.study.reward_hours) $scope.hours = true;
             $scope.resetMoney = function(){
                 $scope.study.reward_money = null;
-            }
+            };
             $scope.resetVoucher = function(){
                 $scope.study.reward_voucher = null;
-            }
+            };
             $scope.resetHours = function(){
                 $scope.study.reward_hours = null;
-            }
+            };
 
 
             $scope.removeAppointment = function () {
@@ -85,11 +85,11 @@ angular.module('studyDetails', ['ngRoute', 'ngMaterial'])
                         console.log("error saving changes");
                     });
                 $scope.editing = false;
-            }
+            };
 
             $scope.discardChanges = function () {
                 $scope.editing = false;
-            }
+            };
 
             $scope.editStudy = function () {
                 $scope.editing = true;

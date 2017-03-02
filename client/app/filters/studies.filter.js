@@ -58,4 +58,4 @@ angular.module('userStudy').filter('filterStudies', function() {
 
         return out;
     }
-})
+});

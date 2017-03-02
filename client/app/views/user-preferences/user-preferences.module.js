@@ -34,7 +34,7 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
             $scope.preferences.course = self.selectedItem;
             $scope.preferences.$save();
             console.log($scope.preferences);
-        }
+        };
 
         $scope.maxDate = new Date("January 1, 2010 00:00:00");
         $scope.minDate = new Date("January 1, 1900 00:00:00");
@@ -47,4 +47,4 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
             });
             return ret;
         }
-    }])
+    }]);

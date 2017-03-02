@@ -25,6 +25,7 @@ angular.module('userStudy', [
     'studyDetailsViewDirective',
     'studyDetailsEditDirective',
     'participateDialogDirective',
+    'ToastService',
     'AuthService',
     'register',
     'ngMaterial'
