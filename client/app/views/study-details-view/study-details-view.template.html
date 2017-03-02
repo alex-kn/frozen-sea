@@ -58,19 +58,20 @@
 
             <md-radio-group class="md-block" layout-gt-xs="row" ng-model="chosenReward">
 
-                <md-radio-button flex="100" flex-gt-xs="33" value="money" ng-show="study.reward.reward_money"
+                <md-radio-button flex="100" flex-gt-xs="33" value="reward_money" ng-show="study.reward.reward_money"
                                  aria-label="{{'CREATE_STUDY.MONEY_ARIA_LABEL' | translate}}">
                     {{study.reward.reward_money}}
                     {{'STUDY_DETAILS.CHOOSE_REWARD_MONEY' | translate}}
                 </md-radio-button>
 
-                <md-radio-button flex-xs="100" flex-gt-xs="33" value="voucher" ng-show="study.reward.reward_voucher"
+                <md-radio-button flex-xs="100" flex-gt-xs="33" value="reward_voucher"
+                                 ng-show="study.reward.reward_voucher"
                                  aria-label="{{'CREATE_STUDY.VOUCHER_ARIA_LABEL' | translate}}">
                     {{study.reward.reward_voucher}}
                     {{'STUDY_DETAILS.CHOOSE_REWARD_VOUCHER' | translate}}
                 </md-radio-button>
 
-                <md-radio-button flex-xs="100" flex-gt-xs="33" value="hours" ng-show="study.reward.reward_hours"
+                <md-radio-button flex-xs="100" flex-gt-xs="33" value="reward_hours" ng-show="study.reward.reward_hours"
                                  aria-label="{{'CREATE_STUDY.HOURS_ARIA_LABEL' | translate}}">
                     {{study.reward.reward_hours}}
                     {{'STUDY_DETAILS.CHOOSE_REWARD_HOURS' | translate}}
@@ -84,28 +85,32 @@
         <!-- START add dates -->
         <md-content class="md-padding">
 
-            <h2 class="md-headline">{{'STUDY_DETAILS.DATES' | translate}}</h2>
+            <div layout="column" ng-repeat="day in datesGroupedByDay">
 
-            <div layout="row" layout-xs="column" layout-wrap>
 
-                <md-card ng-repeat="appointment in appointments" flex="100" flex-gt-xs="30" flex-gt-sm="20">
-                    <md-card-title layout="column">
-                        <span class="md-headline">{{ appointment.startDate | date:'dd.MM.yy' }}</span>
-                        <span class="md-subhead">{{ appointment.startDate | date: 'HH:mm'}} -
-                            {{ appointment.endDate | date: 'HH:mm'}}</span>
-                    </md-card-title>
-                    <md-card-content>
-                        <p>{{ appointment.location }} </p>
-                    </md-card-content>
-                    <md-card-action>
-                        <md-button class="md-accent" ng-click="participate(appointment)">{{'STUDY_DETAILS.PARTICIPATE' |
-                            translate}}
-                        </md-button>
-                    </md-card-action>
-                </md-card>
+                <h2 class="md-headline">{{ day[1].startDate | date: 'fullDate'}}</h2>
 
+                <div layout="row" layout-xs="column" layout-wrap>
+
+                    <md-card ng-repeat="date in day" flex="100" flex-gt-xs="30" flex-gt-sm="20">
+                        <md-card-title layout="column">
+                            <span class="md-headline">{{ date.startDate | date:'dd.MM.yy' }}</span>
+                            <span class="md-subhead">{{ date.startDate | date: 'HH:mm'}} -
+                            {{ date.endDate | date: 'HH:mm'}}</span>
+                        </md-card-title>
+                        <md-card-content>
+                            <p>{{ date.location }} </p>
+                        </md-card-content>
+                        <md-card-action>
+                            <md-button class="md-accent" ng-click="participate(date)">
+                                {{'STUDY_DETAILS.PARTICIPATE' |
+                                translate}}
+                            </md-button>
+                        </md-card-action>
+                    </md-card>
+
+                </div>
             </div>
-
         </md-content>
         <!-- END add dates -->
 

@@ -41,7 +41,7 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                 if ($scope.study.reward.reward_hours) $scope.hours = true;
                 $scope.resetMoney = function () {
                     $scope.study.reward.reward_money = null;
-                }
+                };
                 $scope.resetVoucher = function () {
                     $scope.study.reward.reward_voucher = null;
                 }
