@@ -2,14 +2,21 @@
 'use strict';
 
 angular.module('editProfile', ['ngRoute', 'ngMaterial'])
-    .controller('editProfileController', ['$scope', 'Subuser','$route', '$mdToast', function ($scope, User, $route, $mdToast) {
+    .controller('editProfileController', ['$scope', 'Subuser','$route', '$mdToast','LoopBackAuth','Participation',
+        function ($scope, User, $route, $mdToast, LoopBackAuth, Participation) {
         $scope.title = 'Profil bearbeiten';
         $scope.input = {};
         $scope.error = {};
+        $scope.myRewards = {};
+        getRewards();
+
         $scope.toggleActive = {
             Username: false,
             Passwort: false
         };
+
+
+
         $scope.currentUserData = {
             Username:'',
             //Email:'',
@@ -53,7 +60,7 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
             var comparePassword = $scope.input.newPassword == $scope.input.repeatNewPassword;
 
             if(!comparePassword){
-                $scope.error.newPassword = 'Neues Passwort stimmt nicht überein.';
+                $scope.error.newPassword = "Neues Passwort stimmt nicht überein.";
             } else {
                 $scope.error.newPassword = '';
             }
@@ -73,6 +80,32 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
             });
 
         };
+
+
+        function getRewards(){
+            var rewardMoney = 0;
+            var rewardVouchers = 0;
+            var rewardHours = 0;
+
+            Participation.find({
+                filter: {
+                    where: {
+                        participantId: LoopBackAuth.currentUserId
+                    }
+                }
+            }, function(userParticipations){
+                for(var i = 0; i < userParticipations.length; i++) {
+//TODO: Was ist status für abgeschlossene studien?
+                    if (userParticipations[i].status == 'reserved') {
+                        rewardMoney += userParticipations[i].reward_money;
+                        rewardVouchers += userParticipations[i].reward_voucher;
+                        rewardHours += userParticipations[i].reward_hours;
+                    }
+                }
+                $scope.myRewards = {money: rewardMoney, vouchers: rewardVouchers, hours: rewardHours};
+            });
+        }
+
 
         /**
          * Show toast

@@ -1,7 +1,7 @@
 angular
     .module('myStudies', ['ngRoute', 'ngMaterial'])
-    .controller('MyStudiesController', ['$scope', 'Study', 'Participation', 'Subuser', 'LoopBackAuth',
-        function ($scope, Study, Participation, Subuser, LoopBackAuth) {
+    .controller('MyStudiesController', ['$scope', 'Study', 'Participation', 'Subuser', 'LoopBackAuth', '$translate','$location',
+        function ($scope, Study, Participation, Subuser, LoopBackAuth, $translate, $location) {
 
             $scope.title = 'Meine Studien';
             $scope.myStudies = [];
@@ -9,7 +9,7 @@ angular
             Participation.find({
                 filter: {
                     where: {
-                        subuserId: LoopBackAuth.currentUserId
+                        participantId: LoopBackAuth.currentUserId
                     }
                 }
             }, function(userParticipations){
@@ -24,6 +24,10 @@ angular
                     }
                 });
             });
+
+            $scope.showDetails = function (study, ev) {
+                $location.path('/study-details').search({'study': study});
+            };
 
             function removeDuplicates(array, property) {
                 var new_array = [];

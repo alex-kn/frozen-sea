@@ -13,23 +13,24 @@ angular
                 switch(testThis) {
                     case "reward_money":
                         if(userChoice == "reward_money") {
-                            return $scope.currentStudy.reward_money;
+                            return $scope.currentStudy.reward.reward_money;
                         }
                         break;
                     case "reward_voucher":
                         if(userChoice == "reward_voucher") {
-                            return $scope.currentStudy.reward_voucher;
+                            return $scope.currentStudy.reward.reward_voucher;
                         }
                         break;
                     case "reward_hours":
                             if(userChoice == "reward_hours") {
-                                return $scope.currentStudy.reward_hours;
+                                return $scope.currentStudy.reward.reward_hours;
                             }
                 }
                 return 0
             };
 
             $scope.participate = function(studyDate, reward) {
+                console.log(studyDate.id);
                 Participation.create(
                     {
                         "status": "reserved",
@@ -38,7 +39,6 @@ angular
                         "reward_hours": mapReward("reward_hours", reward),
                         "studyId": $scope.currentStudy.id,
                         "studyDateId": studyDate.id,
-                        "subuserId": LoopBackAuth.currentUserId,
                         "participantId": LoopBackAuth.currentUserId
                     }, function() {
                         //showToast('You reserved' + $filter('date')(studyDate, 'shortDate') +  '. Wait on the confirmation by the creator of the study.', 'success');

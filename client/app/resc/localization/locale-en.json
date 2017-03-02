@@ -36,14 +36,14 @@
     "DESCRIPTION_PLACEHOLDER": "Description",
     "DESCRIPTION_ARIA_LABEL": "Description",
     "DESCRIPTION_MESSAGE": "Please enter a meaningful description",
-    "DURATION": "Duration",
-    "DURATION_PLACEHOLDER": "Duration",
-    "DURATION_ARIA_LABEL": "Duration",
+    "DURATION": "Duration in minutes",
+    "DURATION_PLACEHOLDER": "Duration in minutes",
+    "DURATION_ARIA_LABEL": "Duration in minutes",
     "DURATION_MESSAGE": "Please enter the duration of a study appointment",
     "LOCATION": "Location",
-    "LOCATION_PLACEHOLDER": "Location",
-    "LOCATION_ARIA_LABEL": "Location",
-    "LOCATION_MESSAGE": "Please enter the location of the study",
+    "LOCATION_PLACEHOLDER": "Location(s)",
+    "LOCATION_ARIA_LABEL": "Location(s)",
+    "LOCATION_MESSAGE": "Please enter all locations of the study",
     "KEYWORDS_PLACEHOLDER": "Keywords",
     "KEYWORDS_SECONDARY_PLACEHOLDER": "e.g. Android",
     "KEYWORDS_ARIA_LABEL": "Keywords",
@@ -84,7 +84,7 @@
     "ADD_APPOINTMENT_BUTTON": "Add appointment",
     "APPOINTMENT_CARD_DELETE_ARIA_LABEL": "Remove appointment",
     "APPOINTMENT_CARD_TIME": "Time",
-    "APPOINTMENT_CARD_DURATION": "Duration",
+    "APPOINTMENT_CARD_DURATION": "Duration in minutes",
     "REQUIREMENTS_TAB_LABEL": "Requirements",
     "REQUIREMENTS_FOR_STUDY": "Requirements for ",
     "REQUIREMENTS_DESCRIPTION": "Please enter the requirements that students must fulfill to participate in your study. Based on these requirements we will show your study only to suitable applicants.",
@@ -106,12 +106,13 @@
     "GENDER_ARIA_LABEL": "Gender",
     "MALE": "Male",
     "FEMALE": "Female",
-    "HEIGHT": "Height",
-    "HEIGHT_ARIA_LABEL": "Height",
+    "HEIGHT": "Minimum height",
+    "HEIGHT_ARIA_LABEL": "Minimum height",
     "VISUAL_AID": "Visual aid",
     "VISUAL_AID_ARIA_LABEL": "Visual aid",
     "GLASSES": "Glasses",
     "CONTACTS": "Contact lenses",
+    "NO_VISUAL_AID": "No visual aid",
     "HANDEDNESS": "Handedness",
     "HANDEDNESS_ARIA_LABEL": "Handedness",
     "RIGHTY": "Right hander",
@@ -124,7 +125,9 @@
     "WINDOWS": "Windows Phone",
     "CREATE_STUDY_BUTTON": "Create study",
     "CANCEL_STUDY_BUTTON": "Cancel",
-    "REQUIRED_FIELDS": "Please enter all the required information."
+    "REQUIRED_FIELDS": "Please enter all the required information.",
+    "ENGLISH": "English",
+    "GERMAN": "German"
   },
   "HOME": {
   },
@@ -161,8 +164,9 @@
     "MY_PREFERENCES": "My Preferences",
     "ARCHIVE" : "Archive",
     "OPEN_MENU" : "Open user menu",
-    "PROFILE_EDIT": "User profile",
-    "LOGOUT": "Sign out"
+    "PROFILE_EDIT": "User Profile",
+    "LOGOUT": "Sign out",
+    "MY_STUDIES": "My Studies"
   },
   "STUDY_LIST": {
     "TITLE" : "Studies",
@@ -180,6 +184,32 @@
     "DETAILS" : "Details"
   },
   "STUDY_DETAILS": {
-    "DESCRIPTION" : "Description"
+    "DESCRIPTION" : "Description",
+    "UPDATE_STUDY_BUTTON" : "Save Changes"
+  },
+  "PARTICIPATION_DIALOG": {
+    "CANCEL": "Cancel",
+    "PARTICIPATE": "Participate",
+    "PARTICIPATE_IN": "Participate in ",
+    "DURATION": "Duration: ",
+    "MIN": "min",
+    "LOCATION": "Location(s): ",
+    "PICK": "Pick a reward: ",
+    "MONEY": "Money",
+    "VOUCHER": "Amazon voucher",
+    "VPS": "Experiment hours",
+    "PICK_DATE": "Choose a date: "
+  },
+  "EDIT_PROFILE": {
+    "PASSWORD" : "Password",
+    "REWARDS" : "Rewards",
+    "OLD_PASSWORD" :"Old password",
+    "NEW_PASSWORD" :"New password",
+    "NEW_PASSWORD_REPEAT" :"Repeat new password",
+    "NEW_USERNAME" :"New username",
+    "CHANGE" :"Change",
+    "OLD_PASSWORD_NOMATCH" :"Old password doesn't match.",
+    "NEW_PASSWORD_NOMATCH" :"New password doesn't match.",
+    "USERNAME_EXISTS" :"Username already exists."
   }
 }

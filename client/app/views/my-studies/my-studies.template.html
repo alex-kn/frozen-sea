@@ -10,7 +10,7 @@
         <div class="md-toolbar-tools" flex-offset-gt-sm="15">
             <h2 class="md-display-3">
                 <i class="material-icons">bubble_chart</i>
-                {{title}}
+                {{'NAVBAR.MY_STUDIES' | translate}}
             </h2>
         </div>
     </md-toolbar>
@@ -30,14 +30,21 @@
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">{{ study.title }}</span>
-                        <span class="md-subhead">{{study.startDate | date: 'short'}} - {{study.endDate | date: 'short'}}</span>
+                        <div layout-gt-sm="row" layout="column" layout-align="start start">
+                            <span flex-gt-sm="25" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">date_range</i>{{study.startDate | date:'dd.MM.yy'}} - {{study.endDate | date:'dd.MM.yy'}}</span>
+                            <span flex-gt-sm="20" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">timelapse</i>{{study.duration}} {{'STUDY_LIST.DURATION' | translate}}</span>
+                            <span flex></span>
+                            <span flex-sm="20" flex-gt-sm="10" ng-if="study.reward.reward_money != null" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">attach_money</i>{{ study.reward.reward_money }}€</span>
+                            <span flex-sm="20" flex-gt-sm="10" ng-if="study.reward.reward_voucher != null" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">pages</i>{{ study.reward.reward_voucher }}€</span>
+                            <span flex-sm="20" flex-gt-sm="15" ng-if="study.reward.reward_hours != null" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">access_time</i>{{ study.reward.reward_hours }} {{'STUDY_LIST.REWARD_HOURS' | translate}}</span>
+                        </div>
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-content>
                     {{ study.description }}
                 </md-card-content>
                 <md-card-actions layout="row" layout-align="end center">
-                    <md-button>Details</md-button>
+                    <md-button ng-click="showDetails(study)">{{'STUDY_LIST.DETAILS' | translate}}</md-button>
                 </md-card-actions>
             </md-card>
         </div>

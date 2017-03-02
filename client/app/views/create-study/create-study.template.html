@@ -71,7 +71,7 @@
 
                             <md-input-container class="md-block" flex-gt-xs="30">
                                 <input type="number" required aria-label="{{'CREATE_STUDY.DURATION_ARIA_LABEL' | translate}}" ng-model="study.duration"
-                                       name="duration" placeholder="{{'CREATE_STUDY.DESCRIPTION_PLACEHOLDER' | translate}}" md-select-on-focus>
+                                       name="duration" placeholder="{{'CREATE_STUDY.DURATION_PLACEHOLDER' | translate}}" md-select-on-focus>
 
                                 <div ng-messages="createStudyForm.duration.$error">
                                     <div ng-message="required">{{'CREATE_STUDY.DURATION_MESSAGE' | translate}}</div>
@@ -79,8 +79,8 @@
                             </md-input-container>
 
                             <md-chips class="md-block" style="margin-top: 1px" flex-gt-xs="70"
-                                      secondary-placeholder="z.B. Android" aria-label="{{'CREATE_STUDY.KEYWORDS_ARIA_LABEL' | translate}}" placeholder="{{'CREATE_STUDY.KEYWORDS_PLACEHOLDER' | translate}}"
-                                      ng-model="study.tags"
+                                      secondary-placeholder="{{'CREATE_STUDY.KEYWORDS_ARIA_LABEL' | translate}}" aria-label="{{'CREATE_STUDY.KEYWORDS_ARIA_LABEL' | translate}}" placeholder="{{'CREATE_STUDY.KEYWORDS_PLACEHOLDER' | translate}}"
+                                      ng-model="study.keywords"
                                       readonly="ctrl.readonly"
                                       md-removable="ctrl.removable">
                             </md-chips>
@@ -88,16 +88,18 @@
                         </div>
 
                         <div layout-gt-xs="row">
+                            <md-chips class="md-block" style="margin-top: 1px" flex-gt-xs="100"
+                                      secondary-placeholder="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}" aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}" placeholder="{{'CREATE_STUDY.LOCATION_PLACEHOLDER' | translate}}"
+                                      ng-model="study.locations"
+                                      readonly="ctrl.readonly"
+                                      md-removable="ctrl.removable">
+                            </md-chips>
 
-                            <md-input-container class="md-block" flex-gt-xs="100">
-                                <label>{{'CREATE_STUDY.LOCATION' | translate}}</label>
-                                <input type="text" required ng-model="study.location" name="studyLocation"
-                                       aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}" placeholder="{{'CREATE_STUDY.LOCATION_PLACEHOLDER' | translate}}" md-select-on-focus>
 
-                                <div ng-messages="createStudyForm.studyLocation.$error">
-                                    <div ng-message="required">{{'CREATE_STUDY.LOCATION_MESSAGE' | translate}}</div>
-                                </div>
-                            </md-input-container>
+                            <div ng-messages="createStudyForm.studyLocation.$error">
+                                <div ng-message="required" ng-hide="true">{{'CREATE_STUDY.LOCATION_MESSAGE' | translate}}</div>
+                            </div>
+
 
                         </div>
 
@@ -319,52 +321,60 @@
 
                             </div>
 
-                            <div layout-gt-xs="row" flex="100" layout-align="start center">
 
-                                <div flex-gt-xs="25" flex="100">
+                            <!--
+<div layout-gt-xs="row" flex="100" layout-align="start center">
 
-                                    <md-switch ng-model="preferencesNationality" aria-label="{{'CREATE_STUDY.NATIONALITY_ARIA_LABEL' | translate}}"
-                                               ng-true-value="'Ja'" ng-false-value="'Nein'">
-                                        {{'CREATE_STUDY.NATIONALITY' | translate}}: {{ preferencesNationality }}
-                                    </md-switch>
+<div flex-gt-xs="25" flex="100">
 
+
+
+<md-switch ng-model="preferencesNationality" aria-label="{{'CREATE_STUDY.NATIONALITY_ARIA_LABEL' | translate}}"
+           ng-true-value="'Ja'" ng-false-value="'Nein'">
+    {{'CREATE_STUDY.NATIONALITY' | translate}}: {{ preferencesNationality }}
+</md-switch>
+
+
+</div>
+
+<md-input-container flex-gt-xs="75" flex="100" ng-if="preferencesNationality === 'Ja'">
+<label>{{'CREATE_STUDY.NATIONALITY' | translate}}</label>
+<md-select name="nationality" ng-model="preferences.nationality">
+    <md-option value="1">Deutschland</md-option>
+    <md-option value="2">United States of America</md-option>
+    <md-option value="3">Zimbabwe</md-option>
+</md-select>
+</md-input-container>
+
+</div>
+-->
+                                    <div layout-gt-xs="row" flex="100" layout-align="start center">
+
+                                        <div flex-gt-xs="25" flex="100">
+
+                                            <md-switch ng-model="preferencesLanguage" aria-label="{{'CREATE_STUDY.LANGUAGE_ARIA_LABEL' | translate}}" ng-true-value="'Ja'"
+                                                       ng-false-value="'Nein'">
+                                                {{'CREATE_STUDY.LANGUAGE' | translate}}: {{ preferencesLanguage }}
+                                            </md-switch>
+
+                                        </div>
+
+                                        <div flex-gt-xs="75" flex="100" ng-if="preferencesLanguage === 'Ja'">
+
+                                            <div style="margin-top: 10px">
+
+                                                <md-checkbox ng-model="preferences.english">
+                                                    {{'CREATE_STUDY.ENGLISH' | translate}}
+                                                </md-checkbox>
+                                                <md-checkbox ng-model="preferences.german">
+                                                    {{'CREATE_STUDY.GERMAN' | translate}}
+                                                </md-checkbox>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <md-input-container flex-gt-xs="75" flex="100" ng-if="preferencesNationality === 'Ja'">
-                                    <label>{{'CREATE_STUDY.NATIONALITY' | translate}}</label>
-                                    <md-select name="nationality" ng-model="preferences.nationality">
-                                        <md-option value="1">Deutschland</md-option>
-                                        <md-option value="2">United States of America</md-option>
-                                        <md-option value="3">Zimbabwe</md-option>
-                                    </md-select>
-                                </md-input-container>
-
                             </div>
-
-                            <div layout-gt-xs="row" flex="100" layout-align="start center">
-
-                                <div flex-gt-xs="25" flex="100">
-
-                                    <md-switch ng-model="preferencesLanguage" aria-label="{{'CREATE_STUDY.LANGUAGE_ARIA_LABEL' | translate}}" ng-true-value="'Ja'"
-                                               ng-false-value="'Nein'">
-                                        {{'CREATE_STUDY.LANGUAGE' | translate}}: {{ preferencesLanguage }}
-                                    </md-switch>
-
-                                </div>
-
-                                <md-input-container flex-gt-xs="75" flex="100" ng-if="preferencesLanguage === 'Ja'">
-                                    <label>{{'CREATE_STUDY.LANGUAGE' | translate}}</label>
-                                    <md-select name="language" ng-model="preferences.language">
-                                        <md-option value="1">Englisch</md-option>
-                                        <md-option value="2">Deutsch</md-option>
-                                        <md-option value="3">Arabisch</md-option>
-                                    </md-select>
-                                </md-input-container>
-
-                            </div>
-
                         </div>
-
                     </md-content>
                     <!-- END general requirements -->
 
@@ -451,6 +461,9 @@
                                         </md-checkbox>
                                         <md-checkbox ng-model="preferences.contacts">
                                             {{'CREATE_STUDY.CONTACTS' | translate}}
+                                        </md-checkbox>
+                                        <md-checkbox ng-model="preferences.no_visual_aid">
+                                            {{'CREATE_STUDY.NO_VISUAL_AID' | translate}}
                                         </md-checkbox>
 
                                     </div>

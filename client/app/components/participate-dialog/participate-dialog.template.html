@@ -1,34 +1,34 @@
 <link href="components/participate-dialog/participate-dialog.style.css" rel="stylesheet">
 <md-dialog-actions>
-    <md-button ng-click="close()">Cancel</md-button>
-    <md-button ng-click="participate(data.date, data.reward)" class="md-accent md-raised">Participate</md-button>
+    <md-button ng-click="close()">{{'PARTICIPATION_DIALOG.CANCEL' | translate}}</md-button>
+    <md-button ng-click="participate(data.date, data.reward)" class="md-accent md-raised">{{'PARTICIPATION_DIALOG.PARTICIPATE' | translate}}</md-button>
 </md-dialog-actions>
 
 <md-dialog-content>
-    <div class="small-container headline">Participate in {{currentStudy.title}}</div>
+    <div class="small-container headline">{{'PARTICIPATION_DIALOG.PARTICIPATE_IN' | translate}} {{currentStudy.title}}</div>
 
         <md-divider></md-divider>
 
     <div class="small-container sub-headline">
-        Duration: {{currentStudy.duration}} min <br>
-        Location: {{currentStudy.location}}
+        {{'PARTICIPATION_DIALOG.DURATION' | translate}} {{currentStudy.duration}} {{'PARTICIPATION_DIALOG.MIN' | translate}} <br>
+        {{'PARTICIPATION_DIALOG.LOCATION' | translate}} {{currentStudy.locations_array.join(",  ")}}
     </div>
 
     <md-divider></md-divider>
 
     <div class="small-container">
-        <div class="sub-headline">Pick a reward:</div>
+        <div class="sub-headline">{{'PARTICIPATION_DIALOG.PICK' | translate}}</div>
         <md-radio-group ng-model="data.reward" layout="row" layout-xs="column">
-            <md-radio-button value="reward_money" ng-show="currentStudy.reward_money > 0"> Money</md-radio-button>
-            <md-radio-button value="reward_voucher" ng-show="currentStudy.reward_voucher > 0"> Amazon gift card</md-radio-button>
-            <md-radio-button value="reward_hours" ng-show="currentStudy.reward_hours > 0"> Experiment hours</md-radio-button>
+            <md-radio-button value="reward_money" ng-show="currentStudy.reward.reward_money > 0"> {{'PARTICIPATION_DIALOG.MONEY' | translate}}: {{currentStudy.reward.reward_money}}€</md-radio-button>
+            <md-radio-button value="reward_voucher" ng-show="currentStudy.reward.reward_voucher > 0"> {{'PARTICIPATION_DIALOG.VOUCHER' | translate}}: {{currentStudy.reward.reward_voucher}}€</md-radio-button>
+            <md-radio-button value="reward_hours" ng-show="currentStudy.reward.reward_hours > 0"> {{'PARTICIPATION_DIALOG.VPS' | translate}}: {{currentStudy.reward.reward_hours}}</md-radio-button>
         </md-radio-group>
     </div>
 
     <md-divider></md-divider>
 
     <div class="small-container">
-        <div class="sub-headline">Pick a date:</div>
+        <div class="sub-headline">{{'PARTICIPATION_DIALOG.PICK_DATE' | translate}}</div>
         <md-radio-group ng-model="data.date" layout="row">
             <div ng-repeat="day in datesGroupedByDay" layout="column" layout-align="start start" class="time-row">
                 <div>{{day[1].startDate | date: "dd MMM"}}</div>

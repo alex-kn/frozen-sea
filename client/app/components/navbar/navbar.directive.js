@@ -18,7 +18,7 @@ angular.module('navBarDirective', [])
 
         $scope.goToEditProfile = function (){
             $location.path('/edit-profile');
-        }
+        };
 
         $scope.logout = function () {
             console.log('NavigationController: logout');

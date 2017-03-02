@@ -62,9 +62,17 @@ angular
                         var lastDay;
 
                         var tempDates = $scope.dates;
+
+                        tempDates.sort(function(a,b){
+                            // Turn your strings into dates, and then subtract them
+                            // to get a value that is either negative, positive, or zero.
+                            return new Date(b.startDate) - new Date(a.startDate);
+                        });
+
                         tempDates.reverse();
                         tempDates.forEach(function(date) {
                             day = $filter('date')(date.startDate, "shortDate");
+
                             if(lastDay == undefined) {
                                 lastDay = day;
                             }

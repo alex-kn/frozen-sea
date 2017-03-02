@@ -2,20 +2,61 @@
   "name": "Preference",
   "plural": "Preferences",
   "base": "PersistedModel",
+  "strict": true,
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "ios": {
-      "type": "Boolean",
-      "required": false,
-      "description": "User has iOS-Phone"
+    "birthDate": {
+      "type": "date"
     },
-    "android": {
-      "type": "Boolean",
+    "student": {
+      "type": "boolean",
+      "required": false
+    },
+    "gender": {
+      "type": "string",
+      "required": false
+    },
+    "matriculationNr": {
+      "type": "number"
+    },
+    "course": {
+      "type": "string"
+    },
+    "operatingSystem": {
+      "type": {
+        "android": "boolean",
+        "ios": "boolean",
+        "other": "boolean"
+      },
+      "required": false
+    },
+    "handedness": {
+      "type": "string",
       "required": false,
-      "description": "User has Android-Phone"
+      "description": "left, right, both"
+    },
+    "visualAid": {
+      "type": {
+        "glasses": "boolean",
+        "contactLenses": "boolean",
+        "none": "boolean"
+      },
+      "required": false
+    },
+    "language": {
+      "type": {
+        "english": "boolean",
+        "german": "boolean"
+      },
+      "required": false
+    },
+    "height": {
+      "type": "number",
+      "required": false,
+      "description": "in cm"
     }
   },
   "validations": [],

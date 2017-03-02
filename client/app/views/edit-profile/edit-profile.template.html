@@ -11,7 +11,7 @@
         <div class="md-toolbar-tools" flex-offset-gt-sm="15">
             <h2 class="md-display-3">
                 <i class="material-icons">bubble_chart</i>
-                {{title}}
+                {{'NAVBAR.PROFILE_EDIT' | translate}}
             </h2>
         </div>
     </md-toolbar>
@@ -20,7 +20,10 @@
         <md-list ng-repeat="(key, value) in currentUserData" >
             <md-list-item class="md-2-line">
                 <div class="md-list-item-text" layout="row" layout-align="center center">
-                    <span flex><b>{{key}}</b></span>
+                    <span flex><b>
+                        <div ng-show="key == 'Passwort'">{{'EDIT_PROFILE.PASSWORD' | translate}}</div>
+                        <div ng-show="key == 'Username'">{{key}}</div>
+                    </b></span>
                     <span flex></span>
                     <span flex>{{value}}</span>
                     <span flex></span>
@@ -35,34 +38,44 @@
                 <span flex></span>
                 <span flex>
                     <md-input-container >
-                        <input ng-model="input.name" required type="text" placeholder="Neuer Username">
-                        <div ng-show="error.username" class="error-message">{{error.username}}</div>
+                        <input ng-model="input.name" required type="text" placeholder="{{'EDIT_PROFILE.NEW_USERNAME' | translate}}">
+                        <div ng-show="error.username" class="error-message">{{'EDIT_PROFILE.USERNAME_EXISTS' | translate}}</div>
                     </md-input-container>
                    </span>
-                <span><md-button ng-disabled="!input.name" ng-click="changeUsername()">Ändern</md-button></span>
+                <span><md-button ng-disabled="!input.name" ng-click="changeUsername()">{{'EDIT_PROFILE.CHANGE' | translate}}</md-button></span>
             </md-list-item>
             <md-list-item ng-show="toggleActive[key] && key == 'Passwort'">
                 <span flex>
                     <md-input-container >
-                        <input ng-model="input.oldPassword" required type="password" placeholder="Altes Passwort">
-                        <div ng-show="error.oldPassword" class="error-message">{{error.oldPassword}}</div>
+                        <input ng-model="input.oldPassword" required type="password" placeholder="{{'EDIT_PROFILE.OLD_PASSWORD' | translate}}">
+                        <div ng-show="error.oldPassword" class="error-message">{{'EDIT_PROFILE.OLD_PASSWORD_NOMATCH' | translate}}</div>
                     </md-input-container>
                 </span>
                 <span flex>
                     <md-input-container >
-                        <input ng-model="input.newPassword" required type="password" placeholder="Neues Passwort">
+                        <input ng-model="input.newPassword" required type="password" placeholder="{{'EDIT_PROFILE.NEW_PASSWORD' | translate}}">
                     </md-input-container>
                 </span>
                 <span flex>
                     <md-input-container >
-                        <input ng-model="input.repeatNewPassword" required type="password" placeholder="Neues Passwort wiederholen">
-                        <div ng-show="error.newPassword" class="error-message">{{error.newPassword}}</div>
+                        <input ng-model="input.repeatNewPassword" required type="password" placeholder="{{'EDIT_PROFILE.NEW_PASSWORD_REPEAT' | translate}}">
+                        <div ng-show="error.newPassword" class="error-message">{{'EDIT_PROFILE.NEW_PASSWORD_NOMATCH' | translate}}</div>
                     </md-input-container>
                 </span>
-                <span><md-button ng-click="changePassword()" ng-disabled="!(input.oldPassword && input.newPassword && input.repeatNewPassword)">Ändern</md-button></span>
+                <span><md-button ng-click="changePassword()" ng-disabled="!(input.oldPassword && input.newPassword && input.repeatNewPassword)">{{'EDIT_PROFILE.CHANGE' | translate}}</md-button></span>
             </md-list-item>
 
             <md-divider ng-if="!$last"></md-divider>
         </md-list>
+    </md-card>
+    <md-card flex-offset-gt-sm="20" flex-gt-sm="60" flex-offset-sm="100">
+        <md-list-item class="md-2-line">
+            <div class="md-list-item-text" layout="row" layout-align="center center">
+                <span flex><b>{{'EDIT_PROFILE.REWARDS' | translate}}</b></span>
+                    <span flex-sm="20" flex-gt-sm="10"><i class="material-icons" md-colors="{color: 'accent'}">attach_money</i>{{myRewards.money}}</span>
+                    <span flex-sm="20" flex-gt-sm="10"><i class="material-icons" md-colors="{color: 'accent'}">pages</i>{{myRewards.vouchers}}</span>
+                    <span flex-sm="20" flex-gt-sm="10"><i class="material-icons" md-colors="{color: 'accent'}">access_time</i>{{myRewards.hours}}</span>
+            </div>
+        </md-list-item>
     </md-card>
 </md-content>
