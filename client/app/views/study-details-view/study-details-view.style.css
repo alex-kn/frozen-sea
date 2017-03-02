@@ -81,7 +81,8 @@ md-toolbar.toolbar {
     margin-right: .5rem; }
 
 md-divider {
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  margin-top: 1rem; }
 
 md-card span {
   margin-top: .5rem; }

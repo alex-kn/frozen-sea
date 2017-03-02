@@ -195,7 +195,8 @@
     "CHOOSE_REWARD_HOURS" : "Versuchspersonenstunden",
     "PARTICIPATE" : "Teilnehmen",
     "MINUTES" : "Minuten",
-    "DELETE_STUDY" : "Studie löschen"
+    "DELETE_STUDY" : "Studie löschen",
+    "CONFIRM_PARTICIPANT" : "Teilnehmer bestätigen"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

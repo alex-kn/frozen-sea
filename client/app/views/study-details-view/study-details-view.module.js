@@ -34,14 +34,15 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
                         //for testing
                         response.location = "Klinikum Großhadern";
-                        response.minParticipants = 1;
-                        response.maxParticipants = 6;
-                        response.deadline = 24;
                         //--
 
-                        StudyDate.participations.count({id: response.id},function (res) {
-                            response.participants = res.count;
-                        });
+                        if($scope.isOwner){
+
+                            StudyDate.participations({id: response.id}, function (res){
+                                response.participations = res;
+                            })
+                        }
+
 
                         return response;
                     }));
@@ -108,7 +109,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.participate = function (studyDate) {
                 //TODO add reward and studyDate
                 Participation.create({
-                    status: "reserved",
+                    status: "pending",
                     reward_money: mapReward("reward_money", $scope.chosenReward),
                     reward_voucher: mapReward("reward_voucher", $scope.chosenReward),
                     reward_hours: mapReward("reward_hours", $scope.chosenReward),
