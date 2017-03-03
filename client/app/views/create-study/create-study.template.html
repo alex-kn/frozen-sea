@@ -87,7 +87,7 @@
 
                         </div>
 
-                        <div layout-gt-xs="row">
+                        <div layout-gt-xs="row" style="margin-top: -1rem;">
                             <md-chips class="md-block" style="margin-top: 1px" flex-gt-xs="100"
                                       secondary-placeholder="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}" aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}" placeholder="{{'CREATE_STUDY.LOCATION_PLACEHOLDER' | translate}}"
                                       ng-model="study.locations"
@@ -103,7 +103,7 @@
 
                         </div>
 
-                        <div layout-gt-xs="row">
+                        <div layout-gt-xs="row" style="margin-top: 1rem;">
 
                             <md-input-container flex="100" flex-xs="100">
                                 <label>{{'CREATE_STUDY.ADVISER' | translate}}</label>
@@ -227,6 +227,27 @@
                                 <md-datepicker ng-model="appointment.date" md-min-date="study.startDate"></md-datepicker>
                             </md-input-container>
 
+                        </div>
+
+                        <div layout-gt-xs="row" layout-wrap>
+
+                            <md-input-container class="md-block margin-btm-0" flex="100" flex-gt-xs="33">
+                                <label>{{'CREATE_STUDY.APPOINTMENT_LOCATION' | translate}}</label>
+                                <md-select name="appointment-location" ng-model="appointment.location" aria-label="{{'CREATE_STUDY.APPOINTMENT_LOCATION' | translate}}">
+                                    <md-option ng-repeat="location in study.locations" value="{{ location }}">{{ location }}</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container class="md-block margin-btm-0" flex="100" flex-gt-xs="33">
+                                <label>{{'CREATE_STUDY.APPOINTMENT_PARTICIPANTS' | translate}}</label>
+                                <input type="number" aria-label="{{'CREATE_STUDY.APPOINTMENT_PARTICIPANTS' | translate}}" ng-model="appointment.participants" placeholder="{{'CREATE_STUDY.APPOINTMENT_PARTICIPANTS' | translate}}" md-select-on-focus>
+                            </md-input-container>
+
+                            <md-input-container class="md-block margin-btm-0" flex="100" flex-gt-xs="33">
+                                <label>{{'CREATE_STUDY.APPOINTMENT_DEADLINE' | translate}}</label>
+                                <md-datepicker ng-model="appointment.deadline" md-max-date="study.startDate"></md-datepicker>
+                            </md-input-container>
+
                             <md-input-container class="md-block" flex="100" style="margin-top:0px">
                                 <md-button ng-click="addAppointment()"
                                            class="md-raised md-accent">{{'CREATE_STUDY.ADD_APPOINTMENT_BUTTON' | translate}}
@@ -237,17 +258,25 @@
 
                         <div layout="row" layout-xs="column" layout-wrap>
 
-                            <md-card ng-repeat="appointment in appointments" flex="100" flex-gt-xs="30" flex-gt-sm="20">
-                                <md-card-header style="padding-bottom: 0" layout="row" layout-align="end center">
+                            <md-card ng-repeat="appointment in appointments" flex="100" flex-gt-xs="33" flex-gt-sm="20">
+                                <md-card-header style>
+                                    <md-card-avatar>
+                                        <md-icon class="material-icons">today</md-icon>
+                                    </md-card-avatar>
+                                    <md-card-header-text>
+                                        <span class="md-title">{{ appointment.date | date:'dd.MM.yy' }}</span>
+                                        <span class="md-subhead">{{ appointment.time }}</span>
+                                    </md-card-header-text>
                                     <md-button ng-click="removeAppointment(item)" class="md-icon-button md-accent"
                                                aria-label="{{'CREATE_STUDY.APPOINTMENT_CARD_DELETE_ARIA_LABEL' | translate}}">
                                         <md-icon class="material-icons md-24 md-primary">close</md-icon>
                                     </md-button>
                                 </md-card-header>
-                                <md-card-content style="padding-top: 0" layou="row">
-                                    <h3 style="margin-top: 0">{{ appointment.date | date:'dd.MM.yy' }}</h3>
-                                    <p><strong>{{'CREATE_STUDY.APPOINTMENT_CARD_TIME' | translate}}</strong> {{ appointment.time | date:'HH:mm' }}</p>
-                                    <p><strong>{{'CREATE_STUDY.APPOINTMENT_CARD_DURATION' | translate}}</strong> {{ appointment.duration }} Minuten</p>
+                                <md-card-content layout="column">
+                                    <span ng-if="appointment.location" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">room</i>{{ appointment.location }}</span>
+                                    <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">timelapse</i>{{ study.duration }} {{'STUDY_DETAILS.MINUTES' | translate}}</span>
+                                    <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">group</i>{{ appointment.participants }} {{'CREATE_STUDY.APPOINTMENT_MAX_PARTICIPANTS' | translate}}</span>
+                                    <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">person_add</i>{{ appointment.deadline | date:'dd.MM.yy' }} </span>
                                 </md-card-content>
                             </md-card>
 

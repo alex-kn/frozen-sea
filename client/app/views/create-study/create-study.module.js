@@ -48,7 +48,10 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 date: $scope.study.startDate,
                 time: '08:30',
                 bufferTime: null,
-                duration: $scope.study.duration
+                duration: $scope.study.duration,
+                deadline: $scope.study.startDate,
+                location: null,
+                participants: 1
             };
 
             $scope.appointments = [];
@@ -123,7 +126,10 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                     'date': $scope.appointment.date,
                     'time': $scope.appointment.time,
                     'bufferTime': $scope.appointment.bufferTime,
-                    'duration': $scope.study.duration
+                    'duration': $scope.study.duration,
+                    location: $scope.appointment.location,
+                    participants: $scope.appointment.participants,
+                    deadline: $scope.appointment.deadline
                 };
 
                 $scope.appointments.unshift(appointment);
@@ -204,7 +210,11 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                                         status: 'available',
                                         startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate(),
                                             parseInt(time.split(":")[0]), parseInt(time.split(":")[1])),
-                                        duration: $scope.appointments[i].duration
+                                        duration: $scope.appointments[i].duration,
+                                        deadline: $scope.appointment.deadline,
+                                        location: $scope.appointment.location,
+                                        maxParticipants: $scope.appointment.participants,
+                                        minParticipants: 0
                                     })
                                     .$promise
                                     .then(function (response) {

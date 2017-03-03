@@ -93,4 +93,10 @@ form .margin-btm-0 {
 form .mg-top-16 {
   margin-top: 1rem; }
 
+.align-items {
+  display: inline-flex;
+  margin-top: 1rem; }
+  .align-items i {
+    margin-right: 1rem; }
+
 /*# sourceMappingURL=create-study.style.css.map */
