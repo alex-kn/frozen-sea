@@ -45,14 +45,16 @@ md-toolbar.toolbar {
     top: 5.75rem;
     right: 22%; }
 
+.md-toast-content {
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: #fff !important; }
+
 .form-control {
   height: 2.5rem; }
 
 .container {
   padding: 1.5em; }
-
-.small-container {
-  padding: 0.5em; }
 
 .profile-card {
   background-color: #fafbfc;
@@ -103,19 +105,7 @@ md-toolbar.toolbar {
   .align-items i {
     margin-right: .5rem; }
 
-md-dialog-content h2 {
-  margin-left: 0.5rem;
-}
-
 md-card-title-text div {
   margin-top: 1rem; }
-
-.vertical-divider {
-  border-top-width: 0;
-  border-right-width: 1px;
-  border-right-style: solid;
-  height: 100%;
-  margin-right: 1rem;
-}
 
 /*# sourceMappingURL=study-list.style.css.map */

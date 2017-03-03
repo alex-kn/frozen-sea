@@ -28,3 +28,9 @@ md-toolbar.toolbar {
     right: 22%;
   }
 }
+
+.md-toast-content {
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: #fff !important;
+}
