@@ -201,7 +201,8 @@
     "PARTICIPATE" : "Teilnehmen",
     "MINUTES" : "Minuten",
     "DELETE_STUDY" : "Studie löschen",
-    "CONFIRM_PARTICIPANT" : "Teilnehmer bestätigen"
+    "CONFIRM_PARTICIPANT" : "Teilnehmer bestätigen",
+    "DECLINE_PARTICIPANT" : "Teilnehmer ablehnen"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

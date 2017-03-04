@@ -21,7 +21,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 $scope.study.startDate = new Date($scope.study.startDate);
                 $scope.study.endDate = new Date($scope.study.endDate);
                 $scope.isOwner = ($scope.study.ownerId == LoopBackAuth.currentUserId);
-                $scope.isOwner = true;
+                $scope.isOwner = false;
                 loadDates();
                 groupDatesByDay();
             });
@@ -41,7 +41,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                         participation.name = (r.username);
                                     });
                                 }));
-
 
                                 response.participations = res;
                                 response.participants = res.length;
@@ -120,7 +119,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
 
             $scope.participate = function (studyDate) {
-                //TODO add reward and studyDate
                 Participation.create({
                     status: "reserved",
                     reward_money: mapReward("reward_money", $scope.chosenReward),
@@ -138,6 +136,15 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     console.log(error);
                 });
 
+            };
+
+            $scope.declineParticipation = function (participation){
+
+            };
+
+            $scope.confirmParticipation = function (participation){
+                participation.status = "confirmed";
+                participation.$save();
             };
 
             $scope.editStudy = function () {

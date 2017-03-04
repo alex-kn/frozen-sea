@@ -102,7 +102,7 @@
                             <md-card-header-text>
                                 <span class="md-title">{{ date.startDate | date:'HH:mm' }} -
                                 {{ date.endDate | date: 'HH:mm'}}</span>
-                                <span ng-show="isOwner" class="md-subhead">{{date.participants}} / {{date.maxParticipants}}</span>
+                                <span class="md-subhead">{{date.participants}} / {{date.maxParticipants}}</span>
                             </md-card-header-text>
                         </md-card-header>
                         <md-card-content layout="column">
@@ -110,9 +110,23 @@
                             <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">timelapse</i>{{ date.duration }} {{'STUDY_DETAILS.MINUTES' | translate}}</span>
                             <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">room</i>{{ date.location }} </span>
                             <md-divider ng-show="isOwner"></md-divider>
+                            <md-progress-circular ng-show="isOwner && (date.participations == undefined)"
+                                                  class="md-accent" md-diameter="30px"
+                                                  md-mode="indeterminate"></md-progress-circular>
                             <div ng-show="isOwner" layout="column" layout-align="start start">
-                                <span ng-repeat="participation in date.participations" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">person</i>{{ participation.name }}</span>
-                                <span flex></span>
+                                <div ng-repeat="participation in date.participations" class="align-items" layout="row" layout-align="start center">
+                                    <span><i class="material-icons" md-colors="{color: 'accent'}">person</i></span>
+                                    <span>{{ participation.name }}</span>
+                                    <span flex></span>
+                                    <span ng-show="participation.status == 'reserved'"><md-button ng-click="confirmParticipation(participation)" class="md-icon-button md-accent"
+                                               aria-label="{{'STUDY_DETAILS.CONFIRM_PARTICIPANT' | translate}}">
+                                        <md-icon class="material-icons md-24 md-primary">check</md-icon>
+                                    </md-button></span>
+                                    <span ng-show="participation.status == 'reserved'"><md-button ng-click="declineParticipation(participation)" class="md-icon-button md-accent"
+                                               aria-label="{{'STUDY_DETAILS.DECLINE_PARTICIPANT' | translate}}">
+                                        <md-icon class="material-icons md-24 md-primary">close</md-icon>
+                                    </md-button></span>
+                                </div>
                             </div>
                         </md-card-content>
 
