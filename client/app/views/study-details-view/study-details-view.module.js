@@ -34,10 +34,29 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         response.participants = 0;
 
                         if($scope.isOwner){
-
                             StudyDate.participations({id: response.id}, function (res){
+
+                                $q.all(res.map(function (participation){
+                                    Participation.participant({id: participation.id},function(r){
+                                        participation.name = (r.username);
+                                    });
+                                }));
+
+
                                 response.participations = res;
+                                response.participants = res.length;
+
+                                if(response.participants >= response.maxParticipants){
+                                    response.status = "reserved";
+                                }
                             })
+                        }else{
+                            StudyDate.participations.count({id: response.id},function (res){
+                                response.participants = res.count;
+                                if(response.participants >= response.maxParticipants){
+                                    response.status = "reserved";
+                                }
+                            });
                         }
 
 
@@ -47,7 +66,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             }
 
 
-
             function groupDatesByDay(){
 
                 $scope.datesGroupedByDay = [];
@@ -55,15 +73,13 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 var day;
                 var lastDay;
 
-                var tempDates = $scope.appointments;
-
                 $scope.appointments.$promise.then(function(res){
+
                     res.sort(function(a,b){
                         return a.startDate - b.startDate;
 
                     });
                     $q.all(res.map(function (date){
-
                         day = $filter('date')(date.startDate, "shortDate");
 
                         if(lastDay == undefined) {

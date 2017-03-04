@@ -85,27 +85,36 @@
         <!-- START add dates -->
         <md-content class="md-padding">
 
-            <div layout="column" ng-repeat="day in datesGroupedByDay">
+            <div ng-repeat="day in datesGroupedByDay">
 
+                <md-divider></md-divider>
 
-                <h2 class="md-headline">{{ day[1].startDate | date: 'fullDate'}}</h2>
+                <h2 class="md-headline align-items"><i class="material-icons" md-colors="{color: 'accent'}">today</i>{{ day[1].startDate | date: 'fullDate'}}</h2>
 
                 <div layout="row" layout-xs="column" layout-wrap>
 
-                    <md-card ng-repeat="date in day" flex="100" flex-gt-xs="45" flex-gt-sm="30" layout="column">
-                        <md-card-title layout="column">
-                            <span class="md-headline">{{ date.startDate | date:'HH:mm' }} -
+                    <md-card ng-repeat="date in day" flex="100" flex-gt-xs="45" flex-gt-sm="30">
+                        <md-card-header style>
+                            <md-card-avatar>
+                                <md-icon ng-show="date.status==('reserved' || 'finished')" class="material-icons">assignment_turned_in</md-icon>
+                                <md-icon ng-show="date.status=='available'" class="material-icons">assignment</md-icon>
+                            </md-card-avatar>
+                            <md-card-header-text>
+                                <span class="md-title">{{ date.startDate | date:'HH:mm' }} -
                                 {{ date.endDate | date: 'HH:mm'}}</span>
-                            <span class="md-subhead align-items"><i class="material-icons" md-colors="{color: 'accent'}">timelapse</i>{{ date.duration }} {{'STUDY_DETAILS.MINUTES' | translate}}</span>
-                            <md-divider></md-divider>
-                            <div layout="column" layout-align="start start">
-                                <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">room</i>{{ date.location }} </span>
-                                <md-divider ng-show="isOwner"></md-divider>
-                                <span ng-repeat="participation in date.participations" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">group</i>{{ participation.status }}</span>
-                                <span flex></span>
+                                <span ng-show="isOwner" class="md-subhead">{{date.participants}} / {{date.maxParticipants}}</span>
+                            </md-card-header-text>
+                        </md-card-header>
+                        <md-card-content layout="column">
 
+                            <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">timelapse</i>{{ date.duration }} {{'STUDY_DETAILS.MINUTES' | translate}}</span>
+                            <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">room</i>{{ date.location }} </span>
+                            <md-divider ng-show="isOwner"></md-divider>
+                            <div ng-show="isOwner" layout="column" layout-align="start start">
+                                <span ng-repeat="participation in date.participations" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">person</i>{{ participation.name }}</span>
+                                <span flex></span>
                             </div>
-                        </md-card-title>
+                        </md-card-content>
 
                         <md-card-action>
                             <md-button class="md-accent" ng-click="participate(date)" ng-hide="isOwner"

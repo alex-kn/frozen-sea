@@ -8,13 +8,28 @@
   }
 }
 
+h2 {
+  i {
+    font-size: xx-large !important;
+  }
+}
+
+
 md-divider {
   margin-bottom: 1rem;
   margin-top: 1rem;
 }
 
 md-card {
-  span {
-    margin-top: .5rem;
+  md-card-header {
+    padding-bottom: 0;
   }
+
+  md-card-content {
+
+    span {
+      margin-top: .5rem;
+    }
+  }
+
 }
