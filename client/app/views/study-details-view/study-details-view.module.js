@@ -21,6 +21,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 $scope.study.startDate = new Date($scope.study.startDate);
                 $scope.study.endDate = new Date($scope.study.endDate);
                 $scope.isOwner = ($scope.study.ownerId == LoopBackAuth.currentUserId);
+                $scope.isOwner = true;
                 loadDates();
                 groupDatesByDay();
             });
@@ -31,10 +32,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         response.startDate = new Date(response.startDate);
                         response.endDate = new Date(response.startDate.getTime() + response.duration*60000);
                         response.participants = 0;
-
-                        //for testing
-                        response.location = "Klinikum Großhadern";
-                        //--
 
                         if($scope.isOwner){
 
@@ -109,7 +106,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.participate = function (studyDate) {
                 //TODO add reward and studyDate
                 Participation.create({
-                    status: "pending",
+                    status: "reserved",
                     reward_money: mapReward("reward_money", $scope.chosenReward),
                     reward_voucher: mapReward("reward_voucher", $scope.chosenReward),
                     reward_hours: mapReward("reward_hours", $scope.chosenReward),
