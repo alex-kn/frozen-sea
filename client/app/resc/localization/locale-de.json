@@ -239,5 +239,9 @@
     "OLD_PASSWORD_NOMATCH" :"Altes Passwort stimmt nicht überein.",
     "NEW_PASSWORD_NOMATCH" :"Neues Passwort stimmt nicht überein.",
     "USERNAME_EXISTS" :"Username exisitiert bereits."
+  },
+  "TOAST": {
+    "PARTICIPATE": "Du hast dich für die Studie erfolgreich angemeldet",
+    "CREATE_STUDY":"Deine Studie wurde erfolgreich erstellt"
   }
 }
