@@ -21,45 +21,47 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 $scope.study.startDate = new Date($scope.study.startDate);
                 $scope.study.endDate = new Date($scope.study.endDate);
                 $scope.isOwner = ($scope.study.ownerId == LoopBackAuth.currentUserId);
-                $scope.isOwner = false;
+                $scope.isOwner = true;//TODO for testing
                 loadDates();
                 groupDatesByDay();
             });
 
             function loadDates() {
-                $scope.appointments = Study.dates({id: $scope.study.id}, function (response) {
-                    return $q.all(response.map(function (response) {
-                        response.startDate = new Date(response.startDate);
-                        response.endDate = new Date(response.startDate.getTime() + response.duration*60000);
-                        response.participants = 0;
+                $scope.appointments = Study.dates({id: $scope.study.id}, function (responseDateArray) {
+                    return $q.all(responseDateArray.map(function (responseDate) {
+                        responseDate.startDate = new Date(responseDate.startDate);
+                        responseDate.endDate = new Date(responseDate.startDate.getTime() + responseDate.duration*60000);
+                        responseDate.participants = 0;
 
                         if($scope.isOwner){
-                            StudyDate.participations({id: response.id}, function (res){
+                            responseDate.isLoading = true;
+                            StudyDate.participations({id: responseDate.id}, function (responseParticipationArray){
 
-                                $q.all(res.map(function (participation){
-                                    Participation.participant({id: participation.id},function(r){
-                                        participation.name = (r.username);
+                                $q.all(responseParticipationArray.map(function (responseParticipation){
+                                    Participation.participant({id: responseParticipation.id},function(r){
+                                        responseParticipation.name = (r.username);
+                                        responseDate.isLoading = false;
                                     });
                                 }));
 
-                                response.participations = res;
-                                response.participants = res.length;
+                                responseDate.participations = responseParticipationArray;
+                                responseDate.participants = responseParticipationArray.length;
 
-                                if(response.participants >= response.maxParticipants){
-                                    response.status = "reserved";
+                                if(responseDate.participants >= responseDate.maxParticipants){
+                                    responseDate.status = "reserved";
                                 }
                             })
                         }else{
-                            StudyDate.participations.count({id: response.id},function (res){
-                                response.participants = res.count;
-                                if(response.participants >= response.maxParticipants){
-                                    response.status = "reserved";
+                            StudyDate.participations.count({id: responseDate.id},function (responseParticipationArray){
+                                responseDate.participants = responseParticipationArray.count;
+                                if(responseDate.participants >= responseDate.maxParticipants){
+                                    responseDate.status = "reserved";
                                 }
                             });
                         }
 
 
-                        return response;
+                        return responseDateArray;
                     }));
                 });
             }
