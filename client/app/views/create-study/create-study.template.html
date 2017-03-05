@@ -258,7 +258,7 @@
 
                         <div layout="row" layout-xs="column" layout-wrap>
 
-                            <md-card ng-repeat="appointment in appointments" flex="100" flex-gt-xs="33" flex-gt-sm="20">
+                            <md-card ng-repeat="appointment in appointments" flex="100" flex-gt-xs="33">
                                 <md-card-header style>
                                     <md-card-avatar>
                                         <md-icon class="material-icons">today</md-icon>
@@ -267,7 +267,7 @@
                                         <span class="md-title">{{ appointment.date | date:'dd.MM.yy' }}</span>
                                         <span class="md-subhead">{{ appointment.time }}</span>
                                     </md-card-header-text>
-                                    <md-button ng-click="removeAppointment(item)" class="md-icon-button md-accent"
+                                    <md-button ng-click="removeAppointment(appointment)" class="md-icon-button md-accent"
                                                aria-label="{{'CREATE_STUDY.APPOINTMENT_CARD_DELETE_ARIA_LABEL' | translate}}">
                                         <md-icon class="material-icons md-24 md-primary">close</md-icon>
                                     </md-button>

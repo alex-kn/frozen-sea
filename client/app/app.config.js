@@ -76,7 +76,7 @@ angular
             }]});
 
             $translateProvider.preferredLanguage('de');
-
+            // Enable escaping of HTML
 
         }])
     .run(['$rootScope', '$location', 'LoopBackAuth', 'AuthService', function ($rootScope, $location, LoopBackAuth, AuthService) {

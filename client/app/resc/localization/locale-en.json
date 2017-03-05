@@ -218,5 +218,9 @@
     "USERNAME_EXISTS" :"Username already exists.",
     "DESCRIPTION" : "Description",
     "UPDATE_STUDY_BUTTON" : "Save Changes"
+  },
+  "TOAST": {
+    "PARTICIPATE": "You applied successfully for this study",
+    "CREATE_STUDY":"Your study has been successfully created"
   }
 }
