@@ -92,12 +92,20 @@ md-progress-circular {
   margin: auto; }
 
 md-divider {
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
   margin-top: .5rem; }
 
 md-card md-card-header {
   padding-bottom: 0; }
+md-card md-card-content .card-button {
+  margin: 0; }
 md-card md-card-content span {
   margin-top: .5rem; }
+
+.pad {
+  margin-top: 1rem; }
+
+.green {
+  color: limegreen; }
 
 /*# sourceMappingURL=study-details-view.style.css.map */

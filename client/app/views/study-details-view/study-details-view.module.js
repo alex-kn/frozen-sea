@@ -40,9 +40,11 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                 $q.all(responseParticipationArray.map(function (responseParticipation){
                                     Participation.participant({id: responseParticipation.id},function(r){
                                         responseParticipation.name = (r.username);
-                                        responseDate.isLoading = false;
                                     });
-                                }));
+                                })).then(function(){
+                                    responseDate.isLoading = false;
+
+                                });
 
                                 responseDate.participations = responseParticipationArray;
                                 responseDate.participants = responseParticipationArray.length;
@@ -122,7 +124,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
             $scope.participate = function (studyDate) {
                 Participation.create({
-                    status: "reserved",
+                    status: "pending",
                     reward_money: mapReward("reward_money", $scope.chosenReward),
                     reward_voucher: mapReward("reward_voucher", $scope.chosenReward),
                     reward_hours: mapReward("reward_hours", $scope.chosenReward),
@@ -141,16 +143,23 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             };
 
             $scope.declineParticipation = function (participation){
-
+                Participation.deleteById({id: participation.id});
+                participation.status = "declined";
             };
 
             $scope.confirmParticipation = function (participation){
                 participation.status = "confirmed";
+                var name = participation.name;
                 participation.$save();
+                participation.name = name;
             };
 
             $scope.editStudy = function () {
                 $location.path('/study-details-edit').search({'study': $scope.study.id});
             };
+
+            $scope.toggleDay = function (day){
+                day.show = !day.show;
+            }
 
         }]);
