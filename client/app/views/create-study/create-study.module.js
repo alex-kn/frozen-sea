@@ -13,8 +13,8 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService',
-        function ($scope, $routeParams, $location, $mdDialog, StudyDate, LoopBackAuth, $http, ToastService) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService',
+        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService) {
 
             var startDate = new Date();
             var endDate = new Date(
