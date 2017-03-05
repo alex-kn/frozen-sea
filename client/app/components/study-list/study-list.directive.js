@@ -7,6 +7,35 @@ angular
     .controller('StudyListController', ['$scope', '$routeParams', 'Participation', 'Study', 'StudyDate', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$translate', '$filter', 'ToastService',
         function ($scope, $routeParams, Participation, Study, StudyDate, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter, ToastService) {
 
+
+
+        //TODO variablen anstatt funktionen
+            $scope.isThisMyOwnStudy = function(thisStudy) {
+                return thisStudy.ownerId === LoopBackAuth.currentUserId
+            };
+
+            $scope.isThisAStudyISupervise = function(thisStudy) {
+                //return thisStudy.advisorId === LoopBackAuth.currentUserId
+                //TODO
+            };
+
+            $scope.isThisAStudyIParticipateInAndIAmNotApproved = function(thisStudy) {
+                //return thisStudy.advisorId === LoopBackAuth.currentUserId
+
+
+
+
+                //console.log(Subuser.participations.findById({ownerId: LoopBackAuth.currentUserId}));
+
+
+                //TODO
+            };
+
+            $scope.isThisAStudyIParticipateInAndIAmApproved = function(thisStudy) {
+                //return thisStudy.advisorId === LoopBackAuth.currentUserId
+                //TODO
+            };
+
             $scope.studiesTemp = Study.find(
                 function(list) { /* success */ //TODO: where end date not in the past
                     filter()

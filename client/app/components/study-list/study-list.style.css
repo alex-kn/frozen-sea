@@ -102,8 +102,24 @@ md-toolbar.toolbar {
 
 .align-items {
   display: inline-flex; }
-  .align-items i {
-    margin-right: .5rem; }
+.align-items i {
+  margin-right: .5rem; }
+
+.my-study {
+  background-color: #FF6347;
+}
+
+.advised-study {
+  background-color: #FFEBCD;
+}
+
+.participated-study-not-approved {
+  background-color:	#87CEFA;
+}
+
+.participated-study-approved {
+  background-color:	#90EE90;
+}
 
 md-card-title-text div {
   margin-top: 1rem; }
