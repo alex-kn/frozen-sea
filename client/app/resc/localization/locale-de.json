@@ -204,7 +204,9 @@
     "CONFIRM_PARTICIPANT" : "Bestätigen",
     "CONFIRMED_PARTICIPANT" : "Bestätigt!",
     "DECLINE_PARTICIPANT" : "Ablehnen",
-    "DECLINED_PARTICIPANT" : "Abgelehnt"
+    "DECLINED_PARTICIPANT" : "Abgelehnt",
+    "WAS_HERE" : "War da",
+    "WAS_NOT_HERE" : "War nicht da"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

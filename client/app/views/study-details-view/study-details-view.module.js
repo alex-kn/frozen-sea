@@ -21,7 +21,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 $scope.study.startDate = new Date($scope.study.startDate);
                 $scope.study.endDate = new Date($scope.study.endDate);
                 $scope.isOwner = ($scope.study.ownerId == LoopBackAuth.currentUserId);
-                $scope.isOwner = true;//TODO for testing
                 loadDates();
                 groupDatesByDay();
             });
@@ -32,6 +31,9 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         responseDate.startDate = new Date(responseDate.startDate);
                         responseDate.endDate = new Date(responseDate.startDate.getTime() + responseDate.duration*60000);
                         responseDate.participants = 0;
+                        if(responseDate.startDate < new Date()){
+                            responseDate.past = true;
+                        }
 
                         if($scope.isOwner){
                             responseDate.isLoading = true;
@@ -150,9 +152,28 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.confirmParticipation = function (participation){
                 participation.status = "confirmed";
                 var name = participation.name;
-                participation.$save();
-                participation.name = name;
+                participation.$save().then(function(){
+                    participation.name = name;
+                });
             };
+
+            $scope.wasHere = function (participation){
+                participation.status = "completed";
+                var name = participation.name;
+                participation.$save().then(function(){
+                    participation.name = name;
+                });
+            }
+
+            $scope.wasNotHere = function (participation){
+                participation.status = "absent";
+                var name = participation.name;
+                participation.$save().then(function(){
+                    participation.name = name;
+                });
+            }
+
+
 
             $scope.editStudy = function () {
                 $location.path('/study-details-edit').search({'study': $scope.study.id});
