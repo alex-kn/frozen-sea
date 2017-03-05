@@ -1,40 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3bbedcb-99e2-4444-9a44-246ba44530ee" name="Default" comment="Add user preferences to create study view">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/03cc3c602a9590c3fabef0e8a0b3099b7be151d4/create-study.style.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/162a80210a8ec838b38a07f7f319810a356297b1/home.style.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/28c0a4dc52d342f7b4b19ce9cd2b9bacba83101e/_base.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/28c0a4dc52d342f7b4b19ce9cd2b9bacba83101e/_buttons.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/28c0a4dc52d342f7b4b19ce9cd2b9bacba83101e/_forms.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/28c0a4dc52d342f7b4b19ce9cd2b9bacba83101e/_navigation.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/28c0a4dc52d342f7b4b19ce9cd2b9bacba83101e/_typography.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/2c7bbfcc10f8bef8189d365af701139128a81d8c/_bootcards.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/3121b4226c12a3aa7c8fdb2538cb13cc82200582/navbar.style.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/414621e3ba5873ef4f41267ef28e4db37ad3f555/main.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/5a568cc78f1b81800c8c34ac04bc933186f3d4ef/user-preferences.style.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/9a8b1fd829eedefb32832ade28f325aee18d7cee/register.style.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/9f9b549296a6afee25b3af7ee96d1b299cc7998a/angular-material.layout-attributes.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/9f9b549296a6afee25b3af7ee96d1b299cc7998a/angular-material.layouts.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/9f9b549296a6afee25b3af7ee96d1b299cc7998a/angular-material.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/b4a427441143ce5e086c42a7f69aa49be6e44a2e/study-list.style.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/d46f2ac9f0c95473f23f7f965757e94b6e68c126/login.style.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/e2dc68a0f9697d65aff24dea6a2d37aaf304c09f/_all.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/e2dc68a0f9697d65aff24dea6a2d37aaf304c09f/_colors.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.sass-cache/e2dc68a0f9697d65aff24dea6a2d37aaf304c09f/_utility.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/app/services/study-created.service.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/app.config.js" afterPath="$PROJECT_DIR$/client/app/app.config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/participate-dialog/participate-dialog.directive.js" afterPath="$PROJECT_DIR$/client/app/components/participate-dialog/participate-dialog.directive.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/study-list/study-list.template.html" afterPath="$PROJECT_DIR$/client/app/components/study-list/study-list.template.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/resc/localization/locale-de.json" afterPath="$PROJECT_DIR$/client/app/resc/localization/locale-de.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/resc/localization/locale-en.json" afterPath="$PROJECT_DIR$/client/app/resc/localization/locale-en.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/services/lb-services.js" afterPath="$PROJECT_DIR$/client/app/services/lb-services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/services/toast-service/display-toasts.service.js" afterPath="$PROJECT_DIR$/client/app/services/toast-service/display-toasts.service.js" />
+    <list default="true" id="a3bbedcb-99e2-4444-9a44-246ba44530ee" name="Default" comment="&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/views/create-study/create-study.module.js" afterPath="$PROJECT_DIR$/client/app/views/create-study/create-study.module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/views/create-study/create-study.template.html" afterPath="$PROJECT_DIR$/client/app/views/create-study/create-study.template.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/Subuser.json" afterPath="$PROJECT_DIR$/common/models/Subuser.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/boot/create_roles.js" afterPath="$PROJECT_DIR$/server/boot/create_roles.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -68,8 +37,8 @@
       <file leaf-file-name="create-study.module.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/app/views/create-study/create-study.module.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+            <state relative-caret-position="240">
+              <caret line="16" column="61" lean-forward="false" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -939,7 +908,7 @@
       <workItem from="1485884889404" duration="681000" />
       <workItem from="1486121071090" duration="5281000" />
       <workItem from="1486140194796" duration="4000" />
-      <workItem from="1488727475496" duration="7391000" />
+      <workItem from="1488727475496" duration="7526000" />
     </task>
     <task id="LOCAL-00001" summary="Remove unnecessary logout  button to fix e2e test">
       <created>1484501853681</created>
@@ -1018,11 +987,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486137414049</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Make toast more generic">
+      <created>1488735896597</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1488735896597</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60408000" />
+    <option name="totallyTimeSpent" value="60543000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1035,13 +1011,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22339676" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5081043" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3290653" sideWeight="0.4947146" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3290653" sideWeight="0.4947146" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1092,7 +1068,8 @@
     <MESSAGE value="Add user preferences to create study view" />
     <MESSAGE value="Added additional user prefernces to create-study-view" />
     <MESSAGE value="Add location to studies, rework study and appointment creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add location to studies, rework study and appointment creation" />
+    <MESSAGE value="Make toast more generic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make toast more generic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1482,8 +1459,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/app/views/create-study/create-study.module.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+        <state relative-caret-position="240">
+          <caret line="16" column="61" lean-forward="false" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
           <folding />
         </state>
       </provider>
