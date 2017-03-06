@@ -1,17 +1,38 @@
 <link href="components/navbar/navbar.style.css" rel="stylesheet">
 
+<md-sidenav
+        class="md-sidenav-left"
+        md-component-id="left"
+        md-whiteframe="4">
+
+    <md-toolbar layout="row" layout-align="start center">
+        <h1 class="md-toolbar-tools">Menu</h1>
+        <span flex></span>
+        <md-button ng-click="toggleSidenav()" class="md-icon-button md-accent"
+                   aria-label="{{'CREATE_STUDY.APPOINTMENT_CARD_DELETE_ARIA_LABEL' | translate}}">
+            <md-icon class="material-icons md-24 md-primary">close</md-icon>
+        </md-button>
+    </md-toolbar>
+    <md-content layout-padding layout="column" ng-controller="SidenavController">
+        <a flex href="#!/home">{{'NAVBAR.STUDIES' | translate}}</a>
+        <a flex href="#!/my-studies">{{'NAVBAR.MY_STUDIES' | translate}}</a>
+        <a flex href="#!/user-preferences">{{'NAVBAR.MY_PREFERENCES' | translate}}</a>
+    </md-content>
+
+</md-sidenav>
+
 <md-toolbar class="md-hue-1">
+
     <div class="md-toolbar-tools">
 
         <div class="nav" flex-offset-gt-sm="15" hide-xs>
             <a ng-class="{active: $route.current.activeTab == 'NAVBAR'}" href="#!/NAVBAR">{{'NAVBAR.STUDIES' | translate}}</a>
             <a ng-class="{active: $route.current.activeTab == 'my-studies'}" href="#!/my-studies">{{'NAVBAR.MY_STUDIES' | translate}}</a>
             <a ng-class="{active: $route.current.activeTab == 'user-preferences'}" href="#!/user-preferences">{{'NAVBAR.MY_PREFERENCES' | translate}}</a>
-            <a ng-class="{active: $route.current.activeTab == 'archive'}" href="#!/archive" ng-click="">{{'NAVBAR.ARCHIVE' | translate}}</a>
         </div>
 
         <div class="nav-mobil" hide-gt-xs>
-            <md-button class="md-icon-button" aria-label="{{'NAVBAR.LOGOUT' | translate}}">
+            <md-button class="md-icon-button" aria-label="{{'NAVBAR.LOGOUT' | translate}}" ng-click="toggleSidenav()">
                 <md-icon class="material-icons">menu</md-icon>
             </md-button>
         </div>
