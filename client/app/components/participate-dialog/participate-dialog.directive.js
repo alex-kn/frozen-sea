@@ -39,7 +39,7 @@ angular
                         "studyDateId": studyDate.id,
                         "participantId": LoopBackAuth.currentUserId
                     }, function() {
-                        ToastService.setToastText($scope.currentStudy.title, 'participate');
+                        ToastService.setToastText('TOAST.PARTICIPATE');
                         ToastService.displayToast();
                     }
                 );

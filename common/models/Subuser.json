@@ -7,7 +7,16 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "isAdvisor": {
+      "type": "boolean",
+      "required": false
+    },
+    "isAdmin": {
+      "type": "boolean",
+      "required": false
+    }
+  },
   "validations": [],
   "relations": {
     "preferences": {

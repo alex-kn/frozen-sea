@@ -21,45 +21,51 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 $scope.study.startDate = new Date($scope.study.startDate);
                 $scope.study.endDate = new Date($scope.study.endDate);
                 $scope.isOwner = ($scope.study.ownerId == LoopBackAuth.currentUserId);
-                $scope.isOwner = true;
                 loadDates();
                 groupDatesByDay();
             });
 
             function loadDates() {
-                $scope.appointments = Study.dates({id: $scope.study.id}, function (response) {
-                    return $q.all(response.map(function (response) {
-                        response.startDate = new Date(response.startDate);
-                        response.endDate = new Date(response.startDate.getTime() + response.duration*60000);
-                        response.participants = 0;
+                $scope.appointments = Study.dates({id: $scope.study.id}, function (responseDateArray) {
+                    return $q.all(responseDateArray.map(function (responseDate) {
+                        responseDate.startDate = new Date(responseDate.startDate);
+                        responseDate.endDate = new Date(responseDate.startDate.getTime() + responseDate.duration*60000);
+                        responseDate.participants = 0;
+                        if(responseDate.startDate < new Date()){
+                            responseDate.past = true;
+                        }
 
                         if($scope.isOwner){
-                            StudyDate.participations({id: response.id}, function (res){
+                            responseDate.isLoading = true;
+                            StudyDate.participations({id: responseDate.id}, function (responseParticipationArray){
 
-                                $q.all(res.map(function (participation){
-                                    Participation.participant({id: participation.id},function(r){
-                                        participation.name = (r.username);
+                                $q.all(responseParticipationArray.map(function (responseParticipation){
+                                    Participation.participant({id: responseParticipation.id},function(r){
+                                        responseParticipation.name = (r.username);
                                     });
-                                }));
+                                })).then(function(){
+                                    responseDate.isLoading = false;
 
-                                response.participations = res;
-                                response.participants = res.length;
+                                });
 
-                                if(response.participants >= response.maxParticipants){
-                                    response.status = "reserved";
+                                responseDate.participations = responseParticipationArray;
+                                responseDate.participants = responseParticipationArray.length;
+
+                                if(responseDate.participants >= responseDate.maxParticipants){
+                                    responseDate.status = "reserved";
                                 }
                             })
                         }else{
-                            StudyDate.participations.count({id: response.id},function (res){
-                                response.participants = res.count;
-                                if(response.participants >= response.maxParticipants){
-                                    response.status = "reserved";
+                            StudyDate.participations.count({id: responseDate.id},function (responseParticipationArray){
+                                responseDate.participants = responseParticipationArray.count;
+                                if(responseDate.participants >= responseDate.maxParticipants){
+                                    responseDate.status = "reserved";
                                 }
                             });
                         }
 
 
-                        return response;
+                        return responseDateArray;
                     }));
                 });
             }
@@ -120,7 +126,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
             $scope.participate = function (studyDate) {
                 Participation.create({
-                    status: "reserved",
+                    status: "pending",
                     reward_money: mapReward("reward_money", $scope.chosenReward),
                     reward_voucher: mapReward("reward_voucher", $scope.chosenReward),
                     reward_hours: mapReward("reward_hours", $scope.chosenReward),
@@ -139,16 +145,42 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             };
 
             $scope.declineParticipation = function (participation){
-
+                Participation.deleteById({id: participation.id});
+                participation.status = "declined";
             };
 
             $scope.confirmParticipation = function (participation){
                 participation.status = "confirmed";
-                participation.$save();
+                var name = participation.name;
+                participation.$save().then(function(){
+                    participation.name = name;
+                });
             };
+
+            $scope.wasHere = function (participation){
+                participation.status = "completed";
+                var name = participation.name;
+                participation.$save().then(function(){
+                    participation.name = name;
+                });
+            }
+
+            $scope.wasNotHere = function (participation){
+                participation.status = "absent";
+                var name = participation.name;
+                participation.$save().then(function(){
+                    participation.name = name;
+                });
+            }
+
+
 
             $scope.editStudy = function () {
                 $location.path('/study-details-edit').search({'study': $scope.study.id});
             };
+
+            $scope.toggleDay = function (day){
+                day.show = !day.show;
+            }
 
         }]);

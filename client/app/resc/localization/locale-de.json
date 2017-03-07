@@ -201,8 +201,12 @@
     "PARTICIPATE" : "Teilnehmen",
     "MINUTES" : "Minuten",
     "DELETE_STUDY" : "Studie löschen",
-    "CONFIRM_PARTICIPANT" : "Teilnehmer bestätigen",
-    "DECLINE_PARTICIPANT" : "Teilnehmer ablehnen"
+    "CONFIRM_PARTICIPANT" : "Bestätigen",
+    "CONFIRMED_PARTICIPANT" : "Bestätigt!",
+    "DECLINE_PARTICIPANT" : "Ablehnen",
+    "DECLINED_PARTICIPANT" : "Abgelehnt",
+    "WAS_HERE" : "War da",
+    "WAS_NOT_HERE" : "War nicht da"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",
@@ -239,5 +243,9 @@
     "OLD_PASSWORD_NOMATCH" :"Altes Passwort stimmt nicht überein.",
     "NEW_PASSWORD_NOMATCH" :"Neues Passwort stimmt nicht überein.",
     "USERNAME_EXISTS" :"Username exisitiert bereits."
+  },
+  "TOAST": {
+    "PARTICIPATE": "Du hast dich für die Studie erfolgreich angemeldet",
+    "CREATE_STUDY":"Deine Studie wurde erfolgreich erstellt"
   }
 }

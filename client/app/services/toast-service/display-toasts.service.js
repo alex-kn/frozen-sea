@@ -4,44 +4,32 @@
 
 angular
     .module('ToastService', [])
-    .factory('ToastService', ['$mdToast', function($mdToast) {
+    .factory('ToastService', ['$mdToast', '$filter', '$translate', function($mdToast, $filter, $translate) {
 
         var toastText;
-        var studyCreated = false;
-        var participateInStudy = false;
+        var toastToDisplay = false;
 
         // check the origin to display the respective toast text
-        function setToastText (studyTitle, origin) {
-
-            if(origin === 'create') {
-
-                studyCreated = true;
-                toastText = 'Deine Studie ' + studyTitle + ' wurde erstellt.'
-
-            } else if(origin === 'participate') {
-
-                participateInStudy = true;
-                toastText = 'Du nimmst an der Studie ' + studyTitle + ' teil.'
-            }
-
+        function setToastText (_toastText) {
+            toastText = _toastText;
+            toastToDisplay = true;
         }
 
         function displayToast() {
 
-            if(studyCreated || participateInStudy) {
+            if(toastToDisplay) {
 
                 $mdToast.show({
                     hideDelay: 3000,
                     position: 'top right',
                     controller: [function() {
-                        this.toastText = toastText;
+                        this.toastText = $filter('translate')(toastText);
                     }],
                     controllerAs: 'toast',
                     templateUrl: 'services/toast-service/toast-service.template.html'
                 });
 
-                studyCreated = false;
-                participateInStudy = false;
+                toastToDisplay = false;
 
             }
         }

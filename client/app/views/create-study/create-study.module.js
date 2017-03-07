@@ -75,12 +75,6 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
             $scope.readonly = false;
             $scope.title = 'Studie erstellen';
 
-            /**
-             * Instantiate datepickers
-             * minStartDate is set to current date, minEndDate to minStartDate + 1
-             */
-
-
             $http.get('resc/files/studyprograms.txt')
                 .then(function (response) {
                     $scope.studyPrograms = response.data.split("\n");
@@ -148,8 +142,6 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
 
                 if ($scope.createStudyForm.$valid) {
 
-                    console.log('create');
-
                     return Study
                         .create({
                             title: $scope.study.name,
@@ -196,7 +188,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                         .then(function (response) {
 
                             // log study title to show in toast on home
-                            ToastService.setToastText($scope.study.name, 'create');
+                            ToastService.setToastText('TOAST.CREATE_STUDY');
 
                             for (var i = 0; i < $scope.appointments.length; i++) {
 
@@ -218,7 +210,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                                     })
                                     .$promise
                                     .then(function (response) {
-                                        console.log(response);
+                                        console.log('Thats right son, keep on crating');
                                     });
 
                             }

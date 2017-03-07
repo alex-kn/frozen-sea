@@ -97,7 +97,15 @@ md-divider {
 
 md-card md-card-header {
   padding-bottom: 0; }
+md-card md-card-content .card-button {
+  margin: 0; }
 md-card md-card-content span {
   margin-top: .5rem; }
+
+.pad {
+  margin-top: 1rem; }
+
+.green {
+  color: limegreen; }
 
 /*# sourceMappingURL=study-details-view.style.css.map */

@@ -3,29 +3,50 @@
  */
 
 angular.module('navBarDirective', [])
-    .controller('NavigationController', ['$scope', 'AuthService', '$location', '$route', '$translate',
-        function ($scope, AuthService, $location, $route, $translate) {
+    .controller('NavigationController', ['$scope', 'AuthService', '$location', '$route', '$translate', '$mdSidenav', '$log',
+        function ($scope, AuthService, $location, $route, $translate, $mdSidenav, $log) {
 
-        $scope.changeLanguage = function(langKey) {
-            $translate.use(langKey);
-        };
+            $scope.toggleSidenav = buildToggler('left');
 
-        $scope.$route = $route;
+            $scope.changeLanguage = function(langKey) {
+                $translate.use(langKey);
+            };
 
-        $scope.openMenu = function ($mdOpenMenu, event) {
-            $mdOpenMenu(event);
-        };
+            $scope.$route = $route;
 
-        $scope.goToEditProfile = function (){
-            $location.path('/edit-profile');
-        };
+            $scope.openMenu = function ($mdOpenMenu, event) {
+                $mdOpenMenu(event);
+            };
 
-        $scope.logout = function () {
-            console.log('NavigationController: logout');
-            AuthService.logout();
-        };
+            $scope.goToEditProfile = function (){
+                $location.path('/edit-profile');
+            };
 
+            $scope.logout = function () {
+                console.log('NavigationController: logout');
+                AuthService.logout();
+            };
+
+            function buildToggler(navID) {
+                return function() {
+                    // Component lookup should always be available since we are not using `ng-if`
+                    $mdSidenav(navID)
+                        .toggle()
+                        .then(function () {
+                            $log.debug("toggle " + navID + " is done");
+                        });
+                };
+            }
     }])
+    .controller('SidenavController', function ($scope, $timeout, $mdSidenav, $log) {
+        $scope.close = function () {
+            // Component lookup should always be available since we are not using `ng-if`
+            $mdSidenav('left').close()
+                .then(function () {
+                    $log.debug("close RIGHT is done");
+                });
+        };
+    })
     .directive('navBar', function () {
         return {
             templateUrl: 'components/navbar/navbar.template.html'

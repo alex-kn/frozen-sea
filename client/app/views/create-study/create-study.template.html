@@ -103,9 +103,9 @@
 
                         </div>
 
-                        <div layout-gt-xs="row" style="margin-top: 1rem;">
+                        <div layout-gt-xs="row" layout="column" style="margin-top: 1rem;">
 
-                            <md-input-container flex="100" flex-xs="100">
+                            <md-input-container flex="100">
                                 <label>{{'CREATE_STUDY.ADVISER' | translate}}</label>
                                 <md-select name="adviser" ng-model="study.advisor" aria-label="{{'CREATE_STUDY.ADVISER_ARIA_LABEL' | translate}}" required>
                                     <md-option value="hansHuber">Hans Huber</md-option>
@@ -258,7 +258,7 @@
 
                         <div layout="row" layout-xs="column" layout-wrap>
 
-                            <md-card ng-repeat="appointment in appointments" flex="100" flex-gt-xs="33" flex-gt-sm="20">
+                            <md-card ng-repeat="appointment in appointments" flex="100" flex-gt-xs="33">
                                 <md-card-header style>
                                     <md-card-avatar>
                                         <md-icon class="material-icons">today</md-icon>
@@ -267,7 +267,7 @@
                                         <span class="md-title">{{ appointment.date | date:'dd.MM.yy' }}</span>
                                         <span class="md-subhead">{{ appointment.time }}</span>
                                     </md-card-header-text>
-                                    <md-button ng-click="removeAppointment(item)" class="md-icon-button md-accent"
+                                    <md-button ng-click="removeAppointment(appointment)" class="md-icon-button md-accent"
                                                aria-label="{{'CREATE_STUDY.APPOINTMENT_CARD_DELETE_ARIA_LABEL' | translate}}">
                                         <md-icon class="material-icons md-24 md-primary">close</md-icon>
                                     </md-button>
