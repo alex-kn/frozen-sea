@@ -28,7 +28,7 @@
     </div>
 
     <div layout="column">
-        <md-card ng-repeat="study in studies | filter:search" ng-class="{'my-study': isThisMyOwnStudy(study), 'advised-study': isThisAStudyISupervise(study), 'participated-study-not-approved': isThisAStudyIParticipateInAndIAmNotApproved(study),'participated-study-approved':isThisAStudyIParticipateInAndIAmApproved(study)}">
+        <md-card ng-repeat="study in studies | filter:search" ng-class="{'my-study': study.isThisMyOwnStudy, 'advised-study': study.isThisAStudyISupervise, 'participated-study-not-approved': study.isThisAStudyIParticipateInAndIAmNotApproved,'participated-study-approved':study.isThisAStudyIParticipateInAndIAmApproved}">
             <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">{{ study.title }}</span>

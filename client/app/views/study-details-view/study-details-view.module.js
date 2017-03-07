@@ -21,7 +21,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 $scope.study.startDate = new Date($scope.study.startDate);
                 $scope.study.endDate = new Date($scope.study.endDate);
                 $scope.isOwner = ($scope.study.ownerId == LoopBackAuth.currentUserId);
-                $scope.isOwner = false;
+                $scope.isOwner = true;
                 loadDates();
                 groupDatesByDay();
             });
