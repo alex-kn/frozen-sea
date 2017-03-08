@@ -5,7 +5,7 @@
         md-component-id="left"
         md-whiteframe="4">
 
-    <md-toolbar layout="row" layout-align="start center">
+    <md-toolbar layout="row" layout-align="start center" style="background-color: #263238">
         <h1 class="md-toolbar-tools">Menu</h1>
         <span flex></span>
         <md-button ng-click="toggleSidenav()" class="md-icon-button md-accent"
@@ -13,7 +13,7 @@
             <md-icon class="material-icons md-24 md-primary">close</md-icon>
         </md-button>
     </md-toolbar>
-    <md-content layout-padding layout="column" ng-controller="SidenavController">
+    <md-content layout="column" layout-padding ng-controller="SidenavController">
         <a flex href="#!/home">{{'NAVBAR.STUDIES' | translate}}</a>
         <a flex href="#!/my-studies">{{'NAVBAR.MY_STUDIES' | translate}}</a>
         <a flex href="#!/user-preferences">{{'NAVBAR.MY_PREFERENCES' | translate}}</a>
