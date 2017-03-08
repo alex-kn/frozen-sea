@@ -9,32 +9,9 @@ angular
 
 
 
-        //TODO variablen anstatt funktionen
-            $scope.isThisMyOwnStudy = function(thisStudy) {
-                return thisStudy.ownerId === LoopBackAuth.currentUserId
-            };
-
-            $scope.isThisAStudyISupervise = function(thisStudy) {
-                //return thisStudy.advisorId === LoopBackAuth.currentUserId
-                //TODO
-            };
-
-            $scope.isThisAStudyIParticipateInAndIAmNotApproved = function(thisStudy) {
-                //return thisStudy.advisorId === LoopBackAuth.currentUserId
 
 
 
-
-                //console.log(Subuser.participations.findById({ownerId: LoopBackAuth.currentUserId}));
-
-
-                //TODO
-            };
-
-            $scope.isThisAStudyIParticipateInAndIAmApproved = function(thisStudy) {
-                //return thisStudy.advisorId === LoopBackAuth.currentUserId
-                //TODO
-            };
 
             $scope.studiesTemp = Study.find(
                 function(list) { /* success */ //TODO: where end date not in the past
@@ -55,6 +32,20 @@ angular
                 Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
                     $scope.preferences = response;
                     $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences)
+                    $scope.studies.forEach(function(study) {
+                        study.isThisMyOwnStudy = study.ownerId === LoopBackAuth.currentUserId;
+
+                        //TODO: study.isThisAStudyISupervise = $scope.thisStudy.advisorId === LoopBackAuth.currentUserId;
+
+                        Participation.count({where: {participantId: LoopBackAuth.currentUserId, studyId: study.id, status:"pending"}}, function (response) {
+                            study.isThisAStudyIParticipateInAndIAmNotApproved = response.count > 0
+                        });
+
+                        Participation.count({where: {participantId: LoopBackAuth.currentUserId, studyId: study.id, status:"confirmed"}}, function (response) {
+                            study.isThisAStudyIParticipateInAndIAmApproved = response.count > 0
+                        });
+                    })
+
                 },function (error){
                     if(error.status == 404){
                         Subuser.preferences
@@ -62,7 +53,7 @@ angular
                             .$promise
                             .then(function (response) {
                                 filter()//obacht!
-                            });;
+                            });
 
                     }
                 });
