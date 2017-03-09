@@ -63,6 +63,9 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                     responseDate.status = "reserved";
                                 }
                             });
+                            StudyDate.participations.count({where: {participantId: LoopBackAuth.currentUserId, studyId: study.id}}, function (response) {
+                                responseDate.participating = response.count > 0;
+                            });
                         }
 
                         $scope.studyIsLoading = false;

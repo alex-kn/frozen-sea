@@ -106,7 +106,7 @@
 
                 <div layout="row" layout-xs="column" layout-wrap ng-show="day.show">
 
-                    <md-card ng-repeat="date in day" flex="100" flex-gt-xs="45" flex-gt-sm="30">
+                    <md-card ng-repeat="date in day" flex="100" flex-gt-xs="45" flex-gt-sm="30" ng-class="[{'participating': date.participating}, date.status]">
                         <md-card-header style>
                             <md-card-avatar>
                                 <md-icon ng-show="(date.status== 'reserved') || (date.status == 'finished')" class="material-icons">assignment_turned_in</md-icon>

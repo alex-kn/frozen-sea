@@ -85,6 +85,9 @@ md-toolbar.toolbar {
   .align-items i {
     margin-right: .5rem; }
 
+.participating {
+  background-color: lightgreen; }
+
 h2 i {
   font-size: xx-large !important; }
 
