@@ -90,8 +90,13 @@ form md-checkbox {
     margin-right: 0; }
 form .margin-btm-0 {
   margin-bottom: 0; }
-form .mg-top-16 {
-  margin-top: 1rem; }
+@media (min-width: 600px) {
+  form .mg-top-16-on-desktop {
+    margin-top: 1rem; } }
+
+@media (max-width: 600px) {
+  .md-headline {
+    padding-bottom: 1.5rem; } }
 
 .align-items {
   display: inline-flex;

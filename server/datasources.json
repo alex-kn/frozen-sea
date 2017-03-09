@@ -12,5 +12,20 @@
     "name": "userstudy-db",
     "user": "userstudy",
     "connector": "mongodb"
+  },
+  "Email": {
+    "name": "mail",
+    "defaultForType": "mail",
+    "connector": "mail",
+    "transports": [{
+      "type": "SMTP",
+      "host": "smtp.gmail.com",
+      "secure": true,
+      "port": 465,
+      "auth": {
+        "user": "frzn.sea@gmail.com",
+        "pass": "userstudypwp1617"
+      }
+    }]
   }
 }

@@ -20,10 +20,20 @@ form {
     margin-bottom: 0;
   }
 
-  .mg-top-16 {
-    margin-top: 1rem;
+  .mg-top-16-on-desktop {
+    @media (min-width: 600px) {
+      margin-top: 1rem;
+    }
   }
 
+
+}
+
+
+.md-headline {
+  @media (max-width: 600px) {
+    padding-bottom: 1.5rem;
+  }
 }
 
 .align-items {

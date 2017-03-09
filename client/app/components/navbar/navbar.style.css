@@ -98,5 +98,14 @@ nav-bar .flag {
   height: 1.2rem;
   width: 2rem;
   margin: 0.1rem; }
+  @media (max-width: 600px) {
+    nav-bar .flag {
+      display: none; } }
+
+md-sidenav md-toolbar {
+  background-color: #263238; }
+md-sidenav a {
+  text-decoration: none;
+  color: #212121 !important; }
 
 /*# sourceMappingURL=navbar.style.css.map */

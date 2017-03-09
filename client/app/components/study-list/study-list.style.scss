@@ -31,6 +31,10 @@ md-toolbar.toolbar {
   .md-button.md-fab.md-fab-bottom-right {
     top: 5.75rem;
     right: 22%;
+
+    @media screen and (max-width: 600px) {
+      right: 10%;
+    }
   }
 }
 

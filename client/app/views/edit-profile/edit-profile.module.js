@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('editProfile', ['ngRoute', 'ngMaterial'])
-    .controller('editProfileController', ['$scope', 'Subuser','$route', '$mdToast','LoopBackAuth','Participation',
-        function ($scope, User, $route, $mdToast, LoopBackAuth, Participation) {
+    .controller('editProfileController', ['$scope', 'Subuser','$route', '$mdToast','LoopBackAuth','Participation','$http',
+        function ($scope, User, $route, $mdToast, LoopBackAuth, Participation, $http) {
         $scope.title = 'Profil bearbeiten';
         $scope.input = {};
         $scope.error = {};
@@ -14,8 +14,6 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
             Username: false,
             Passwort: false
         };
-
-
 
         $scope.currentUserData = {
             Username:'',
@@ -96,7 +94,7 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
             }, function(userParticipations){
                 for(var i = 0; i < userParticipations.length; i++) {
 //TODO: Was ist status für abgeschlossene studien?
-                    if (userParticipations[i].status == 'reserved') {
+                    if (userParticipations[i].status == 'finished') {
                         rewardMoney += userParticipations[i].reward_money;
                         rewardVouchers += userParticipations[i].reward_voucher;
                         rewardHours += userParticipations[i].reward_hours;

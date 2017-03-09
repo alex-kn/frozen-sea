@@ -99,6 +99,9 @@ md-toolbar.toolbar {
   md-toolbar.toolbar .md-button.md-fab.md-fab-bottom-right {
     top: 5.75rem;
     right: 22%; }
+    @media screen and (max-width: 600px) {
+      md-toolbar.toolbar .md-button.md-fab.md-fab-bottom-right {
+        right: 10%; } }
 
 .align-items {
   display: inline-flex; }

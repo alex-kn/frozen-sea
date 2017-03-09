@@ -51,5 +51,8 @@
   "Preference": {
     "dataSource": "userstudy-db",
     "public": true
+  },
+  "Email": {
+    "dataSource": "Email"
   }
 }

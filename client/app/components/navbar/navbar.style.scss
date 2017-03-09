@@ -33,7 +33,23 @@ nav-bar {
     height: 1.2rem;
     width: 2rem;
     margin: 0.1rem;
+
+    @media (max-width: 600px) {
+      display: none;
+    }
   }
 
+}
+
+md-sidenav {
+
+  md-toolbar {
+    background-color: $primary-color;
+  }
+
+  a {
+    text-decoration: none;
+    color: $primary-text-color !important;
+  }
 }
 
