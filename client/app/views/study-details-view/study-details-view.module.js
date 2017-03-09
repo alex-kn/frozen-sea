@@ -16,6 +16,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
         function ($q, $location, $routeParams, $scope, StudyDate, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService) {
 
             $scope.isOwner = false;
+            $scope.studyIsLoading = true;
 
             $scope.study = Study.findById({id: $routeParams.study}, function (response) {
                 $scope.study.startDate = new Date($scope.study.startDate);
@@ -32,7 +33,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         responseDate.endDate = new Date(responseDate.startDate.getTime() + responseDate.duration*60000);
                         responseDate.participants = 0;
                         if(responseDate.startDate < new Date()){
-                            responseDate.past = true;
+                            responseDate.status = "finished";
                         }
 
                         if($scope.isOwner){
@@ -64,7 +65,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                             });
                         }
 
-
+                        $scope.studyIsLoading = false;
                         return responseDateArray;
                     }));
                 });
