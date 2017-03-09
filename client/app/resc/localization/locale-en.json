@@ -181,7 +181,10 @@
     "DETAILS" : "View study",
     "DURATION": "Minutes",
     "REWARD": "Rewards",
-    "REWARD_HOURS": "Hours"
+    "REWARD_HOURS": "Hours",
+    "SORT_BY": "Sort by",
+    "NEWEST": "Newest",
+    "SOON": "Ends soon"
   },
   "ARCHIVE": {
     "TITLE" : "Archive",

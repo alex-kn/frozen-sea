@@ -181,7 +181,10 @@
     "DETAILS" : "Zur Studie",
     "DURATION": "Minuten",
     "REWARD": "Vergütung",
-    "REWARD_HOURS": "Stunden"
+    "REWARD_HOURS": "Stunden",
+    "SORT_BY": "Ordne nach",
+    "NEWEST": "Neu",
+    "SOON": "Endet bald"
   },
   "ARCHIVE": {
     "TITLE" : "Archiv",

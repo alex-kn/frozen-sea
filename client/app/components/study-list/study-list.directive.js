@@ -9,36 +9,46 @@ angular
 
 
 
+            $scope.sort_by =  "ends_soon"; //default sort value
+            $scope.dynamicOrderFunction = function() {
+                if ($scope.sort_by == "newest") {
+                    $scope.studies.sort(function(a,b) {
+                        return new Date(a.startDate) > new Date(b.startDate)
+                    })
+                }
+                if ($scope.sort_by == "ends_soon") {
+                    $scope.studies.sort(function(a,b) {
+                        return new Date(a.endDate) > new Date(b.endDate)
+                    })
+                }
+            };
 
 
 
-
-            $scope.studiesTemp = Study.find(
-                function(list) { /* success */ //TODO: where end date not in the past
-                    filter()
-                },
-                function(errorResponse) {
-
-                    console.log(errorResponse);
-
+            //load all studies that are not finished yet
+            $scope.studiesTemp = Study.find({filter: {where: {endDate:  {gte: new Date()}}}},
+                function(list) {
+                    compareStudyDetailsWithUserPreferences();
                 }
             );
 
-            $scope.displayToast = function() {
-                ToastService.displayToast();
-            };
 
-            function filter() {
+            function compareStudyDetailsWithUserPreferences() {
                 Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
                     $scope.preferences = response;
-                    $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences)
+
+                    //filter all studies that don't match user profile
+                    $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences);
+
+                    //highlight studies of special interest
                     $scope.studies.forEach(function(study) {
                         study.isThisMyOwnStudy = study.ownerId === LoopBackAuth.currentUserId;
 
                         //TODO: study.isThisAStudyISupervise = $scope.thisStudy.advisorId === LoopBackAuth.currentUserId;
 
                         Participation.count({where: {participantId: LoopBackAuth.currentUserId, studyId: study.id, status:"pending"}}, function (response) {
-                            study.isThisAStudyIParticipateInAndIAmNotApproved = response.count > 0
+                            study.isThisAStudyIParticipateInAndIAmNotApproved = response.count > 0;
+                            console.log("doing it again")
                         });
 
                         Participation.count({where: {participantId: LoopBackAuth.currentUserId, studyId: study.id, status:"confirmed"}}, function (response) {
@@ -48,11 +58,13 @@ angular
 
                 },function (error){
                     if(error.status == 404){
+
+                        //if no preference object can be found, create it
                         Subuser.preferences
                             .create({id: LoopBackAuth.currentUserId}, {})
                             .$promise
                             .then(function (response) {
-                                filter()//obacht!
+                                compareWithUserPreferences(); //obacht!
                             });
 
                     }
@@ -113,10 +125,6 @@ angular
                     });
 
 
-                $scope.calculateEndDate = function(startDate) {
-                    return startDate;
-                };
-
                 var confirm = $mdDialog.confirm({
                     controller: "ParticipateDialogController",
                     template: '<participate-dialog class="container"></participate-dialog>',
@@ -128,6 +136,11 @@ angular
                     $scope.currentStudy = {};
                     $scope.datesGroupedByDay = [];
                 });
+            };
+
+
+            $scope.displayToast = function() {
+                ToastService.displayToast();
             };
 
 

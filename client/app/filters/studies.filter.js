@@ -10,7 +10,6 @@ angular.module('userStudy').filter('filterStudies', function() {
         function _calculateAge(birthday) { // birthday is a date
             var ageDifMs = Date.now() - new Date(birthday).getTime();
             var ageDate = new Date(ageDifMs); // miliseconds from epoch
-            console.log(ageDate.getUTCFullYear() - 1970);
             return Math.abs(ageDate.getUTCFullYear() - 1970);
         }
 
