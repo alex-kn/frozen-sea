@@ -36,7 +36,7 @@
     "handedness": {
       "type": "string",
       "required": false,
-      "description": "left, right, both"
+      "description": "lefty, righty, both"
     },
     "visualAid": {
       "type": {
