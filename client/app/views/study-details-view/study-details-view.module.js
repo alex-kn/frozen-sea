@@ -74,6 +74,13 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                 if (response.count > 0) {
                                     responseDate.participating = true;
                                     $scope.isParticipating = true;
+                                    $scope.datesGroupedByDay.forEach(function(d){
+                                        d.forEach(function(date){
+                                            if(date.participating) {
+                                                d.show = true;
+                                            }
+                                        })
+                                    })
                                 }
                             });
                         }
@@ -113,6 +120,8 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         }
                     }));
                     $scope.datesGroupedByDay.push(days);
+                    $scope.datesGroupedByDay[0].show = true;
+
                 })
             }
 
