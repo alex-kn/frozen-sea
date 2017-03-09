@@ -64,19 +64,20 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                     responseDate.status = "reserved";
                                 }
                             });
-                            Participation.count({
-                                where: {
-                                    participantId: LoopBackAuth.currentUserId,
-                                    studyId: $scope.study.id,
-                                    studyDateId: responseDate.id
+                            StudyDate.participations.count({id: responseDate.id}, {
+                                filter: {
+                                    where: {
+                                        participantId: LoopBackAuth.currentUserId,
+                                        studyId: $scope.study.id,
+                                    }
                                 }
                             }, function (response) {
                                 if (response.count > 0) {
                                     responseDate.participating = true;
                                     $scope.isParticipating = true;
-                                    $scope.datesGroupedByDay.forEach(function(d){
-                                        d.forEach(function(date){
-                                            if(date.participating) {
+                                    $scope.datesGroupedByDay.forEach(function (d) {
+                                        d.forEach(function (date) {
+                                            if (date.participating) {
                                                 d.show = true;
                                             }
                                         })
