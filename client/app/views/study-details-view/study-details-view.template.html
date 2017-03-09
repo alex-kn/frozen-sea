@@ -16,8 +16,10 @@
     </md-toolbar>
     <!-- END toolbar -->
 
-    <!-- START edit study form -->
-    <md-content flex-offset-gt-sm="20" flex-gt-sm="60" flex="100">
+    <md-progress-circular ng-show="studyIsLoading" class="md-accent" md-mode="indeterminate">
+    </md-progress-circular>
+    <!-- START view study form -->
+    <md-content ng-hide="studyIsLoading" flex-offset-gt-sm="20" flex-gt-sm="60" flex="100">
 
         <!-- START general information -->
         <md-content class="md-padding">
@@ -52,7 +54,7 @@
         <!-- END general information -->
 
         <!-- START rewards -->
-        <md-content class="md-padding">
+        <md-content class="md-padding" ng-hide="isOwner">
 
             <h2 class="md-headline">{{'STUDY_DETAILS.CHOOSE_REWARD' | translate}}</h2>
 
@@ -83,6 +85,8 @@
         <!-- END rewards -->
 
         <!-- START add dates -->
+
+
         <md-content class="md-padding">
 
             <div ng-repeat="day in datesGroupedByDay">
@@ -102,10 +106,13 @@
 
                 <div layout="row" layout-xs="column" layout-wrap ng-show="day.show">
 
-                    <md-card ng-repeat="date in day" flex="100" flex-gt-xs="45" flex-gt-sm="30">
+                    <md-card ng-repeat="date in day" flex="100" flex-gt-xs="45" flex-gt-sm="30"
+                             ng-class="[{'participating': date.participating}, date.status]">
                         <md-card-header style>
                             <md-card-avatar>
-                                <md-icon ng-show="date.status==('reserved' || 'finished')" class="material-icons">assignment_turned_in</md-icon>
+                                <md-icon ng-show="(date.status== 'reserved') || (date.status == 'finished')"
+                                         class="material-icons">assignment_turned_in
+                                </md-icon>
                                 <md-icon ng-show="date.status=='available'" class="material-icons">assignment</md-icon>
                             </md-card-avatar>
                             <md-card-header-text>
@@ -116,7 +123,8 @@
                         </md-card-header>
                         <md-card-content layout="column">
 
-                            <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">timelapse</i>{{ date.duration }} {{'STUDY_DETAILS.MINUTES' | translate}}</span>
+                            <span class="align-items"><i class="material-icons"
+                                                         md-colors="{color: 'accent'}">timelapse</i>{{ date.duration }} {{'STUDY_DETAILS.MINUTES' | translate}}</span>
                             <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">room</i>{{ date.location }} </span>
                             <md-divider ng-show="isOwner"></md-divider>
                             <md-progress-circular ng-show="date.isLoading"
@@ -125,19 +133,21 @@
                             <div ng-show="isOwner && !date.isLoading" layout="column" layout-align="start start">
                                 <div ng-repeat="participation in date.participations" layout="column" class="pad">
                                     <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">person</i> {{ participation.name }}</span>
-                                    <span ng-hide="date.past">
-                                        <md-button ng-click="confirmParticipation(participation)" class="card-button md-raised md-accent"
+                                    <span ng-hide="date.status == 'finished'">
+                                        <md-button ng-click="confirmParticipation(participation)"
+                                                   class="card-button md-raised md-accent"
                                                    ng-show="participation.status == 'pending'"
                                                    aria-label="{{'STUDY_DETAILS.CONFIRM_PARTICIPANT' | translate}}">
                                             {{'STUDY_DETAILS.CONFIRM_PARTICIPANT' | translate}}
                                         </md-button>
-                                        <md-button class="card-button green"
+                                        <md-button class="card-button"
                                                    ng-show="participation.status == 'confirmed'"
                                                    disabled="true"
                                                    aria-label="{{'STUDY_DETAILS.CONFIRMED_PARTICIPANT' | translate}}">
                                             {{'STUDY_DETAILS.CONFIRMED_PARTICIPANT' | translate}}
                                         </md-button>
-                                        <md-button ng-click="declineParticipation(participation)" class="md-warn card-button"
+                                        <md-button ng-click="declineParticipation(participation)"
+                                                   class="md-warn card-button"
                                                    ng-hide="participation.status == 'declined'"
                                                    aria-label="{{'STUDY_DETAILS.DECLINE_PARTICIPANT' | translate}}">
                                             {{'STUDY_DETAILS.DECLINE_PARTICIPANT' | translate}}
@@ -149,13 +159,14 @@
                                             {{'STUDY_DETAILS.DECLINED_PARTICIPANT' | translate}}
                                         </md-button>
                                     </span>
-                                    <span ng-hide="!date.past">
-                                        <md-button ng-click="wasHere(participation)" class="card-button md-raised md-accent"
+                                    <span ng-hide="date.status != 'finished'">
+                                        <md-button ng-click="wasHere(participation)"
+                                                   class="card-button md-raised md-accent"
                                                    ng-show="participation.status == 'confirmed' || participation.status == 'pending'"
                                                    aria-label="{{'STUDY_DETAILS.WAS_HERE' | translate}}">
                                             {{'STUDY_DETAILS.WAS_HERE' | translate}}
                                         </md-button>
-                                        <md-button class="card-button green"
+                                        <md-button class="card-button"
                                                    ng-show="participation.status == 'completed'"
                                                    disabled="true"
                                                    aria-label="{{'STUDY_DETAILS.WAS_HERE' | translate}}">
@@ -177,10 +188,17 @@
                             </div>
                         </md-card-content>
 
-                        <md-card-action>
-                            <md-button class="md-accent" ng-click="participate(date)" ng-hide="isOwner"
-                                       ng-disabled="date.status != 'available'">
+                        <md-card-action ng-hide="isOwner">
+                            <md-button class="md-accent" ng-click="participate(date)"
+                                       ng-disabled="((date.status != 'available') || isParticipating) || waitingForParticipation"
+                                       ng-hide="date.participating">
                                 {{'STUDY_DETAILS.PARTICIPATE' |
+                                translate}}
+                            </md-button>
+                            <md-button class="md-warn" ng-click="withdrawParticipation(date)"
+                                       ng-disabled="waitingForParticipation"
+                                       ng-show="date.participating">
+                                {{'STUDY_DETAILS.WITHDRAW_PARTICIPATION' |
                                 translate}}
                             </md-button>
                         </md-card-action>
@@ -223,6 +241,6 @@
 
 
     </md-content>
-    <!-- END create study form -->
+    <!-- END view study form -->
 
 </section>

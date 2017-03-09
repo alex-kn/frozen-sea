@@ -8,6 +8,10 @@
   }
 }
 
+.participating {
+  background-color: lightgreen;
+}
+
 
 h2 {
   i {
@@ -15,8 +19,10 @@ h2 {
   }
 }
 
-md-progress-circular{
-  margin: auto;
+md-progress-circular {
+  margin-top: 10rem;
+  margin-left: auto;
+  margin-right: auto ;
 }
 
 
@@ -33,6 +39,10 @@ md-card {
   }
 
   md-card-content {
+
+    md-progress-circular{
+      margin: auto;
+    }
 
     .card-button {
       margin: 0;
