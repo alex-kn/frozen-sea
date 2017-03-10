@@ -13,130 +13,98 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService',
-        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService',
+        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService) {
 
-            var startDate = new Date();
-            var endDate = new Date(
-                startDate.getFullYear(),
-                startDate.getMonth(),
-                startDate.getDate() + 1);
+            $scope.initialize = function() {
 
-            var minEndDate = new Date(
-                startDate.getFullYear(),
-                startDate.getMonth(),
-                startDate.getDate() + 1);
+                $http.get('resc/files/studyprograms.txt')
+                    .then(function (response) {
+                        $scope.studyPrograms = response.data.split("\n");
+                    });
 
-            $scope.study = {
-                name: $routeParams.study,
-                duration: 30,
-                location: null,
-                tags: [],
-                description: '',
-                startDate: startDate,
-                endDate: endDate,
-                minEndDate: minEndDate,
-                adviser: '',
-                money: null,
-                voucher: null,
-                hours: null,
-                keywords: [],
-                locations: []
+                $scope.preferences = {
+                    studyPrograms: [],
+                    age: null,
+                    german: null,
+                    english: null,
+                    gender:null,
+                    height: null,
+                    handedness: null,
+                    glasses: null,
+                    contacts: null,
+                    no_visual_aid: null,
+                    android: null,
+                    windows: null,
+                    ios: null
+                };
+
+                $scope.readonly = false;
+                $scope.title = 'Studie erstellen';
+
+                var startDate = new Date();
+                var endDate = new Date(
+                    startDate.getFullYear(),
+                    startDate.getMonth(),
+                    startDate.getDate() + 1);
+
+                var minEndDate = new Date(
+                    startDate.getFullYear(),
+                    startDate.getMonth(),
+                    startDate.getDate() + 1);
+
+                $scope.study = {
+                    name: $routeParams.study,
+                    duration: 30,
+                    location: null,
+                    tags: [],
+                    description: '',
+                    startDate: startDate,
+                    endDate: endDate,
+                    minEndDate: minEndDate,
+                    adviser: '',
+                    money: null,
+                    voucher: null,
+                    hours: null,
+                    keywords: [],
+                    locations: []
+                };
+
+                $scope.appointments = [];
+
+                $scope.appointment = {
+                    date: $scope.study.startDate,
+                    time: '08:30',
+                    bufferTime: null,
+                    duration: $scope.study.duration,
+                    deadline: $scope.study.startDate,
+                    location: null,
+                    participants: 1
+                };
             };
 
-            $scope.appointment = {
-                date: $scope.study.startDate,
-                time: '08:30',
-                bufferTime: null,
-                duration: $scope.study.duration,
-                deadline: $scope.study.startDate,
-                location: null,
-                participants: 1
-            };
-
-            $scope.appointments = [];
-
-            $scope.preferences = {
-                studyPrograms: [],
-                age: null,
-                german: null,
-                english: null,
-                gender:null,
-                height: null,
-                handedness: null,
-                glasses: null,
-                contacts: null,
-                no_visual_aid: null,
-                android: null,
-                windows: null,
-                ios: null
-            };
-
-            $scope.readonly = false;
-            $scope.title = 'Studie erstellen';
-
-            $http.get('resc/files/studyprograms.txt')
-                .then(function (response) {
-                    $scope.studyPrograms = response.data.split("\n");
-                });
-
-            /**
-             * Add the appointment duration time to the previous appointment time
-             *
-             * @param appointmentTime {string}
-             * @param duration {int}
-             * @param buffer {int}
-             * @returns {string}
-             */
-            function addDurationToAppointmentTime(appointmentTime, duration, buffer) {
-
-                var time = appointmentTime.split(':');
-                console.log(time);
-                var hours = parseInt(time[0]);
-                var minutes = parseInt(time[1]);
-
-                if (minutes + duration + buffer >= 60) {
-
-                    hours++;
-                    minutes = minutes + duration + buffer - 60;
-
-                } else {
-
-                    minutes = minutes + duration + buffer;
-
-                }
-
-                if (hours > 23) hours = 0;
-                if (hours < 10) hours = '0' + hours;
-                if (minutes < 10) minutes = '0' + minutes;
-
-                return hours + ':' + minutes;
-            }
-
-
-            $scope.addAppointment = function () {
+            $scope.addAppointment = function() {
 
                 var appointment = {
-                    'date': $scope.appointment.date,
-                    'time': $scope.appointment.time,
-                    'bufferTime': $scope.appointment.bufferTime,
-                    'duration': $scope.study.duration,
+                    date: $scope.appointment.date,
+                    time: $scope.appointment.time,
+                    bufferTime: $scope.appointment.bufferTime,
+                    duration: $scope.study.duration,
                     location: $scope.appointment.location,
                     participants: $scope.appointment.participants,
                     deadline: $scope.appointment.deadline
                 };
 
                 $scope.appointments.unshift(appointment);
-                $scope.appointment.time = addDurationToAppointmentTime(appointment.time, appointment.duration, appointment.bufferTime);
+                $scope.appointment.time = AppointmentService.addDurationToAppointmentTime(appointment.time, appointment.duration, appointment.bufferTime);
 
             };
 
 
-            $scope.removeAppointment = function (item) {
+            $scope.removeAppointment= function(item) {
                 var index = $scope.appointments.indexOf(item);
                 $scope.appointments.splice(index, 1);
             };
-
 
             $scope.createStudy = function () {
 
