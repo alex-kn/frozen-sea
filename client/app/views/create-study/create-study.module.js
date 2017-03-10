@@ -42,26 +42,12 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 $scope.readonly = false;
                 $scope.title = 'Studie erstellen';
 
-                var startDate = new Date();
-                var endDate = new Date(
-                    startDate.getFullYear(),
-                    startDate.getMonth(),
-                    startDate.getDate() + 1);
-
-                var minEndDate = new Date(
-                    startDate.getFullYear(),
-                    startDate.getMonth(),
-                    startDate.getDate() + 1);
-
                 $scope.study = {
                     name: $routeParams.study,
                     duration: 30,
                     location: null,
                     tags: [],
                     description: '',
-                    startDate: startDate,
-                    endDate: endDate,
-                    minEndDate: minEndDate,
                     adviser: '',
                     money: null,
                     voucher: null,
@@ -73,7 +59,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 $scope.appointments = [];
 
                 $scope.appointment = {
-                    date: $scope.study.startDate,
+                    date: new Date(),
                     time: '08:30',
                     bufferTime: null,
                     duration: $scope.study.duration,
@@ -114,8 +100,8 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                         .create({
                             title: $scope.study.name,
                             description: $scope.study.description,
-                            startDate: $scope.study.startDate,
-                            endDate: $scope.study.endDate,
+                            startDate: AppointmentService.getDates($scope.appointments).startDate,
+                            endDate: AppointmentService.getDates($scope.appointments).endDate,
                             ownerId: LoopBackAuth.currentUserId,
                             duration: $scope.study.duration,
 

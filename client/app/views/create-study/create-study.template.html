@@ -200,29 +200,6 @@
 
                         <h2 class="md-headline">{{'CREATE_STUDY.ADD_DATES' | translate}}</h2>
 
-                        <div layout-gt-xs="row">
-
-                            <md-input-container class="md-block">
-                                <label>{{'CREATE_STUDY.STUDY_START' | translate}}</label>
-                                <md-datepicker name="startDate" required ng-model="study.startDate"
-                                               md-min-date="study.startDate"></md-datepicker>
-
-                                <div ng-messages="createStudyForm.startDate.$error">
-                                    <div ng-message="required">{{'CREATE_STUDY.STUDY_START_MESSAGE' | translate}}</div>
-                                </div>
-                            </md-input-container>
-
-                            <md-input-container class="md-block">
-                                <label>{{'CREATE_STUDY.STUDY_END' | translate}}</label>
-                                <md-datepicker name="endDate" required ng-model="study.endDate" md-min-date="study.minEndDate"></md-datepicker>
-
-                                <div ng-messages="createStudyForm.endDate.$error">
-                                    <div ng-message="required">{{'CREATE_STUDY.STUDY_END_MESSAGE' | translate}}</div>
-                                </div>
-                            </md-input-container>
-
-                        </div>
-
                         <div layout-gt-xs="row" layout-wrap>
 
                             <md-input-container class="md-block margin-btm-0" flex="100" flex-gt-xs="33">
