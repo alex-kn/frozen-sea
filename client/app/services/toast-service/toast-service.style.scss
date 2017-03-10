@@ -1,4 +1,32 @@
-md-toast.md-success-toast-theme .md-toast-content {
-  background-color: green;
+@import "../../stylesheets/main";
+
+md-toast {
+  background: none;
+  padding: .5rem;
+  position: fixed;
+  
+  @media (max-width: 959px) {
+    padding: 0;
+  }
 }
+
+.md-toast-content {
+
+  background-color: #fff !important;
+  color: $primary-text-color !important;
+
+  @media (max-width: 959px) {
+    background-color: $primary-color !important;
+    color: #fff !important;
+  }
+
+  i {
+    padding: 1rem;
+    background-color: #FFAB40;
+    color: #fff;
+    height: 100%;
+    font-size: 48px;
+  }
+}
+
 
