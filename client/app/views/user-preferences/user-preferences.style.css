@@ -45,11 +45,6 @@ md-toolbar.toolbar {
     top: 5.75rem;
     right: 22%; }
 
-.md-toast-content {
-  padding: 0 !important;
-  border-radius: 0 !important;
-  background: #fff !important; }
-
 .form-control {
   height: 2.5rem; }
 
