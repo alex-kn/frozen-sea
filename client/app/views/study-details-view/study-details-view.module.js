@@ -18,6 +18,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.isOwner = false;
             $scope.studyIsLoading = true;
             $scope.isParticipating = false;
+            $scope.alreadyParticipated = false;
 
             $scope.study = Study.findById({id: $routeParams.study}, function (response) {
                 $scope.study.startDate = new Date($scope.study.startDate);
@@ -33,10 +34,10 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         responseDate.startDate = new Date(responseDate.startDate);
                         responseDate.endDate = new Date(responseDate.startDate.getTime() + responseDate.duration * 60000);
                         responseDate.participants = 0;
-                        if (responseDate.startDate < new Date()) {
+                        responseDate.deadlineDate = new Date(responseDate.startDate.getTime() - responseDate.deadline * 3600000);
+                        if (responseDate.deadlineDate < new Date()) {
                             responseDate.status = "finished";
                         }
-
                         if ($scope.isOwner) {
                             responseDate.isLoading = true;
                             StudyDate.participations({id: responseDate.id}, function (responseParticipationArray) {
@@ -74,6 +75,9 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                             }, function (response) {
                                 if (response.count > 0) {
                                     responseDate.participating = true;
+                                    if(responseDate.startDate < new Date()){
+                                        $scope.alreadyParticipated = true;
+                                    }
                                     $scope.isParticipating = true;
                                     $scope.datesGroupedByDay.forEach(function (d) {
                                         d.forEach(function (date) {
@@ -121,7 +125,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         }
                     }));
                     $scope.datesGroupedByDay.push(days);
-                    $scope.datesGroupedByDay[0].show = true;
 
                 })
             }
