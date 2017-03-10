@@ -68,7 +68,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                 filter: {
                                     where: {
                                         participantId: LoopBackAuth.currentUserId,
-                                        studyId: $scope.study.id,
+                                        studyId: $scope.study.id
                                     }
                                 }
                             }, function (response) {
@@ -163,7 +163,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     ToastService.displayToast();
                     studyDate.participating = true;
                     studyDate.participants += 1;
-                    $scope.study.isParticipating = true;
+                    $scope.isParticipating = true;
                     console.log("Participation created.");
                     $scope.waitingForParticipation = false;
                 }, function (error) {
@@ -188,13 +188,13 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     Subuser.participations.destroyAll(
                         {id: LoopBackAuth.currentUserId},
                         {filter: {where: {studyDateId: studyDate.id}}}, function (response) {
-                            console.log("Participation deleted")
+                            console.log("Participation deleted");
                             studyDate.participating = false;
                             studyDate.participants -= 1;
-                            $scope.study.isParticipating = false;
+                            $scope.isParticipating = false;
                             $scope.waitingForParticipation = false;
                         }, function (error) {
-                            console.log("Error deleting Participation")
+                            console.log("Error deleting Participation");
                             console.log(error);
                             $scope.waitingForParticipation = false;
                         });
@@ -230,6 +230,14 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     participation.name = name;
                 });
             }
+
+            $scope.updateParticipationStatus = function (participation, status){
+                participation.status = status;
+                var name = participation.name;
+                participation.$save().then(function () {
+                    participation.name = name;
+                });
+            };
 
 
             $scope.editStudy = function () {
