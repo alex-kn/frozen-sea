@@ -90,8 +90,14 @@ form md-checkbox {
     margin-right: 0; }
 form .margin-btm-0 {
   margin-bottom: 0; }
-@media (min-width: 600px) {
+@media (min-width: 601px) {
   form .mg-top-16-on-desktop {
+    margin-top: 1rem; } }
+@media (max-width: 600px) {
+  form .mg-top-on-mobile {
+    margin-top: 2.5rem; } }
+@media (max-width: 600px) {
+  form .mg-top-16-on-mobile md-chips-wrap {
     margin-top: 1rem; } }
 
 @media (max-width: 600px) {
@@ -103,5 +109,13 @@ form .margin-btm-0 {
   margin-top: 1rem; }
   .align-items i {
     margin-right: 1rem; }
+
+@media (max-width: 600px) {
+  .negative-mg-on-mobile md-chips-wrap {
+    margin-top: -1.5rem; } }
+
+@media (min-width: 601px) {
+  .negative-mg-on-desktop md-chips-wrap {
+    margin-top: -1.5rem; } }
 
 /*# sourceMappingURL=create-study.style.css.map */

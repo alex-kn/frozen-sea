@@ -88,7 +88,7 @@
                                 </div>
                             </md-input-container>
 
-                            <md-chips class="md-block" style="margin-top: 1px" flex-gt-xs="70"
+                            <md-chips class="md-block negative-mg-on-mobile" style="margin-top: 1px" flex-gt-xs="70"
                                       secondary-placeholder="{{'CREATE_STUDY.KEYWORDS_ARIA_LABEL' | translate}}"
                                       aria-label="{{'CREATE_STUDY.KEYWORDS_ARIA_LABEL' | translate}}"
                                       placeholder="{{'CREATE_STUDY.KEYWORDS_PLACEHOLDER' | translate}}"
@@ -101,7 +101,7 @@
 
                         <div layout-gt-xs="row" class="mg-top-16-on-desktop">
 
-                            <md-chips class="md-block" style="margin-top: 1px" flex-gt-xs
+                            <md-chips class="md-block mg-top-16-on-mobile negative-mg-on-desktop" style="margin-top: 1px" flex-gt-xs
                                       secondary-placeholder="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}"
                                       aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}"
                                       placeholder="{{'CREATE_STUDY.LOCATION_PLACEHOLDER' | translate}}"
@@ -253,7 +253,7 @@
                                 </md-select>
                             </md-input-container>
 
-                            <md-input-container class="md-block margin-btm-0" flex="100" flex-gt-xs="33">
+                            <md-input-container class="md-block margin-btm-0 mg-top-on-mobile" flex="100" flex-gt-xs="33">
                                 <label>{{'CREATE_STUDY.APPOINTMENT_PARTICIPANTS' | translate}}</label>
                                 <input type="number" aria-label="{{'CREATE_STUDY.APPOINTMENT_PARTICIPANTS' | translate}}" ng-model="appointment.participants" placeholder="{{'CREATE_STUDY.APPOINTMENT_PARTICIPANTS' | translate}}" md-select-on-focus>
                             </md-input-container>
@@ -433,7 +433,7 @@
 
                             <div layout-gt-xs="row" flex="100" layout-align="start center">
 
-                                <div flex-gt-sm="35" flex="100">
+                                <div flex-gt-xs="35" flex="100">
 
                                     <md-switch ng-model="preferencesHeight" aria-label="{{'CREATE_STUDY.HEIGHT_ARIA_LABEL' | translate}}" ng-true-value="'Ja'"
                                                ng-false-value="'Nein'">
@@ -442,7 +442,7 @@
 
                                 </div>
 
-                                <md-slider-container ng-if="preferencesHeight === 'Ja'" flex-gt-sm="65" flex="100">
+                                <md-slider-container ng-if="preferencesHeight === 'Ja'" flex-gt-xs="65" flex="100">
                                     <span>in cm</span>
                                     <md-slider flex min="0" max="220" ng-model="preferences.height"
                                                aria-label="{{'CREATE_STUDY.HEIGHT_ARIA_LABEL' | translate}}" id="height-slider">

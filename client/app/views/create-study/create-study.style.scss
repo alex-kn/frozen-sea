@@ -21,12 +21,24 @@ form {
   }
 
   .mg-top-16-on-desktop {
-    @media (min-width: 600px) {
+    @media (min-width: 601px) {
       margin-top: 1rem;
     }
   }
 
+  .mg-top-on-mobile {
+      @media (max-width: 600px) {
+        margin-top: 2.5rem;
+      }
+  }
 
+  .mg-top-16-on-mobile {
+    md-chips-wrap {
+      @media (max-width: 600px) {
+        margin-top: 1rem;
+      }
+    }
+  }
 }
 
 
@@ -44,3 +56,22 @@ form {
     margin-right: 1rem;
   }
 }
+
+.negative-mg-on-mobile {
+
+  md-chips-wrap {
+    @media (max-width: 600px) {
+      margin-top: -1.5rem;
+    }
+  }
+}
+
+.negative-mg-on-desktop {
+
+  md-chips-wrap {
+    @media (min-width: 601px) {
+      margin-top: -1.5rem;
+    }
+  }
+}
+
