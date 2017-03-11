@@ -26,10 +26,6 @@ angular
                 hours++;
                 minutes = minutes + duration + buffer - 60;
 
-            } else if(minutes + duration + buffer > 60) {
-
-
-
             } else {
 
                 minutes = minutes + duration + buffer;
@@ -43,7 +39,17 @@ angular
             return hours + ':' + minutes;
         }
 
+        function getDates(appointments) {
+            appointments.sort(function(a, b) { return b.date - a.date });
+
+            return {
+                startDate: appointments.slice(-1)[0].date,
+                endDate: appointments[0].date
+            }
+        }
+
         return {
+            getDates: getDates,
             addDurationToAppointmentTime: addDurationToAppointmentTime
         }
 
