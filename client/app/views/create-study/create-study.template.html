@@ -122,10 +122,8 @@
 
                             <md-input-container flex="100">
                                 <label>{{'CREATE_STUDY.ADVISER' | translate}}</label>
-                                <md-select name="adviser" ng-model="study.advisor" aria-label="{{'CREATE_STUDY.ADVISER_ARIA_LABEL' | translate}}" required>
-                                    <md-option value="hansHuber">Hans Huber</md-option>
-                                    <md-option value="horstGurkner">Horst Gurkner</md-option>
-                                    <md-option value="Fred Sack">Fred Sack</md-option>
+                                <md-select name="adviser" ng-model="study.adviser" aria-label="{{'CREATE_STUDY.ADVISER_ARIA_LABEL' | translate}}" required>
+                                    <md-option ng-repeat="advisor in advisors" value="{{ advisor.name }}">{{ advisor.name }}</md-option>
                                 </md-select>
                                 <div class="errors" ng-messages="createStudyForm.adviser.$error">
                                     <div ng-message="required">{{'CREATE_STUDY.ADVISER_MESSAGE' | translate}}</div>

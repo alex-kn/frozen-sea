@@ -25,6 +25,7 @@ angular.module('userStudy', [
     'archiveListDirective',
     'participateDialogDirective',
     'AppointmentService',
+    'AdvisorService',
     'ToastService',
     'EmailService',
     'AuthService',

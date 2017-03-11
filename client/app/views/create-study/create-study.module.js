@@ -13,14 +13,24 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService',
-        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'AdvisorService',
+        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, AdvisorService) {
 
             $scope.initialize = function() {
 
+
                 $http.get('resc/files/studyprograms.txt')
-                    .then(function (response) {
+                    .then(function(response) {
                         $scope.studyPrograms = response.data.split("\n");
+                        console.log($scope.studyPrograms);
+                    });
+
+                var advisorPromise = AdvisorService.getAdvisorList();
+                advisorPromise.then(
+                    function(response) {
+                        $scope.advisors = response.data;
+                    }, function(error) {
+                        console.log(error.statusText);
                     });
 
                 $scope.preferences = {
@@ -48,7 +58,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                     location: null,
                     tags: [],
                     description: '',
-                    adviser: '',
+                    advisor: '',
                     money: null,
                     voucher: null,
                     hours: null,
@@ -68,6 +78,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                     participants: 1
                 };
             };
+            
 
             $scope.addAppointment = function() {
 

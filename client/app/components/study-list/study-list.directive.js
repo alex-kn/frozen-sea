@@ -26,7 +26,11 @@ angular
 
 
             //load all studies that are not finished yet
-            $scope.studiesTemp = Study.find({filter: {where: {endDate:  {gte: new Date()}}}},
+            $scope.studiesTemp = Study.find({
+                filter: {
+                    where: {
+                        endDate:  {
+                            gte: new Date()}}}},
                 function(list) {
                     compareStudyDetailsWithUserPreferences();
                 }
