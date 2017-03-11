@@ -135,12 +135,12 @@
                                     <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">person</i> {{ participation.name }}</span>
                                     <span ng-hide="date.status == 'finished'">
                                         <md-button ng-click="updateParticipationStatus(participation, 'confirmed')"
-                                                   class="card-button md-raised md-accent"
+                                                   class="card-button md-raised md-accent button-green"
                                                    ng-show="participation.status == 'pending'"
                                                    aria-label="{{'STUDY_DETAILS.CONFIRM_PARTICIPANT' | translate}}">
                                             {{'STUDY_DETAILS.CONFIRM_PARTICIPANT' | translate}}
                                         </md-button>
-                                        <md-button class="card-button"
+                                        <md-button class="card-button button-green"
                                                    ng-show="participation.status == 'confirmed'"
                                                    disabled="true"
                                                    aria-label="{{'STUDY_DETAILS.CONFIRMED_PARTICIPANT' | translate}}">
@@ -152,7 +152,7 @@
                                                    aria-label="{{'STUDY_DETAILS.DECLINE_PARTICIPANT' | translate}}">
                                             {{'STUDY_DETAILS.DECLINE_PARTICIPANT' | translate}}
                                         </md-button>
-                                        <md-button class="md-warn card-button button-warn"
+                                        <md-button class="card-button button-red"
                                                    ng-show="participation.status == 'declined'"
                                                    disabled="true"
                                                    aria-label="{{'STUDY_DETAILS.DECLINED_PARTICIPANT' | translate}}">
@@ -161,12 +161,12 @@
                                     </span>
                                     <span ng-hide="date.status != 'finished'">
                                         <md-button ng-click="updateParticipationStatus(participation, 'completed')"
-                                                   class="card-button md-raised md-accent"
+                                                   class="card-button md-raised md-accent button-green"
                                                    ng-show="participation.status == 'confirmed' || participation.status == 'pending'"
                                                    aria-label="{{'STUDY_DETAILS.WAS_HERE' | translate}}">
                                             {{'STUDY_DETAILS.WAS_HERE' | translate}}
                                         </md-button>
-                                        <md-button class="card-button" disabled
+                                        <md-button class="card-button button-green" disabled
                                                    ng-show="participation.status == 'completed'"
                                                    aria-label="{{'STUDY_DETAILS.WAS_HERE' | translate}}">
                                             {{'STUDY_DETAILS.WAS_HERE' | translate}}
@@ -176,7 +176,7 @@
                                                    aria-label="{{'STUDY_DETAILS.WAS_NOT_HERE' | translate}}">
                                             {{'STUDY_DETAILS.WAS_NOT_HERE' | translate}}
                                         </md-button>
-                                        <md-button class="card-button button-warn"
+                                        <md-button class="card-button button-red"
                                                    ng-show="participation.status == 'absent'"
                                                    disabled="true"
                                                    aria-label="{{'STUDY_DETAILS.WAS_NOT_HERE' | translate}}">

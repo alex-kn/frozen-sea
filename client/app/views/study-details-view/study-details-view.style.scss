@@ -30,13 +30,15 @@ md-progress-circular {
 }
 
 md-divider {
-  margin-bottom: .5rem;
+  margin-bottom: 1rem;
   margin-top: .5rem;
 }
 
 
 
 md-card {
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
   md-card-header {
     padding-bottom: 0;
   }
@@ -51,11 +53,18 @@ md-card {
       margin: 0;
     }
 
-    .card-button[disabled] {
-      color: lightgreen;
+    .button-green:not([disabled]){
+      background-color: lightgreen !important;
+    }
+    .button-green[disabled]{
+      color: lightgreen !important;
     }
 
-    .button-warn[disabled] {
+    .button-red[disabled] {
+      color: red !important;
+    }
+
+    .button-red[disabled] {
       color: red !important;
     }
 
@@ -67,5 +76,4 @@ md-card {
 }
 
 .pad {
-  margin-top: 1rem;
 }

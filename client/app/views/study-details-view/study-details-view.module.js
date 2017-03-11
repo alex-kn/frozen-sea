@@ -113,7 +113,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
                     res.sort(function (a, b) {
                         return a.startDate - b.startDate;
-
                     });
                     $q.all(res.map(function (date) {
                         day = $filter('date')(date.startDate, "shortDate");
@@ -157,6 +156,13 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
             $scope.participate = function (studyDate) {
                 $scope.waitingForParticipation = true;
+
+                if(!$scope.chosenReward){
+                    ToastService.setToastText($filter('translate')('STUDY_DETAILS.REWARD_NOT_CHOSEN'));
+                    ToastService.displayToast();
+                    $scope.waitingForParticipation = false;
+                    return
+                }
 
                 ToastService.setToastText($filter('translate')('STUDY_DETAILS.PARTICIPATING'));
                 ToastService.displayToast();

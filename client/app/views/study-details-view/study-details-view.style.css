@@ -95,23 +95,26 @@ md-progress-circular {
   margin-top: 0; }
 
 md-divider {
-  margin-bottom: .5rem;
+  margin-bottom: 1rem;
   margin-top: .5rem; }
 
-md-card md-card-header {
-  padding-bottom: 0; }
-md-card md-card-content md-progress-circular {
-  margin: auto; }
-md-card md-card-content .card-button {
-  margin: 0; }
-md-card md-card-content .card-button[disabled] {
-  color: lightgreen; }
-md-card md-card-content .button-warn[disabled] {
-  color: red !important; }
-md-card md-card-content span {
-  margin-top: .5rem; }
-
-.pad {
-  margin-top: 1rem; }
+md-card {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+  md-card md-card-header {
+    padding-bottom: 0; }
+  md-card md-card-content md-progress-circular {
+    margin: auto; }
+  md-card md-card-content .card-button {
+    margin: 0; }
+  md-card md-card-content .button-green:not([disabled]) {
+    background-color: lightgreen !important; }
+  md-card md-card-content .button-green[disabled] {
+    color: lightgreen !important; }
+  md-card md-card-content .button-red[disabled] {
+    color: red !important; }
+  md-card md-card-content .button-red[disabled] {
+    color: red !important; }
+  md-card md-card-content span {
+    margin-top: .5rem; }
 
 /*# sourceMappingURL=study-details-view.style.css.map */

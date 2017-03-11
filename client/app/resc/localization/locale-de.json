@@ -218,7 +218,8 @@
     "PARTICIPATION_WITHDRAWN" : "Deine Teilnahme wurde erfolgreich zurückgezogen.",
     "WITHDRAWING_PARTICIPATION" : "Deine Teilnahme wird zurückgezogen ...",
     "PARTICIPATING" : "Deine Teilnahme wird geprüft...",
-    "COMPLETED" : "Du hast bestätigt, dass der Teilnehmer da war. Bitte sorge für die Auszahlung der entsprechenden Belohnung"
+    "COMPLETED" : "Du hast bestätigt, dass der Teilnehmer da war. Bitte sorge für die Auszahlung der entsprechenden Belohnung",
+    "REWARD_NOT_CHOSEN" : "Teilnahme fehlgeschlagen. Bitte wähle eine Vergütung."
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",
