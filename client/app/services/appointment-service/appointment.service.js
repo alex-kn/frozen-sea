@@ -17,19 +17,15 @@ angular
         function addDurationToAppointmentTime(appointmentTime, duration, buffer) {
 
             var time = appointmentTime.split(':');
-            console.log(time);
             var hours = parseInt(time[0]);
             var minutes = parseInt(time[1]);
+            var totalDuration = minutes + duration + buffer;
 
-            if (minutes + duration + buffer == 60) {
-
-                hours++;
-                minutes = minutes + duration + buffer - 60;
-
+            if (totalDuration >= 60) {
+                hours += Math.floor(totalDuration / 60);
+                minutes = totalDuration % 60;
             } else {
-
-                minutes = minutes + duration + buffer;
-
+                minutes = totalDuration;
             }
 
             if (hours > 23) hours = 0;
@@ -52,6 +48,5 @@ angular
             getDates: getDates,
             addDurationToAppointmentTime: addDurationToAppointmentTime
         }
-
 
     });
