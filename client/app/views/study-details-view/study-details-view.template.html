@@ -110,10 +110,10 @@
                              ng-class="[{'participating': date.participating}, date.status]">
                         <md-card-header style>
                             <md-card-avatar>
-                                <md-icon ng-show="(date.status== 'reserved') || (date.status == 'finished')"
+                                <md-icon ng-show="date.participating"
                                          class="material-icons">assignment_turned_in
                                 </md-icon>
-                                <md-icon ng-show="date.status=='available'" class="material-icons">assignment</md-icon>
+                                <md-icon ng-hide="date.participating" class="material-icons">assignment</md-icon>
                             </md-card-avatar>
                             <md-card-header-text>
                                 <span class="md-title">{{ date.startDate | date:'HH:mm' }} -
@@ -189,8 +189,8 @@
 
                         <md-card-action ng-hide="isOwner">
                             <md-button class="md-accent" ng-click="participate(date)"
-                                       ng-disabled="((date.status != 'available') || isParticipating) || waitingForParticipation"
-                                       ng-hide="date.participating || alreadyParticipated">
+                                       ng-disabled="waitingForParticipation"
+                                       ng-hide="date.participating || alreadyParticipated || (date.status != 'available') || isParticipating">
                                 {{'STUDY_DETAILS.PARTICIPATE' |
                                 translate}}
                             </md-button>

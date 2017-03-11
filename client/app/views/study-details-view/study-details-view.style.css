@@ -91,6 +91,9 @@ md-progress-circular {
   margin-left: auto;
   margin-right: auto; }
 
+.day-loading {
+  margin-top: 0; }
+
 md-divider {
   margin-bottom: .5rem;
   margin-top: .5rem; }
