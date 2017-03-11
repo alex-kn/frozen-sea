@@ -25,6 +25,9 @@ md-progress-circular {
   margin-right: auto ;
 }
 
+.day-loading {
+  margin-top: 0;
+}
 
 md-divider {
   margin-bottom: .5rem;
@@ -48,6 +51,13 @@ md-card {
       margin: 0;
     }
 
+    .card-button[disabled] {
+      color: lightgreen;
+    }
+
+    .button-warn[disabled] {
+      color: red !important;
+    }
 
     span {
       margin-top: .5rem;
@@ -58,9 +68,4 @@ md-card {
 
 .pad {
   margin-top: 1rem;
-}
-
-//TODO
-.green {
-  color: limegreen;
 }

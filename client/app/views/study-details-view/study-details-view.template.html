@@ -110,10 +110,10 @@
                              ng-class="[{'participating': date.participating}, date.status]">
                         <md-card-header style>
                             <md-card-avatar>
-                                <md-icon ng-show="(date.status== 'reserved') || (date.status == 'finished')"
+                                <md-icon ng-show="date.participating"
                                          class="material-icons">assignment_turned_in
                                 </md-icon>
-                                <md-icon ng-show="date.status=='available'" class="material-icons">assignment</md-icon>
+                                <md-icon ng-hide="date.participating" class="material-icons">assignment</md-icon>
                             </md-card-avatar>
                             <md-card-header-text>
                                 <span class="md-title">{{ date.startDate | date:'HH:mm' }} -
@@ -134,7 +134,7 @@
                                 <div ng-repeat="participation in date.participations" layout="column" class="pad">
                                     <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">person</i> {{ participation.name }}</span>
                                     <span ng-hide="date.status == 'finished'">
-                                        <md-button ng-click="confirmParticipation(participation)"
+                                        <md-button ng-click="updateParticipationStatus(participation, 'confirmed')"
                                                    class="card-button md-raised md-accent"
                                                    ng-show="participation.status == 'pending'"
                                                    aria-label="{{'STUDY_DETAILS.CONFIRM_PARTICIPANT' | translate}}">
@@ -152,7 +152,7 @@
                                                    aria-label="{{'STUDY_DETAILS.DECLINE_PARTICIPANT' | translate}}">
                                             {{'STUDY_DETAILS.DECLINE_PARTICIPANT' | translate}}
                                         </md-button>
-                                        <md-button class="md-warn card-button"
+                                        <md-button class="md-warn card-button button-warn"
                                                    ng-show="participation.status == 'declined'"
                                                    disabled="true"
                                                    aria-label="{{'STUDY_DETAILS.DECLINED_PARTICIPANT' | translate}}">
@@ -160,24 +160,23 @@
                                         </md-button>
                                     </span>
                                     <span ng-hide="date.status != 'finished'">
-                                        <md-button ng-click="wasHere(participation)"
+                                        <md-button ng-click="updateParticipationStatus(participation, 'completed')"
                                                    class="card-button md-raised md-accent"
                                                    ng-show="participation.status == 'confirmed' || participation.status == 'pending'"
                                                    aria-label="{{'STUDY_DETAILS.WAS_HERE' | translate}}">
                                             {{'STUDY_DETAILS.WAS_HERE' | translate}}
                                         </md-button>
-                                        <md-button class="card-button"
+                                        <md-button class="card-button" disabled
                                                    ng-show="participation.status == 'completed'"
-                                                   disabled="true"
                                                    aria-label="{{'STUDY_DETAILS.WAS_HERE' | translate}}">
                                             {{'STUDY_DETAILS.WAS_HERE' | translate}}
                                         </md-button>
-                                        <md-button ng-click="wasNotHere(participation)" class="md-warn card-button"
+                                        <md-button ng-click="updateParticipationStatus(participation, 'absent')" class="md-warn card-button"
                                                    ng-show="participation.status == 'confirmed' || participation.status == 'pending'"
                                                    aria-label="{{'STUDY_DETAILS.WAS_NOT_HERE' | translate}}">
                                             {{'STUDY_DETAILS.WAS_NOT_HERE' | translate}}
                                         </md-button>
-                                        <md-button class="md-warn card-button"
+                                        <md-button class="card-button button-warn"
                                                    ng-show="participation.status == 'absent'"
                                                    disabled="true"
                                                    aria-label="{{'STUDY_DETAILS.WAS_NOT_HERE' | translate}}">
@@ -190,14 +189,14 @@
 
                         <md-card-action ng-hide="isOwner">
                             <md-button class="md-accent" ng-click="participate(date)"
-                                       ng-disabled="((date.status != 'available') || isParticipating) || waitingForParticipation"
-                                       ng-hide="date.participating">
+                                       ng-disabled="waitingForParticipation"
+                                       ng-hide="date.participating || alreadyParticipated || (date.status != 'available') || isParticipating">
                                 {{'STUDY_DETAILS.PARTICIPATE' |
                                 translate}}
                             </md-button>
                             <md-button class="md-warn" ng-click="withdrawParticipation(date)"
                                        ng-disabled="waitingForParticipation"
-                                       ng-show="date.participating">
+                                       ng-show="date.participating && !alreadyParticipated">
                                 {{'STUDY_DETAILS.WITHDRAW_PARTICIPATION' |
                                 translate}}
                             </md-button>
