@@ -22,7 +22,6 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 $http.get('resc/files/studyprograms.txt')
                     .then(function(response) {
                         $scope.studyPrograms = response.data.split("\n");
-                        console.log($scope.studyPrograms);
                     });
 
                 var advisorPromise = AdvisorService.getAdvisorList();
@@ -93,6 +92,9 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 };
 
                 $scope.appointments.unshift(appointment);
+                console.log('appointment time ' + appointment.time);
+                console.log('appointment duration ' + appointment.duration);
+                console.log('appointment buffer ' + appointment.bufferTime);
                 $scope.appointment.time = AppointmentService.addDurationToAppointmentTime(appointment.time, appointment.duration, appointment.bufferTime);
 
             };
