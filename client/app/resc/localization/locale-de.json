@@ -210,7 +210,15 @@
     "DECLINE_PARTICIPANT" : "Ablehnen",
     "DECLINED_PARTICIPANT" : "Abgelehnt",
     "WAS_HERE" : "War da",
-    "WAS_NOT_HERE" : "War nicht da"
+    "PARTICIPATED" : "Teilgenommen!",
+    "WAS_NOT_HERE" : "War nicht da",
+    "LOADING_PARTICIPANT" : "Lade Teilnehmer...",
+    "PARTICIPATION_SUCCESSFUL" : "Termin erfolgreich reserviert. Eine Terminbestätigung folgt per E-Mail.",
+    "PARTICIPATION_FAILED" : "Teilnahme fehlgeschlagen. Du nimmst bereits an dieser Studie teil!",
+    "PARTICIPATION_WITHDRAWN" : "Deine Teilnahme wurde erfolgreich zurückgezogen.",
+    "WITHDRAWING_PARTICIPATION" : "Deine Teilnahme wird zurückgezogen ...",
+    "PARTICIPATING" : "Deine Teilnahme wird geprüft...",
+    "COMPLETED" : "Du hast bestätigt, dass der Teilnehmer da war. Bitte sorge für die Auszahlung der entsprechenden Belohnung"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",
