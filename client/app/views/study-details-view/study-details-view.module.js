@@ -12,8 +12,8 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsViewController', ['$q', '$location', '$routeParams', '$scope', 'StudyDate', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter', 'ToastService',
-        function ($q, $location, $routeParams, $scope, StudyDate, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService) {
+    .controller('StudyDetailsViewController', ['$mdDialog','$q', '$location', '$routeParams', '$scope', 'StudyDate', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter', 'ToastService',
+        function ($mdDialog, $q, $location, $routeParams, $scope, StudyDate, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService) {
 
             $scope.isOwner = false;
             $scope.studyIsLoading = true;
@@ -129,7 +129,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         }
                     }));
                     $scope.datesGroupedByDay.push(days);
-                    $scope.datesGroupedByDay[0].show = true;
+                    $scope.datesGroupedByDay[2].show = true;
                 })
             }
 
@@ -265,4 +265,16 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 day.show = !day.show;
             }
 
+            $scope.showParticipantDetails = function (participation) {
+                var confirm = $mdDialog.confirm({
+                    locals:{data: participation},
+                    controller: "ParticipantDetailsDialogController",
+                    template: '<participant-details-dialog></participant-details-dialog-dialog>',
+                    clickOutsideToClose: true,
+                    parent: angular.element(document.body),
+                    targetEvent: participation,
+                });
+
+                $mdDialog.show(confirm);
+            }
         }]);

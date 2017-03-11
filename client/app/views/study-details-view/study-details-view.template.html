@@ -132,7 +132,13 @@
                                                   md-mode="indeterminate"></md-progress-circular>
                             <div ng-show="isOwner && !date.isLoading" layout="column" layout-align="start start">
                                 <div ng-repeat="participation in date.participations" layout="column" class="pad">
-                                    <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">person</i> {{ participation.name }}</span>
+                                    <span layout-align="start center">
+                                        <md-button ng-click="showParticipantDetails(participation)" class="md-icon-button md-accent pad">
+                                            <md-icon class="material-icons md-24 md-primary">person</md-icon>
+                                        </md-button>
+
+                                        {{ participation.name }}
+                                    </span>
                                     <span ng-hide="date.status == 'finished'">
                                         <md-button ng-click="updateParticipationStatus(participation, 'confirmed')"
                                                    class="card-button md-raised md-accent button-green"
@@ -171,7 +177,8 @@
                                                    aria-label="{{'STUDY_DETAILS.WAS_HERE' | translate}}">
                                             {{'STUDY_DETAILS.WAS_HERE' | translate}}
                                         </md-button>
-                                        <md-button ng-click="updateParticipationStatus(participation, 'absent')" class="md-warn card-button"
+                                        <md-button ng-click="updateParticipationStatus(participation, 'absent')"
+                                                   class="md-warn card-button"
                                                    ng-show="participation.status == 'confirmed' || participation.status == 'pending'"
                                                    aria-label="{{'STUDY_DETAILS.WAS_NOT_HERE' | translate}}">
                                             {{'STUDY_DETAILS.WAS_NOT_HERE' | translate}}

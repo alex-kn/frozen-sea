@@ -24,6 +24,7 @@ angular.module('userStudy', [
     'studyListDirective',
     'archiveListDirective',
     'participateDialogDirective',
+    'participantDetailsDialogDirective',
     'AppointmentService',
     'AdvisorService',
     'ToastService',
