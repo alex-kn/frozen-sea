@@ -18,7 +18,7 @@ angular
             }).when('/archive', {
                 templateUrl: 'views/archive/archive.template.html',
                 activeTab: 'archive'
-            }).when('/', {
+            }).when('/login', {
                 templateUrl: 'views/login/login.template.html'
             }).when('/create-study', {
                 templateUrl: 'views/create-study/create-study.template.html'
@@ -81,7 +81,7 @@ angular
         }])
     .run(['$rootScope', '$location', 'LoopBackAuth', 'AuthService', function ($rootScope, $location, LoopBackAuth, AuthService) {
 
-        var publicRoutes = ['/register'];
+        var publicRoutes = ['/register','/login'];
 
 
         /**
@@ -101,12 +101,12 @@ angular
 
             // No public route && not logged in: redirect to /
             if (!isPublicRoute($location.url()) && !LoopBackAuth.accessTokenId) {
-                $location.path('/');
-                console.log('not auth: redirect to /')
+                $location.path('/login');
+                console.log('not auth: redirect to /login')
             }
 
             // Route '/' && logged in: redirect to home
-            if (($location.url() == '/') && LoopBackAuth.accessTokenId) {
+            if (($location.url() == '/' || $location.url() == '/login') && LoopBackAuth.accessTokenId) {
                 $location.path('/home');
                 console.log('route / and logged in: redirect to /home');
             }

@@ -1,23 +1,71 @@
 'use strict';
+var config = require('../../server/config.json');
+var path = require('path');
 
-module.exports = function(Subuser) {
+module.exports = function (Subuser) {
 
-        Subuser.sendEmail = function(id, to, from, subject, text, html, cb) {
-            Subuser.app.models.Email.send({
-                to: to,
-                from: from,
-                subject: subject,
-                text: text,
-                html: html
-            }, function(err, mail) {
-                if (err){
-                    return cb(err);
-                }
-                cb(null, mail);
-            });
+    /**
+     * Called after user creation, will send verification email
+     */
+    Subuser.afterRemote('create', function (context, Subuser, next) {
+        console.log('> user.afterRemote triggered');
 
+        var options = {
+            type: 'email',
+            to: Subuser.email,
+            from: 'frzn.sea@gmail.com',
+            subject: 'Thanks for registering.',
+            //template: path.resolve(__dirname, '../../server/views/verify.ejs'),
+            redirectTo: '/',
+            user: Subuser
         };
 
+        Subuser.verify(options, function (err, response) {
+            if (err) {
+                Subuser.deleteById(Subuser.id);
+                next(err);
+                return;
+            }
+
+            console.log('> verification email sent:', response);
+            next();
+        });
+    });
+
+    /**
+     *  Workaround for a bug in loopbacks user.verify function.
+     *  (options.redirectTo with other route than '/' will mess up the /confirm API call)
+     *
+     *  Will execute redirect "manually" after /confirm call.
+     */
+    Subuser.afterRemote('confirm', function (context, Subuser, next) {
+        var res = context.res;
+        res.redirect('/#!/login/verified');
+    });
+
+
+    /**
+     * sendEmail method for Subuser
+     */
+    Subuser.sendEmail = function (id, to, from, subject, text, html, cb) {
+        Subuser.app.models.Email.send({
+            to: to,
+            from: from,
+            subject: subject,
+            text: text,
+            html: html
+        }, function (err, mail) {
+            if (err) {
+                return cb(err);
+            }
+            cb(null, mail);
+        });
+
+    };
+
+    /**
+     * exposes sendEmail method to api
+     */
     Subuser.remoteMethod('sendEmail', {
         http: {path: '/:id/sendEmail', verb: 'post', status: 200, errorStatus: 500},
         accepts: [
@@ -28,6 +76,6 @@ module.exports = function(Subuser) {
             {arg: 'text', type: 'string', required: true},
             {arg: 'html', type: 'string'}
         ],
-        returns:   {arg: 'mail', type: 'object'}
+        returns: {arg: 'mail', type: 'object'}
     });
-    };
+};
