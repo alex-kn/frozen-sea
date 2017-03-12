@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('editProfile', ['ngRoute', 'ngMaterial'])
-    .controller('editProfileController', ['$scope', 'Subuser','$route', '$mdToast','LoopBackAuth','Participation','$http',
-        function ($scope, User, $route, $mdToast, LoopBackAuth, Participation, $http) {
+    .controller('editProfileController', ['$scope', 'Subuser','$route', '$mdToast','LoopBackAuth','Participation',
+        function ($scope, User, $route, $mdToast, LoopBackAuth, Participation) {
         $scope.title = 'Profil bearbeiten';
         $scope.input = {};
         $scope.error = {};

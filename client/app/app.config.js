@@ -13,13 +13,17 @@ angular
             $routeProvider.when('/home', {
                 templateUrl: 'views/home/home.template.html',
                 activeTab: 'home'
+            }).when('/login', {
+                templateUrl: 'views/login/login.template.html',
+                controller: 'LoginController'
+            }).when('/login/:param1', {
+                templateUrl: 'views/login/login.template.html',
+                controller: 'LoginController'
             }).when('/register', {
                 templateUrl: 'views/register/register.template.html'
             }).when('/archive', {
                 templateUrl: 'views/archive/archive.template.html',
                 activeTab: 'archive'
-            }).when('/login', {
-                templateUrl: 'views/login/login.template.html'
             }).when('/create-study', {
                 templateUrl: 'views/create-study/create-study.template.html'
             }).when('/user-preferences', {
@@ -35,7 +39,7 @@ angular
             }).when('/edit-profile', {
                 templateUrl: 'views/edit-profile/edit-profile.template.html',
                 controller: 'editProfileController'
-            }).otherwise({redirectTo: '/'});
+            }).otherwise({redirectTo: '/login'});
 
 
             // Use a custom auth header instead of the default 'Authorization'
@@ -99,7 +103,7 @@ angular
 
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
 
-            // No public route && not logged in: redirect to /
+            // No public route && not logged in: redirect to /login
             if (!isPublicRoute($location.url()) && !LoopBackAuth.accessTokenId) {
                 $location.path('/login');
                 console.log('not auth: redirect to /login')
@@ -110,12 +114,6 @@ angular
                 $location.path('/home');
                 console.log('route / and logged in: redirect to /home');
             }
-
-            /*TODO:Persist $rootScope after refresh (Maybe not needed?)
-             if (LoopBackAuth.accessTokenId && !$rootScope.currentUser) {
-             AuthService.refresh(LoopBackAuth.accessTokenId);
-             }
-             */
 
             console.log('accesToken:' + LoopBackAuth.accessTokenId);
 

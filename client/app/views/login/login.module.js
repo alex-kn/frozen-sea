@@ -1,18 +1,8 @@
 'use strict';
 
 angular.module('login', ['ngRoute'])
-
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/login/:param1', {
-            templateUrl: 'views/login/login.template.html',
-            controller: 'LoginController'
-        }).when('/login', {
-            templateUrl: 'views/login/login.template.html',
-            controller: 'LoginController'
-        });
-    }])
-    .controller('LoginController', ['$scope', 'Subuser', '$location','$rootScope','$translate', '$filter','$routeParams','ToastService',
-        function($scope, Subuser, $location, $rootScope, $translate, $filter, $routeParams, ToastService) {
+    .controller('LoginController', ['$scope', 'Subuser', 'ToastService', '$location','$rootScope','$translate', '$filter','$routeParams',
+        function($scope, Subuser, ToastService, $location, $rootScope, $translate, $filter, $routeParams) {
             $scope.email="";
             $scope.password="";
             $scope.errorMessage = "";
