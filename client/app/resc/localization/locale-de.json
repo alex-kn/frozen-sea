@@ -225,7 +225,8 @@
     "REWARD_NOT_CHOSEN" : "Teilnahme fehlgeschlagen. Bitte wähle eine Vergütung.",
     "BY" : "von",
     "KEYWORDS" : "Stichworte",
-    "NO_PARTICIPANTS" : "Keine Teilnehmer"
+    "NO_PARTICIPANTS" : "Keine Teilnehmer",
+    "SEND_MAIL_TO_PARTICIPANTS" : "E-Mail an alle Teilnehmer senden"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",
