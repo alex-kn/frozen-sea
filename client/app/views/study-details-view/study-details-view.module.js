@@ -20,10 +20,20 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.isParticipating = false;
             $scope.alreadyParticipated = false;
 
+            $scope.flexGtXs = 45;
+            $scope.flexGtSm = 30;
+            $scope.flexGtLg = 30;
+
+
             $scope.study = Study.findById({id: $routeParams.study}, function (response) {
                 $scope.study.startDate = new Date($scope.study.startDate);
                 $scope.study.endDate = new Date($scope.study.endDate);
                 $scope.isOwner = ($scope.study.ownerId == LoopBackAuth.currentUserId);
+                if($scope.isOwner){
+                    $scope.flexGtXs = 100;
+                    $scope.flexGtSm = 100;
+                    $scope.flexGtLg = 45;
+                }
                 loadDates();
                 groupDatesByDay();
             });
@@ -129,7 +139,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         }
                     }));
                     $scope.datesGroupedByDay.push(days);
-                    $scope.datesGroupedByDay[2].show = true;
+                    $scope.datesGroupedByDay[0].show = true;
                 })
             }
 
@@ -265,14 +275,14 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 day.show = !day.show;
             }
 
-            $scope.showParticipantDetails = function (participation) {
+            $scope.showParticipantDetails = function (participation, ev) {
                 var confirm = $mdDialog.confirm({
                     locals:{data: participation},
                     controller: "ParticipantDetailsDialogController",
                     template: '<participant-details-dialog></participant-details-dialog-dialog>',
                     clickOutsideToClose: true,
                     parent: angular.element(document.body),
-                    targetEvent: participation,
+                    targetEvent: ev
                 });
 
                 $mdDialog.show(confirm);

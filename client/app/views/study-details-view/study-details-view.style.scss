@@ -12,7 +12,6 @@
   background-color: lightgreen;
 }
 
-
 h2 {
   i {
     font-size: xx-large !important;
@@ -22,7 +21,7 @@ h2 {
 md-progress-circular {
   margin-top: 10rem;
   margin-left: auto;
-  margin-right: auto ;
+  margin-right: auto;
 }
 
 .day-loading {
@@ -30,14 +29,12 @@ md-progress-circular {
 }
 
 md-divider {
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
   margin-top: .5rem;
 }
 
-
-
 md-card {
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
 
   md-card-header {
     padding-bottom: 0;
@@ -45,18 +42,32 @@ md-card {
 
   md-card-content {
 
-    md-progress-circular{
+    md-list {
+      padding: 0;
+
+      md-list-item {
+        padding-left: 0 !important;
+
+        md-icon {
+          margin: 0 !important;
+          margin-right: 0.5rem !important;
+        }
+
+        div {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+      }
+    }
+
+    md-progress-circular {
       margin: auto;
     }
 
-    .card-button {
-      margin: 0;
-    }
-
-    .button-green:not([disabled]){
+    .button-green:not([disabled]) {
       background-color: lightgreen !important;
     }
-    .button-green[disabled]{
+    .button-green[disabled] {
       color: lightgreen !important;
     }
 
