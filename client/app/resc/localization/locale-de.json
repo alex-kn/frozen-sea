@@ -214,6 +214,9 @@
     "CONFIRMED_PARTICIPANT" : "Bestätigt!",
     "DECLINE_PARTICIPANT" : "Ablehnen",
     "DECLINED_PARTICIPANT" : "Abgelehnt",
+    "COMPLETED_PARTICIPANT" : "Abgeschlossen",
+    "NOT_YET_CONFIRMED" : "Noch nicht bestätigt",
+    "ABSENT" : "Du warst nicht da!",
     "WAS_HERE" : "War da",
     "PARTICIPATED" : "Teilgenommen!",
     "WAS_NOT_HERE" : "War nicht da",
@@ -224,7 +227,13 @@
     "WITHDRAWING_PARTICIPATION" : "Deine Teilnahme wird zurückgezogen ...",
     "PARTICIPATING" : "Deine Teilnahme wird geprüft...",
     "COMPLETED" : "Du hast bestätigt, dass der Teilnehmer da war. Bitte sorge für die Auszahlung der entsprechenden Belohnung",
-    "REWARD_NOT_CHOSEN" : "Teilnahme fehlgeschlagen. Bitte wähle eine Vergütung."
+    "REWARD_NOT_CHOSEN" : "Teilnahme fehlgeschlagen. Bitte wähle eine Vergütung.",
+    "BY" : "von",
+    "KEYWORDS" : "Stichworte",
+    "NO_PARTICIPANTS" : "Keine Teilnehmer",
+    "CONTACT_PARTICIPANTS" : "Alle Teilnehmer kontaktieren",
+    "CONTACT_PARTICIPANT" : "Teilnehmer kontaktieren",
+    "CHOSEN_REWARD" : "Vergütung"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

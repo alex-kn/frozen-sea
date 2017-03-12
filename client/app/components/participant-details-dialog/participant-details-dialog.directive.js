@@ -14,18 +14,18 @@ angular
             $scope.participation = data;
 
             Participation.participant({id: $scope.participation.id}, function (r) {
-                $scope.mail = r.email;
+                $scope.user = r;
+                $scope.pref = Subuser.preferences({id: r.id})
             });
 
-            //TODO localization
-            $scope.reward = "Keine";
+            $scope.reward = null;
 
             if ($scope.participation.reward_hours){
-                $scope.reward = "VPS";
+                $scope.reward = $filter('translate')('CREATE_STUDY.HOURS');
             }else if($scope.participation.reward_money){
-                $scope.reward = "Geld";
+                $scope.reward = $filter('translate')('CREATE_STUDY.MONEY');
             }else if($scope.participation.reward_voucher) {
-                $scope.reward = "Amazon Gutschein"
+                $scope.reward = $filter('translate')('CREATE_STUDY.VOUCHER');
             }
 
 

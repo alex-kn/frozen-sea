@@ -3,16 +3,29 @@
 <!-- TODO localization -->
 
 <md-dialog-content>
+
     <div class="md-dialog-content">
 
         <h2>{{participation.name}}</h2>
-        <p>E-Mail: {{mail}}</p>
-        <p>Gewählte Belohnung: {{reward}}</p>
+
+        <div layout="row" layout-wrap ng-show="user">
+
+
+            <span flex="50">{{'LOGIN.MAIL' | translate}}:</span>
+            <span flex="50">{{user.email}}</span>
+            <span flex="50">{{'STUDY_DETAILS.CHOSEN_REWARD' | translate}}:</span>
+            <span flex="50">{{reward}}</span>
+            <span flex="50">{{'CREATE_STUDY.GENDER' | translate}}:</span>
+            <span flex="50">{{pref.gender}}</span>
+
+
+        </div>
     </div>
+
 
 </md-dialog-content>
 
 <md-dialog-actions>
-    <md-button class="md-raised md-accent">Kontaktieren</md-button>
+    <md-button class="md-raised md-accent">{{'STUDY_DETAILS.CONTACT_PARTICIPANT' | translate}}</md-button>
 </md-dialog-actions>
 
