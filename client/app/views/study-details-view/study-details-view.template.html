@@ -35,7 +35,12 @@
 
             <div layout-gt-xs="row">
 
-                <!-- TODO KEYWORDS-->
+
+                <p class="md-block" flex-gt-xs="100"
+                   aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
+                    {{'STUDY_DETAILS.KEYWORDS' | translate}}: {{study.keywords_array.join(" | ")}}
+                </p>
+
 
             </div>
 
@@ -44,12 +49,21 @@
 
                 <p class="md-block" flex-gt-xs="100"
                    aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
-                    {{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}: {{study.locations_array.join(", ")}}
+                    {{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}: {{study.locations_array.join(" | ")}}
                 </p>
 
 
             </div>
+            <div layout-gt-xs="row">
 
+
+                <p class="md-block" flex-gt-xs="100"
+                   aria-label="{{'STUDY_DETAILS.BY' | translate}}">
+                    {{'STUDY_DETAILS.BY' | translate}} {{owner}}
+                </p>
+
+
+            </div>
         </md-content>
         <!-- END general information -->
 
@@ -133,6 +147,7 @@
 
                             <!-- start participant list -->
                             <md-list flex>
+                                <md-subheader ng-hide="(date.participations.length) || date.isLoading || !isOwner">{{'STUDY_DETAILS.NO_PARTICIPANTS' | translate}}</md-subheader>
                                 <md-list-item ng-repeat="participation in date.participations" layout="start center"
                                               ng-click="showParticipantDetails(participation, $event)">
 

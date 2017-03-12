@@ -219,7 +219,10 @@
     "WITHDRAWING_PARTICIPATION" : "Deine Teilnahme wird zurückgezogen ...",
     "PARTICIPATING" : "Deine Teilnahme wird geprüft...",
     "COMPLETED" : "Du hast bestätigt, dass der Teilnehmer da war. Bitte sorge für die Auszahlung der entsprechenden Belohnung",
-    "REWARD_NOT_CHOSEN" : "Teilnahme fehlgeschlagen. Bitte wähle eine Vergütung."
+    "REWARD_NOT_CHOSEN" : "Teilnahme fehlgeschlagen. Bitte wähle eine Vergütung.",
+    "BY" : "von",
+    "KEYWORDS" : "Stichworte",
+    "NO_PARTICIPANTS" : "Keine Teilnehmer"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

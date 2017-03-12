@@ -34,12 +34,17 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     $scope.flexGtSm = 100;
                     $scope.flexGtLg = 45;
                 }
+                Study.owner({id: $scope.study.id}, function (res) {
+                    $scope.owner = res.username;
+                });
+
                 loadDates();
                 groupDatesByDay();
             });
 
             function loadDates() {
                 $scope.appointments = Study.dates({id: $scope.study.id}, function (responseDateArray) {
+                    responseDateArray.reverse();
                     return $q.all(responseDateArray.map(function (responseDate) {
 
                         responseDate.startDate = new Date(responseDate.startDate);
@@ -139,7 +144,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         }
                     }));
                     $scope.datesGroupedByDay.push(days);
-                    $scope.datesGroupedByDay[0].show = true;
                 })
             }
 
