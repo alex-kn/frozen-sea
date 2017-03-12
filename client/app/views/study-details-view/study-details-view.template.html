@@ -35,7 +35,12 @@
 
             <div layout-gt-xs="row">
 
-                <!-- TODO KEYWORDS-->
+
+                <p class="md-block" flex-gt-xs="100"
+                   aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
+                    {{'STUDY_DETAILS.KEYWORDS' | translate}}: {{study.keywords_array.join(" | ")}}
+                </p>
+
 
             </div>
 
@@ -44,12 +49,21 @@
 
                 <p class="md-block" flex-gt-xs="100"
                    aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
-                    {{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}: {{study.locations_array.join(", ")}}
+                    {{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}: {{study.locations_array.join(" | ")}}
                 </p>
 
 
             </div>
+            <div layout-gt-xs="row">
 
+
+                <p class="md-block" flex-gt-xs="100"
+                   aria-label="{{'STUDY_DETAILS.BY' | translate}}">
+                    {{'STUDY_DETAILS.BY' | translate}} {{owner}}
+                </p>
+
+
+            </div>
         </md-content>
         <!-- END general information -->
 
@@ -106,8 +120,8 @@
 
                 <div layout="row" layout-xs="column" layout-wrap ng-show="day.show">
 
-                    <md-card ng-repeat="date in day" flex="100" flex-gt-xs="45" flex-gt-sm="30"
-                             ng-class="[{'participating': date.participating}, date.status]">
+                    <md-card ng-repeat="date in day" flex="100" flex-gt-xs="{{flexGtXs}}" flex-gt-sm="{{flexGtSm}}"
+                             flex-gt-lg="{{flexGtLg}}" ng-class="[{'participating': date.participating}, date.status]">
                         <md-card-header style>
                             <md-card-avatar>
                                 <md-icon ng-show="date.participating"
@@ -130,18 +144,18 @@
                             <md-progress-circular ng-show="date.isLoading"
                                                   class="md-accent" md-diameter="30px"
                                                   md-mode="indeterminate"></md-progress-circular>
-                            <div ng-show="isOwner && !date.isLoading" layout="column" layout-align="start start">
-                                <div ng-repeat="participation in date.participations" layout="column" class="pad">
-                                    <span layout-align="start center">
-                                        <md-button ng-click="showParticipantDetails(participation)" class="md-icon-button md-accent pad">
-                                            <md-icon class="material-icons md-24 md-primary">person</md-icon>
-                                        </md-button>
 
-                                        {{ participation.name }}
-                                    </span>
-                                    <span ng-hide="date.status == 'finished'">
+                            <!-- start participant list -->
+                            <md-list flex ng-show="isOwner">
+                                <md-subheader ng-hide="(date.participations.length) || date.isLoading">{{'STUDY_DETAILS.NO_PARTICIPANTS' | translate}}</md-subheader>
+                                <md-list-item ng-repeat="participation in date.participations" layout="start center"
+                                              ng-click="showParticipantDetails(participation, $event)">
+
+                                    <md-icon class="material-icons">person</md-icon>
+                                    <span> {{participation.name}}</span>
+                                    <span ng-hide="date.status == 'finished'" class="md-secondary">
                                         <md-button ng-click="updateParticipationStatus(participation, 'confirmed')"
-                                                   class="card-button md-raised md-accent button-green"
+                                                   class="card-button md-raised md-accent"
                                                    ng-show="participation.status == 'pending'"
                                                    aria-label="{{'STUDY_DETAILS.CONFIRM_PARTICIPANT' | translate}}">
                                             {{'STUDY_DETAILS.CONFIRM_PARTICIPANT' | translate}}
@@ -165,9 +179,9 @@
                                             {{'STUDY_DETAILS.DECLINED_PARTICIPANT' | translate}}
                                         </md-button>
                                     </span>
-                                    <span ng-hide="date.status != 'finished'">
+                                    <span ng-hide="date.status != 'finished'" class="md-secondary">
                                         <md-button ng-click="updateParticipationStatus(participation, 'completed')"
-                                                   class="card-button md-raised md-accent button-green"
+                                                   class="card-button md-raised md-accent"
                                                    ng-show="participation.status == 'confirmed' || participation.status == 'pending'"
                                                    aria-label="{{'STUDY_DETAILS.WAS_HERE' | translate}}">
                                             {{'STUDY_DETAILS.WAS_HERE' | translate}}
@@ -190,11 +204,33 @@
                                             {{'STUDY_DETAILS.WAS_NOT_HERE' | translate}}
                                         </md-button>
                                     </span>
-                                </div>
-                            </div>
+
+                                </md-list-item>
+                            </md-list>
+                            <!-- end participant list -->
                         </md-card-content>
 
                         <md-card-action ng-hide="isOwner">
+                            <md-button class="button-red" disabled="true"
+                                       ng-show="(status == 'pending') && date.participating"
+                                       aria-label="{{'STUDY_DETAILS.NOT_YET_CONFIRMED' | translate}}">
+                                {{'STUDY_DETAILS.NOT_YET_CONFIRMED' | translate}}
+                            </md-button>
+                            <md-button class="button-red" disabled="true"
+                                       ng-show="(status == 'absent') && date.participating"
+                                       aria-label="{{'STUDY_DETAILS.ABSENT' | translate}}">
+                                {{'STUDY_DETAILS.ABSENT' | translate}}
+                            </md-button>
+                            <md-button class="button-green" disabled="true"
+                                       ng-show="(status == 'confirmed') && date.participating"
+                                       aria-label="{{'STUDY_DETAILS.CONFIRMED_PARTICIPANT' | translate}}">
+                                {{'STUDY_DETAILS.CONFIRMED_PARTICIPANT' | translate}}
+                            </md-button>
+                            <md-button class="button-green" disabled="true"
+                                       ng-show="(status == 'completed') && date.participating"
+                                       aria-label="{{'STUDY_DETAILS.COMPLETED_PARTICIPANT' | translate}}">
+                                {{'STUDY_DETAILS.COMPLETED_PARTICIPANT' | translate}}
+                            </md-button>
                             <md-button class="md-accent" ng-click="participate(date)"
                                        ng-disabled="waitingForParticipation"
                                        ng-hide="date.participating || alreadyParticipated || (date.status != 'available') || isParticipating">
@@ -238,7 +274,13 @@
                             class="md-accent md-raised">
                         {{'STUDY_DETAILS.EDIT_STUDY' | translate}}
                     </md-button>
+                    <md-button
+                            ng-click="sendMailToParticipants()"
+                            class="md-accent md-raised">
+                        {{'STUDY_DETAILS.CONTACT_PARTICIPANTS' | translate}}
+                    </md-button>
                 </md-input-container>
+
 
             </div>
 

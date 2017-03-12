@@ -12,7 +12,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsViewController', ['$mdDialog','$q', '$location', '$routeParams', '$scope', 'StudyDate', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter', 'ToastService',
+    .controller('StudyDetailsViewController', ['$mdDialog', '$q', '$location', '$routeParams', '$scope', 'StudyDate', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter', 'ToastService',
         function ($mdDialog, $q, $location, $routeParams, $scope, StudyDate, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService) {
 
             $scope.isOwner = false;
@@ -20,22 +20,36 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.isParticipating = false;
             $scope.alreadyParticipated = false;
 
+            $scope.flexGtXs = 45;
+            $scope.flexGtSm = 30;
+            $scope.flexGtLg = 30;
+
+
             $scope.study = Study.findById({id: $routeParams.study}, function (response) {
                 $scope.study.startDate = new Date($scope.study.startDate);
                 $scope.study.endDate = new Date($scope.study.endDate);
                 $scope.isOwner = ($scope.study.ownerId == LoopBackAuth.currentUserId);
+                if ($scope.isOwner) {
+                    $scope.flexGtXs = 100;
+                    $scope.flexGtSm = 100;
+                    $scope.flexGtLg = 45;
+                }
+                Study.owner({id: $scope.study.id}, function (res) {
+                    $scope.owner = res.username;
+                });
+
                 loadDates();
                 groupDatesByDay();
             });
 
             function loadDates() {
                 $scope.appointments = Study.dates({id: $scope.study.id}, function (responseDateArray) {
+                    responseDateArray.reverse();
                     return $q.all(responseDateArray.map(function (responseDate) {
-
                         responseDate.startDate = new Date(responseDate.startDate);
                         responseDate.endDate = new Date(responseDate.startDate.getTime() + responseDate.duration * 60000);
                         responseDate.participants = 0;
-                        if(isNaN(responseDate.deadline)){
+                        if (isNaN(responseDate.deadline)) {
                             throw new Error("You screwed up! Deadline has to be a number! Fix it!");//TODO
                         }
                         responseDate.deadlineDate = new Date(responseDate.startDate.getTime() - responseDate.deadline * 3600000);
@@ -45,7 +59,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         if ($scope.isOwner) {
                             responseDate.isLoading = true;
                             StudyDate.participations({id: responseDate.id}, function (responseParticipationArray) {
-
                                 $q.all(responseParticipationArray.map(function (responseParticipation) {
                                     responseParticipation.name = $filter('translate')('STUDY_DETAILS.LOADING_PARTICIPANT');
                                     Participation.participant({id: responseParticipation.id}, function (r) {
@@ -53,10 +66,8 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                     });
                                 }));
                                 responseDate.isLoading = false;
-
                                 responseDate.participations = responseParticipationArray;
                                 responseDate.participants = responseParticipationArray.length;
-
                                 if (responseDate.participants >= responseDate.maxParticipants) {
                                     responseDate.status = "reserved";
                                 }
@@ -68,17 +79,19 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                     responseDate.status = "reserved";
                                 }
                             });
-                            Participation.count({
+                            Participation.find({
+                                filter: {
                                     where: {
                                         participantId: LoopBackAuth.currentUserId,
                                         studyDateId: responseDate.id,
                                         studyId: $scope.study.id
-
+                                    }
                                 }
                             }, function (response) {
-                                if (response.count > 0) {
+                                if (response.length > 0) {
+                                    $scope.status = response[0].status;
                                     responseDate.participating = true;
-                                    if(responseDate.startDate < new Date()){
+                                    if (responseDate.startDate < new Date()) {
                                         $scope.alreadyParticipated = true;
                                     }
                                     $scope.isParticipating = true;
@@ -129,7 +142,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         }
                     }));
                     $scope.datesGroupedByDay.push(days);
-                    $scope.datesGroupedByDay[2].show = true;
                 })
             }
 
@@ -157,7 +169,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.participate = function (studyDate) {
                 $scope.waitingForParticipation = true;
 
-                if(!$scope.chosenReward){
+                if (!$scope.chosenReward) {
                     ToastService.setToastText($filter('translate')('STUDY_DETAILS.REWARD_NOT_CHOSEN'));
                     ToastService.displayToast();
                     $scope.waitingForParticipation = false;
@@ -173,11 +185,11 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         studyId: $scope.study.id
                     }
                 }, function (response) {
-                    if(response.count > 0){
+                    if (response.count > 0) {
                         ToastService.setToastText($filter('translate')('STUDY_DETAILS.PARTICIPATION_FAILED'));
                         ToastService.displayToast();
                         $scope.waitingForParticipation = false;
-                    }else{
+                    } else {
                         Subuser.participations.create({
                             id: LoopBackAuth.currentUserId
                         }, {
@@ -245,14 +257,15 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 participation.status = "declined";
             };
 
-            $scope.updateParticipationStatus = function (participation, status){
+            $scope.updateParticipationStatus = function (participation, status) {
                 participation.status = status;
                 var name = participation.name;
                 participation.$save().then(function () {
                     participation.name = name;
-                    if(status == 'completed'){
+                    if (status == 'completed') {
                         ToastService.setToastText($filter('translate')('STUDY_DETAILS.COMPLETED'));
                         ToastService.displayToast();
+                        //TODO add VPS to profile
                     }
                 });
             };
@@ -265,16 +278,20 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 day.show = !day.show;
             }
 
-            $scope.showParticipantDetails = function (participation) {
+            $scope.showParticipantDetails = function (participation, ev) {
                 var confirm = $mdDialog.confirm({
-                    locals:{data: participation},
+                    locals: {data: participation},
                     controller: "ParticipantDetailsDialogController",
                     template: '<participant-details-dialog></participant-details-dialog-dialog>',
                     clickOutsideToClose: true,
                     parent: angular.element(document.body),
-                    targetEvent: participation,
+                    targetEvent: ev
                 });
 
                 $mdDialog.show(confirm);
+            }
+
+            $scope.sendMailToParticipants = function () {
+                //TODO send mail to all participants of the study
             }
         }]);
