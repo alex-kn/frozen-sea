@@ -226,7 +226,9 @@
     "BY" : "von",
     "KEYWORDS" : "Stichworte",
     "NO_PARTICIPANTS" : "Keine Teilnehmer",
-    "SEND_MAIL_TO_PARTICIPANTS" : "E-Mail an alle Teilnehmer senden"
+    "CONTACT_PARTICIPANTS" : "Alle Teilnehmer kontaktieren",
+    "CONTACT_PARTICIPANT" : "Teilnehmer kontaktieren",
+    "CHOSEN_REWARD" : "Vergütung"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",
