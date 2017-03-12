@@ -115,17 +115,21 @@ md-card {
         padding-right: 0 !important; }
   md-card md-card-content md-progress-circular {
     margin: auto; }
-  md-card md-card-content .button-green:not([disabled]) {
-    background-color: lightgreen !important; }
-  md-card md-card-content .button-green[disabled] {
-    color: lightgreen !important; }
-  md-card md-card-content .button-red[disabled] {
-    color: red !important; }
-  md-card md-card-content .button-red[disabled] {
-    color: red !important; }
 
 .pad {
   padding: 0 !important;
   margin: 0 !important; }
+
+.button-green:not([disabled]) {
+  background-color: lightgreen !important; }
+
+.button-green[disabled] {
+  color: green !important; }
+
+.button-red[disabled] {
+  color: red !important; }
+
+.button-red[disabled] {
+  color: red !important; }
 
 /*# sourceMappingURL=study-details-view.style.css.map */

@@ -83,15 +83,16 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                     responseDate.status = "reserved";
                                 }
                             });
-                            Participation.count({
+                            Participation.find({filter: {
                                     where: {
                                         participantId: LoopBackAuth.currentUserId,
                                         studyDateId: responseDate.id,
                                         studyId: $scope.study.id
-
+                                    }
                                 }
                             }, function (response) {
-                                if (response.count > 0) {
+                                if (response.length > 0) {
+                                    $scope.status = response[0].status;
                                     responseDate.participating = true;
                                     if(responseDate.startDate < new Date()){
                                         $scope.alreadyParticipated = true;

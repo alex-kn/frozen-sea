@@ -65,20 +65,7 @@ md-card {
       margin: auto;
     }
 
-    .button-green:not([disabled]) {
-      background-color: lightgreen !important;
-    }
-    .button-green[disabled] {
-      color: lightgreen !important;
-    }
 
-    .button-red[disabled] {
-      color: red !important;
-    }
-
-    .button-red[disabled] {
-      color: red !important;
-    }
   }
 
 }
@@ -86,4 +73,19 @@ md-card {
 .pad {
   padding: 0 !important;
   margin: 0 !important;
+}
+
+.button-green:not([disabled]) {
+   background-color: lightgreen !important;
+ }
+.button-green[disabled] {
+  color: green !important;
+}
+
+.button-red[disabled] {
+  color: red !important;
+}
+
+.button-red[disabled] {
+  color: red !important;
 }
