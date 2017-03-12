@@ -19,6 +19,12 @@ angular
             }).when('/login/:param1', {
                 templateUrl: 'views/login/login.template.html',
                 controller: 'LoginController'
+            }).when('/reset-password-request', {
+                templateUrl: 'views/reset-password-request/reset-password-request.template.html',
+                controller: 'ResetPasswordRequestController'
+            }).when('/reset-password/:token/:id', {
+                templateUrl: 'views/reset-password/reset-password.template.html',
+                controller: 'ResetPasswordController'
             }).when('/register', {
                 templateUrl: 'views/register/register.template.html'
             }).when('/archive', {
@@ -85,7 +91,7 @@ angular
         }])
     .run(['$rootScope', '$location', 'LoopBackAuth', 'AuthService', function ($rootScope, $location, LoopBackAuth, AuthService) {
 
-        var publicRoutes = ['/register','/login'];
+        var publicRoutes = ['/register','/login','/reset-password/','/reset-password-request'];
 
 
         /**

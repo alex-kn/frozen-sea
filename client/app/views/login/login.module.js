@@ -3,17 +3,19 @@
 angular.module('login', ['ngRoute'])
     .controller('LoginController', ['$scope', 'Subuser', 'ToastService', '$location','$rootScope','$translate', '$filter','$routeParams',
         function($scope, Subuser, ToastService, $location, $rootScope, $translate, $filter, $routeParams) {
+            //TODO: Error-Handling
+
             $scope.email="";
             $scope.password="";
             $scope.errorMessage = "";
             $rootScope.currentUser = {};
 
             if($routeParams.param1 == 'registered') {
-                ToastService.setToastText('Registration erfolgreich! Um sich einloggen zu können, klicken sie bitte auf den Bestätigungslink in Ihrem Email-Postfach.');
+                ToastService.setToastText($filter('translate')('LOGIN.REGISTRATION_SUCCESS'));
                 ToastService.displayToast();
             }
             if($routeParams.param1 == 'verified') {
-                ToastService.setToastText('Email-Verifikation erfolgreich! Sie können sich jetzt einloggen.');
+                ToastService.setToastText($filter('translate')('LOGIN.VERIFICATION_SUCCESS'));
                 ToastService.displayToast();
             }
 

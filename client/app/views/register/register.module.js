@@ -5,6 +5,7 @@
 angular.module('register', ['ngRoute'])
     .controller('RegisterController', ['$scope', 'Subuser', '$location', '$rootScope', '$translate','EmailService',
         function ($scope, Subuser, $location, $rootScope, $translate, EmailService) {
+            //TODO: Error-Handling
 
             $scope.errorMessage = "";
 

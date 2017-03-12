@@ -13,6 +13,8 @@ angular.module('userStudy', [
     'ngAnimate',
     'home',
     'login',
+    'resetPassword',
+    'resetPasswordRequest',
     'createStudy',
     'studyDetailsView',
     'studyDetailsEdit',

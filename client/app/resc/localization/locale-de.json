@@ -10,7 +10,9 @@
     "MAIL" : "E-Mail",
     "PASSWORD": "Passwort",
     "LOGIN": "Einloggen",
-    "ERROR": "Ihre Anmeldedaten sind falsch!"
+    "ERROR": "Ihre Anmeldedaten sind falsch!",
+    "REGISTRATION_SUCCESS":"Registration erfolgreich! Um sich einloggen zu können, klicken sie bitte auf den Bestätigungslink in Ihrem Email-Postfach.",
+    "VERIFICATION_SUCCESS":"Email-Verifikation erfolgreich! Sie können sich jetzt einloggen."
   },
   "REGISTER": {
     "WELCOME" : "Willkommen bei Frozen Sea",
@@ -24,6 +26,9 @@
     "PASSWORD": "Passwort",
     "REGISTER": "Registrieren",
     "ERROR": "Registrierung fehlgeschlagen, existiert bereits ein Account mit diesem Benutzernamen oder mit dieser E-Mail Adresse?"
+  },
+  "RESET_PASSWORD": {
+    "RESET_PASSWORD": "Passwort zurücksetzen"
   },
   "CREATE_STUDY": {
     "GENERAL_TAB_LABEL": "Allgemein",

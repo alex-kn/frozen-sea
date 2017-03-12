@@ -10,7 +10,9 @@
     "MAIL": "E-Mail",
     "PASSWORD": "Password",
     "LOGIN": "Sign in",
-    "ERROR": "Your login credentials are wrong!"
+    "ERROR": "Your login credentials are wrong!",
+    "REGISTRATION_SUCCESS":"Registration successful! To log in, please click on the verification link in your email.",
+    "VERIFICATION_SUCCESS":"Verification successful! You can now log in."
   },
   "REGISTER": {
     "WELCOME": "Welcome to Frozen Sea",
@@ -24,6 +26,9 @@
     "PASSWORD": "Password",
     "REGISTER": "Sign up",
     "ERROR": "Sign up failed, your username might be taken or there is already an account with this e-mail address!"
+  },
+  "RESET_PASSWORD": {
+    "RESET_PASSWORD": "Reset Passwort"
   },
   "CREATE_STUDY": {
     "GENERAL_TAB_LABEL": "General",

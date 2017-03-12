@@ -20,6 +20,7 @@ module.exports = function (Subuser) {
             user: Subuser
         };
 
+
         Subuser.verify(options, function (err, response) {
             if (err) {
                 Subuser.deleteById(Subuser.id);
@@ -43,6 +44,42 @@ module.exports = function (Subuser) {
         res.redirect('/#!/login/verified');
     });
 
+
+    /**
+     * Handles reset password request.
+     * Sends email with password reset link
+     */
+    Subuser.on('resetPasswordRequest', function (info) {
+
+        //Get Path parameters
+        var app = Subuser.app;
+        var options = {};
+
+        options.protocol = 'http';
+        //options.protocol = 'https';
+        options.host = (app && app.get('host')) || 'localhost';
+        options.port = (app && app.get('port')) || 3000;
+        options.restApiRoot = (app && app.get('restApiRoot')) || '/api';
+
+        var displayPort = (
+            (options.protocol === 'http' && options.port == '80') ||
+            (options.protocol === 'https' && options.port == '443')
+        ) ? '' : ':' + options.port;
+
+        Subuser.app.models.Email.send({
+            to: info.email,
+            from: 'frzn.sea@gmail,com',
+            subject: 'Reset Password',
+            text: 'Click on the following link to reset your password: ' + options.protocol + '://' + options.host + displayPort +'/#!/reset-password/' + info.accessToken.id + '/' + info.user.id,
+            html: 'Click on the following link to reset your password: ' + options.protocol + '://' + options.host + displayPort +'/#!/reset-password/' + info.accessToken.id + '/' + info.user.id
+        }, function (err, mail) {
+            if (err) {
+                return err;
+            }
+            return mail;
+        });
+
+    });
 
     /**
      * sendEmail method for Subuser
