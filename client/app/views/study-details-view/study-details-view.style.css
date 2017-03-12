@@ -76,7 +76,8 @@ md-toolbar.toolbar {
   color: #9E9E9E; }
 
 .align-items {
-  display: inline-flex; }
+  display: inline-flex;
+  margin-top: .5rem; }
   .align-items i {
     margin-right: .5rem; }
 
@@ -122,8 +123,6 @@ md-card {
     color: red !important; }
   md-card md-card-content .button-red[disabled] {
     color: red !important; }
-  md-card md-card-content span {
-    margin-top: .5rem; }
 
 .pad {
   padding: 0 !important;

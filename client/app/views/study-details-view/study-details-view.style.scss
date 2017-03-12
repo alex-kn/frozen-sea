@@ -2,6 +2,7 @@
 
 .align-items {
   display: inline-flex;
+  margin-top: .5rem;
 
   i {
     margin-right: .5rem;
@@ -77,10 +78,6 @@ md-card {
 
     .button-red[disabled] {
       color: red !important;
-    }
-
-    span {
-      margin-top: .5rem;
     }
   }
 
