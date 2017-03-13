@@ -100,6 +100,29 @@ module.exports = function (Subuser) {
 
     };
 
+    Subuser.getUsersByRole = function(role, cb) {
+        var loopback = require('loopback');
+        var Role = loopback.getModel('Role');
+        var userIdList = [];
+        Role.find({include:'principals', where: {name: role}}, function(err, roles) {
+            console.log(roles);
+            /*
+            role.principals(function(err, principals) {
+                for (var i = 0; i < principals.length; i++) {
+                    userIdList.push(parseInt(principals[i].principalId));
+                }
+                if (userIdList.length > 0) {
+                    Subuser.find({where: {id: {inq: userIdList}}}, function(err, users) {
+                        cb(err, users);
+                    });
+                } else {
+                    cb(err, false);
+                }
+            });
+            */
+        });
+    }
+
     /**
      * exposes sendEmail method to api
      */
@@ -114,5 +137,16 @@ module.exports = function (Subuser) {
             {arg: 'html', type: 'string'}
         ],
         returns: {arg: 'mail', type: 'object'}
+    });
+
+    Subuser.remoteMethod('getUsersByRole', {
+        accepts: [
+            { arg: 'role', type: 'string', required: true }
+        ],
+        //returns: {arg: 'users', type: 'string'},
+        http: {
+            verb: 'get',
+            path: '/byrole/:role'
+        }
     });
 };
