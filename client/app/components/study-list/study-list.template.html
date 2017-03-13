@@ -47,7 +47,7 @@
     </div>
 
     <div layout="column">
-        <md-card ng-repeat="study in studies | filter:search" ng-class="{'my-study': study.isThisMyOwnStudy, 'advised-study': study.isThisAStudyISupervise, 'participated-study-not-approved': study.isThisAStudyIParticipateInAndIAmNotApproved,'participated-study-approved':study.isThisAStudyIParticipateInAndIAmApproved}">
+        <md-card class="custom-pointer" ng-repeat="study in studies | filter:search" ng-click="showDetails(study)" ng-class="{'my-study': study.isThisMyOwnStudy, 'advised-study': study.isThisAStudyISupervise, 'participated-study-not-approved': study.isThisAStudyIParticipateInAndIAmNotApproved,'participated-study-approved':study.isThisAStudyIParticipateInAndIAmApproved}">
             <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">{{ study.title }}</span>
@@ -65,7 +65,7 @@
                 {{ study.description }}
             </md-card-content>
             <md-card-actions layout="row" layout-align="end center">
-                <md-button ng-click="showParticipationDialog(study)">{{'STUDY_LIST.PARTICIPATE' | translate}}</md-button>
+                <!-- <md-button ng-click="showParticipationDialog(study)">{{'STUDY_LIST.PARTICIPATE' | translate}}</md-button>-->
                 <md-button ng-click="showDetails(study)">{{'STUDY_LIST.DETAILS' | translate}}</md-button>
             </md-card-actions>
         </md-card>

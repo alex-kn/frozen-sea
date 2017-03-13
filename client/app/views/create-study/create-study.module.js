@@ -13,12 +13,16 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'AdvisorDummy',
-        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, AdvisorDummy) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'ByRoleService',
+        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, ByRoleService) {
 
             $scope.initialize = function() {
 
-                $scope.advisors = AdvisorDummy.find();
+
+                ByRoleService.getUsersByRole("advisor").then(function(res) {
+                    $scope.advisors = res;
+                });
+
 
 
                 $scope.preferences = {

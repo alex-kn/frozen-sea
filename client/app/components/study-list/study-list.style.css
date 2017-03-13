@@ -228,6 +228,9 @@ md-toolbar.toolbar {
   border-right-style: solid;
   height: 100%; }
 
+.custom-pointer {
+  cursor: pointer; }
+
 md-card-title-text div {
   margin-top: 1rem; }
 

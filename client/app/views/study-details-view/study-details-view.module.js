@@ -12,11 +12,10 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsViewController', ['$mdDialog', '$q', '$location', '$routeParams', '$scope', 'StudyDate', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter', 'ToastService','EmailService',
+    .controller('StudyDetailsViewController', ['$mdDialog', '$q', '$location', '$routeParams', '$scope', 'StudyDate', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter', 'ToastService', 'EmailService',
         function ($mdDialog, $q, $location, $routeParams, $scope, StudyDate, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService, EmailService) {
 
             $scope.isOwner = false;
-            $scope.studyIsLoading = true;
             $scope.isParticipating = false;
             $scope.alreadyParticipated = false;
             $scope.totalParticipants = 0;
@@ -25,6 +24,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.flexGtMd = 30;
             $scope.flexGtLg = 30;
 
+            var participations;
 
             $scope.study = Study.findById({id: $routeParams.study}, function (response) {
                 $scope.study.startDate = new Date($scope.study.startDate);
@@ -37,87 +37,102 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 }
                 Study.owner({id: $scope.study.id}, function (res) {
                     $scope.owner = res.username;
+                    $scope.ownerReady = true;
                 });
 
+                loadParticipations();
                 loadDates();
                 groupDatesByDay();
                 calculateRequirements();
+            });
+
+            $scope.study.$promise.then(function () {
+                $scope.studyIsReady = true;
             });
 
             function loadDates() {
                 $scope.appointments = Study.dates({id: $scope.study.id}, function (responseDateArray) {
                     responseDateArray.reverse();
                     return $q.all(responseDateArray.map(function (responseDate) {
-                        responseDate.startDate = new Date(responseDate.startDate);
-                        responseDate.endDate = new Date(responseDate.startDate.getTime() + responseDate.duration * 60000);
-                        responseDate.participants = 0;
-                        if (isNaN(responseDate.deadline)) {
-                            console.warn("deadline is not a number");
-                        }
-                        responseDate.deadlineDate = new Date(responseDate.startDate.getTime() - responseDate.deadline * 3600000);
-                        if (responseDate.deadlineDate < new Date()) {
-                            responseDate.status = "finished";
-                        }
-                        if ($scope.isOwner) {
-                            responseDate.isLoading = true;
-                            StudyDate.participations({id: responseDate.id}, function (responseParticipationArray) {
-                                $q.all(responseParticipationArray.map(function (responseParticipation) {
-                                    responseParticipation.name = $filter('translate')('STUDY_DETAILS.LOADING_PARTICIPANT');
-                                    Participation.participant({id: responseParticipation.id}, function (r) {
-                                        responseParticipation.name = (r.username);
-                                    });
-                                    $scope.totalParticipants += 1;
-                                }));
-                                responseDate.isLoading = false;
-                                responseDate.participations = responseParticipationArray;
-                                responseDate.participants = responseParticipationArray.length;
-                                if (responseDate.participants >= responseDate.maxParticipants) {
-                                    responseDate.status = "reserved";
-                                }
-                            })
-                        } else {
-                            StudyDate.participations.count({id: responseDate.id}, function (responseParticipationArray) {
-                                responseDate.participants = responseParticipationArray.count;
-                                if (responseDate.participants >= responseDate.maxParticipants) {
-                                    responseDate.status = "reserved";
-                                }
-                            });
-                            Participation.find({
-                                filter: {
-                                    where: {
-                                        participantId: LoopBackAuth.currentUserId,
-                                        studyDateId: responseDate.id,
-                                        studyId: $scope.study.id
-                                    }
-                                }
-                            }, function (response) {
-                                if (response.length > 0) {
-                                    $scope.myParticipation = response[0];
-                                    $scope.status = response[0].status;
-                                    if(response[0].reward_money){$scope.chosenReward = "reward_money"}
-                                    if(response[0].reward_voucher){$scope.chosenReward = "reward_voucher"}
-                                    if(response[0].reward_hours){$scope.chosenReward = "reward_hours"}
-                                    responseDate.participating = true;
-                                    if (responseDate.startDate < new Date()) {
-                                        $scope.alreadyParticipated = true;
-                                    }
-                                    $scope.isParticipating = true;
-                                    $scope.datesGroupedByDay.forEach(function (d) {
-                                        d.forEach(function (date) {
-                                            if (date.participating) {
-                                                d.show = true;
-                                            }
-                                        })
-                                    })
-                                }
-                            });
-                        }
+                            responseDate.startDate = new Date(responseDate.startDate);
+                            responseDate.endDate = new Date(responseDate.startDate.getTime() + responseDate.duration * 60000);
+                            responseDate.participants = 0;
+                            responseDate.participations = [];
+                            if (isNaN(responseDate.deadline)) {
+                                console.warn("deadline is not a number");
+                            }
+                            responseDate.deadlineDate = new Date(responseDate.startDate.getTime() - responseDate.deadline * 3600000);
+                            if (responseDate.deadlineDate < new Date()) {
+                                responseDate.status = "finished";
+                            }
+                            $scope.participations.$promise.then(function () {
 
-                        $scope.studyIsLoading = false;
-                        return responseDateArray;
-                    }));
+                                $scope.participations.forEach(function (participation) {
+                                    if (participation.studyDateId == responseDate.id) {
+                                        responseDate.participations.push(participation);
+                                        responseDate.participants += 1;
+                                    }
+                                });
+
+                                if (responseDate.participants >= responseDate.maxParticipants) {
+                                    responseDate.status = "reserved";
+                                }
+
+                                if (!$scope.isOwner) {
+                                    if ($scope.myParticipation && ($scope.myParticipation.studyDateId == responseDate.id)) {//TODO PROMISE.RESOLVED
+                                        responseDate.participating = true;
+                                        if (responseDate.startDate < new Date()) {
+                                            $scope.alreadyParticipated = true;
+                                        }
+                                    }
+                                }
+                            });
+                            $scope.datesAreReady = true;
+                            return responseDateArray;
+                        })
+                    );
                 })
 
+
+            }
+
+            function loadParticipations() {
+                $scope.participations = Study.participations({id: $scope.study.id}, function (responseParticipationArray) {
+                    $q.all(responseParticipationArray.map(function (responseParticipation) {
+                        responseParticipation.name = $filter('translate')('STUDY_DETAILS.LOADING_PARTICIPANT');
+                        Participation.participant({id: responseParticipation.id}, function (r) {
+                            responseParticipation.name = (r.username);
+                        });
+                        $scope.totalParticipants += 1;
+                    }));
+                });
+
+                if (!$scope.isOwner) {
+                    Participation.find({
+                        filter: {
+                            where: {
+                                participantId: LoopBackAuth.currentUserId,
+                                studyId: $scope.study.id
+                            }
+                        }
+                    }, function (response) {
+                        if (!response.length) {
+                            return;
+                        }
+                        console.log(response[0]);
+                        $scope.isParticipating = true;
+                        $scope.myParticipation = response[0];
+                        if (response[0].reward_money) {
+                            $scope.chosenReward = "reward_money"
+                        }
+                        if (response[0].reward_voucher) {
+                            $scope.chosenReward = "reward_voucher"
+                        }
+                        if (response[0].reward_hours) {
+                            $scope.chosenReward = "reward_hours"
+                        }
+                    });
+                }
 
             }
 
@@ -130,11 +145,11 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 var lastDay;
 
                 $scope.appointments.$promise.then(function (res) {
-
                     res.sort(function (a, b) {
                         return a.startDate - b.startDate;
                     });
                     $q.all(res.map(function (date) {
+
                         day = $filter('date')(date.startDate, "shortDate");
                         if (lastDay == undefined) {
                             lastDay = day;
@@ -149,6 +164,18 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         }
                     }));
                     $scope.datesGroupedByDay.push(days);
+
+                    $scope.datesGroupedByDay[0].show = true;
+
+                    $scope.datesGroupedByDay.forEach(function (d) {
+                        d.forEach(function (date) {
+                            if (date.participating) {
+                                $scope.datesGroupedByDay[0].show = false;
+
+                                d.show = true;
+                            }
+                        })
+                    })
                 })
             }
 
@@ -172,48 +199,50 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 return 0
             }
 
-            function calculateRequirements(){
+            function calculateRequirements() {
                 $scope.visualAidArray = [];
-                if($scope.study.visualAid_required.glasses) {
+                if ($scope.study.visualAid_required.glasses) {
                     $scope.visualAidArray.push($filter('translate')('CREATE_STUDY.GLASSES'));
                 }
-                if($scope.study.visualAid_required.contactLenses) {
+                if ($scope.study.visualAid_required.contactLenses) {
                     $scope.visualAidArray.push($filter('translate')('CREATE_STUDY.CONTACTS'));
                 }
-                if($scope.study.visualAid_required.none) {
+                if ($scope.study.visualAid_required.none) {
                     $scope.visualAidArray.push($filter('translate')('CREATE_STUDY.NO_VISUAL_AID'));
                 }
 
                 $scope.languageArray = [];
-                if($scope.study.language_required.english) {
+                if ($scope.study.language_required.english) {
                     $scope.languageArray.push($filter('translate')('CREATE_STUDY.ENGLISH'));
                 }
-                if($scope.study.language_required.german) {
+                if ($scope.study.language_required.german) {
                     $scope.languageArray.push($filter('translate')('CREATE_STUDY.GERMAN'));
                 }
 
                 $scope.smartphoneArray = [];
-                if($scope.study.operatingSystem_required.android) {
+                if ($scope.study.operatingSystem_required.android) {
                     $scope.smartphoneArray.push($filter('translate')('CREATE_STUDY.ANDROID'));
                 }
-                if($scope.study.operatingSystem_required.ios) {
+                if ($scope.study.operatingSystem_required.ios) {
                     $scope.smartphoneArray.push($filter('translate')('CREATE_STUDY.IOS'));
                 }
-                if($scope.study.operatingSystem_required.windows) {
+                if ($scope.study.operatingSystem_required.windows) {
                     $scope.smartphoneArray.push($filter('translate')('CREATE_STUDY.WINDOWS'));
                 }
 
-                if($scope.study.required_handedness){
+                if ($scope.study.required_handedness) {
                     $scope.handedness = $filter('translate')('CREATE_STUDY.' + $scope.study.required_handedness.toUpperCase());
                 }
 
-                if($scope.study.required_study_programs_array.length){
+                if ($scope.study.required_study_programs_array.length) {
                     $scope.student = $filter('translate')('STUDY_DETAILS.YES');
                 }
             }
 
             $scope.updateReward = function () {
-                if(!$scope.isParticipating) {return}
+                if (!$scope.isParticipating) {
+                    return
+                }
                 $scope.myParticipation.reward_money = mapReward("reward_money", $scope.chosenReward);
                 $scope.myParticipation.reward_voucher = mapReward("reward_voucher", $scope.chosenReward);
                 $scope.myParticipation.reward_hours = mapReward("reward_hours", $scope.chosenReward);
@@ -313,6 +342,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.declineParticipation = function (participation) {
                 Participation.deleteById({id: participation.id});
                 participation.status = "declined";
+                //TODO
             };
 
             $scope.updateParticipationStatus = function (participation, status) {
@@ -353,4 +383,5 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.sendMailToParticipants = function () {
                 //TODO send mail to all participants of the study
             }
-        }]);
+        }])
+;
