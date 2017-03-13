@@ -156,6 +156,7 @@
     "STUDENT": "Student an der LMU",
     "I_STUDY": "Ich studiere ...",
     "STUDY_NOT_EXIST": "Diesen Studiengang gibt es nicht an der LMU.",
+    "MAT_NR" : "Matrikelnummer",
     "MALE": "männlich",
     "FEMALE": "weiblich",
     "BORN": "Ich wurde geboren am ...",
@@ -242,7 +243,11 @@
     "NO_PARTICIPANTS" : "Keine Teilnehmer",
     "CONTACT_PARTICIPANTS" : "Alle Teilnehmer kontaktieren",
     "CONTACT_PARTICIPANT" : "Teilnehmer kontaktieren",
-    "CHOSEN_REWARD" : "Vergütung"
+    "CHOSEN_REWARD" : "Vergütung",
+    "SUBJECT" : "Betreff",
+    "TEXT" : "Text",
+    "SEND" : "Abschicken",
+    "CANCEL": "Abbrechen"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

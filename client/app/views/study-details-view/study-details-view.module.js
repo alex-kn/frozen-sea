@@ -12,8 +12,8 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsViewController', ['$mdDialog', '$q', '$location', '$routeParams', '$scope', 'StudyDate', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter', 'ToastService',
-        function ($mdDialog, $q, $location, $routeParams, $scope, StudyDate, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService) {
+    .controller('StudyDetailsViewController', ['$mdDialog', '$q', '$location', '$routeParams', '$scope', 'StudyDate', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter', 'ToastService','EmailService',
+        function ($mdDialog, $q, $location, $routeParams, $scope, StudyDate, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService, EmailService) {
 
             $scope.isOwner = false;
             $scope.studyIsLoading = true;
@@ -283,9 +283,10 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     locals: {data: participation},
                     controller: "ParticipantDetailsDialogController",
                     template: '<participant-details-dialog></participant-details-dialog-dialog>',
-                    clickOutsideToClose: true,
+                    clickOutsideToClose: false,
                     parent: angular.element(document.body),
-                    targetEvent: ev
+                    targetEvent: ev,
+                    fullscreen: true
                 });
 
                 $mdDialog.show(confirm);
