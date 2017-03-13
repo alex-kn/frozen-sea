@@ -114,7 +114,8 @@ md-card {
         padding-left: 0 !important;
         padding-right: 0 !important; }
   md-card md-card-content md-progress-circular {
-    margin: auto; }
+    margin: auto;
+    margin-top: 0.5rem; }
 
 .pad {
   padding: 0 !important;
@@ -131,5 +132,10 @@ md-card {
 
 .button-red[disabled] {
   color: red !important; }
+
+.study-details {
+  margin-top: 1rem; }
+  .study-details * {
+    padding-left: 0.1rem !important; }
 
 /*# sourceMappingURL=study-details-view.style.css.map */

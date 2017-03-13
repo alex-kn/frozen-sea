@@ -26,14 +26,13 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
         Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
             $scope.preferences = response;
             $scope.preferences.birthDate = new Date($scope.preferences.birthDate);
-            self.selectedItem = $scope.preferences.studyProgram;
+            self.selectedItem = $scope.preferences.course;
 
         });
 
         $scope.savePreferences = function () {
             $scope.preferences.course = self.selectedItem;
             $scope.preferences.$save();
-            console.log($scope.preferences);
         };
 
         $scope.maxDate = new Date("January 1, 2010 00:00:00");

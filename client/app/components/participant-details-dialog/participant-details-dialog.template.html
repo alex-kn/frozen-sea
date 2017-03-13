@@ -1,31 +1,77 @@
 <link href="components/participant-details-dialog/participant-details-dialog.style.css" rel="stylesheet">
 
-<!-- TODO localization -->
-
-<md-dialog-content>
+<md-dialog-content flex="66">
 
     <div class="md-dialog-content">
 
+        <div layout="row" layout-align="center center">
         <h2>{{participation.name}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+            <md-icon class="material-icons">close</md-icon>
+        </md-button>
+        </div>
 
-        <div layout="row" layout-wrap ng-show="user">
+        <div ng-show="userDataReady" layout="row" layout-wrap ng-show="user" layout-align="center center">
 
 
-            <span flex="50">{{'LOGIN.MAIL' | translate}}:</span>
+            <md-subheader flex="50">{{'LOGIN.MAIL' | translate}}:</md-subheader>
             <span flex="50">{{user.email}}</span>
-            <span flex="50">{{'STUDY_DETAILS.CHOSEN_REWARD' | translate}}:</span>
+            <md-subheader flex="50">{{'STUDY_DETAILS.CHOSEN_REWARD' | translate}}:</md-subheader>
             <span flex="50">{{reward}}</span>
-            <span flex="50">{{'CREATE_STUDY.GENDER' | translate}}:</span>
-            <span flex="50">{{pref.gender}}</span>
+            <md-subheader flex="50" ng-show="pref.gender">{{'CREATE_STUDY.GENDER' | translate}}:</md-subheader>
+            <span flex="50">{{pref.genderString}}</span>
+            <md-subheader flex="50" ng-show="pref.course">{{'CREATE_STUDY.COURSE_OF_STUDY' | translate}}:</md-subheader>
+            <span flex="50">{{pref.course}}</span>
+            <md-subheader flex="50" ng-show="pref.matriculationNr">{{'USER_PREFERENCES.MAT_NR' | translate}}:</md-subheader>
+            <span flex="50">{{pref.matriculationNr}}</span>
 
 
+        </div>
+
+        <div ng-show="showContactForm">
+        <md-divider ></md-divider>
+            <md-subheader>{{'STUDY_DETAILS.CONTACT_PARTICIPANT' | translate}}:</md-subheader>
+
+        <form name="contactForm">
+            <div layout-gt-xs="column">
+                <md-input-container layout="row" class="md-block" flex>
+                    <input type="text"
+                           required ng-model="subjectString"
+                           name="subject"
+                           aria-label="{{'STUDY_DETAILS.SUBJECT' | translate}}"
+                           placeholder="{{'STUDY_DETAILS.SUBJECT' | translate}}">
+                </md-input-container>
+                <md-input-container class="md-block" flex>
+
+                        <textarea required ng-model="bodyString"
+                                  name="body" md-maxlength="10000"
+                                  aria-label="{{'STUDY_DETAILS.TEXT' | translate}}"
+                                  placeholder="{{'STUDY_DETAILS.TEXT' | translate}}">
+
+                        </textarea>
+                </md-input-container>
+                <md-input-container layout="row" flex layout-align="end start">
+
+
+                    <md-button ng-click="clearContactForm()">{{'STUDY_DETAILS.CANCEL' | translate}}</md-button>
+                    <md-button
+                            ng-click="send()"
+                            ng-disabled="contactForm.$invalid" class="md-accent md-raised">{{'STUDY_DETAILS.SEND' |
+                        translate}}
+                    </md-button>
+                </md-input-container>
+            </div>
+        </form>
         </div>
     </div>
 
 
 </md-dialog-content>
 
-<md-dialog-actions>
-    <md-button class="md-raised md-accent">{{'STUDY_DETAILS.CONTACT_PARTICIPANT' | translate}}</md-button>
+<md-dialog-actions ng-hide="showContactForm">
+    <md-button class="md-raised md-accent" ng-click="showContactForm = true">{{'STUDY_DETAILS.CONTACT_PARTICIPANT' |
+        translate}}
+    </md-button>
 </md-dialog-actions>
 

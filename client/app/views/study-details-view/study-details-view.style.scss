@@ -63,8 +63,8 @@ md-card {
 
     md-progress-circular {
       margin: auto;
+      margin-top: 0.5rem;
     }
-
 
   }
 
@@ -88,4 +88,11 @@ md-card {
 
 .button-red[disabled] {
   color: red !important;
+}
+
+.study-details {
+  margin-top: 1rem;
+  *{
+    padding-left: 0.1rem !important;
+  }
 }

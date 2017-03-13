@@ -29,17 +29,25 @@
                         {{'USER_PREFERENCES.STUDENT' | translate}}
                     </md-checkbox>
                 </md-input-container>
-                <div flex-gt-xs="50" flex="100">
-                    <md-autocomplete ng-show="preferences.student" md-selected-item="ctrl.selectedItem"
+                    <md-autocomplete flex-gt-xs="50" flex="100" ng-show="preferences.student" md-selected-item="ctrl.selectedItem"
                                      md-search-text="searchText"
                                      md-items="item in getMatches(searchText)" md-item-text="item" md-min-length="1"
-                                     md-require-match="true" md-floating-label="{{'USER_PREFERENCES.I_STUDY' | translate}}" md-autoselect="true">
+                                     md-require-match="true" md-autoselect="true"
+                                     md-floating-label="{{'USER_PREFERENCES.I_STUDY' | translate}}">
                         <md-item-template>
                             <span md-highlight-text="searchText" md-highlight-flags="^i">{{item}}</span>
                         </md-item-template>
                         <md-not-found>{{'USER_PREFERENCES.STUDY_NOT_EXIST' | translate}}</md-not-found>
                     </md-autocomplete>
-                </div>
+
+
+            </div>
+            <div layout="row" layout-xs="column">
+                <span flex></span>
+                <md-input-container ng-show="preferences.student"  flex-gt-xs="50" flex="100">
+                    <input type="number" ng-model="preferences.matriculationNr" min="0"
+                           placeholder="{{'USER_PREFERENCES.MAT_NR' | translate}}" md-select-on-focus>
+                </md-input-container>
             </div>
             <md-divider></md-divider>
 
