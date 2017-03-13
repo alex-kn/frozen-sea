@@ -38,8 +38,8 @@
     "reward": {
       "type": {
         "reward_money": "number",
-        "reward_voucher":  "number",
-        "reward_hours":  "number"
+        "reward_voucher": "number",
+        "reward_hours": "number"
       }
     },
     "keywords_array": {

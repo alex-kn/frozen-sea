@@ -52,7 +52,6 @@ angular
 
                         Participation.count({where: {participantId: LoopBackAuth.currentUserId, studyId: study.id, status:"pending"}}, function (response) {
                             study.isThisAStudyIParticipateInAndIAmNotApproved = response.count > 0;
-                            console.log("doing it again")
                         });
 
                         Participation.count({where: {participantId: LoopBackAuth.currentUserId, studyId: study.id, status:"confirmed"}}, function (response) {
