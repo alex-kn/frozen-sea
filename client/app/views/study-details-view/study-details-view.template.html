@@ -25,42 +25,50 @@
         <md-content class="md-padding">
 
             <div layout-gt-xs="row">
-                <p class="md-block" flex-gt-xs="100"
+                <span class="md-block" flex-gt-xs="100"
                    aria-label="{{'CREATE_STUDY.DESCRIPTION_ARIA_LABEL' | translate}}">
                     {{study.description}}
-                </p>
+                </span>
 
 
             </div>
 
-            <div layout-gt-xs="row">
+            <div class="margin-top-1" layout-gt-xs="row" layout-align="center center" layout-wrap>
 
 
-                <p class="md-block" flex-gt-xs="100"
-                   aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
-                    {{'STUDY_DETAILS.KEYWORDS' | translate}}: {{study.keywords_array.join(" | ")}}
-                </p>
+                <md-subheader flex="15">
+                    {{'STUDY_DETAILS.KEYWORDS' | translate}}:
+                </md-subheader>
 
 
+                <span flex="85"
+                      aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
+                    {{study.keywords_array.join(" | ")}}
+                </span>
+
+
+                <md-subheader flex="15">
+                    {{'CREATE_STUDY.LOCATION' | translate}}:
+                </md-subheader>
+
+
+                <span flex="85"
+                      aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
+                    {{study.locations_array.join(" | ")}}
+                </span>
+
+
+
+                <md-subheader flex="15">
+                    {{'STUDY_DETAILS.BY' | translate}}:
+                </md-subheader>
+
+
+                <span flex="85"
+                      aria-label="{{'STUDY_DETAILS.BY' | translate}}">
+                    {{owner}}
+                </span>
             </div>
-
-            <div layout-gt-xs="row">
-
-
-                <p class="md-block" flex-gt-xs="100"
-                   aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
-                    {{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}: {{study.locations_array.join(" | ")}}
-                </p>
-
-
-            </div>
-            <div layout-gt-xs="row">
-
-
-                <p class="md-block" flex-gt-xs="100"
-                   aria-label="{{'STUDY_DETAILS.BY' | translate}}">
-                    {{'STUDY_DETAILS.BY' | translate}} {{owner}}
-                </p>
 
 
             </div>
