@@ -23,9 +23,9 @@ angular.module('register', ['ngRoute'])
              * @param password - contains the password (Hash)
              */
 
-            $scope.register = function (name, email, password) {
+            $scope.register = function (firstname, secondname, email, password) {
                 return Subuser.create({
-                    username: name,
+                    username: firstname + " " + secondname,
                     email: email,
                     password: password
                 }, function (value, responseHeaders) {

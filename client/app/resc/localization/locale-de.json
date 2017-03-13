@@ -25,6 +25,8 @@
     "MAIL" : "E-Mail",
     "PASSWORD": "Passwort",
     "REGISTER": "Registrieren",
+    "FIRST_NAME": "Vorname",
+    "SECOND_NAME": "Familienname",
     "ERROR": "Registrierung fehlgeschlagen, existiert bereits ein Account mit diesem Benutzernamen oder mit dieser E-Mail Adresse?"
   },
   "RESET_PASSWORD": {

@@ -25,6 +25,8 @@
     "MAIL" : "E-Mail",
     "PASSWORD": "Password",
     "REGISTER": "Sign up",
+    "FIRST_NAME": "First name",
+    "SECOND_NAME": "Family name",
     "ERROR": "Sign up failed, your username might be taken or there is already an account with this e-mail address!"
   },
   "RESET_PASSWORD": {
