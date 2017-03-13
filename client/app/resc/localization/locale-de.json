@@ -283,7 +283,9 @@
     "CHANGE" :"Ändern",
     "OLD_PASSWORD_NOMATCH" :"Altes Passwort stimmt nicht überein.",
     "NEW_PASSWORD_NOMATCH" :"Neues Passwort stimmt nicht überein.",
-    "USERNAME_EXISTS" :"Username exisitiert bereits."
+    "USERNAME_EXISTS" :"Username exisitiert bereits.",
+    "SUCCESS_USERNAME" : "Username erfolgreich geändert!",
+    "SUCCESS_PASSWORD": "Passwort erfolgreich geändert!"
   },
   "TOAST": {
     "PARTICIPATE": "Du hast dich für die Studie erfolgreich angemeldet",
