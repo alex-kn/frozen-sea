@@ -52,9 +52,12 @@
                     <input type="text" aria-label="Name" ng-model="name" placeholder="Name">
                 </md-input-container>
                 <div layout="row" class="submit">
-                    <md-button ng-click="register(name, email, password)" class="md-accent md-raised">{{'REGISTER.REGISTER' | translate}}</md-button>
+                    <md-button ng-disabled="!(email && password && name)" ng-click="register(name, email, password)" class="md-accent md-raised">{{'REGISTER.REGISTER' | translate}}</md-button>
                 </div>
-
+                <div layout-align="start center" ng-if="errorMessage" class="error-message">
+                    <md-icon class="material-icons">report_problem</md-icon>
+                    <span>{{errorMessage}}</span>
+                </div>
             </form>
         </div>
         <!-- END registration form -->

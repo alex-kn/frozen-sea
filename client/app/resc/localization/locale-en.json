@@ -25,10 +25,17 @@
     "MAIL" : "E-Mail",
     "PASSWORD": "Password",
     "REGISTER": "Sign up",
-    "ERROR": "Sign up failed, your username might be taken or there is already an account with this e-mail address!"
+    "ERROR_USERNAME": "Sign up failed, your username is already taken!",
+    "ERROR_EMAIL": "Sign up failed, there already exists an account with this e-mail address!",
+    "ERROR_EMAIL_USERNAME": "Sign up failed, your username is already taken and there exists an account with this e-mail address!"
   },
   "RESET_PASSWORD": {
-    "RESET_PASSWORD": "Reset Passwort"
+    "RESET_PASSWORD": "Reset Passwort",
+    "NO_EMAIL": "There exists no account with this email",
+    "SUCCESS_EMAIL": "An email for resetting your password was sent to you",
+    "SUCCESS_RESET": "Your password has been reseted successfully. You can now login with your new password",
+    "NO_MATCH": "The entered passwords do not match",
+    "OLD_TOKEN": "Your passwort reset email is not current. Please request an new one."
   },
   "CREATE_STUDY": {
     "GENERAL_TAB_LABEL": "General",

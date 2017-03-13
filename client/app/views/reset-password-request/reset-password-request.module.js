@@ -1,7 +1,6 @@
 angular.module('resetPasswordRequest', ['ngRoute'])
-    .controller('ResetPasswordRequestController', ['$scope', 'Subuser', '$location', '$rootScope', '$translate', 'EmailService',
-        function ($scope, Subuser, $location, $rootScope, $translate, EmailService) {
-            //TODO: Error-Handling
+    .controller('ResetPasswordRequestController', ['$scope', 'Subuser', 'ToastService','$filter', '$location', '$rootScope', '$translate',
+        function ($scope, Subuser, ToastService,$filter, $location, $rootScope, $translate) {
 
             $scope.errorMessage = "";
 
@@ -15,11 +14,12 @@ angular.module('resetPasswordRequest', ['ngRoute'])
                     function (response, responseHeaders) {
                         console.log('succ');
                         console.log(response);
+                        ToastService.setToastText($filter('translate')('LOGIN.VERIFICATION_SUCCESS'));
+                        ToastService.displayToast();
                         $location.path('/login');
-                    }, function (err) {
+                    }, function (httpResponse) {
                         //Object { data: Object, status: 404, headers: headersGetter/<(), config: Object, statusText: "Not Found" }
-                        console.log('err');
-                        console.log(err);
+                        $scope.errorMessage = $filter('translate')('RESET_PASSWORD.NO_EMAIL');
                     });
             }
         }]);

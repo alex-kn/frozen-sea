@@ -3,12 +3,10 @@
  */
 
 angular.module('register', ['ngRoute'])
-    .controller('RegisterController', ['$scope', 'Subuser', '$location', '$rootScope', '$translate','EmailService',
-        function ($scope, Subuser, $location, $rootScope, $translate, EmailService) {
-            //TODO: Error-Handling
+    .controller('RegisterController', ['$scope', 'Subuser','ToastService','$filter', '$location', '$rootScope', '$translate','EmailService',
+        function ($scope, Subuser, ToastService,$filter, $location, $rootScope, $translate, EmailService) {
 
             $scope.errorMessage = "";
-
 
             $scope.changeLanguage = function (langKey) {
                 $translate.use(langKey);
@@ -30,11 +28,19 @@ angular.module('register', ['ngRoute'])
                     password: password
                 }, function (value, responseHeaders) {
                     console.log('succ');
-                    $location.path('/login/' +'registered');
+                    ToastService.setToastText($filter('translate')('LOGIN.REGISTRATION_SUCCESS'));
+                    ToastService.displayToast();
+                    $location.path('/login');
                 }, function (httpResponse) {
-                    console.log('err');
-                    console.log(httpResponse);
-
+                    if((httpResponse.data.error.message.includes("username") && httpResponse.data.error.message.includes("email") && httpResponse.data.error.status == 422)){
+                        $scope.errorMessage = $filter('translate')('REGISTER.ERROR_EMAIL_USERNAME');
+                    }
+                    else if(httpResponse.data.error.message.includes("email") && httpResponse.data.error.status == 422){
+                        $scope.errorMessage = $filter('translate')('REGISTER.ERROR_EMAIL');
+                    }
+                    else if(httpResponse.data.error.message.includes("username") && httpResponse.data.error.status == 422){
+                        $scope.errorMessage = $filter('translate')('REGISTER.ERROR_USERNAME');
+                    }
                 });
             };
 

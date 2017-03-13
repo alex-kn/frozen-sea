@@ -1,20 +1,31 @@
 angular.module('resetPassword', ['ngRoute'])
-    .controller('ResetPasswordController', ['$scope', 'Subuser', '$location', '$rootScope', '$translate', '$routeParams', '$http',
-        function ($scope, Subuser, $location, $rootScope, $translate, $routeParams, $http) {
-        //TODO: Error-Handling, verification pw fields, rename fields
+    .controller('ResetPasswordController', ['$scope', 'Subuser', '$filter','$location', 'ToastService','$rootScope', '$translate', '$routeParams', '$http',
+        function ($scope, Subuser, $filter,$location, ToastService,$rootScope, $translate, $routeParams, $http) {
         $scope.errorMessage = "";
 
-            $scope.resetPassword = function (password) {
-                $http.defaults.headers.common.authorization = $routeParams.token;
+            $scope.resetPassword = function (passwordOne, passwordTwo) {
+                if (passwordOne != passwordTwo) {
+                    $scope.errorMessage = $filter('translate')('RESET_PASSWORD.NO_MATCH');
+                }
+                else {
+                    $http.defaults.headers.common.authorization = $routeParams.token;
 
-                return Subuser.prototype$updateAttributes({id: $routeParams.id}, {
-                    password: password
-                }, function () {
-                    $location.path('/home');
-                }, function(err){
-                    console.log(err)
-                    $location.path('/home');
-                });
+                    return Subuser.prototype$updateAttributes({id: $routeParams.id}, {
+                        password: passwordOne
+                    }, function () {
+                        ToastService.setToastText($filter('translate')('RESET_PASSWORD.SUCCESS_RESET'));
+                        ToastService.displayToast();
+                        $location.path('/home');
+                    }, function (httpResponse) {
+                        console.log(httpResponse);
+                        if(httpResponse.data.error.status == 401){
+                            $scope.errorMessage = $filter('translate')('RESET_PASSWORD.OLD_TOKEN');
+                        }
+                        else {
+                            $location.path('/home');
+                        }
+                    });
+                }
             }
 
             $scope.changeLanguage = function (langKey) {

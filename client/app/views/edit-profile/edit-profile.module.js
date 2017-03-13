@@ -3,7 +3,7 @@
 
 angular.module('editProfile', ['ngRoute', 'ngMaterial'])
     .controller('editProfileController', ['$scope', 'Subuser','$route', '$mdToast','LoopBackAuth','Participation',
-        function ($scope, User, $route, $mdToast, LoopBackAuth, Participation) {
+        function ($scope, Subuser, $route, $mdToast, LoopBackAuth, Participation) {
         $scope.title = 'Profil bearbeiten';
         $scope.input = {};
         $scope.error = {};
@@ -26,7 +26,7 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
         /**
          * Get Current userdata and save to $scope.currentUserData
          */
-        User.getCurrent(function(userData){
+        Subuser.getCurrent(function(userData){
             $scope.currentUserData.Username = userData.username;
             //$scope.currentUserData.Email = userData.email;
             //$scope.currentUserData.Name = userData.name;
@@ -42,7 +42,7 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
         };
 
         $scope.changeUsername = function(){
-            User.prototype$updateAttributes({ id: $scope.userId }, {'username': $scope.input.name}, function(){
+            Subuser.prototype$updateAttributes({ id: $scope.userId }, {'username': $scope.input.name}, function(){
                 $route.reload();
                 showToast('Username erfolgreich geändert!', 'success');
             },function(err) {
@@ -63,9 +63,9 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
                 $scope.error.newPassword = '';
             }
 
-            User.login({username: $scope.currentUserData.Username, password: $scope.input.oldPassword}, function(){
+            Subuser.login({username: $scope.currentUserData.Username, password: $scope.input.oldPassword}, function(){
                 if (comparePassword) {
-                    User.prototype$updateAttributes({id: $scope.userId}, {'password': $scope.input.newPassword}, function () {
+                    Subuser.prototype$updateAttributes({id: $scope.userId}, {'password': $scope.input.newPassword}, function () {
                         $route.reload();
                         showToast('Passwort erfolgreich geändert!', 'success');
                     }, function (err) {
@@ -93,7 +93,6 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
                 }
             }, function(userParticipations){
                 for(var i = 0; i < userParticipations.length; i++) {
-//TODO: Was ist status für abgeschlossene studien?
                     if (userParticipations[i].status == 'finished') {
                         rewardMoney += userParticipations[i].reward_money;
                         rewardVouchers += userParticipations[i].reward_voucher;

@@ -25,10 +25,17 @@
     "MAIL" : "E-Mail",
     "PASSWORD": "Passwort",
     "REGISTER": "Registrieren",
-    "ERROR": "Registrierung fehlgeschlagen, existiert bereits ein Account mit diesem Benutzernamen oder mit dieser E-Mail Adresse?"
+    "ERROR_USERNAME": "Registrierung fehlgeschlagen, dieser Username existiert bereits!",
+    "ERROR_EMAIL": "Registrierung fehlgeschlagen, es existiert bereits ein Account mit dieser Email!",
+    "ERROR_EMAIL_USERNAME": "Registrierung fehlgeschlagen, dieser Username und ein Account mit dieser Email existieren bereits!"
   },
   "RESET_PASSWORD": {
-    "RESET_PASSWORD": "Passwort zurücksetzen"
+    "RESET_PASSWORD": "Passwort zurücksetzen",
+    "NO_EMAIL": "Es exisitiert kein Account mit dieser Email",
+    "SUCCESS_EMAIL": "An email for resetting your password was sent to you",
+    "SUCCESS_RESET": "Ihr Passwort wurde erfolgreich zurückgesetzt. Sie können sich jetzt mit ihrem neuen Passwort einloggen",
+    "NO_MATCH": "Die eingegebenen Passwörter stimmen nicht überein",
+    "OLD_TOKEN": "Ihre Email zum Passwort zurücksetzen ist nicht mehr Aktuell. Bitte fordern Sie eine neue an."
   },
   "CREATE_STUDY": {
     "GENERAL_TAB_LABEL": "Allgemein",

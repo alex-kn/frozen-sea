@@ -10,10 +10,6 @@ angular.module('login', ['ngRoute'])
             $scope.errorMessage = "";
             $rootScope.currentUser = {};
 
-            if($routeParams.param1 == 'registered') {
-                ToastService.setToastText($filter('translate')('LOGIN.REGISTRATION_SUCCESS'));
-                ToastService.displayToast();
-            }
             if($routeParams.param1 == 'verified') {
                 ToastService.setToastText($filter('translate')('LOGIN.VERIFICATION_SUCCESS'));
                 ToastService.displayToast();
@@ -34,6 +30,7 @@ angular.module('login', ['ngRoute'])
                     };
                     $location.path('/home');
                 }, function(err) {
+                    console.log(err);
                     $scope.errorMessage = $filter('translate')('LOGIN.ERROR');
                 });
             }

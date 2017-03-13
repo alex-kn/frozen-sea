@@ -86,5 +86,12 @@ md-toolbar.toolbar {
   margin-top: 2.5rem; }
 .registration .registration-form {
   margin-top: 8rem; }
+.registration .error-message {
+  margin-top: 2rem;
+  color: #EF5350;
+  height: 4rem; }
+.registration md-icon {
+  margin-right: .5rem;
+  color: #EF5350; }
 
 /*# sourceMappingURL=register.style.css.map */
