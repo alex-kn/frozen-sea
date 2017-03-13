@@ -166,6 +166,7 @@
     "OS": "The operating system of my mobile phone is ...",
     "IOS": "iOS",
     "ANDROID":"Android",
+    "WINDOWS" : "Windows Phone",
     "OTHER": "other",
     "I_WEAR": "I wear ...",
     "NO_GLASSES" : "no glasses",

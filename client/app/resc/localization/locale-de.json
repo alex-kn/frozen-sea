@@ -166,7 +166,7 @@
     "OS": "Das Betriebsystem meines Mobilgeräts ist ...",
     "IOS": "iOS",
     "ANDROID" : "Android",
-    "WINDOWS_PHONE" : "Windows Phone",
+    "WINDOWS" : "Windows Phone",
     "OTHER": "sonstiges",
     "I_WEAR": "Ich trage",
     "NO_GLASSES" : "keine Sehhilfe",
