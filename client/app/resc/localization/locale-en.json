@@ -27,7 +27,7 @@
     "REGISTER": "Sign up",
     "FIRST_NAME": "First name",
     "SECOND_NAME": "Family name",
-    "ERROR": "Sign up failed, your username might be taken or there is already an account with this e-mail address!"
+    "ERROR": "Sign up failed, your username might be taken or there is already an account with this e-mail address!",
     "ERROR_USERNAME": "Sign up failed, your username is already taken!",
     "ERROR_EMAIL": "Sign up failed, there already exists an account with this e-mail address!",
     "ERROR_EMAIL_USERNAME": "Sign up failed, your username is already taken and there exists an account with this e-mail address!"
@@ -235,7 +235,9 @@
     "NEW_PASSWORD_NOMATCH" :"New password doesn't match.",
     "USERNAME_EXISTS" :"Username already exists.",
     "DESCRIPTION" : "Description",
-    "UPDATE_STUDY_BUTTON" : "Save Changes"
+    "UPDATE_STUDY_BUTTON" : "Save Changes",
+    "SUCCESS_USERNAME" : "Username changed successfully!",
+    "SUCCESS_PASSWORD": "Password changed successfully!"
   },
   "TOAST": {
     "PARTICIPATE": "You applied successfully for this study",
