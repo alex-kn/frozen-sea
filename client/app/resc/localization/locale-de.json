@@ -304,5 +304,13 @@
   "TOAST": {
     "PARTICIPATE": "Du hast dich für die Studie erfolgreich angemeldet",
     "CREATE_STUDY":"Deine Studie wurde erfolgreich erstellt"
+  },
+
+  "PREFERENCES": {
+    "TITLE": "Studienkriterien",
+    "DESCRIPTION": "Bitte gebe die Kriterien an, mit denen wir deine Studienliste filtern.",
+    "ARIA-LABEL": "Bitte gebe die Kriterien an, mit denen wir deine Studienliste filtern.",
+    "OK": "Kriterien angeben",
+    "CANCEL": "Abbrechen"
   }
 }

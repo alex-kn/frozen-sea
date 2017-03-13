@@ -300,6 +300,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                             studyDate.participants -= 1;
                             $scope.isParticipating = false;
                             $scope.waitingForParticipation = false;
+                            studyDate.status = "available";
                         }, function (error) {
                             console.log("Error deleting Participation");
                             console.log(error);
