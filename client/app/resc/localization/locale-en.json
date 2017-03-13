@@ -249,5 +249,12 @@
   "TOAST": {
     "PARTICIPATE": "You applied successfully for this study",
     "CREATE_STUDY":"Your study has been successfully created"
+  },
+  "PREFERENCES": {
+    "TITLE": "Preferences",
+    "DESCRIPTION": "Please enter the preferences that we can filter the study list for you.",
+    "ARIA-LABEL": "Enter Preferences",
+    "OK": "Enter preferences",
+    "CANCEL": "Cancel"
   }
 }
