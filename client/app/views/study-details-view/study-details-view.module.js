@@ -19,9 +19,10 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.studyIsLoading = true;
             $scope.isParticipating = false;
             $scope.alreadyParticipated = false;
+            $scope.totalParticipants = 0;
 
             $scope.flexGtXs = 45;
-            $scope.flexGtSm = 30;
+            $scope.flexGtMd = 30;
             $scope.flexGtLg = 30;
 
 
@@ -31,7 +32,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 $scope.isOwner = ($scope.study.ownerId == LoopBackAuth.currentUserId);
                 if ($scope.isOwner) {
                     $scope.flexGtXs = 100;
-                    $scope.flexGtSm = 100;
+                    $scope.flexGtMd = 100;
                     $scope.flexGtLg = 45;
                 }
                 Study.owner({id: $scope.study.id}, function (res) {
@@ -40,6 +41,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
                 loadDates();
                 groupDatesByDay();
+                calculateRequirements();
             });
 
             function loadDates() {
@@ -50,7 +52,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         responseDate.endDate = new Date(responseDate.startDate.getTime() + responseDate.duration * 60000);
                         responseDate.participants = 0;
                         if (isNaN(responseDate.deadline)) {
-                            throw new Error("You screwed up! Deadline has to be a number! Fix it!");//TODO
+                            console.warn("deadline is not a number");
                         }
                         responseDate.deadlineDate = new Date(responseDate.startDate.getTime() - responseDate.deadline * 3600000);
                         if (responseDate.deadlineDate < new Date()) {
@@ -64,6 +66,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                     Participation.participant({id: responseParticipation.id}, function (r) {
                                         responseParticipation.name = (r.username);
                                     });
+                                    $scope.totalParticipants += 1;
                                 }));
                                 responseDate.isLoading = false;
                                 responseDate.participations = responseParticipationArray;
@@ -89,7 +92,11 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                 }
                             }, function (response) {
                                 if (response.length > 0) {
+                                    $scope.myParticipation = response[0];
                                     $scope.status = response[0].status;
+                                    if(response[0].reward_money){$scope.chosenReward = "reward_money"}
+                                    if(response[0].reward_voucher){$scope.chosenReward = "reward_voucher"}
+                                    if(response[0].reward_hours){$scope.chosenReward = "reward_hours"}
                                     responseDate.participating = true;
                                     if (responseDate.startDate < new Date()) {
                                         $scope.alreadyParticipated = true;
@@ -165,6 +172,57 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 return 0
             }
 
+            function calculateRequirements(){
+                $scope.visualAidArray = [];
+                if($scope.study.visualAid_required.glasses) {
+                    $scope.visualAidArray.push($filter('translate')('CREATE_STUDY.GLASSES'));
+                }
+                if($scope.study.visualAid_required.contactLenses) {
+                    $scope.visualAidArray.push($filter('translate')('CREATE_STUDY.CONTACTS'));
+                }
+                if($scope.study.visualAid_required.none) {
+                    $scope.visualAidArray.push($filter('translate')('CREATE_STUDY.NO_VISUAL_AID'));
+                }
+
+                $scope.languageArray = [];
+                if($scope.study.language_required.english) {
+                    $scope.languageArray.push($filter('translate')('CREATE_STUDY.ENGLISH'));
+                }
+                if($scope.study.language_required.german) {
+                    $scope.languageArray.push($filter('translate')('CREATE_STUDY.GERMAN'));
+                }
+
+                $scope.smartphoneArray = [];
+                if($scope.study.operatingSystem_required.android) {
+                    $scope.smartphoneArray.push($filter('translate')('CREATE_STUDY.ANDROID'));
+                }
+                if($scope.study.operatingSystem_required.ios) {
+                    $scope.smartphoneArray.push($filter('translate')('CREATE_STUDY.IOS'));
+                }
+                if($scope.study.operatingSystem_required.windows) {
+                    $scope.smartphoneArray.push($filter('translate')('CREATE_STUDY.WINDOWS'));
+                }
+
+                if($scope.study.required_handedness){
+                    $scope.handedness = $filter('translate')('CREATE_STUDY.' + $scope.study.required_handedness.toUpperCase());
+                }
+
+                if($scope.study.required_study_programs_array.length){
+                    $scope.student = $filter('translate')('STUDY_DETAILS.YES');
+                }
+            }
+
+            $scope.updateReward = function () {
+                if(!$scope.isParticipating) {return}
+                $scope.myParticipation.reward_money = mapReward("reward_money", $scope.chosenReward);
+                $scope.myParticipation.reward_voucher = mapReward("reward_voucher", $scope.chosenReward);
+                $scope.myParticipation.reward_hours = mapReward("reward_hours", $scope.chosenReward);
+                $scope.myParticipation.$save().then(function () {
+                    ToastService.setToastText($filter('translate')('STUDY_DETAILS.REWARD_UPDATED'));
+                    ToastService.displayToast();
+                });
+
+            };
 
             $scope.participate = function (studyDate) {
                 $scope.waitingForParticipation = true;
@@ -190,7 +248,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         ToastService.displayToast();
                         $scope.waitingForParticipation = false;
                     } else {
-                        Subuser.participations.create({
+                        $scope.myParticipation = Subuser.participations.create({
                             id: LoopBackAuth.currentUserId
                         }, {
                             status: "pending",
@@ -233,7 +291,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         }
                     }
                 }, function (response) {
-                    console.log(response);
                     Subuser.participations.destroyAll(
                         {id: LoopBackAuth.currentUserId},
                         {filter: {where: {studyDateId: studyDate.id}}}, function (response) {

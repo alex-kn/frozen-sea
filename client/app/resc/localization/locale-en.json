@@ -166,6 +166,7 @@
     "OS": "The operating system of my mobile phone is ...",
     "IOS": "iOS",
     "ANDROID":"Android",
+    "WINDOWS" : "Windows Phone",
     "OTHER": "other",
     "I_WEAR": "I wear ...",
     "NO_GLASSES" : "no glasses",
@@ -177,7 +178,10 @@
     "I_SPEAK": "I speak ...",
     "GERMAN": "German",
     "ENGLISH": "English",
-    "SAVE": "Save"
+    "SAVE": "Save",
+    "BACK": "Back",
+    "SAVING_FAILED": "Saving preferences failed!",
+    "SAVING_SUCCESSFUL": "Saving preferences successful!"
   },
   "NAVBAR": {
     "STUDIES" : "Studies",
@@ -199,7 +203,10 @@
     "REWARD_HOURS": "Hours",
     "SORT_BY": "Sort by",
     "NEWEST": "Newest",
-    "SOON": "Ends soon"
+    "SOON": "Ends soon",
+    "SHOW": "Show:",
+    "NO_MATCH": "Not matching studies",
+    "TOO_OLD": "Past studies"
   },
   "ARCHIVE": {
     "TITLE" : "Archive",

@@ -8,8 +8,12 @@ angular
         function ($scope, $routeParams, Participation, Study, StudyDate, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter, ToastService) {
 
 
-
+            $scope.studies = [];
+            $scope.show_too_old = true;
+            $scope.show_non_matches = true;
             $scope.sort_by =  "ends_soon"; //default sort value
+
+
             $scope.dynamicOrderFunction = function() {
                 if ($scope.sort_by == "newest") {
                     $scope.studies.sort(function(a,b) {
@@ -23,41 +27,64 @@ angular
                 }
             };
 
-
-
-            //load all studies that are not finished yet
-            $scope.studiesTemp = Study.find({
-                filter: {
-                    where: {
-                        endDate:  {
-                            gte: new Date()}}}},
-                function(list) {
-                    compareStudyDetailsWithUserPreferences();
+            $scope.loadStudies = function() {
+                $scope.myFilter = {};
+                if($scope.show_too_old) { //load all studies that are not finished yet
+                    $scope.myFilter = {filter: {where: {endDate:  {gte: new Date()}}}};
                 }
-            );
+                $scope.studiesTemp = Study.find($scope.myFilter,
+                    function(list) {
+                        compareStudyDetailsWithUserPreferences();
+                    }
+                );
+            };
+
+            $scope.loadStudies(); //initial load
+
+
+            $scope.refilter = function() {
+                if ($scope.show_non_matches) {
+                    //filter all studies that don't match user profile
+                    $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences);
+                } else {
+                    $scope.studies = $scope.studiesTemp;
+                }
+            };
 
 
             function compareStudyDetailsWithUserPreferences() {
                 Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
                     $scope.preferences = response;
-
                     //filter all studies that don't match user profile
                     $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences);
 
-                    //highlight studies of special interest
-                    $scope.studies.forEach(function(study) {
-                        study.isThisMyOwnStudy = study.ownerId === LoopBackAuth.currentUserId;
+                        //highlight studies of special interest
+                        $scope.studies.forEach(function (study) {
+                            study.isThisMyOwnStudy = study.ownerId === LoopBackAuth.currentUserId;
 
-                        //TODO: study.isThisAStudyISupervise = $scope.thisStudy.advisorId === LoopBackAuth.currentUserId;
+                            //TODO: study.isThisAStudyISupervise = $scope.thisStudy.advisorId === LoopBackAuth.currentUserId;
 
-                        Participation.count({where: {participantId: LoopBackAuth.currentUserId, studyId: study.id, status:"pending"}}, function (response) {
-                            study.isThisAStudyIParticipateInAndIAmNotApproved = response.count > 0;
-                        });
+                            Participation.count({
+                                where: {
+                                    participantId: LoopBackAuth.currentUserId,
+                                    studyId: study.id,
+                                    status: "pending"
+                                }
+                            }, function (response) {
+                                study.isThisAStudyIParticipateInAndIAmNotApproved = response.count > 0;
+                            });
 
-                        Participation.count({where: {participantId: LoopBackAuth.currentUserId, studyId: study.id, status:"confirmed"}}, function (response) {
-                            study.isThisAStudyIParticipateInAndIAmApproved = response.count > 0
-                        });
-                    })
+                            Participation.count({
+                                where: {
+                                    participantId: LoopBackAuth.currentUserId,
+                                    studyId: study.id,
+                                    status: "confirmed"
+                                }
+                            }, function (response) {
+                                study.isThisAStudyIParticipateInAndIAmApproved = response.count > 0
+                            });
+                        })
+
 
                 },function (error){
                     if(error.status == 404){

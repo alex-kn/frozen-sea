@@ -26,7 +26,7 @@
 
             <div layout-gt-xs="row">
                 <span class="md-block" flex-gt-xs="100"
-                   aria-label="{{'CREATE_STUDY.DESCRIPTION_ARIA_LABEL' | translate}}">
+                      aria-label="{{'CREATE_STUDY.DESCRIPTION_ARIA_LABEL' | translate}}">
                     {{study.description}}
                 </span>
 
@@ -35,38 +35,34 @@
 
             <div class="study-details" layout-gt-xs="row" layout-align="center center" layout-wrap>
 
-
                 <md-subheader flex="15">
                     {{'STUDY_DETAILS.KEYWORDS' | translate}}:
                 </md-subheader>
-
-
-                <span flex="85"
-                      aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
+                <span flex="85" aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
                     {{study.keywords_array.join(" | ")}}
                 </span>
-
 
                 <md-subheader flex="15">
                     {{'CREATE_STUDY.LOCATION' | translate}}:
                 </md-subheader>
-
-
-                <span flex="85"
-                      aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
+                <span flex="85" aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
                     {{study.locations_array.join(" | ")}}
                 </span>
-
-
 
                 <md-subheader flex="15">
                     {{'STUDY_DETAILS.BY' | translate}}:
                 </md-subheader>
-
-
-                <span flex="85"
-                      aria-label="{{'STUDY_DETAILS.BY' | translate}}">
+                <span flex="85" aria-label="{{'STUDY_DETAILS.BY' | translate}}">
                     {{owner}}
+                </span>
+
+                <md-subheader ng-show="isOwner" flex="15">
+                    {{'STUDY_DETAILS.PARTICIPANTS' | translate}}:
+                </md-subheader>
+
+
+                <span ng-show="isOwner" flex="85" aria-label="{{'STUDY_DETAILS.PARTICIPANTS' | translate}}">
+                    {{totalParticipants}}
                 </span>
             </div>
 
@@ -77,12 +73,16 @@
 
         <!-- START rewards -->
         <md-content class="md-padding" ng-hide="isOwner">
+            <md-divider></md-divider>
+
 
             <h2 class="md-headline">{{'STUDY_DETAILS.CHOOSE_REWARD' | translate}}</h2>
 
-            <md-radio-group class="md-block" layout-gt-xs="row" ng-model="chosenReward">
+            <md-radio-group class="md-block" layout-gt-xs="row" ng-model="chosenReward" ng-change="updateReward()"
+                            ng-disabled="alreadyParticipated">
 
-                <md-radio-button flex="100" flex-gt-xs="33" value="reward_money" ng-show="study.reward.reward_money"
+                <md-radio-button flex="100" flex-gt-xs="33" value="reward_money"
+                                 ng-show="study.reward.reward_money"
                                  aria-label="{{'CREATE_STUDY.MONEY_ARIA_LABEL' | translate}}">
                     {{study.reward.reward_money}}
                     {{'STUDY_DETAILS.CHOOSE_REWARD_MONEY' | translate}}
@@ -95,7 +95,8 @@
                     {{'STUDY_DETAILS.CHOOSE_REWARD_VOUCHER' | translate}}
                 </md-radio-button>
 
-                <md-radio-button flex-xs="100" flex-gt-xs="33" value="reward_hours" ng-show="study.reward.reward_hours"
+                <md-radio-button flex-xs="100" flex-gt-xs="33" value="reward_hours"
+                                 ng-show="study.reward.reward_hours"
                                  aria-label="{{'CREATE_STUDY.HOURS_ARIA_LABEL' | translate}}">
                     {{study.reward.reward_hours}}
                     {{'STUDY_DETAILS.CHOOSE_REWARD_HOURS' | translate}}
@@ -110,10 +111,11 @@
 
 
         <md-content class="md-padding">
+            <md-divider></md-divider>
+
 
             <div ng-repeat="day in datesGroupedByDay">
 
-                <md-divider></md-divider>
 
                 <h2 class="md-headline align-items">
                     <i class="material-icons" md-colors="{color: 'accent'}">today</i>
@@ -128,7 +130,7 @@
 
                 <div layout="row" layout-xs="column" layout-wrap ng-show="day.show">
 
-                    <md-card ng-repeat="date in day" flex="100" flex-gt-xs="{{flexGtXs}}" flex-gt-sm="{{flexGtSm}}"
+                    <md-card ng-repeat="date in day" flex="100" flex-gt-xs="{{flexGtXs}}" flex-gt-md="{{flexGtMd}}"
                              flex-gt-lg="{{flexGtLg}}" ng-class="[{'participating': date.participating}, date.status]">
                         <md-card-header style>
                             <md-card-avatar>
@@ -155,7 +157,9 @@
 
                             <!-- start participant list -->
                             <md-list flex ng-show="isOwner">
-                                <md-subheader ng-hide="(date.participations.length) || date.isLoading">{{'STUDY_DETAILS.NO_PARTICIPANTS' | translate}}</md-subheader>
+                                <md-subheader ng-hide="(date.participations.length) || date.isLoading">
+                                    {{'STUDY_DETAILS.NO_PARTICIPANTS' | translate}}
+                                </md-subheader>
                                 <md-list-item ng-repeat="participation in date.participations" layout="start center"
                                               ng-click="showParticipantDetails(participation, $event)">
 
@@ -259,14 +263,67 @@
         </md-content>
         <!-- END add dates -->
 
-        <md-content class="md-padding">
+        <!-- START requirements -->
+
+        <md-content class="md-padding"
+                    ng-show="study.minimum_age || study.minimum_height || smartphoneArray.length ||
+                    visualAidArray.length || handedness || languageArray.length || student">
+            <md-divider></md-divider>
             <h2 class="md-headline">{{'CREATE_STUDY.REQUIREMENTS_TAB_LABEL' | translate}} <span
                     md-colors="{color: 'accent'}">{{ study.name }}</span></h2>
-        </md-content>
 
-        <!-- START requirements -->
-        <md-content class="md-padding">
+            <div class="study-details" layout-gt-xs="row" layout-align="center center" layout-wrap>
 
+                <md-subheader flex="25" ng-show="study.minimum_age">
+                    {{'CREATE_STUDY.AGE' | translate}}:
+                </md-subheader>
+                <span ng-show="study.minimum_age" flex="75" aria-label="{{'CREATE_STUDY.AGE' | translate}}">
+                    {{study.minimum_age}} {{'CREATE_STUDY.YEARS' | translate}}
+                </span>
+
+                <md-subheader flex="25" ng-show="study.minimum_height">
+                    {{'CREATE_STUDY.HEIGHT' | translate}}:
+                </md-subheader>
+                <span ng-show="study.minimum_height" flex="75" aria-label="{{'CREATE_STUDY.HEIGHT' | translate}}">
+                    {{study.minimum_height}} cm
+                </span>
+
+                <md-subheader flex="25" ng-show="smartphoneArray.length">
+                    {{'CREATE_STUDY.SMARTPHONE' | translate}}:
+                </md-subheader>
+                <span ng-show="smartphoneArray.length" flex="75" aria-label="{{'CREATE_STUDY.SMARTPHONE' | translate}}">
+                    {{smartphoneArray.join(" | ")}}
+                </span>
+
+                <md-subheader flex="25" ng-show="visualAidArray.length">
+                    {{'CREATE_STUDY.VISUAL_AID' | translate}}:
+                </md-subheader>
+                <span ng-show="visualAidArray.length" flex="75" aria-label="{{'CREATE_STUDY.VISUAL_AID' | translate}}">
+                        {{visualAidArray.join(" | ")}}
+                </span>
+
+                <md-subheader flex="25" ng-show="handedness">
+                    {{'CREATE_STUDY.HANDEDNESS' | translate}}:
+                </md-subheader>
+                <span ng-show="handedness" flex="75" aria-label="{{'CREATE_STUDY.HANDEDNESS' | translate}}">
+                    {{handedness}}
+                </span>
+
+                <md-subheader flex="25" ng-show="languageArray.length">
+                    {{'CREATE_STUDY.LANGUAGE' | translate}}:
+                </md-subheader>
+                <span ng-show="languageArray.length" flex="75" aria-label="{{'CREATE_STUDY.LANGUAGE' | translate}}">
+                    {{languageArray.join(" | ")}}
+                </span>
+
+                <md-subheader flex="25" ng-show="student">
+                    {{'CREATE_STUDY.STUDENT' | translate}}:
+                </md-subheader>
+                <span ng-show="student" flex="75" aria-label="{{'CREATE_STUDY.STUDENT' | translate}}">
+                    {{student}}
+                </span>
+
+            </div>
         </md-content>
         <!-- END requirements -->
 
@@ -294,7 +351,6 @@
 
         </md-content>
         <!-- END button -->
-
 
     </md-content>
     <!-- END view study form -->

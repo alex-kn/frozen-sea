@@ -89,6 +89,9 @@
                 <md-checkbox flex-xs="100" ng-model="preferences.operatingSystem.android" aria-label="{{'USER_PREFERENCES.ANDROID' | translate}}">
                     {{'USER_PREFERENCES.ANDROID' | translate}}
                 </md-checkbox>
+                <md-checkbox flex-xs="100" ng-model="preferences.operatingSystem.windows" aria-label="{{'USER_PREFERENCES.WINDOWS' | translate}}">
+                    {{'USER_PREFERENCES.WINDOWS' | translate}}
+                </md-checkbox>
                 <md-checkbox flex-xs="100" ng-model="preferences.operatingSystem.other" aria-label="{{'USER_PREFERENCES.OTHER' | translate}}">
                     {{'USER_PREFERENCES.OTHER' | translate}}
                 </md-checkbox>
@@ -135,6 +138,7 @@
             <md-divider></md-divider>
 
             <md-input-container>
+                <md-button href="#!/home" class="md-raised">{{'USER_PREFERENCES.BACK' | translate}}</md-button>
                 <md-button href="#!/home" ng-click="savePreferences()" class="md-accent md-raised">{{'USER_PREFERENCES.SAVE' | translate}}</md-button>
             </md-input-container>
 

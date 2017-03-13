@@ -165,7 +165,8 @@
     "CM": "in cm",
     "OS": "Das Betriebsystem meines Mobilgeräts ist ...",
     "IOS": "iOS",
-    "ANDROID":"Android",
+    "ANDROID" : "Android",
+    "WINDOWS" : "Windows Phone",
     "OTHER": "sonstiges",
     "I_WEAR": "Ich trage",
     "NO_GLASSES" : "keine Sehhilfe",
@@ -177,7 +178,10 @@
     "I_SPEAK": "Ich spreche ...",
     "GERMAN": "Deutsch",
     "ENGLISH": "Englisch",
-    "SAVE": "Speichern"
+    "SAVE": "Speichern",
+    "BACK": "Zurück",
+    "SAVING_FAILED": "Speichern der Kriterien fehlgeschlagen!",
+    "SAVING_SUCCESSFUL": "Speichern der Kriterien erfolgreich!"
   },
   "NAVBAR": {
     "STUDIES" : "Studien",
@@ -199,7 +203,10 @@
     "REWARD_HOURS": "Stunden",
     "SORT_BY": "Ordne nach",
     "NEWEST": "Neu",
-    "SOON": "Endet bald"
+    "SOON": "Endet bald",
+    "SHOW": "Zeige",
+    "NO_MATCH": "Nicht passende Studien",
+    "TOO_OLD": "Vergangene Studien"
   },
   "ARCHIVE": {
     "TITLE" : "Archiv",
@@ -247,7 +254,14 @@
     "SUBJECT" : "Betreff",
     "TEXT" : "Text",
     "SEND" : "Abschicken",
-    "CANCEL": "Abbrechen"
+    "CANCEL": "Abbrechen",
+    "PARTICIPANTS" : "Teilnehmer",
+    "MINIMUM_HEIGHT" : "Mindestkörpergröße",
+    "MINIMUM_AGE" : "Mindestalter",
+    "SMARTPHONE" : "Smartphone",
+    "YES" : "Ja",
+    "NO" : "Nein",
+    "REWARD_UPDATED" : "Deine gewählte Vergütung wurde geändert!"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",
