@@ -4,8 +4,8 @@
 
 angular
     .module('studyListDirective', ['participateDialogDirective'])
-    .controller('StudyListController', ['$scope', '$routeParams', 'Participation', 'Study', 'StudyDate', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$translate', '$filter', 'ToastService',
-        function ($scope, $routeParams, Participation, Study, StudyDate, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter, ToastService) {
+    .controller('StudyListController', ['$scope', '$routeParams', 'Participation', 'Study', 'StudyDate', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$translate', '$filter', 'ToastService', 'SetPreferencesService',
+        function ($scope, $routeParams, Participation, Study, StudyDate, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter, ToastService, SetPreferencesService) {
 
 
             $scope.studies = [];
@@ -89,6 +89,7 @@ angular
                 },function (error){
                     if(error.status == 404){
 
+                        SetPreferencesService.showPreferencesDialog();
                         //if no preference object can be found, create it
                         Subuser.preferences
                             .create({id: LoopBackAuth.currentUserId}, {})

@@ -81,7 +81,6 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 };
 
                 $scope.appointments.unshift(appointment);
-                //$scope.appointments = AppointmentService.groupDatesByDay($scope.appointments); TODO
                 console.log($scope.appointments);
                 $scope.appointment.time = AppointmentService.addDurationToAppointmentTime(appointment.time, appointment.duration, appointment.bufferTime);
 
