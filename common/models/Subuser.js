@@ -100,27 +100,11 @@ module.exports = function (Subuser) {
 
     };
 
-    Subuser.getUsersByRole = function (role, cb) {
+    Subuser.getUsersByRole = function (id, role, cb) {
         var loopback = require('loopback');
         var Role = loopback.getModel('Role');
-        var allRoles = [];
         var userIds = [];
-        Role.find({}, function (err, models) {
-            for (var i = 0; i < models.length; i++) {
-                allRoles.push(models[i].name);
-            }
-        });
-
-        var isRole = function include(allRoles, role) {
-            for(var i=0; i<allRoles.length; i++) {
-                if (allRoles[i] == role)
-                    return true;
-            }
-        }
-        if (isRole == true){
-            var err = 'Role does not exist';
-            return cb(err);
-        }
+        var users = [];
 
         Role.find({include: 'principals', where: {name: role}}, function (err, models) {
             if (err) {
@@ -132,8 +116,8 @@ module.exports = function (Subuser) {
                 tempMod = models[i]
             }
 
-            if(tempMod == 'undefined'){
-                err = 'Role does not exist';
+            if (typeof tempMod === "undefined"){
+                var err = 'Role does not exist'
                 return cb(err);
             }
             else {
@@ -145,9 +129,20 @@ module.exports = function (Subuser) {
                     for (var i = 0; i < principals.length; i++) {
                         userIds.push(principals[i].principalId);
                     }
-                });
 
-                cb(null, userIds);
+                    for (var i = 0; i < userIds.length; i++) {
+                        Subuser.findById(userIds[i], function (err, instance) {
+                            users.push({    id: instance.id,
+                                            username: instance.username,
+                                            email: instance.email
+                            });
+                            if (users.length === userIds.length) {
+                                cb(null, users);
+                                console.log(users);
+                            }
+                        })
+                    }
+                });
             }
         });
     };
@@ -168,14 +163,18 @@ module.exports = function (Subuser) {
         returns: {arg: 'mail', type: 'object'}
     });
 
+    /**
+     * exposes getUsersByRole method to api
+     */
     Subuser.remoteMethod('getUsersByRole', {
         accepts: [
+            {arg: 'id', type: 'string', required: true},
             {arg: 'role', type: 'string', required: true}
         ],
         returns: {arg: 'users', type: 'array'},
         http: {
             verb: 'get',
-            path: '/byrole/:role',
+            path: '/:id/byrole/:role',
             status: 200,
             errorStatus: 500
         }
