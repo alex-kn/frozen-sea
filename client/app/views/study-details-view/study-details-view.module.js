@@ -41,6 +41,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
                 loadDates();
                 groupDatesByDay();
+                calculateRequirements();
             });
 
             function loadDates() {
@@ -169,6 +170,46 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         }
                 }
                 return 0
+            }
+
+            function calculateRequirements(){
+                $scope.visualAidArray = [];
+                if($scope.study.visualAid_required.glasses) {
+                    $scope.visualAidArray.push($filter('translate')('CREATE_STUDY.GLASSES'));
+                }
+                if($scope.study.visualAid_required.contactLenses) {
+                    $scope.visualAidArray.push($filter('translate')('CREATE_STUDY.CONTACTS'));
+                }
+                if($scope.study.visualAid_required.none) {
+                    $scope.visualAidArray.push($filter('translate')('CREATE_STUDY.NO_VISUAL_AID'));
+                }
+
+                $scope.languageArray = [];
+                if($scope.study.language_required.english) {
+                    $scope.languageArray.push($filter('translate')('CREATE_STUDY.ENGLISH'));
+                }
+                if($scope.study.language_required.german) {
+                    $scope.languageArray.push($filter('translate')('CREATE_STUDY.GERMAN'));
+                }
+
+                $scope.smartphoneArray = [];
+                if($scope.study.operatingSystem_required.android) {
+                    $scope.smartphoneArray.push($filter('translate')('CREATE_STUDY.ANDROID'));
+                }
+                if($scope.study.operatingSystem_required.ios) {
+                    $scope.smartphoneArray.push($filter('translate')('CREATE_STUDY.IOS'));
+                }
+                if($scope.study.operatingSystem_required.windows) {
+                    $scope.smartphoneArray.push($filter('translate')('CREATE_STUDY.WINDOWS'));
+                }
+
+                if($scope.study.required_handedness){
+                    $scope.handedness = $filter('translate')('CREATE_STUDY.' + $scope.study.required_handedness.toUpperCase());
+                }
+
+                if($scope.study.required_study_programs_array.length){
+                    $scope.student = $filter('translate')('STUDY_DETAILS.YES');
+                }
             }
 
             $scope.updateReward = function () {

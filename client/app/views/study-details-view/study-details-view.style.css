@@ -76,8 +76,7 @@ md-toolbar.toolbar {
   color: #9E9E9E; }
 
 .align-items {
-  display: inline-flex;
-  margin-top: .5rem; }
+  display: inline-flex; }
   .align-items i {
     margin-right: .5rem; }
 

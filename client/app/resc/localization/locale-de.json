@@ -165,7 +165,8 @@
     "CM": "in cm",
     "OS": "Das Betriebsystem meines Mobilgeräts ist ...",
     "IOS": "iOS",
-    "ANDROID":"Android",
+    "ANDROID" : "Android",
+    "WINDOWS_PHONE" : "Windows Phone",
     "OTHER": "sonstiges",
     "I_WEAR": "Ich trage",
     "NO_GLASSES" : "keine Sehhilfe",
@@ -251,7 +252,12 @@
     "TEXT" : "Text",
     "SEND" : "Abschicken",
     "CANCEL": "Abbrechen",
-    "PARTICIPANTS" : "Teilnehmer"
+    "PARTICIPANTS" : "Teilnehmer",
+    "MINIMUM_HEIGHT" : "Mindestkörpergröße",
+    "MINIMUM_AGE" : "Mindestalter",
+    "SMARTPHONE" : "Smartphone",
+    "YES" : "Ja",
+    "NO" : "Nein"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",
