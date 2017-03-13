@@ -7450,6 +7450,8 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * @param {Object=} parameters Request parameters.
              *
+             *  - `id` – `{string}` -
+             *
              *  - `role` – `{string}` -
              *
              * @param {function(Object,Object)=} successCb
@@ -7467,7 +7469,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *  - `users` – `{*=}` -
              */
             "getUsersByRole": {
-              url: urlBase + "/Subusers/byrole/:role",
+              url: urlBase + "/Subusers/:id/byrole/:role",
               method: "GET",
             },
 

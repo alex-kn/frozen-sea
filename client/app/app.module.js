@@ -32,5 +32,6 @@ angular.module('userStudy', [
     'EmailService',
     'AuthService',
     'register',
-    'ngMaterial'
+    'ngMaterial',
+    'ByRoleService'
 ]);
