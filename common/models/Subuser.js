@@ -70,8 +70,8 @@ module.exports = function (Subuser) {
             to: info.email,
             from: 'frzn.sea@gmail,com',
             subject: 'Reset Password',
-            text: 'Click on the following link to reset your password: ' + options.protocol + '://' + options.host + displayPort +'/#!/reset-password/' + info.accessToken.id + '/' + info.user.id,
-            html: 'Click on the following link to reset your password: ' + options.protocol + '://' + options.host + displayPort +'/#!/reset-password/' + info.accessToken.id + '/' + info.user.id
+            text: 'Click on the following link to reset your password: ' + options.protocol + '://' + options.host + displayPort + '/#!/reset-password/' + info.accessToken.id + '/' + info.user.id,
+            html: 'Click on the following link to reset your password: ' + options.protocol + '://' + options.host + displayPort + '/#!/reset-password/' + info.accessToken.id + '/' + info.user.id
         }, function (err, mail) {
             if (err) {
                 return err;
@@ -100,28 +100,57 @@ module.exports = function (Subuser) {
 
     };
 
-    Subuser.getUsersByRole = function(role, cb) {
+    Subuser.getUsersByRole = function (role, cb) {
         var loopback = require('loopback');
         var Role = loopback.getModel('Role');
-        var userIdList = [];
-        Role.find({include:'principals', where: {name: role}}, function(err, roles) {
-            console.log(roles);
-            /*
-            role.principals(function(err, principals) {
-                for (var i = 0; i < principals.length; i++) {
-                    userIdList.push(parseInt(principals[i].principalId));
-                }
-                if (userIdList.length > 0) {
-                    Subuser.find({where: {id: {inq: userIdList}}}, function(err, users) {
-                        cb(err, users);
-                    });
-                } else {
-                    cb(err, false);
-                }
-            });
-            */
+        var allRoles = [];
+        var userIds = [];
+        Role.find({}, function (err, models) {
+            for (var i = 0; i < models.length; i++) {
+                allRoles.push(models[i].name);
+            }
         });
-    }
+
+        var isRole = function include(allRoles, role) {
+            for(var i=0; i<allRoles.length; i++) {
+                if (allRoles[i] == role)
+                    return true;
+            }
+        }
+        if (isRole == true){
+            var err = 'Role does not exist';
+            return cb(err);
+        }
+
+        Role.find({include: 'principals', where: {name: role}}, function (err, models) {
+            if (err) {
+                return cb(err);
+            }
+
+            var tempMod;
+            for (var i = 0; i < models.length; i++) {
+                tempMod = models[i]
+            }
+
+            if(tempMod == 'undefined'){
+                err = 'Role does not exist';
+                return cb(err);
+            }
+            else {
+                tempMod.principals(function (err, principals) {
+                    if (err) {
+                        return cb(err);
+                    }
+
+                    for (var i = 0; i < principals.length; i++) {
+                        userIds.push(principals[i].principalId);
+                    }
+                });
+
+                cb(null, userIds);
+            }
+        });
+    };
 
     /**
      * exposes sendEmail method to api
@@ -141,12 +170,14 @@ module.exports = function (Subuser) {
 
     Subuser.remoteMethod('getUsersByRole', {
         accepts: [
-            { arg: 'role', type: 'string', required: true }
+            {arg: 'role', type: 'string', required: true}
         ],
-        //returns: {arg: 'users', type: 'string'},
+        returns: {arg: 'users', type: 'array'},
         http: {
             verb: 'get',
-            path: '/byrole/:role'
+            path: '/byrole/:role',
+            status: 200,
+            errorStatus: 500
         }
     });
 };
