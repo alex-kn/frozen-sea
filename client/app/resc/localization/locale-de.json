@@ -178,7 +178,10 @@
     "I_SPEAK": "Ich spreche ...",
     "GERMAN": "Deutsch",
     "ENGLISH": "Englisch",
-    "SAVE": "Speichern"
+    "SAVE": "Speichern",
+    "BACK": "Zurück",
+    "SAVING_FAILED": "Speichern der Kriterien fehlgeschlagen!",
+    "SAVING_SUCCESSFUL": "Speichern der Kriterien erfolgreich!"
   },
   "NAVBAR": {
     "STUDIES" : "Studien",
@@ -257,7 +260,8 @@
     "MINIMUM_AGE" : "Mindestalter",
     "SMARTPHONE" : "Smartphone",
     "YES" : "Ja",
-    "NO" : "Nein"
+    "NO" : "Nein",
+    "REWARD_UPDATED" : "Deine gewählte Vergütung wurde geändert!"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

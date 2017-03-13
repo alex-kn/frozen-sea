@@ -12,10 +12,9 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('UserPreferencesController', ['LoopBackAuth', '$scope', 'Preference', 'Subuser', 'User', '$rootScope', '$http',
-        function (LoopBackAuth, $scope, Preference, Subuser, User, $rootScope, $http) {
+    .controller('UserPreferencesController', ['$filter','$location','LoopBackAuth', '$scope', 'Preference', 'Subuser', 'User', '$rootScope', '$http','ToastService',
+        function ($filter, $location, LoopBackAuth, $scope, Preference, Subuser, User, $rootScope, $http, ToastService) {
         var self = this;
-
 
         $http.get('resc/files/studyprograms.txt')
             .then(function (response) {
@@ -32,7 +31,16 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
 
         $scope.savePreferences = function () {
             $scope.preferences.course = self.selectedItem;
-            $scope.preferences.$save();
+            if(!$scope.preferences.student){
+                $scope.preferences.course = null;
+                $scope.preferences.matriculationNr = null;
+            }
+            $scope.preferences.$save().then(function (response) {
+                ToastService.setToastText($filter('translate')('USER_PREFERENCES.SAVING_SUCCESSFUL'));
+                ToastService.displayToast();
+            },function (error) {
+                console.warn("saving preferences failed")
+            });
         };
 
         $scope.maxDate = new Date("January 1, 2010 00:00:00");

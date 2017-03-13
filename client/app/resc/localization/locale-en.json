@@ -178,7 +178,10 @@
     "I_SPEAK": "I speak ...",
     "GERMAN": "German",
     "ENGLISH": "English",
-    "SAVE": "Save"
+    "SAVE": "Save",
+    "BACK": "Back",
+    "SAVING_FAILED": "Saving preferences failed!",
+    "SAVING_SUCCESSFUL": "Saving preferences successful!"
   },
   "NAVBAR": {
     "STUDIES" : "Studies",

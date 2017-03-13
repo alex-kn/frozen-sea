@@ -15,7 +15,6 @@ angular
                 $scope.user = r;
                 $scope.pref = Preference.findOne({filter:{where: {subuserId: r.id}}}, function () {
                     $scope.pref.genderString = $filter('translate')('USER_PREFERENCES.' + $scope.pref.gender.toUpperCase());
-                    console.log($scope.pref.genderString);
                     $scope.userDataReady = true;
                 });
 

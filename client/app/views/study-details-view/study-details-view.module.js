@@ -218,7 +218,8 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 $scope.myParticipation.reward_voucher = mapReward("reward_voucher", $scope.chosenReward);
                 $scope.myParticipation.reward_hours = mapReward("reward_hours", $scope.chosenReward);
                 $scope.myParticipation.$save().then(function () {
-                    console.log("SAVED")
+                    ToastService.setToastText($filter('translate')('STUDY_DETAILS.REWARD_UPDATED'));
+                    ToastService.displayToast();
                 });
 
             };
@@ -247,7 +248,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         ToastService.displayToast();
                         $scope.waitingForParticipation = false;
                     } else {
-                        Subuser.participations.create({
+                        $scope.myParticipation = Subuser.participations.create({
                             id: LoopBackAuth.currentUserId
                         }, {
                             status: "pending",
@@ -290,7 +291,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         }
                     }
                 }, function (response) {
-                    console.log(response);
                     Subuser.participations.destroyAll(
                         {id: LoopBackAuth.currentUserId},
                         {filter: {where: {studyDateId: studyDate.id}}}, function (response) {
