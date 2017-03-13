@@ -17,6 +17,7 @@
         <a flex href="#!/home">{{'NAVBAR.STUDIES' | translate}}</a>
         <a flex href="#!/my-studies">{{'NAVBAR.MY_STUDIES' | translate}}</a>
         <a flex href="#!/user-preferences">{{'NAVBAR.MY_PREFERENCES' | translate}}</a>
+        <a flex href="#!/admin-dashboard">{{'ADMIN_DASHBOARD.ADMIN_DASHBOARD' | translate}}</a>
     </md-content>
 
 </md-sidenav>
@@ -29,6 +30,7 @@
             <a ng-class="{active: $route.current.activeTab == 'NAVBAR'}" href="#!/NAVBAR">{{'NAVBAR.STUDIES' | translate}}</a>
             <a ng-class="{active: $route.current.activeTab == 'my-studies'}" href="#!/my-studies">{{'NAVBAR.MY_STUDIES' | translate}}</a>
             <a ng-class="{active: $route.current.activeTab == 'user-preferences'}" href="#!/user-preferences">{{'NAVBAR.MY_PREFERENCES' | translate}}</a>
+            <a ng-class="{active: $route.current.activeTab == 'admin-dashboard'}" href="#!/admin-dashboard">{{'ADMIN_DASHBOARD.ADMIN_DASHBOARD' | translate}}</a>
         </div>
 
         <div class="nav-mobil" hide-gt-xs>
