@@ -199,7 +199,10 @@
     "REWARD_HOURS": "Stunden",
     "SORT_BY": "Ordne nach",
     "NEWEST": "Neu",
-    "SOON": "Endet bald"
+    "SOON": "Endet bald",
+    "SHOW": "Zeige",
+    "NO_MATCH": "Nicht passende Studien",
+    "TOO_OLD": "Vergangene Studien"
   },
   "ARCHIVE": {
     "TITLE" : "Archiv",

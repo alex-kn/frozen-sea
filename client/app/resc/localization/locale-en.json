@@ -199,7 +199,10 @@
     "REWARD_HOURS": "Hours",
     "SORT_BY": "Sort by",
     "NEWEST": "Newest",
-    "SOON": "Ends soon"
+    "SOON": "Ends soon",
+    "SHOW": "Show:",
+    "NO_MATCH": "Not matching studies",
+    "TOO_OLD": "Past studies"
   },
   "ARCHIVE": {
     "TITLE" : "Archive",

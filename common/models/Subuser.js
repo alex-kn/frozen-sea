@@ -121,7 +121,7 @@ module.exports = function (Subuser) {
             });
             */
         });
-    }
+    };
 
     /**
      * exposes sendEmail method to api

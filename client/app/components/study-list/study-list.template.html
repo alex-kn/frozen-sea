@@ -25,14 +25,24 @@
             <input type="text" ng-model="search" placeholder="{{'STUDY_LIST.SEARCH' | translate}}" aria-label="{{'STUDY_LIST.SEARCH' | translate}}">
         </md-input-container>
 
-        <md-input-container class="sort" flex-xs="160" flex-sm="80"  flex-gt-sm="40">
-            <md-radio-group ng-model="sort_by" ng-change="dynamicOrderFunction()" layout="row" layout-xs="column">
-                <div class="option">{{'STUDY_LIST.SORT_BY' | translate}}</div>
-                <md-radio-button value="newest" >{{'STUDY_LIST.NEWEST' | translate}}</md-radio-button>
+
+        <md-input-container class="sort" layout="row" flex-gt-sm="100">
+            <div class="option">{{'STUDY_LIST.SORT_BY' | translate}}</div>
+            <md-radio-group ng-model="sort_by" ng-change="dynamicOrderFunction()" layout="column" layout-xs="column">
+                <md-radio-button value="newest">{{'STUDY_LIST.NEWEST' | translate}}</md-radio-button>
                 <md-radio-button value="ends_soon">{{'STUDY_LIST.SOON' | translate}}</md-radio-button>
             </md-radio-group>
         </md-input-container>
 
+
+        <md-input-container class="sort" flex-xs="160" flex-sm="80"  flex-gt-sm="40" layout="column">
+            <md-checkbox ng-init="show_too_old=false" ng-model="show_too_old" aria-label=" {{'STUDY_LIST.TOO_OLD' | translate}}" ng-click="loadStudies()">
+                {{'STUDY_LIST.TOO_OLD' | translate}}
+            </md-checkbox>
+            <md-checkbox ng-init="show_non_matches=false" ng-model="show_non_matches" aria-label=" {{'STUDY_LIST.NO_MATCH' | translate}}" ng-click="refilter()">
+                {{'STUDY_LIST.NO_MATCH' | translate}}
+            </md-checkbox>
+        </md-input-container>
 
     </div>
 
