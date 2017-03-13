@@ -54,5 +54,9 @@
   },
   "Email": {
     "dataSource": "Email"
+  },
+  "AdvisorDummy": {
+    "dataSource": "userstudy-db",
+    "public": true
   }
 }

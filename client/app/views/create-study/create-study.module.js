@@ -13,24 +13,13 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'AdvisorService',
-        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, AdvisorService) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'AdvisorDummy',
+        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, AdvisorDummy) {
 
             $scope.initialize = function() {
 
+                $scope.advisors = AdvisorDummy.find();
 
-                $http.get('resc/files/studyprograms.txt')
-                    .then(function(response) {
-                        $scope.studyPrograms = response.data.split("\n");
-                    });
-
-                var advisorPromise = AdvisorService.getAdvisorList();
-                advisorPromise.then(
-                    function(response) {
-                        $scope.advisors = response.data;
-                    }, function(error) {
-                        console.log(error.statusText);
-                    });
 
                 $scope.preferences = {
                     studyPrograms: [],
@@ -92,9 +81,8 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 };
 
                 $scope.appointments.unshift(appointment);
-                console.log('appointment time ' + appointment.time);
-                console.log('appointment duration ' + appointment.duration);
-                console.log('appointment buffer ' + appointment.bufferTime);
+                //$scope.appointments = AppointmentService.groupDatesByDay($scope.appointments); TODO
+                console.log($scope.appointments);
                 $scope.appointment.time = AppointmentService.addDurationToAppointmentTime(appointment.time, appointment.duration, appointment.bufferTime);
 
             };
@@ -177,7 +165,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                                     })
                                     .$promise
                                     .then(function (response) {
-                                        console.log('Thats right son, keep on crating');
+                                        console.log('Thats right son, keep on creating');
                                     });
 
                             }

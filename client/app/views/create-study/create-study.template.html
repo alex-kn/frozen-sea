@@ -303,14 +303,19 @@
 
                                 </div>
 
-                                <md-input-container flex-gt-xs="75" flex="100" ng-if="preferencesStudent === 'Ja'">
-                                    <label>{{'CREATE_STUDY.COURSE_OF_STUDY' | translate}}</label>
-                                    <md-select name="student" ng-model="preferences.studyProgram">
-                                        <md-option value="1">Mathematik</md-option>
-                                        <md-option value="2">Informatik</md-option>
-                                        <md-option value="3">Industrial Design</md-option>
-                                    </md-select>
-                                </md-input-container>
+                                <md-chips ng-if="preferencesStudent === 'Ja'" class="md-block mg-top-16-on-mobile" style="margin-top: 1px" flex-gt-xs="75"
+                                          secondary-placeholder="{{'CREATE_STUDY.COURSE_OF_STUDY' | translate}}"
+                                          aria-label="{{'CREATE_STUDY.COURSE_OF_STUDY' | translate}}"
+                                          placeholder="{{'CREATE_STUDY.COURSE_OF_STUDY' | translate}}"
+                                          name="studyProgram"
+                                          ng-model="preferences.studyPrograms"
+                                          readonly="ctrl.readonly"
+                                          md-removable="ctrl.removable">
+                                </md-chips>
+
+                                <div ng-messages="createStudyForm.studyProgram.$error">
+                                    <div ng-message="required" ng-hide="true">{{'CREATE_STUDY.LOCATION_MESSAGE' | translate}}</div>
+                                </div>
 
                             </div>
 
@@ -375,34 +380,6 @@
                     <md-content class="md-padding">
 
                         <h2 class="md-headline">{{'CREATE_STUDY.PHYSICAL_REQUIREMENTS' | translate}}</h2>
-
-                        <div layout-gt-xs="row">
-
-                            <div layout-gt-xs="row" flex="100" layout-align="start center">
-
-                                <div flex-gt-xs="25" flex="100">
-
-                                    <md-switch ng-model="preferencesGender" aria-label="{{'CREATE_STUDY.GENDER_ARIA_LABEL' | translate}}" ng-true-value="'Ja'"
-                                               ng-false-value="'Nein'">
-                                        {{'CREATE_STUDY.GENDER' | translate}}: {{ preferencesGender }}
-                                    </md-switch>
-
-                                </div>
-
-                                <div flex-gt-xs="75" flex="100" ng-if="preferencesGender === 'Ja'">
-
-                                    <md-radio-group ng-model="preferences.gender" layout-gt-xs="row">
-
-                                        <md-radio-button value="female">{{'CREATE_STUDY.MALE' | translate}}</md-radio-button>
-                                        <md-radio-button value="male">{{'CREATE_STUDY.FEMALE' | translate}}</md-radio-button>
-
-                                    </md-radio-group>
-
-                                </div>
-
-                            </div>
-
-                        </div>
 
                         <div layout-gt-xs="row" class="mg-top-16-on-desktop">
 

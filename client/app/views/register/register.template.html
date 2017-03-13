@@ -43,16 +43,19 @@
 
 
                 <md-input-container layout="row">
-                    <input type="email" aria-label="{{'REGISTER.MAIL' | translate}}" ng-model="email" placeholder="{{'REGISTER.MAIL' | translate}}">
+                    <input type="email" aria-label="{{'REGISTER.MAIL' | translate}}" ng-model="email" placeholder="{{'REGISTER.MAIL' | translate}}"required>
                 </md-input-container>
                 <md-input-container layout="row">
-                    <input type="password" aria-label="{{'REGISTER.PASSWORD' | translate}}" ng-model="password" placeholder="{{'REGISTER.PASSWORD' | translate}}">
+                    <input type="password" aria-label="{{'REGISTER.PASSWORD' | translate}}" ng-model="password" placeholder="{{'REGISTER.PASSWORD' | translate}}" required>
                 </md-input-container>
                 <md-input-container layout="row">
-                    <input type="text" aria-label="Name" ng-model="name" placeholder="Name">
+                    <input type="text" aria-label="{{'REGISTER.FIRST_NAME' | translate}}" ng-model="firstname" placeholder="{{'REGISTER.FIRST_NAME' | translate}}" required>
+                </md-input-container>
+                <md-input-container layout="row">
+                    <input type="text" aria-label="{{'REGISTER.SECOND_NAME' | translate}}" ng-model="secondname" placeholder="{{'REGISTER.SECOND_NAME' | translate}}" required>
                 </md-input-container>
                 <div layout="row" class="submit">
-                    <md-button ng-disabled="!(email && password && name)" ng-click="register(name, email, password)" class="md-accent md-raised">{{'REGISTER.REGISTER' | translate}}</md-button>
+                    <md-button ng-disabled="!(email && password && name)" ng-click="register(firstname, secondname, email, password)" class="md-accent md-raised">{{'REGISTER.REGISTER' | translate}}</md-button>
                 </div>
                 <div layout-align="start center" ng-if="errorMessage" class="error-message">
                     <md-icon class="material-icons">report_problem</md-icon>

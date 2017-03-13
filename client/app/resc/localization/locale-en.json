@@ -25,6 +25,9 @@
     "MAIL" : "E-Mail",
     "PASSWORD": "Password",
     "REGISTER": "Sign up",
+    "FIRST_NAME": "First name",
+    "SECOND_NAME": "Family name",
+    "ERROR": "Sign up failed, your username might be taken or there is already an account with this e-mail address!"
     "ERROR_USERNAME": "Sign up failed, your username is already taken!",
     "ERROR_EMAIL": "Sign up failed, there already exists an account with this e-mail address!",
     "ERROR_EMAIL_USERNAME": "Sign up failed, your username is already taken and there exists an account with this e-mail address!"

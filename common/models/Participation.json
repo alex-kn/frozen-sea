@@ -2,8 +2,8 @@
   "name": "Participation",
   "plural": "Participations",
   "base": "PersistedModel",
-  "idInjection": true,
   "strict": true,
+  "idInjection": true,
   "options": {
     "validateUpsert": true
   },

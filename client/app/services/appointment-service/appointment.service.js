@@ -4,7 +4,7 @@
 
 angular
     .module('AppointmentService', [])
-    .factory('AppointmentService', function() {
+    .factory('AppointmentService', ['$q', '$http', function($q, $http) {
 
         /**
          * Add the appointment duration time to the previous appointment time
@@ -44,9 +44,46 @@ angular
             }
         }
 
+        /*
+        function groupDatesByDay(appointments) {
+
+            var datesGroupedByDay = [];
+            var days = [];
+            var day;
+            var lastDay;
+
+            appointments.$promise.then(function (response) {
+
+                response.sort(function (a, b) {
+                    return a.startDate - b.startDate;
+
+                });
+                $q.all(response.map(function (date) {
+                    day = $filter('date')(date.startDate, "shortDate");
+                    if (lastDay == undefined) {
+                        lastDay = day;
+                    }
+                    if (day != lastDay) {
+                        datesGroupedByDay.push(days);
+                        days = [];
+                        days.push(date);
+                        lastDay = day;
+                    } else {
+                        days.push(date);
+                    }
+                }));
+                datesGroupedByDay.push(days);
+                datesGroupedByDay[0].show = true;
+            });
+
+            return datesGroupedByDay;
+        }
+        */
+
         return {
             getDates: getDates,
             addDurationToAppointmentTime: addDurationToAppointmentTime
+            //groupDatesByDay: groupDatesByDay
         }
 
-    });
+    }]);

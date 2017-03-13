@@ -25,6 +25,8 @@
     "MAIL" : "E-Mail",
     "PASSWORD": "Passwort",
     "REGISTER": "Registrieren",
+    "FIRST_NAME": "Vorname",
+    "SECOND_NAME": "Familienname",
     "ERROR_USERNAME": "Registrierung fehlgeschlagen, dieser Username existiert bereits!",
     "ERROR_EMAIL": "Registrierung fehlgeschlagen, es existiert bereits ein Account mit dieser Email!",
     "ERROR_EMAIL_USERNAME": "Registrierung fehlgeschlagen, dieser Username und ein Account mit dieser Email existieren bereits!"
