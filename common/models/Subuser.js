@@ -116,7 +116,7 @@ module.exports = function (Subuser) {
                 if (allRoles[i] == role)
                     return true;
             }
-        }
+        };
         if (isRole == true){
             var err = 'Role does not exist';
             return cb(err);

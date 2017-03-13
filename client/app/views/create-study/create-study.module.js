@@ -146,6 +146,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
 
                             for (var i = 0; i < $scope.appointments.length; i++) {
 
+
                                 var date = $scope.appointments[i].date; //only the correct date
                                 var time = $scope.appointments[i].time; //only the correct hours:minutes
 
@@ -157,9 +158,9 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                                         startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate(),
                                             parseInt(time.split(":")[0]), parseInt(time.split(":")[1])),
                                         duration: $scope.appointments[i].duration,
-                                        deadline: $scope.appointment.deadline,
-                                        location: $scope.appointment.location,
-                                        maxParticipants: $scope.appointment.participants,
+                                        deadline: $scope.appointments[i].deadline,
+                                        location: $scope.appointments[i].location,
+                                        maxParticipants: $scope.appointments[i].participants,
                                         minParticipants: 0
                                     })
                                     .$promise
