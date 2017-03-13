@@ -28,7 +28,6 @@ angular.module('userStudy', [
     'participateDialogDirective',
     'participantDetailsDialogDirective',
     'AppointmentService',
-    'AdvisorService',
     'ToastService',
     'EmailService',
     'AuthService',

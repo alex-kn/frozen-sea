@@ -13,18 +13,13 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'AdvisorService',
-        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, AdvisorService) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'AdvisorDummy',
+        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, AdvisorDummy) {
 
             $scope.initialize = function() {
 
-                var advisorPromise = AdvisorService.getAdvisorList();
-                advisorPromise.then(
-                    function(response) {
-                        $scope.advisors = response.data;
-                    }, function(error) {
-                        console.log(error.statusText);
-                    });
+                $scope.advisors = AdvisorDummy.find();
+
 
                 $scope.preferences = {
                     studyPrograms: [],
@@ -170,7 +165,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                                     })
                                     .$promise
                                     .then(function (response) {
-                                        console.log('Thats right son, keep on crating');
+                                        console.log('Thats right son, keep on creating');
                                     });
 
                             }
