@@ -88,6 +88,7 @@ angular
             $translateProvider.preferredLanguage('de');
             // Enable escaping of HTML
 
+            $translateProvider.useSanitizeValueStrategy('escape');
         }])
     .run(['$rootScope', '$location', 'LoopBackAuth', 'AuthService', function ($rootScope, $location, LoopBackAuth, AuthService) {
 
