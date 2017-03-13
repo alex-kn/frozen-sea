@@ -133,7 +133,9 @@ md-card {
 .button-red[disabled] {
   color: red !important; }
 
-.margin-top-1 {
+.study-details {
   margin-top: 1rem; }
+  .study-details * {
+    padding-left: 0.1rem !important; }
 
 /*# sourceMappingURL=study-details-view.style.css.map */
