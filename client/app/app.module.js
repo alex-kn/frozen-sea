@@ -24,7 +24,6 @@ angular.module('userStudy', [
     'userStudy.version',
     'navBarDirective',
     'studyListDirective',
-    'archiveListDirective',
     'participateDialogDirective',
     'participantDetailsDialogDirective',
     'AppointmentService',

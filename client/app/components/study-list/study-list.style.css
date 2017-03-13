@@ -222,6 +222,12 @@ md-toolbar.toolbar {
   color: #8c8c8c;
   margin-bottom: 2.5em; }
 
+.vertical-divider {
+  border-top-width: 0;
+  border-right-width: 1px;
+  border-right-style: solid;
+  height: 100%; }
+
 md-card-title-text div {
   margin-top: 1rem; }
 

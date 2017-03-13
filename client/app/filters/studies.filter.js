@@ -106,10 +106,22 @@ angular.module('userStudy').filter('filterStudies', function() {
                 || !study.required_gender.female);
 
 
+
+
             //The owner should always see his own studies
             if(study.ownerId == userPreferences.subuserId) {
                 isMatch = true;
             }
+
+
+            //The owner should always see his own studies //TODO
+            if(study.ownerId == userPreferences.subuserId) {
+            }
+
+            //Advisors should see all studies //TODO
+            if(study.ownerId == userPreferences.subuserId) {
+            }
+
 
 
             if (isMatch) {
