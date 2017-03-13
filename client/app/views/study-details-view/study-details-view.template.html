@@ -35,38 +35,34 @@
 
             <div class="study-details" layout-gt-xs="row" layout-align="center center" layout-wrap>
 
-
                 <md-subheader flex="15">
                     {{'STUDY_DETAILS.KEYWORDS' | translate}}:
                 </md-subheader>
-
-
-                <span flex="85"
-                      aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
+                <span flex="85" aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
                     {{study.keywords_array.join(" | ")}}
                 </span>
-
 
                 <md-subheader flex="15">
                     {{'CREATE_STUDY.LOCATION' | translate}}:
                 </md-subheader>
-
-
-                <span flex="85"
-                      aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
+                <span flex="85" aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
                     {{study.locations_array.join(" | ")}}
                 </span>
-
-
 
                 <md-subheader flex="15">
                     {{'STUDY_DETAILS.BY' | translate}}:
                 </md-subheader>
-
-
-                <span flex="85"
-                      aria-label="{{'STUDY_DETAILS.BY' | translate}}">
+                <span flex="85" aria-label="{{'STUDY_DETAILS.BY' | translate}}">
                     {{owner}}
+                </span>
+
+                <md-subheader ng-show="isOwner" flex="15">
+                    {{'STUDY_DETAILS.PARTICIPANTS' | translate}}:
+                </md-subheader>
+
+
+                <span ng-show="isOwner" flex="85" aria-label="{{'STUDY_DETAILS.PARTICIPANTS' | translate}}">
+                    {{totalParticipants}}
                 </span>
             </div>
 
@@ -80,9 +76,11 @@
 
             <h2 class="md-headline">{{'STUDY_DETAILS.CHOOSE_REWARD' | translate}}</h2>
 
-            <md-radio-group class="md-block" layout-gt-xs="row" ng-model="chosenReward">
+            <md-radio-group class="md-block" layout-gt-xs="row" ng-model="chosenReward" ng-change="updateReward()"
+                            ng-disabled="alreadyParticipated">
 
-                <md-radio-button flex="100" flex-gt-xs="33" value="reward_money" ng-show="study.reward.reward_money"
+                <md-radio-button flex="100" flex-gt-xs="33" value="reward_money"
+                                 ng-show="study.reward.reward_money"
                                  aria-label="{{'CREATE_STUDY.MONEY_ARIA_LABEL' | translate}}">
                     {{study.reward.reward_money}}
                     {{'STUDY_DETAILS.CHOOSE_REWARD_MONEY' | translate}}
@@ -95,7 +93,8 @@
                     {{'STUDY_DETAILS.CHOOSE_REWARD_VOUCHER' | translate}}
                 </md-radio-button>
 
-                <md-radio-button flex-xs="100" flex-gt-xs="33" value="reward_hours" ng-show="study.reward.reward_hours"
+                <md-radio-button flex-xs="100" flex-gt-xs="33" value="reward_hours"
+                                 ng-show="study.reward.reward_hours"
                                  aria-label="{{'CREATE_STUDY.HOURS_ARIA_LABEL' | translate}}">
                     {{study.reward.reward_hours}}
                     {{'STUDY_DETAILS.CHOOSE_REWARD_HOURS' | translate}}
@@ -128,7 +127,7 @@
 
                 <div layout="row" layout-xs="column" layout-wrap ng-show="day.show">
 
-                    <md-card ng-repeat="date in day" flex="100" flex-gt-xs="{{flexGtXs}}" flex-gt-sm="{{flexGtSm}}"
+                    <md-card ng-repeat="date in day" flex="100" flex-gt-xs="{{flexGtXs}}" flex-gt-md="{{flexGtMd}}"
                              flex-gt-lg="{{flexGtLg}}" ng-class="[{'participating': date.participating}, date.status]">
                         <md-card-header style>
                             <md-card-avatar>

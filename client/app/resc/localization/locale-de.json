@@ -247,7 +247,8 @@
     "SUBJECT" : "Betreff",
     "TEXT" : "Text",
     "SEND" : "Abschicken",
-    "CANCEL": "Abbrechen"
+    "CANCEL": "Abbrechen",
+    "PARTICIPANTS" : "Teilnehmer"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

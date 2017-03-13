@@ -19,9 +19,10 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.studyIsLoading = true;
             $scope.isParticipating = false;
             $scope.alreadyParticipated = false;
+            $scope.totalParticipants = 0;
 
             $scope.flexGtXs = 45;
-            $scope.flexGtSm = 30;
+            $scope.flexGtMd = 30;
             $scope.flexGtLg = 30;
 
 
@@ -31,7 +32,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 $scope.isOwner = ($scope.study.ownerId == LoopBackAuth.currentUserId);
                 if ($scope.isOwner) {
                     $scope.flexGtXs = 100;
-                    $scope.flexGtSm = 100;
+                    $scope.flexGtMd = 100;
                     $scope.flexGtLg = 45;
                 }
                 Study.owner({id: $scope.study.id}, function (res) {
@@ -50,7 +51,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         responseDate.endDate = new Date(responseDate.startDate.getTime() + responseDate.duration * 60000);
                         responseDate.participants = 0;
                         if (isNaN(responseDate.deadline)) {
-                            throw new Error("You screwed up! Deadline has to be a number! Fix it!");//TODO
+                            console.warn("deadline is not a number");
                         }
                         responseDate.deadlineDate = new Date(responseDate.startDate.getTime() - responseDate.deadline * 3600000);
                         if (responseDate.deadlineDate < new Date()) {
@@ -64,6 +65,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                     Participation.participant({id: responseParticipation.id}, function (r) {
                                         responseParticipation.name = (r.username);
                                     });
+                                    $scope.totalParticipants += 1;
                                 }));
                                 responseDate.isLoading = false;
                                 responseDate.participations = responseParticipationArray;
@@ -89,7 +91,11 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                 }
                             }, function (response) {
                                 if (response.length > 0) {
+                                    $scope.myParticipation = response[0];
                                     $scope.status = response[0].status;
+                                    if(response[0].reward_money){$scope.chosenReward = "reward_money"}
+                                    if(response[0].reward_voucher){$scope.chosenReward = "reward_voucher"}
+                                    if(response[0].reward_hours){$scope.chosenReward = "reward_hours"}
                                     responseDate.participating = true;
                                     if (responseDate.startDate < new Date()) {
                                         $scope.alreadyParticipated = true;
@@ -165,6 +171,16 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 return 0
             }
 
+            $scope.updateReward = function () {
+                if(!$scope.isParticipating) {return}
+                $scope.myParticipation.reward_money = mapReward("reward_money", $scope.chosenReward);
+                $scope.myParticipation.reward_voucher = mapReward("reward_voucher", $scope.chosenReward);
+                $scope.myParticipation.reward_hours = mapReward("reward_hours", $scope.chosenReward);
+                $scope.myParticipation.$save().then(function () {
+                    console.log("SAVED")
+                });
+
+            };
 
             $scope.participate = function (studyDate) {
                 $scope.waitingForParticipation = true;
