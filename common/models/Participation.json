@@ -72,7 +72,14 @@
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
       "principalId": "$authenticated",
+      "property": "updateAttributes",
       "permission": "ALLOW"
     },
     {

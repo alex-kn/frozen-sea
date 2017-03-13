@@ -122,7 +122,7 @@ angular
                 console.log('route / and logged in: redirect to /home');
             }
 
-            console.log('accesToken:' + LoopBackAuth.accessTokenId);
+            //console.log('accesToken:' + LoopBackAuth.accessTokenId);
 
             /* Tests
              console.log('accesToken:' + LoopBackAuth.accessTokenId);
