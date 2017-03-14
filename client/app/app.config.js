@@ -93,7 +93,7 @@ angular
             });
 
             $translateProvider.preferredLanguage('de');
-            moment.locale($filter('translate')('DATE.FORMAT'));
+            moment.locale('de');
             $mdDateLocaleProvider.formatDate = function (date) {
                 return moment(date).format('LL');
             };
