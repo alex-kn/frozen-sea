@@ -33,6 +33,7 @@ angular.module('register', ['ngRoute'])
                     ToastService.setToastText($filter('translate')('LOGIN.REGISTRATION_SUCCESS'));
                     ToastService.displayToast();
                     $location.path('/login');
+
                 }, function (httpResponse) {
                     if((httpResponse.data.error.message.includes("username") && httpResponse.data.error.message.includes("email") && httpResponse.data.error.status == 422)){
                         $scope.errorMessage = $filter('translate')('REGISTER.ERROR_EMAIL_USERNAME');

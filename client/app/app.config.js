@@ -87,9 +87,9 @@ angular
 
             $translateProvider.useStaticFilesLoader( {
                 files: [{
-                prefix: './resc/localization/locale-',
-                suffix: '.json'
-            }]});
+                    prefix: './resc/localization/locale-',
+                    suffix: '.json'
+                }]});
 
             $translateProvider.preferredLanguage('de');
             // Enable escaping of HTML
@@ -99,62 +99,53 @@ angular
     .run(['$rootScope', '$location', 'LoopBackAuth', 'AuthService', 'ByRoleService',
         function ($rootScope, $location, LoopBackAuth, AuthService, ByRoleService) {
 
-        var publicRoutes = ['/register','/login','/reset-password/','/reset-password-request'];
+            var publicRoutes = ['/register', '/login', '/reset-password/', '/reset-password-request'];
 
 
-        /**
-         * Check if route is public route. Define public routes in publicRoutes array
-         *
-         * @param   route   contains the route to check (String)
-         * @return          if route is in publicRoutes array it returns the route (String), otherwise undefined
-         */
-
-        var isPublicRoute = function (route) {
-            return publicRoutes.find(function (publicRoute) {
-                return route.startsWith(publicRoute);
-            });
-        };
-
-        $rootScope.isAdmin = false;
-
-        ByRoleService.getUsersByRole("admin").then(function(res){
-
-            res.forEach(function(user) {
-                if (user.id == LoopBackAuth.currentUserId) {
-                    $rootScope.isAdmin = true;
-                }
-            });
-        });
-
-
-        $rootScope.$on('$routeChangeStart', function (event, next, current) {
-
-            // No public route && not logged in: redirect to /login
-            if (!isPublicRoute($location.url()) && !LoopBackAuth.accessTokenId) {
-                $location.path('/login');
-                console.log('not auth: redirect to /login')
-            }
-
-            // Route '/' && logged in: redirect to home
-            if (($location.url() == '/' || $location.url() == '/login') && LoopBackAuth.accessTokenId) {
-                $location.path('/home');
-                console.log('route / and logged in: redirect to /home');
-            }
-
-            //console.log('accesToken:' + LoopBackAuth.accessTokenId);
-
-            /* Tests
-             console.log('accesToken:' + LoopBackAuth.accessTokenId);
-             console.log('if..:' + (isPublicRoute($location.url()) && LoopBackAuth.accessTokenId));
-             console.log('if.!:' + (isPublicRoute($location.url()) && !LoopBackAuth.accessTokenId));
-             console.log('if!.:' + (!isPublicRoute($location.url()) && LoopBackAuth.accessTokenId));
-             console.log('if!!:' + (!isPublicRoute($location.url()) && !LoopBackAuth.accessTokenId));
-             console.log('notaccesToken:' + !LoopBackAuth.accessTokenId);
-             console.log('event:' + event);
-             console.log('next:' + next);
-             console.log('current:' + current);
+            /**
+             * Check if route is public route. Define public routes in publicRoutes array
+             *
+             * @param   route   contains the route to check (String)
+             * @return          if route is in publicRoutes array it returns the route (String), otherwise undefined
              */
 
-        });
+            var isPublicRoute = function (route) {
+                return publicRoutes.find(function (publicRoute) {
+                    return route.startsWith(publicRoute);
+                });
+            };
 
-    }]);
+            $rootScope.isAdmin = false;
+
+
+            $rootScope.$on('$routeChangeStart', function (event, next, current) {
+
+                // No public route && not logged in: redirect to /login
+                if (!isPublicRoute($location.url()) && !LoopBackAuth.accessTokenId) {
+                    $location.path('/login');
+                    console.log('not auth: redirect to /login')
+                }
+
+                // Route '/' && logged in: redirect to home
+                if (($location.url() == '/' || $location.url() == '/login') && LoopBackAuth.accessTokenId) {
+                    $location.path('/home');
+                    console.log('route / and logged in: redirect to /home');
+                }
+
+                //console.log('accesToken:' + LoopBackAuth.accessTokenId);
+
+                /* Tests
+                 console.log('accesToken:' + LoopBackAuth.accessTokenId);
+                 console.log('if..:' + (isPublicRoute($location.url()) && LoopBackAuth.accessTokenId));
+                 console.log('if.!:' + (isPublicRoute($location.url()) && !LoopBackAuth.accessTokenId));
+                 console.log('if!.:' + (!isPublicRoute($location.url()) && LoopBackAuth.accessTokenId));
+                 console.log('if!!:' + (!isPublicRoute($location.url()) && !LoopBackAuth.accessTokenId));
+                 console.log('notaccesToken:' + !LoopBackAuth.accessTokenId);
+                 console.log('event:' + event);
+                 console.log('next:' + next);
+                 console.log('current:' + current);
+                 */
+
+            });
+
+        }]);

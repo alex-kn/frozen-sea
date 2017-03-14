@@ -49,10 +49,35 @@
     <md-progress-circular ng-show="studyIsLoading" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular>
 
     <div layout="column"  ng-class="{'grey-out':studyIsLoading}">
-            <md-card class="custom-pointer" ng-repeat="study in studies | filter:search" ng-click="showDetails(study)" ng-class="{'my-study': study.isThisMyOwnStudy, 'advised-study': study.isThisAStudyISupervise, 'participated-study-not-approved': study.isThisAStudyIParticipateInAndIAmNotApproved,'participated-study-approved':study.isThisAStudyIParticipateInAndIAmApproved}">
+        <md-card class="custom-pointer" ng-repeat="study in studies | filter:search" ng-click="showDetails(study)"
+                 ng-class="{
+                     'stuy-not-approved': !study.isApproved,
+                     'my-study': study.isThisMyOwnStudy,
+                     'advised-study': study.isThisAStudyISupervise,
+                     'advised-study-needs-approval': study.isThisAStudyISuperviseAndNeedsApproval,
+                     'participated-study-not-approved': study.isThisAStudyIParticipateInAndIAmNotApproved,
+                     'participated-study-approved':study.isThisAStudyIParticipateInAndIAmApproved,
+                     'participated-study-finished':study.isThisAStudyIParticipateInAndIFinishedIt,
+                     'study-is-over': study.isFinished
+                     }">
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline">{{ study.title }}</span>
+
+                    <div layout="row">
+                        <span class="md-headline">{{ study.title }}</span>
+
+                        <div layout="column" layout-align="center center">
+                            <div ng-show="!study.isApproved">stuy-not-approved</div>
+                            <div ng-show="study.isThisMyOwnStudy">my own study</div>
+                            <div ng-show="study.isThisAStudyISupervise">supervised study</div>
+                            <div ng-show="study.isThisAStudyISuperviseAndNeedsApproval">needs approval from you</div>
+                            <div ng-show="study.isThisAStudyIParticipateInAndIAmApproved">ready to go</div>
+                            <div ng-show="study.isThisAStudyIParticipateInAndIAmNotApproved">participation needs confirmation from creator</div>
+                            <div ng-show="study.isThisAStudyIParticipateInAndIFinishedIt">finished it</div>
+                            <div ng-show="study.isFinished">stuy-has finished</div>
+                        </div>
+                    </div>
+
                     <div layout-gt-sm="row" layout="column" layout-align="start start">
                         <span flex-gt-sm="25" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">date_range</i>{{study.startDate | date:'dd.MM.yy'}} - {{study.endDate | date:'dd.MM.yy'}}</span>
                         <span flex-gt-sm="20" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">timelapse</i>{{study.duration}} {{'STUDY_LIST.DURATION' | translate}}</span>
