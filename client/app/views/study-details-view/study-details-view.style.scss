@@ -109,3 +109,20 @@ md-card {
 .owner-loading {
   margin: 0 !important;
 }
+
+md-progress-linear {
+  height: 1rem;
+  margin: 0 !important;
+
+  .md-container {
+    background-color: cornflowerblue ;
+    height: 1rem;
+    border-radius: 10px;
+
+    .md-bar {
+      background-color: lightcoral;
+      height: 1rem;
+      border-radius: 10px;
+    }
+  }
+}

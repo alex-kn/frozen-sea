@@ -12,14 +12,18 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsViewController', ['$mdDialog', '$q', '$location', '$routeParams', '$scope', 'StudyDate', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter', 'ToastService', 'EmailService',
-        function ($mdDialog, $q, $location, $routeParams, $scope, StudyDate, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService, EmailService) {
+    .controller('StudyDetailsViewController', ['$mdDialog', '$q', '$location', '$routeParams', '$scope', 'StudyDate','Preference', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter', 'ToastService', 'EmailService',
+        function ($mdDialog, $q, $location, $routeParams, $scope, StudyDate,Preference, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService, EmailService) {
 
             $scope.isOwner = false;
             $scope.studyIsLoading = true;
             $scope.isParticipating = false;
             $scope.alreadyParticipated = false;
             $scope.totalParticipants = 0;
+            $scope.participantUserIds = [];
+
+            $scope.femaleParticipants = 0;
+            $scope.maleParticipants = 0;
 
             $scope.flexGtXs = 45;
             $scope.flexGtMd = 30;
@@ -112,16 +116,30 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         }
                     }
                 }, function (responseParticipationArray) {
+                    var result = responseParticipationArray.map(function(a) {return a.id;});
+
                     $q.all(responseParticipationArray.map(function (responseParticipation) {
                         responseParticipation.name = $filter('translate')('STUDY_DETAILS.LOADING_PARTICIPANT');
-                        Participation.participant({id: responseParticipation.id}, function (r) {
-                            responseParticipation.name = (r.firstname + " " + r.secondname);
+                        Participation.participant({id: responseParticipation.id}, function (responseUser) {
+                            responseParticipation.name = (responseUser.firstname + " " + responseUser.secondname);
+                            Preference.findOne({filter:{where: {subuserId: responseUser.id}}},function (r) {
+                                if(r.gender == 'female'){
+                                    $scope.femaleParticipants += 1;
+                                }else if(r.gender == 'male'){
+                                    $scope.maleParticipants += 1;
+                                }else{
+                                    console.log("Mr. " + responseUser.lastname + " has not specified a gender");
+                                }
+                            });
+
                         });
                         $scope.totalParticipants += 1;
                     }));
                 });
 
-                if (!$scope.isOwner) {
+                if ($scope.isOwner) {
+
+                }else{
                     Participation.find({
                         filter: {
                             where: {

@@ -261,7 +261,8 @@
     "SMARTPHONE" : "Smartphone",
     "YES" : "Ja",
     "NO" : "Nein",
-    "REWARD_UPDATED" : "Deine gewählte Vergütung wurde geändert!"
+    "REWARD_UPDATED" : "Deine gewählte Vergütung wurde geändert!",
+    "GENDER_DISTRIBUTION" : "Geschlechterverhältnis"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

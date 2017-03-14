@@ -33,39 +33,45 @@
 
             </div>
 
-            <div class="study-details" layout-gt-xs="row" layout-align="center center" layout-wrap>
+            <div class="study-details" layout-gt-xs="row" layout-align="start center" layout-wrap>
 
-                <md-subheader flex="15">
+                <md-subheader flex="25">
                     {{'STUDY_DETAILS.KEYWORDS' | translate}}:
                 </md-subheader>
-                <span flex="85" aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
+                <span flex="75" aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
                     {{study.keywords_array.join(" | ")}}
                 </span>
 
-                <md-subheader flex="15">
+                <md-subheader flex="25">
                     {{'CREATE_STUDY.LOCATION' | translate}}:
                 </md-subheader>
-                <span flex="85" aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
+                <span flex="75" aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
                     {{study.locations_array.join(" | ")}}
                 </span>
 
-                <md-subheader flex="15">
+                <md-subheader flex="25">
                     {{'STUDY_DETAILS.BY' | translate}}:
                 </md-subheader>
-                <span ng-show="ownerReady" flex="85" aria-label="{{'STUDY_DETAILS.BY' | translate}}">
+                <span ng-show="ownerReady" flex="75" aria-label="{{'STUDY_DETAILS.BY' | translate}}">
                     {{owner}}
                 </span>
-                <md-progress-circular flex="85" ng-hide="ownerReady" class="md-accent owner-loading" md-mode="indeterminate" md-diameter="20">
+                <md-progress-circular flex="75" ng-hide="ownerReady" class="md-accent owner-loading" md-mode="indeterminate" md-diameter="20">
                 </md-progress-circular>
 
-                <md-subheader ng-show="isOwner" flex="15">
+                <md-subheader ng-show="isOwner" flex="25">
                     {{'STUDY_DETAILS.PARTICIPANTS' | translate}}:
                 </md-subheader>
-
-
-                <span ng-show="isOwner" flex="85" aria-label="{{'STUDY_DETAILS.PARTICIPANTS' | translate}}">
+                <span ng-show="isOwner" flex="75" aria-label="{{'STUDY_DETAILS.PARTICIPANTS' | translate}}">
                     {{totalParticipants}}
                 </span>
+
+                <md-subheader ng-show="isOwner && (femaleParticipants + maleParticipants)" flex="25">
+                    {{'STUDY_DETAILS.GENDER_DISTRIBUTION' | translate}}:
+                </md-subheader>
+                <md-progress-linear value="{{(femaleParticipants / (femaleParticipants + maleParticipants)) * 100}}"
+                                    ng-show="isOwner && (femaleParticipants + maleParticipants)" flex="70" aria-label="{{'STUDY_DETAILS.GENDER_DISTRIBUTION' | translate}}">
+                    {{totalParticipants}}
+                </md-progress-linear>
             </div>
 
 
