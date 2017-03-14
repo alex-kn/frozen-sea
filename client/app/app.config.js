@@ -120,6 +120,8 @@ angular
 
             $rootScope.$on('$routeChangeStart', function (event, next, current) {
 
+                getUsersByRole();
+
                 // No public route && not logged in: redirect to /login
                 if (!isPublicRoute($location.url()) && !LoopBackAuth.accessTokenId) {
                     $location.path('/login');
@@ -153,4 +155,16 @@ angular
 
             });
 
-        }]);
+            function getUsersByRole() {
+                ByRoleService.getUsersByRole("admin").then(function (res) {
+
+                    res.forEach(function (user) {
+                        if (user.id == LoopBackAuth.currentUserId) {
+                            $rootScope.isAdmin = true;
+                            return true
+                        }
+                    });
+
+                });
+            }
+            }]);

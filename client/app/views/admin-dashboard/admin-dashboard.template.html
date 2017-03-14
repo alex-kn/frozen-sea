@@ -32,7 +32,16 @@
                 <div class="md-list-item-text" layout="row" layout-align="center center">
                     <span flex>{{user.email}}</span>
                     <span flex>{{user.username}}</span>
-                    <span flex><md-button>Zu Advisor machen</md-button><md-button>Zu Admin machen</md-button><md-button>Zu Admin machen</md-button></span>
+                    <span flex>
+                        <md-button>Ist Admin</md-button>
+                        <md-button>Admin Rolle entziehen</md-button>
+                        <md-button>Zu Admin machen</md-button>
+                        <md-button>Ist Advisor</md-button>
+                        <md-button>Advisor Rolle entziehen</md-button>
+                        <md-button>Zu Advisor machen</md-button>
+                        <md-button>Ist normaler User</md-button>
+                        <md-button>User Löschen</md-button>
+                    </span>
                 </div>
                 <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
