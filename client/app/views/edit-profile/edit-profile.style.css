@@ -79,11 +79,4 @@ md-toolbar.toolbar {
   color: #EF5350;
   font-size: 0.70em; }
 
-md-toast.error .md-toast-content {
-  background: #f44336;
-  color: white; }
-md-toast.success .md-toast-content {
-  background: #4caf50;
-  color: white; }
-
 /*# sourceMappingURL=edit-profile.style.css.map */

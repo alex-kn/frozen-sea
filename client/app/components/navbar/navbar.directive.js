@@ -3,8 +3,9 @@
  */
 
 angular.module('navBarDirective', [])
-    .controller('NavigationController', ['$scope', 'AuthService', '$location', '$route', '$translate', '$mdSidenav', '$log',
-        function ($scope, AuthService, $location, $route, $translate, $mdSidenav, $log) {
+    .controller('NavigationController', ['$rootScope', '$scope', 'AuthService', '$location', '$route', '$translate', '$mdSidenav', '$log', 'LoopBackAuth',
+        function ($rootScope, $scope, AuthService, $location, $route, $translate, $mdSidenav, $log,LoopBackAuth) {
+
 
             $scope.toggleSidenav = buildToggler('left');
 

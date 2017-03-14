@@ -48,7 +48,9 @@ angular
                 controller: 'editProfileController'
             }).when('/admin-dashboard', {
                 templateUrl: 'views/admin-dashboard/admin-dashboard.template.html',
-                controller: 'AdminDashboardController'
+                controller: 'AdminDashboardController',
+                activeTab: 'admin-dashboard'
+
             }).otherwise({redirectTo: '/login'});
 
 
@@ -94,7 +96,8 @@ angular
 
             $translateProvider.useSanitizeValueStrategy('escape');
         }])
-    .run(['$rootScope', '$location', 'LoopBackAuth', 'AuthService', function ($rootScope, $location, LoopBackAuth, AuthService) {
+    .run(['$rootScope', '$location', 'LoopBackAuth', 'AuthService', 'ByRoleService',
+        function ($rootScope, $location, LoopBackAuth, AuthService, ByRoleService) {
 
         var publicRoutes = ['/register','/login','/reset-password/','/reset-password-request'];
 
@@ -111,6 +114,18 @@ angular
                 return route.startsWith(publicRoute);
             });
         };
+
+        $rootScope.isAdmin = false;
+
+        ByRoleService.getUsersByRole("admin").then(function(res){
+
+            res.forEach(function(user) {
+                if (user.id == LoopBackAuth.currentUserId) {
+                    $rootScope.isAdmin = true;
+                }
+            });
+        });
+
 
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
 
