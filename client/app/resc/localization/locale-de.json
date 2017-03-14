@@ -154,7 +154,12 @@
     "EXPLANATION_2": "Sobald deine Studie freigeschaltet wurde, kannst du in der Detailansicht der Studie Teilnehmer annehmen oder ablehnen.",
     "EXPLANATION_3": "Nach erfolgreicher Teilnahme und Auszahlung der gewünschten Vergütung musst du die Teilnahmen bestätigen.",
     "EXPLANATION_4": "Sollte ein Teilnehmer hingegen nicht am ausgewählten Termin erschienen sein kannst du dies auch in der Detailansicht vermerken.",
-    "EXPLANATION_5": "Versuchspersonenstunden werden automatisch verbucht, nachdem du die erfolgreiche Teilnahme bestätigt hast."
+    "EXPLANATION_5": "Versuchspersonenstunden werden automatisch verbucht, nachdem du die erfolgreiche Teilnahme bestätigt hast.",
+    "DELETE_1": "Möchtest du die Studie ",
+    "DELETE_2": " löschen?",
+    "DELETE_3": "Dein gesamter Fortschritt wird gelöscht",
+    "DELETE_OK": "Studie löschen",
+    "DELETE_CANCEL": "Abbrechen"
   },
   "HOME": {
   },

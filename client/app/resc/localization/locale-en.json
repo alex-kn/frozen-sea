@@ -155,7 +155,12 @@
     "EXPLANATION_2": "When your study has been unlocked, you will be able to accept and reject Participants in the detail view of your study.",
     "EXPLANATION_3": "After a successful participation you need to pay the chosen reward and confirm the participation afterwards.",
     "EXPLANATION_4": "However, if a participant does not show up as planned, you have to note this in the detail-view.",
-    "EXPLANATION_5": "Experiment hours are entered automatically after you confirm a participation."
+    "EXPLANATION_5": "Experiment hours are entered automatically after you confirm a participation.",
+    "DELETE_1": "Do you want to delete your study ",
+    "DELETE_2": " ?",
+    "DELETE_3": "Your progress will be lost",
+    "DELETE_OK": "Delete study",
+    "DELETE_CANCEL": "Cancel"
   },
   "HOME": {
   },
