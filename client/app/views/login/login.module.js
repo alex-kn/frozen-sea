@@ -30,14 +30,6 @@ angular.module('login', ['ngRoute'])
                     };
                     $location.path('/home');
 
-                    ByRoleService.getUsersByRole("admin").then(function (res) {
-
-                        res.forEach(function (user) {
-                            if (user.id == LoopBackAuth.currentUserId) {
-                                $rootScope.isAdmin = true;
-                            }
-                        });
-                    });
                 }, function(err) {
                     console.log(err);
                     $scope.errorMessage = $filter('translate')('LOGIN.ERROR');

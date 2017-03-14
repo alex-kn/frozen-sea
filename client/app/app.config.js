@@ -85,11 +85,12 @@ angular
                 });
 
 
-            $translateProvider.useStaticFilesLoader( {
+            $translateProvider.useStaticFilesLoader({
                 files: [{
                     prefix: './resc/localization/locale-',
                     suffix: '.json'
-                }]});
+                }]
+            });
 
             $translateProvider.preferredLanguage('de');
             // Enable escaping of HTML
@@ -135,11 +136,11 @@ angular
                 }
 
                 // Route '/admin-dashboard' && no admin: redirect to home
-            if (($location.url() == '/admin-dashboard') &&  !$rootScope.isAdmin) {
-                $location.path('/home');
-            }
+                if (($location.url() == '/admin-dashboard') && !$rootScope.isAdmin) {
+                    $location.path('/home');
+                }
 
-            //console.log('accesToken:' + LoopBackAuth.accessTokenId);
+                //console.log('accesToken:' + LoopBackAuth.accessTokenId);
 
                 /* Tests
                  console.log('accesToken:' + LoopBackAuth.accessTokenId);
@@ -161,10 +162,9 @@ angular
                     res.forEach(function (user) {
                         if (user.id == LoopBackAuth.currentUserId) {
                             $rootScope.isAdmin = true;
-                            return true
                         }
                     });
 
                 });
             }
-            }]);
+        }]);
