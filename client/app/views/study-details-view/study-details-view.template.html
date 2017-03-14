@@ -35,10 +35,10 @@
 
             <div class="study-details" layout-gt-xs="row" layout-align="start center" layout-wrap>
 
-                <md-subheader flex="25">
+                <md-subheader ng-show="study.keywords_array.length" flex="25">
                     {{'STUDY_DETAILS.KEYWORDS' | translate}}:
                 </md-subheader>
-                <span flex="75" aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
+                <span flex="75" ng-show="study.keywords_array.length" aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
                     {{study.keywords_array.join(" | ")}}
                 </span>
 
