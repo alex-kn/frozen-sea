@@ -262,7 +262,14 @@
     "YES" : "Ja",
     "NO" : "Nein",
     "REWARD_UPDATED" : "Deine gewählte Vergütung wurde geändert!",
-    "GENDER_DISTRIBUTION" : "Geschlechterverhältnis"
+    "GENDER_DISTRIBUTION" : "Geschlechterverhältnis",
+    "MODIFY_DATES" : "Termine modifizieren",
+    "SAVE" : "Speichern",
+    "SAVED" : "Gespeichert!",
+    "MAX_PARTICIPANT_CHANGE_FAILED" : "Die maximale Teilnehmerzahl kann nicht niedriger sein als die Anzahl der bereits angemeldeten Teilnehmer.",
+    "DELETE_DATE_FAILED" : "Das Löschen eines Termins mit angemeldeten Teilnehmern ist nicht möglich.",
+    "DELETE_DATE_SUCCESSFUL" : "Termin erfolgreich gelöscht",
+    "HOURS_IN_ADVANCE" : "Stunden vorher"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

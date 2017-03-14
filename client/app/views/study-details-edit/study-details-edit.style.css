@@ -84,4 +84,21 @@ form md-checkbox {
   form md-checkbox:last-of-type {
     margin-right: 0; }
 
+.button-green[disabled] {
+  color: forestgreen !important; }
+
+.align-items {
+  display: inline-flex;
+  margin-top: 1rem;
+  margin-bottom: 0; }
+  .align-items i {
+    margin-right: 1rem; }
+  .align-items md-input-container {
+    margin: 0; }
+  .align-items input {
+    width: 3rem; }
+  .align-items .md-errors-spacer {
+    min-height: 0 !important;
+    max-height: 0 !important; }
+
 /*# sourceMappingURL=study-details-edit.style.css.map */
