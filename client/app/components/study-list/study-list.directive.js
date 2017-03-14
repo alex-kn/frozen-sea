@@ -8,6 +8,7 @@ angular
         function ($scope, $routeParams, Participation, Study, StudyDate, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter, ToastService, SetPreferencesService) {
 
 
+            $scope.studyIsLoading = true;
             $scope.studies = [];
             $scope.show_too_old = true;
             $scope.show_non_matches = true;
@@ -28,6 +29,7 @@ angular
             };
 
             $scope.loadStudies = function() {
+                $scope.studyIsLoading = true;
                 $scope.myFilter = {};
                 if($scope.show_too_old) { //load all studies that are not finished yet
                     $scope.myFilter = {filter: {where: {endDate:  {gte: new Date()}}}};
@@ -54,6 +56,7 @@ angular
 
             function compareStudyDetailsWithUserPreferences() {
                 Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
+                    $scope.studyIsLoading = false;
                     $scope.preferences = response;
                     //filter all studies that don't match user profile
                     $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences);

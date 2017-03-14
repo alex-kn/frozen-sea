@@ -133,7 +133,7 @@ module.exports = function (Subuser) {
                     for (var i = 0; i < userIds.length; i++) {
                         Subuser.findById(userIds[i], function (err, instance) {
                             users.push({    id: instance.id,
-                                            username: instance.username,
+                                            username: instance.firstname + " " + instance.secondname,
                                             email: instance.email
                             });
                             if (users.length === userIds.length) {

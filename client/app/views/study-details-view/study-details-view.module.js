@@ -36,7 +36,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     $scope.flexGtLg = 45;
                 }
                 Study.owner({id: $scope.study.id}, function (res) {
-                    $scope.owner = res.username;
+                    $scope.owner = res.firstname + " " + res.secondname;
                 });
 
                 loadDates();
@@ -64,7 +64,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                 $q.all(responseParticipationArray.map(function (responseParticipation) {
                                     responseParticipation.name = $filter('translate')('STUDY_DETAILS.LOADING_PARTICIPANT');
                                     Participation.participant({id: responseParticipation.id}, function (r) {
-                                        responseParticipation.name = (r.username);
+                                        responseParticipation.name = (r.firstname + " " + r.secondname);
                                     });
                                     $scope.totalParticipants += 1;
                                 }));

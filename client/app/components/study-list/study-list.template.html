@@ -43,11 +43,13 @@
                 {{'STUDY_LIST.NO_MATCH' | translate}}
             </md-checkbox>
         </md-input-container>
-
     </div>
 
-    <div layout="column">
-        <md-card class="custom-pointer" ng-repeat="study in studies | filter:search" ng-click="showDetails(study)" ng-class="{'my-study': study.isThisMyOwnStudy, 'advised-study': study.isThisAStudyISupervise, 'participated-study-not-approved': study.isThisAStudyIParticipateInAndIAmNotApproved,'participated-study-approved':study.isThisAStudyIParticipateInAndIAmApproved}">
+
+    <md-progress-circular ng-show="studyIsLoading" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular>
+
+    <div layout="column"  ng-class="{'grey-out':studyIsLoading}">
+            <md-card class="custom-pointer" ng-repeat="study in studies | filter:search" ng-click="showDetails(study)" ng-class="{'my-study': study.isThisMyOwnStudy, 'advised-study': study.isThisAStudyISupervise, 'participated-study-not-approved': study.isThisAStudyIParticipateInAndIAmNotApproved,'participated-study-approved':study.isThisAStudyIParticipateInAndIAmApproved}">
             <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">{{ study.title }}</span>

@@ -41,7 +41,8 @@ angular
                 templateUrl: 'views/study-details-edit/study-details-edit.template.html'
             }).when('/my-studies', {
                 templateUrl: 'views/my-studies/my-studies.template.html',
-                controller: 'MyStudiesController'
+                controller: 'MyStudiesController',
+                activeTab: 'my-studies'
             }).when('/edit-profile', {
                 templateUrl: 'views/edit-profile/edit-profile.template.html',
                 controller: 'editProfileController'

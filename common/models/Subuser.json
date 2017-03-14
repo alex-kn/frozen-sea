@@ -8,13 +8,13 @@
     "validateUpsert": true
   },
   "properties": {
-    "isAdvisor": {
-      "type": "boolean",
-      "required": false
+    "firstName": {
+      "type": "String",
+      "required": true
     },
-    "isAdmin": {
-      "type": "boolean",
-      "required": false
+    "secondName": {
+      "type": "String",
+      "required": true
     }
   },
   "validations": [],
