@@ -16,13 +16,19 @@
     </md-toolbar>
     <!-- END toolbar -->
 
+
     <!-- START study preferences -->
     <md-content layout-padding flex-offset-gt-sm="20" flex-gt-sm="60" flex-offset-sm="100">
-        <form name="userPreferencesForm" layout="column">
+
+
+        <form name="userPreferencesForm" layout="column" >
 
             <h2 class="md-headline">{{'USER_PREFERENCES.I_AM' | translate}}</h2>
 
-            <div layout="row" layout-xs="column">
+            <md-progress-circular ng-show="isLoading" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular>
+
+
+            <div layout="row" layout-xs="column" ng-class="{'grey-out': isLoading}">
 
                 <md-input-container flex-gt-xs="50" flex="100">
                     <md-checkbox flex-xs="100" ng-model="preferences.student" aria-label="Student">
@@ -42,7 +48,7 @@
 
 
             </div>
-            <div layout="row" layout-xs="column">
+            <div layout="row" layout-xs="column" ng-class="{'grey-out': isLoading}">
                 <span flex></span>
                 <md-input-container ng-show="preferences.student"  flex-gt-xs="50" flex="100">
                     <input type="number" ng-model="preferences.matriculationNr" min="0"
@@ -52,8 +58,8 @@
             <md-divider></md-divider>
 
 
-            <h2 class="md-headline">{{'USER_PREFERENCES.I_AM' | translate}}</h2>
-            <md-radio-group layout="row" layout-xs="column" ng-model="preferences.gender">
+            <h2 class="md-headline" ng-class="{'grey-out': isLoading}">{{'USER_PREFERENCES.I_AM' | translate}}</h2>
+            <md-radio-group layout="row" layout-xs="column" ng-model="preferences.gender" ng-class="{'grey-out': isLoading}">
                 <md-radio-button flex-xs="100" value="male" aria-label="{{'USER_PREFERENCES.MALE' | translate}}">
                     {{'USER_PREFERENCES.MALE' | translate}}
                 </md-radio-button>
@@ -66,23 +72,23 @@
             <h2 class="md-headline">{{'USER_PREFERENCES.BORN' | translate}}</h2>
 
 
-            <md-input-container flex-gt-xs="50" flex="100">
+            <md-input-container flex-gt-xs="50" flex="100" ng-class="{'grey-out': isLoading}">
                 <md-datepicker ng-model="preferences.birthDate" md-current-view="year" md-open-on-focus="true"
                                md-max-date="maxDate" md-min-date="minDate" aria-label="{{'USER_PREFERENCES.BIRTHDAY' | translate}}"></md-datepicker>
             </md-input-container>
 
             <md-divider></md-divider>
 
-            <h2 class="md-headline">{{'USER_PREFERENCES.HEIGHT' | translate}}</h2>
+            <h2 class="md-headline" ng-class="{'grey-out': isLoading}">{{'USER_PREFERENCES.HEIGHT' | translate}}</h2>
 
-            <md-input-container>
+            <md-input-container ng-class="{'grey-out': isLoading}">
                 <input class="height-input" type="number" md-no-asterisk ng-model="preferences.height"
                        placeholder="{{'USER_PREFERENCES.CM' | translate}}" md-select-on-focus>
             </md-input-container>
             <md-divider></md-divider>
 
-            <h2 class="md-headline">{{'USER_PREFERENCES.OS' | translate}}</h2>
-            <md-input-container layout="row" layout-xs="column">
+            <h2 class="md-headline" ng-class="{'grey-out': isLoading}">{{'USER_PREFERENCES.OS' | translate}}</h2>
+            <md-input-container layout="row" layout-xs="column" ng-class="{'grey-out': isLoading}">
                 <md-checkbox flex-xs="100" ng-model="preferences.operatingSystem.ios" aria-label="{{'USER_PREFERENCES.IOS' | translate}}">
                     {{'USER_PREFERENCES.IOS' | translate}}
                 </md-checkbox>
@@ -98,8 +104,8 @@
             </md-input-container>
             <md-divider></md-divider>
 
-            <h2 class="md-headline">{{'USER_PREFERENCES.I_WEAR' | translate}}</h2>
-            <md-input-container layout="row" layout-xs="column">
+            <h2 class="md-headline" ng-class="{'grey-out': isLoading}">{{'USER_PREFERENCES.I_WEAR' | translate}}</h2>
+            <md-input-container layout="row" layout-xs="column" ng-class="{'grey-out': isLoading}">
                 <md-checkbox flex-xs="100" ng-model="preferences.visualAid.none" aria-label="{{'USER_PREFERENCES.NO_GLASSES' | translate}}">
                     {{'USER_PREFERENCES.NO_GLASSES' | translate}}
                 </md-checkbox>
@@ -112,8 +118,8 @@
             </md-input-container>
             <md-divider></md-divider>
 
-            <h2 class="md-headline">{{'USER_PREFERENCES.I_AM' | translate}}</h2>
-            <md-radio-group layout="row" layout-xs="column" ng-model="preferences.handedness">
+            <h2 class="md-headline" ng-class="{'grey-out': isLoading}">{{'USER_PREFERENCES.I_AM' | translate}}</h2>
+            <md-radio-group layout="row" layout-xs="column" ng-model="preferences.handedness" ng-class="{'grey-out': isLoading}">
                 <md-radio-button flex-xs="100" value="lefty" aria-label="{{'USER_PREFERENCES.LEFTY' | translate}}">
                     {{'USER_PREFERENCES.LEFTY' | translate}}
                 </md-radio-button>
@@ -126,8 +132,8 @@
             </md-radio-group>
             <md-divider></md-divider>
 
-            <h2 class="md-headline">{{'USER_PREFERENCES.I_SPEAK' | translate}}</h2>
-            <md-input-container layout="row" layout-xs="column">
+            <h2 class="md-headline" ng-class="{'grey-out': isLoading}">{{'USER_PREFERENCES.I_SPEAK' | translate}}</h2>
+            <md-input-container layout="row" layout-xs="column" ng-class="{'grey-out': isLoading}">
                 <md-checkbox flex-xs="100" ng-model="preferences.language.german" aria-label="{{'USER_PREFERENCES.GERMAN' | translate}}">
                     {{'USER_PREFERENCES.GERMAN' | translate}}
                 </md-checkbox>
@@ -137,7 +143,7 @@
             </md-input-container>
             <md-divider></md-divider>
 
-            <md-input-container>
+            <md-input-container ng-class="{'grey-out': isLoading}">
                 <md-button href="#!/home" class="md-raised">{{'USER_PREFERENCES.BACK' | translate}}</md-button>
                 <md-button href="#!/home" ng-click="savePreferences()" class="md-accent md-raised">{{'USER_PREFERENCES.SAVE' | translate}}</md-button>
             </md-input-container>

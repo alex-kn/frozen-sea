@@ -98,6 +98,16 @@ form #duration {
 form h2 + md-input-container, form h2 + md-radio-group {
   margin-top: 1.5rem;
   margin-bottom: 1.5em; }
+form .loading-animation {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  z-index: 10000000; }
+form .grey-out {
+  opacity: 0.5; }
 form md-checkbox {
   margin-right: 4rem; }
   form md-checkbox:last-of-type {

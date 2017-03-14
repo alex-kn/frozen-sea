@@ -64,7 +64,7 @@ md-toolbar.toolbar {
 }
 
 .stuy-not-approved{
-  opacity : 0.5;
+  opacity : 0.9;
 }
 
 .advised-study-needs-approval{
@@ -73,6 +73,10 @@ md-toolbar.toolbar {
 
 .participated-study-finished{
   background-color:	#90EE90;
+}
+
+.participated-study-not-finished {
+  background-color: #8c8c8c;
 }
 
 .study-is-over {
@@ -89,6 +93,22 @@ md-toolbar.toolbar {
   margin-bottom: 2.5em;
 }
 
+.title-box {
+  margin-bottom: 1em;
+}
+
+.box-title {
+  display: inline-block;
+  float: left;
+  vertical-align: top;
+}
+
+.info-box {
+  display: inline;
+  float: right;
+  vertical-align: top;
+  font-weight: bold;
+}
 
 
 .vertical-divider {
@@ -116,10 +136,5 @@ md-toolbar.toolbar {
   background-position:center;
   z-index:10000000;
 }
-md-card-title-text {
 
-  div {
-    margin-top: 1rem;
-  }
-}
 

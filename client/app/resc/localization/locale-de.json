@@ -206,7 +206,16 @@
     "SOON": "Endet bald",
     "SHOW": "Zeige",
     "NO_MATCH": "Nicht passende Studien",
-    "TOO_OLD": "Vergangene Studien"
+    "TOO_OLD": "Vergangene Studien",
+    "NOT_APPROVED_STUDY": "Diese Studie wurde noch nicht von einem Betreuer freigegeben",
+    "OWN_STUDY": "Diese Studie wurde von dir erstellt",
+    "SUPERVISED_STUDY": "Diese Studie wird von dir betreut",
+    "SUPERVISED_STUDY_AND_APPROVAL": "Diese Studie muss von dir freigegeben werden",
+    "READY_TO_GO": "Deine Anmeldung zu dieser Studie wurde vom Studienersteller bestätigt",
+    "NEEDS_CONFIRM" :"Deine Anmelund zu dieser Studie muss vom Studienersteller bestätigt werden",
+    "SUCCESS": "Du hast erfolgreich an dieser Studie teilgenommen",
+    "FAIL" : "Du bist nicht zu deinem Termin erschienen",
+    "FINI": "Diese Studie ist abgelaufen"
   },
   "ARCHIVE": {
     "TITLE" : "Archiv",

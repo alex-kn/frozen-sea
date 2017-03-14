@@ -9,6 +9,7 @@ angular
 
 
             $scope.studyIsLoading = true;
+            $scope.studyIsReLoading = false;
             $scope.studies = [];
             $scope.show_too_old = true;
             $scope.show_non_matches = true;
@@ -28,8 +29,12 @@ angular
                 }
             };
 
+            $scope.reloadStudies = function() {
+                $scope.studyIsReLoading = true;
+                $scope.loadStudies();
+            };
+
             $scope.loadStudies = function() {
-                $scope.studyIsLoading = true;
                 $scope.myFilter = {};
                 if($scope.show_too_old) { //load all studies that are not finished yet
                     $scope.myFilter = {filter: {where: {endDate:  {gte: new Date()}}}};
@@ -57,6 +62,7 @@ angular
             function compareStudyDetailsWithUserPreferences() {
                 Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
                     $scope.studyIsLoading = false;
+                    $scope.studyIsReLoading = false;
                     $scope.preferences = response;
                     //filter all studies that don't match user profile
                     $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences);
@@ -64,14 +70,15 @@ angular
                         //highlight studies of special interest
                         $scope.studies.forEach(function (study) {
                             study.isThisMyOwnStudy = study.ownerId === LoopBackAuth.currentUserId;
+                            study.isFinished = new Date(study.endDate) < new Date();
 
-                            study.isApproved = true;
-                            study.isThisAStudyISupervise = false;
-                            study.isThisAStudyISuperviseAndNeedsApproval = false;
-                            study.isThisAStudyIParticipateInAndIFinishedIt = false;
-                            study.isFinished = false;
 
-                            //TODO: study.isThisAStudyISupervise = $scope.thisStudy.advisorId === LoopBackAuth.currentUserId;
+                            study.isApproved = true; //TODO
+                            study.isThisAStudyISupervise = false; //TODO
+                            study.isThisAStudyISuperviseAndNeedsApproval = false; //TODO
+                            study.isThisAStudyIParticipateInAndIFinishedIt = false; //TODO
+                            study.isThisAStudyIParticipateInAndIDIDNTFinishedIt = false; //TODO
+
 
                             Participation.count({
                                 where: {
