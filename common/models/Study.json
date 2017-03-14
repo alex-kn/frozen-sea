@@ -33,7 +33,7 @@
     },
     "approved": {
       "type": "boolean",
-      "required": true
+      "required": false
     },
     "title": {
       "type": "string",

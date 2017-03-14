@@ -42,7 +42,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 };
 
                 $scope.readonly = false;
-                $scope.title = 'Studie erstellen';
+                $scope.title = $filter('translate')('CREATE_STUDY_BUTTON');
 
                 $scope.study = {
                     name: $routeParams.study,
@@ -169,7 +169,6 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                                     })
                                     .$promise
                                     .then(function (response) {
-                                        console.log('Thats right son, keep on creating');
                                     });
 
                             }
@@ -187,12 +186,12 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
 
                 // Appending dialog to document.body to cover sidenav in docs app
                 var confirm = $mdDialog.confirm()
-                    .title('Möchtest du die Studie ' + $scope.study.name + 'löschen?')
-                    .textContent('Dein gesamter Fortschritt wird gelöscht')
-                    .ariaLabel('Fortschritt löschen')
+                    .title($filter('translate')('CREATE_STUDY.DELETE_1')  + $scope.study.name + $filter('translate')('CREATE_STUDY.DELETE_2'))
+                    .textContent($filter('translate')('CREATE_STUDY.DELETE_3'))
+                    .ariaLabel($filter('translate')('CREATE_STUDY.DELETE_3'))
                     .targetEvent(ev)
-                    .ok('Studie löschen')
-                    .cancel('Abbrechen');
+                    .ok($filter('translate')('CREATE_STUDY.DELETE_OK'))
+                    .cancel($filter('translate')('CREATE_STUDY.DELETE_CANCEL'));
 
                 $mdDialog.show(confirm).then(function () {
                     $location.path('/home');
