@@ -312,5 +312,8 @@
     "ARIA-LABEL": "Bitte gebe die Kriterien an, mit denen wir deine Studienliste filtern.",
     "OK": "Kriterien angeben",
     "CANCEL": "Abbrechen"
+  },
+  "ADMIN_DASHBOARD" : {
+    "ADMIN_DASHBOARD": "Administrations Bereich"
   }
 }

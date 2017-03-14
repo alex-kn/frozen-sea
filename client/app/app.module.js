@@ -32,6 +32,7 @@ angular.module('userStudy', [
     'EmailService',
     'AuthService',
     'register',
+    'adminDashboard',
     'ngMaterial',
     'ByRoleService'
 ]);

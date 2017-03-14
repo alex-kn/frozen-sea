@@ -23,7 +23,7 @@ module.exports = function (Subuser) {
 
         Subuser.verify(options, function (err, response) {
             if (err) {
-                Subuser.deleteById(Subuser.id);
+                Subuser.destroyById(Subuser.id);
                 next(err);
                 return;
             }

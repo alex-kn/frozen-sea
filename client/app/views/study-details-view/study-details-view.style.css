@@ -80,16 +80,23 @@ md-toolbar.toolbar {
   .align-items i {
     margin-right: .5rem; }
 
-.participating {
+.participating.confirmed {
   background-color: lightgreen; }
+
+.participating.completed {
+  background-color: lightgreen; }
+
+.participating.absent {
+  background-color: lightgrey; }
+
+.participating.pending {
+  background-color: lightblue; }
 
 h2 i {
   font-size: xx-large !important; }
 
 md-progress-circular {
-  margin-top: 10rem;
-  margin-left: auto;
-  margin-right: auto; }
+  margin: 7rem auto 4rem; }
 
 .day-loading {
   margin-top: 0; }
@@ -136,5 +143,8 @@ md-card {
   margin-top: 1rem; }
   .study-details * {
     padding-left: 0.1rem !important; }
+
+.owner-loading {
+  margin: 0 !important; }
 
 /*# sourceMappingURL=study-details-view.style.css.map */

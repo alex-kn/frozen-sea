@@ -46,6 +46,9 @@ angular
             }).when('/edit-profile', {
                 templateUrl: 'views/edit-profile/edit-profile.template.html',
                 controller: 'editProfileController'
+            }).when('/admin-dashboard', {
+                templateUrl: 'views/admin-dashboard/admin-dashboard.template.html',
+                controller: 'AdminDashboardController'
             }).otherwise({redirectTo: '/login'});
 
 

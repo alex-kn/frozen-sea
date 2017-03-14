@@ -256,5 +256,8 @@
     "ARIA-LABEL": "Enter Preferences",
     "OK": "Enter preferences",
     "CANCEL": "Cancel"
+  },
+  "ADMIN_DASHBOARD" : {
+    "ADMIN_DASHBOARD": "Administration Area"
   }
 }

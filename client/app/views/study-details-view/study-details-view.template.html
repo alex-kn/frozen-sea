@@ -16,10 +16,10 @@
     </md-toolbar>
     <!-- END toolbar -->
 
-    <md-progress-circular ng-show="studyIsLoading" class="md-accent" md-mode="indeterminate">
+    <md-progress-circular ng-hide="studyIsReady" class="md-accent" md-mode="indeterminate">
     </md-progress-circular>
     <!-- START view study form -->
-    <md-content ng-hide="studyIsLoading" flex-offset-gt-sm="20" flex-gt-sm="60" flex="100">
+    <md-content ng-show="studyIsReady" flex-offset-gt-sm="20" flex-gt-sm="60" flex="100">
 
         <!-- START general information -->
         <md-content class="md-padding">
@@ -52,9 +52,11 @@
                 <md-subheader flex="15">
                     {{'STUDY_DETAILS.BY' | translate}}:
                 </md-subheader>
-                <span flex="85" aria-label="{{'STUDY_DETAILS.BY' | translate}}">
+                <span ng-show="ownerReady" flex="85" aria-label="{{'STUDY_DETAILS.BY' | translate}}">
                     {{owner}}
                 </span>
+                <md-progress-circular flex="85" ng-hide="ownerReady" class="md-accent owner-loading" md-mode="indeterminate" md-diameter="20">
+                </md-progress-circular>
 
                 <md-subheader ng-show="isOwner" flex="15">
                     {{'STUDY_DETAILS.PARTICIPANTS' | translate}}:
@@ -109,9 +111,11 @@
 
         <!-- START add dates -->
 
-
         <md-content class="md-padding">
             <md-divider></md-divider>
+
+            <md-progress-circular ng-hide="datesAreReady" class="md-accent" md-mode="indeterminate">
+            </md-progress-circular>
 
 
             <div ng-repeat="day in datesGroupedByDay">
@@ -131,7 +135,7 @@
                 <div layout="row" layout-xs="column" layout-wrap ng-show="day.show">
 
                     <md-card ng-repeat="date in day" flex="100" flex-gt-xs="{{flexGtXs}}" flex-gt-md="{{flexGtMd}}"
-                             flex-gt-lg="{{flexGtLg}}" ng-class="[{'participating': date.participating}, date.status]">
+                             flex-gt-lg="{{flexGtLg}}" ng-class="[{'participating': date.participating}, myParticipation.status]">
                         <md-card-header style>
                             <md-card-avatar>
                                 <md-icon ng-show="date.participating"
@@ -151,13 +155,10 @@
                                                          md-colors="{color: 'accent'}">timelapse</i>{{ date.duration }} {{'STUDY_DETAILS.MINUTES' | translate}}</span>
                             <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">room</i>{{ date.location }} </span>
                             <md-divider ng-show="isOwner"></md-divider>
-                            <md-progress-circular ng-show="date.isLoading"
-                                                  class="md-accent" md-diameter="30px"
-                                                  md-mode="indeterminate"></md-progress-circular>
 
                             <!-- start participant list -->
                             <md-list flex ng-show="isOwner">
-                                <md-subheader ng-hide="(date.participations.length) || date.isLoading">
+                                <md-subheader ng-hide="(date.participations.length)">
                                     {{'STUDY_DETAILS.NO_PARTICIPANTS' | translate}}
                                 </md-subheader>
                                 <md-list-item ng-repeat="participation in date.participations" layout="start center"
@@ -224,22 +225,22 @@
 
                         <md-card-action ng-hide="isOwner">
                             <md-button class="button-red" disabled="true"
-                                       ng-show="(status == 'pending') && date.participating"
+                                       ng-show="(myParticipation.status == 'pending') && date.participating"
                                        aria-label="{{'STUDY_DETAILS.NOT_YET_CONFIRMED' | translate}}">
                                 {{'STUDY_DETAILS.NOT_YET_CONFIRMED' | translate}}
                             </md-button>
                             <md-button class="button-red" disabled="true"
-                                       ng-show="(status == 'absent') && date.participating"
+                                       ng-show="(myParticipation.status == 'absent') && date.participating"
                                        aria-label="{{'STUDY_DETAILS.ABSENT' | translate}}">
                                 {{'STUDY_DETAILS.ABSENT' | translate}}
                             </md-button>
                             <md-button class="button-green" disabled="true"
-                                       ng-show="(status == 'confirmed') && date.participating"
+                                       ng-show="(myParticipation.status == 'confirmed') && date.participating"
                                        aria-label="{{'STUDY_DETAILS.CONFIRMED_PARTICIPANT' | translate}}">
                                 {{'STUDY_DETAILS.CONFIRMED_PARTICIPANT' | translate}}
                             </md-button>
                             <md-button class="button-green" disabled="true"
-                                       ng-show="(status == 'completed') && date.participating"
+                                       ng-show="(myParticipation.status == 'completed') && date.participating"
                                        aria-label="{{'STUDY_DETAILS.COMPLETED_PARTICIPANT' | translate}}">
                                 {{'STUDY_DETAILS.COMPLETED_PARTICIPANT' | translate}}
                             </md-button>
