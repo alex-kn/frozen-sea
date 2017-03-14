@@ -392,7 +392,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
             $scope.toggleDay = function (day) {
                 day.show = !day.show;
-            }
+            };
 
             $scope.showParticipantDetails = function (participation, ev) {
                 var confirm = $mdDialog.confirm({
@@ -406,7 +406,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 });
 
                 $mdDialog.show(confirm);
-            }
+            };
 
             $scope.sendMailToParticipants = function () {
                 //TODO send mail to all participants of the study

@@ -73,164 +73,86 @@
             </md-content>
             <!-- END general information -->
 
-            <!-- START rewards -->
+            <!-- START modify dates -->
+
             <md-content class="md-padding">
 
-                <h2 class="md-headline">{{'CREATE_STUDY.HEADLINE_REWARDS' | translate}}</h2>
-
-                <md-input-container class="md-block" layout-gt-xs="row">
-
-                    <md-checkbox flex="100" flex-gt-xs="33" ng-model="money" ng-change="resetMoney()"
-                                 aria-label="{{'CREATE_STUDY.MONEY_ARIA_LABEL' | translate}}">
-                        {{'CREATE_STUDY.MONEY' | translate}}
-                    </md-checkbox>
-
-                    <md-checkbox flex-xs="100" flex-gt-xs="33" ng-model="voucher" ng-change="resetVoucher()"
-                                 aria-label="{{'CREATE_STUDY.VOUCHER_ARIA_LABEL' | translate}}">
-                        {{'CREATE_STUDY.VOUCHER' | translate}}
-                    </md-checkbox>
-
-                    <md-checkbox flex-xs="100" flex-gt-xs="33" ng-model="hours" ng-change="resetHours()"
-                                 aria-label="{{'CREATE_STUDY.HOURS_ARIA_LABEL' | translate}}">
-                        {{'CREATE_STUDY.HOURS' | translate}}
-                    </md-checkbox>
-
-                </md-input-container>
-
-                <div layout-gt-xs="row">
-
-                    <md-input-container class="md-block" ng-if="money" flex="100" flex-gt-xs="33">
-                        <label>{{'CREATE_STUDY.AMOUNT' | translate}}</label>
-                        <input required type="number" ng-model="study.reward.reward_money" name="money"
-                               placeholder="{{'CREATE_STUDY.AMOUNT_PLACEHOLDER' | translate}}">
-
-                        <div ng-messages="editStudyForm.money.$error">
-                            <div ng-message="required">{{'CREATE_STUDY.AMOUNT_MESSAGE' | translate}}</div>
-                        </div>
-                    </md-input-container>
-
-                    <md-input-container class="md-block" ng-if="voucher" flex="100"
-                                        flex-gt-xs="33">
-                        <label>{{'CREATE_STUDY.VOUCHER_AMOUNT' | translate}}</label>
-                        <input required type="number" ng-model="study.reward.reward_voucher" name="voucher"
-                               placeholder="{{'CREATE_STUDY.VOUCHER_AMOUNT_PLACEHOLDER' | translate}}">
-
-                        <div ng-messages="editStudyForm.voucher.$error">
-                            <div ng-message="required">{{'CREATE_STUDY.VOUCHER_AMOUNT_MESSAGE' | translate}}</div>
-                        </div>
-                    </md-input-container>
-
-                    <md-input-container class="md-block" ng-if="hours" flex="100" flex-gt-xs="33">
-                        <label>{{'CREATE_STUDY.HOURS_AMOUNT' | translate}}</label>
-                        <input required type="number" ng-model="study.reward.reward_hours" name="hours"
-                               placeholder="{{'CREATE_STUDY.HOURS_AMOUNT_PLACEHOLDER' | translate}}">
-
-                        <div ng-messages="editStudyForm.hours.$error">
-                            <div ng-message="required">{{'CREATE_STUDY.HOURS_AMOUNT_MESSAGE' | translate}}</div>
-                        </div>
-                    </md-input-container>
-
-                </div>
-
-            </md-content>
-            <!-- END rewards -->
-
-            <!-- START modify dates TODO
-            <md-content class="md-padding">
-
-                <h2 class="md-headline">{{'STUDY_DETAILS.DATES' | translate}}</h2>
-
-                <div layout-gt-xs="row">
-
-                    <md-input-container class="md-block">
-                        <label>{{'CREATE_STUDY.STUDY_START' | translate}}</label>
-                        <md-datepicker required ng-model="study.startDate"
-                                       md-min-date="study.startDate"></md-datepicker>
-
-                        <div ng-messages="editStudyForm.startDate.$error">
-                            <div ng-message="required">{{'CREATE_STUDY.STUDY_START_MESSAGE' | translate}}</div>
-                        </div>
-                    </md-input-container>
-
-                    <md-input-container class="md-block">
-                        <label>{{'CREATE_STUDY.STUDY_END' | translate}}</label>
-                        <md-datepicker required ng-model="study.endDate"
-                                       md-min-date="study.minEndDate"></md-datepicker>
-
-                        <div ng-messages="editStudyForm.endDate.$error">
-                            <div ng-message="required">{{'CREATE_STUDY.STUDY_END_MESSAGE' | translate}}</div>
-                        </div>
-                    </md-input-container>
-
-                </div>
-
-                <div layout-gt-xs="row" layout-wrap>
-
-                    <md-input-container class="md-block margin-btm-0" flex="100" flex-gt-xs="33">
-                        <label>{{'CREATE_STUDY.APPOINTMENT_TIME' | translate}}</label>
-                        <input type="text" aria-label="{{'CREATE_STUDY.APPOINTMENT_TIME_ARIA_LABEL' | translate}}"
-                               ng-model="appointment.time"
-                               placeholder="{{'CREATE_STUDY.APPOINTMENT_TIME_PLACEHOLDER' | translate}}"
-                               md-select-on-focus>
-                    </md-input-container>
-
-                    <md-input-container class="md-block margin-btm-0" flex="100" flex-gt-xs="33">
-                        <label>{{'CREATE_STUDY.APPOINTMENT_BUFFER' | translate}}</label>
-                        <input type="number"
-                               aria-label="{{'CREATE_STUDY.APPOINTMENT_BUFFER_ARIA_LABEL' | translate}}"
-                               ng-model="appointment.bufferTime"
-                               placeholder="{{'CREATE_STUDY.APPOINTMENT_BUFFER_PLACEHOLDER' | translate}}"
-                               md-select-on-focus>
-                    </md-input-container>
-
-                    <md-input-container class="md-block margin-btm-0" flex="100" flex-gt-xs="33">
-                        <label>{{'CREATE_STUDY.APPOINTMENT_DAY' | translate}}</label>
-                        <md-datepicker ng-model="appointment.date" md-min-date="study.startDate"></md-datepicker>
-                    </md-input-container>
-
-                    <md-input-container class="md-block" flex="100" style="margin-top:0">
-                        <md-button ng-click="addAppointment()"
-                                   class="md-raised md-accent">{{'CREATE_STUDY.ADD_APPOINTMENT_BUTTON' | translate}}
-                        </md-button>
-                    </md-input-container>
-
-                </div>
+                <h2 class="md-headline">{{'STUDY_DETAILS.MODIFY_DATES' | translate}}</h2>
 
                 <div layout="row" layout-xs="column" layout-wrap>
 
-                    <md-card ng-repeat="appointment in appointments" flex="100" flex-gt-xs="30" flex-gt-sm="20">
-                        <md-card-header style="padding-bottom: 0" layout="row" layout-align="end center">
-                            <md-button ng-click="removeAppointment(item)" class="md-icon-button md-accent"
+                    <md-card ng-repeat="date in dates" flex="100" flex-gt-md="45">
+                        <md-card-header style>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">today</md-icon>
+                            </md-card-avatar>
+                            <md-card-header-text>
+                                <span class="md-title">{{ date.startDate | date:'dd.MM.yy' }}</span>
+                                <span class="md-subhead">{{ date.startDate | date: 'HH:mm' }}</span>
+                            </md-card-header-text>
+                            <md-button ng-click="removeDate(date)" class="md-icon-button md-accent"
+                                       ng-hide="date.participants"
                                        aria-label="{{'CREATE_STUDY.APPOINTMENT_CARD_DELETE_ARIA_LABEL' | translate}}">
                                 <md-icon class="material-icons md-24 md-primary">close</md-icon>
                             </md-button>
                         </md-card-header>
-                        <md-card-content style="padding-top: 0" layou="row">
-                            <h3 style="margin-top: 0">{{ appointment.date | date:'dd.MM.yy' }}</h3>
-                            <p><strong>{{'CREATE_STUDY.APPOINTMENT_CARD_TIME' | translate}}</strong> {{
-                                appointment.time | date:'HH:mm' }}</p>
-                            <p><strong>{{'CREATE_STUDY.APPOINTMENT_CARD_DURATION' | translate}}</strong> {{
-                                appointment.duration }} Minuten</p>
+                        <md-card-content layout="column">
+                            <span layout-align="start center" class="align-items">
+                                <i class="material-icons" md-colors="{color: 'accent'}">room</i>
+                                <md-input-container class="md-block">
+                                    <md-select ng-model="date.location" ng-change="date.changed = true"
+                                               aria-label="{{'CREATE_STUDY.APPOINTMENT_LOCATION' | translate}}">
+                                        <md-option ng-repeat="location in study.locations_array" value="{{ location }}">{{ location }}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </span>
+
+                            <span class="align-items">
+                                <i class="material-icons" md-colors="{color: 'accent'}">timelapse</i>
+
+                                {{ date.duration }} {{'STUDY_DETAILS.MINUTES' | translate}}
+                            </span>
+
+                            <span layout-align="start center" class="align-items">
+                                <i class="material-icons" md-colors="{color: 'accent'}">group</i>
+                                {{date.participants}} /
+                                <md-input-container class="md-block">
+                                    <input required type="number" ng-model="date.maxParticipants" name="maxParticipants" min="{{date.participants}}"
+                                           aria-label="{{'CREATE_STUDY.MAX_PARTICIPANTS' | translate}}" ng-change="date.changed = true"
+                                    md-select-on-focus="true">
+                                </md-input-container>
+                                {{'CREATE_STUDY.APPOINTMENT_MAX_PARTICIPANTS' | translate}}
+                            </span>
+
+                            <span layout-align="start center" class="align-items">
+                                <i class="material-icons" md-colors="{color: 'accent'}">access_alarm</i>
+                                <md-input-container class="md-block">
+                                    <input required type="number" ng-model="date.deadline" name="deadline" min="0"
+                                           aria-label="{{'CREATE_STUDY.APPOINTMENT_DEADLINE' | translate}}" ng-change="date.changed = true"
+                                           md-select-on-focus="true">
+                                </md-input-container>
+                                {{'STUDY_DETAILS.HOURS_IN_ADVANCE' | translate}}
+                            </span>
                         </md-card-content>
+                        <md-card-action>
+                            <md-button class="md-accent" ng-click="saveDate(date)"
+                                       ng-show="date.changed"
+                                       aria-label="{{'STUDY_DETAILS.SAVE' | translate}}">
+                                {{'STUDY_DETAILS.SAVE' | translate}}
+                            </md-button>
+                            <md-button class="button-green"
+                                       ng-show="date.saved" disabled="true"
+                                       aria-label="{{'STUDY_DETAILS.SAVED' | translate}}">
+                                {{'STUDY_DETAILS.SAVED' | translate}}
+                            </md-button>
+                        </md-card-action>
                     </md-card>
 
                 </div>
 
             </md-content>
+
             <!-- END modify dates -->
-
-            <md-content class="md-padding">
-                <h2 class="md-headline">{{'CREATE_STUDY.REQUIREMENTS_TAB_LABEL' | translate}} <span
-                        md-colors="{color: 'accent'}">{{ study.name }}</span></h2>
-                <p>{{'CREATE_STUDY.REQUIREMENTS_DESCRIPTION' | translate}}</p>
-            </md-content>
-
-            <!-- START requirements TODO
-            <md-content class="md-padding">
-
-            </md-content>
-            <!-- END requirements -->
-
 
             <!-- START submit -->
             <md-content class="md-padding">
@@ -243,15 +165,13 @@
                                 ng-disabled="editStudyForm.$invalid" class="md-accent md-raised">
                             {{'STUDY_DETAILS.UPDATE_STUDY_BUTTON' | translate}}
                         </md-button>
-                    </md-input-container>
-                    <md-input-container>
+
                         <md-button
                                 ng-click="discardChanges()"
                                 class="md-raised">
                             {{'STUDY_DETAILS.DISCARD_CHANGES' | translate}}
                         </md-button>
-                    </md-input-container>
-                    <md-input-container>
+
                         <md-button
                                 ng-click="deleteStudy()"
                                 class="md-raised md-warn">

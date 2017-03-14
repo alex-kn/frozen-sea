@@ -149,7 +149,7 @@ md-card {
 
 md-progress-linear {
   height: 1rem;
-  margin: 0  !important; }
+  margin: 0 !important; }
   md-progress-linear .md-container {
     background-color: cornflowerblue;
     height: 1rem;
