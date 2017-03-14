@@ -6,8 +6,8 @@
 
 angular
     .module('userStudy')
-    .config(['$locationProvider', '$routeProvider', 'LoopBackResourceProvider', '$mdThemingProvider', '$translateProvider',
-        function ($locationProvider, $routeProvider, LoopBackResourceProvider, $mdThemingProvider, $translateProvider) {
+    .config(['$locationProvider', '$routeProvider', 'LoopBackResourceProvider', '$mdThemingProvider', '$translateProvider', '$mdDateLocaleProvider',
+        function ($locationProvider, $routeProvider, LoopBackResourceProvider, $mdThemingProvider, $translateProvider, $mdDateLocaleProvider) {
             $locationProvider.hashPrefix('!');
 
             $routeProvider.when('/home', {
@@ -93,8 +93,15 @@ angular
             });
 
             $translateProvider.preferredLanguage('de');
+            moment.locale($filter('translate')('DATE.FORMAT'));
+            $mdDateLocaleProvider.formatDate = function (date) {
+                return moment(date).format('LL');
+            };
+            $mdDateLocaleProvider.parseDate = function (dateString) {
+                var m = moment(dateString, 'LL', true);
+                return m.isValid() ? m.toDate() : new Date(NaN);
+            };
             // Enable escaping of HTML
-
             $translateProvider.useSanitizeValueStrategy('escape');
         }])
     .run(['$rootScope', '$location', 'LoopBackAuth', 'AuthService', 'ByRoleService',
