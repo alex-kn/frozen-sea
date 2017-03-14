@@ -19,7 +19,7 @@
 <!-- START study list -->
 <md-content layout-padding layout="column" flex-offset-gt-md="20" flex-offset-md="10" flex-gt-md="60" flex-md="80" flex>
 
-    <div layout="row" layout-align="start center">
+    <div layout="row" ng-show="studyIsReLoading || !studyIsLoading" layout-align="start center">
 
         <md-input-container flex-xs="100" flex-sm="50"  flex-gt-sm="30">
             <input type="text" ng-model="search" placeholder="{{'STUDY_LIST.SEARCH' | translate}}" aria-label="{{'STUDY_LIST.SEARCH' | translate}}">
@@ -36,7 +36,7 @@
 
 
         <md-input-container class="sort" flex-xs="160" flex-sm="80"  flex-gt-sm="40" layout="column">
-            <md-checkbox ng-init="show_too_old=false" ng-model="show_too_old" aria-label=" {{'STUDY_LIST.TOO_OLD' | translate}}" ng-click="loadStudies()">
+            <md-checkbox ng-init="show_too_old=false" ng-model="show_too_old" aria-label=" {{'STUDY_LIST.TOO_OLD' | translate}}" ng-click="reloadStudies()">
                 {{'STUDY_LIST.TOO_OLD' | translate}}
             </md-checkbox>
             <md-checkbox ng-init="show_non_matches=false" ng-model="show_non_matches" aria-label=" {{'STUDY_LIST.NO_MATCH' | translate}}" ng-click="refilter()">
@@ -46,9 +46,9 @@
     </div>
 
 
-    <md-progress-circular ng-show="studyIsLoading" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular>
+    <md-progress-circular ng-show="studyIsLoading || studyIsReLoading" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular>
 
-    <div layout="column"  ng-class="{'grey-out':studyIsLoading}">
+    <div layout="column"  ng-class="{'grey-out': studyIsReLoading}">
         <md-card class="custom-pointer" ng-repeat="study in studies | filter:search" ng-click="showDetails(study)"
                  ng-class="{
                      'stuy-not-approved': !study.isApproved,
@@ -58,23 +58,26 @@
                      'participated-study-not-approved': study.isThisAStudyIParticipateInAndIAmNotApproved,
                      'participated-study-approved':study.isThisAStudyIParticipateInAndIAmApproved,
                      'participated-study-finished':study.isThisAStudyIParticipateInAndIFinishedIt,
+                     'participated-study-not-finished':study.isThisAStudyIParticipateInAndIDIDNTFinishedIt,
                      'study-is-over': study.isFinished
                      }">
             <md-card-title>
                 <md-card-title-text>
 
-                    <div layout="row">
-                        <span class="md-headline">{{ study.title }}</span>
+                    <div class="title-box">
 
-                        <div layout="column" layout-align="center center">
-                            <div ng-show="!study.isApproved">stuy-not-approved</div>
-                            <div ng-show="study.isThisMyOwnStudy">my own study</div>
-                            <div ng-show="study.isThisAStudyISupervise">supervised study</div>
-                            <div ng-show="study.isThisAStudyISuperviseAndNeedsApproval">needs approval from you</div>
-                            <div ng-show="study.isThisAStudyIParticipateInAndIAmApproved">ready to go</div>
-                            <div ng-show="study.isThisAStudyIParticipateInAndIAmNotApproved">participation needs confirmation from creator</div>
-                            <div ng-show="study.isThisAStudyIParticipateInAndIFinishedIt">finished it</div>
-                            <div ng-show="study.isFinished">stuy-has finished</div>
+                        <span class="md-headline box-title">{{ study.title }}</span>
+
+                        <div layout="column" class="info-box">
+                            <div ng-show="!study.isApproved">{{'STUDY_LIST.NOT_APPROVED_STUDY' | translate}}</div>
+                            <div ng-show="study.isThisMyOwnStudy">{{'STUDY_LIST.OWN_STUDY' | translate}}</div>
+                            <div ng-show="study.isThisAStudyISupervise">{{'STUDY_LIST.SUPERVISED_STUDY' | translate}}</div>
+                            <div ng-show="study.isThisAStudyISuperviseAndNeedsApproval">{{'STUDY_LIST.SUPERVISED_STUDY_AND_APPROVAL' | translate}}</div>
+                            <div ng-show="study.isThisAStudyIParticipateInAndIAmApproved">{{'STUDY_LIST.READY_TO_GO' | translate}}</div>
+                            <div ng-show="study.isThisAStudyIParticipateInAndIAmNotApproved">{{'STUDY_LIST.NEEDS_CONFIRM' | translate}}</div>
+                            <div ng-show="study.isThisAStudyIParticipateInAndIFinishedIt">{{'STUDY_LIST.SUCCESS' | translate}}</div>
+                            <div ng-show="study.isThisAStudyIParticipateInAndIDIDNTFinishedIt">{{'STUDY_LIST.FAIL' | translate}}</div>
+                            <div ng-show="study.isFinished">{{'STUDY_LIST.FINI' | translate}}</div>
                         </div>
                     </div>
 

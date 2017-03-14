@@ -215,13 +215,16 @@ md-toolbar.toolbar {
   background-color: #90EE90; }
 
 .stuy-not-approved {
-  opacity: 0.5; }
+  opacity: 0.9; }
 
 .advised-study-needs-approval {
   background-color: #ffff00; }
 
 .participated-study-finished {
   background-color: #90EE90; }
+
+.participated-study-not-finished {
+  background-color: #8c8c8c; }
 
 .study-is-over {
   opacity: 0.5; }
@@ -233,6 +236,20 @@ md-toolbar.toolbar {
 .sort {
   color: #8c8c8c;
   margin-bottom: 2.5em; }
+
+.title-box {
+  margin-bottom: 1em; }
+
+.box-title {
+  display: inline-block;
+  float: left;
+  vertical-align: top; }
+
+.info-box {
+  display: inline;
+  float: right;
+  vertical-align: top;
+  font-weight: bold; }
 
 .vertical-divider {
   border-top-width: 0;
@@ -254,8 +271,5 @@ md-toolbar.toolbar {
   height: 100%;
   background-position: center;
   z-index: 10000000; }
-
-md-card-title-text div {
-  margin-top: 1rem; }
 
 /*# sourceMappingURL=study-list.style.css.map */

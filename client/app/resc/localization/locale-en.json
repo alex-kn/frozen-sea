@@ -206,7 +206,17 @@
     "SOON": "Ends soon",
     "SHOW": "Show:",
     "NO_MATCH": "Not matching studies",
-    "TOO_OLD": "Past studies"
+    "TOO_OLD": "Past studies",
+    "NOT_APPROVED_STUDY": "This study has not been approved by an advisor yet",
+    "OWN_STUDY": "This is your own study",
+    "SUPERVISED_STUDY": "This study is supervised by you",
+    "SUPERVISED_STUDY_AND_APPROVAL": "This study needs approval by you",
+    "READY_TO_GO": "Your registration for this study has been approved by the study creator",
+    "NEEDS_CONFIRM" :"You have registered for this study, but the study creator hasn not confirmed you yet",
+    "SUCCESS": "You have successfully participated in this study",
+    "FAIL" : "You registered for this study, but you did not show up",
+    "FINI": "This study has finished"
+
   },
   "ARCHIVE": {
     "TITLE" : "Archive",

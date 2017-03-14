@@ -16,6 +16,8 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
         function ($filter, $location, LoopBackAuth, $scope, Preference, Subuser, User, $rootScope, $http, ToastService) {
         var self = this;
 
+        $scope.isLoading = true;
+
         $http.get('resc/files/studyprograms.txt')
             .then(function (response) {
                     $scope.studyPrograms = response.data.split("\n");
@@ -27,6 +29,7 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
             $scope.preferences.birthDate = new Date($scope.preferences.birthDate);
             self.selectedItem = $scope.preferences.course;
 
+            $scope.isLoading = false;
         });
 
         $scope.savePreferences = function () {
