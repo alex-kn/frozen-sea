@@ -13,17 +13,17 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'ByRoleService',
-        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, ByRoleService) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'ByRoleService', '$window', '$document',
+        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, ByRoleService, $window, $document) {
 
             $scope.initialize = function() {
 
 
-                ByRoleService.getUsersByRole("advisor").then(function(res) {
-                    $scope.advisors = res;
+                ByRoleService.getUsersByRole("advisor").then(function(response) {
+                    $scope.advisors = response;
                 });
 
-
+                $scope.tabIndex = 0;
 
                 $scope.preferences = {
                     studyPrograms: [],
@@ -199,6 +199,11 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 }, function () {
                     console.log('Keep on creating, fool :D');
                 });
+            };
+
+            $scope.selectTab = function() {
+                $scope.tabIndex === 1 ? $scope.tabIndex = 0 : $scope.tabIndex = 1;
+                $document.scrollTop(0, 500);
             };
 
         }]);

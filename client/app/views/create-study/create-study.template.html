@@ -26,7 +26,7 @@
         <!-- START create study form -->
         <form name="createStudyForm" layout="column">
 
-            <md-tabs md-dynamic-height md-border-bottom>
+            <md-tabs md-dynamic-height md-border-bottom md-selected="tabIndex">
 
                 <!-- START general tab -->
                 <md-tab label="{{'CREATE_STUDY.GENERAL_TAB_LABEL' | translate}}">
@@ -272,6 +272,12 @@
 
                         </div>
 
+                        <div layout="row" layout-xs="column" layout-wrap>
+
+                            <md-button class="md-accent" ng-click="selectTab()">{{'CREATE_STUDY.SET_PREFERENCES' | translate}}</md-button>
+
+                        </div>
+
                     </md-content>
                     <!-- END add dates -->
 
@@ -370,8 +376,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        </div>
                         </div>
                     </md-content>
                     <!-- END general requirements -->
@@ -522,8 +526,14 @@
                     </md-content>
                     <!-- END technical requirements -->
 
+                    <md-content class="md-padding">
+                        <div layout="row" layout-xs="column" layout-wrap>
+                            <md-button class="md-accent" ng-click="selectTab()">{{'CREATE_STUDY.SET_GENERAL_INFORMATION' | translate}}</md-button>
+                        </div>
+                    </md-content>
+
                 </md-tab>
-                <!-- START requirements tab -->
+                <!-- END requirements tab -->
 
             </md-tabs>
 

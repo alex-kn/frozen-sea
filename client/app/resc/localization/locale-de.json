@@ -146,7 +146,9 @@
     "CANCEL_STUDY_BUTTON": "Abbrechen",
     "REQUIRED_FIELDS": "Bitte fülle alle Pflichtfelder aus.",
     "ENGLISH": "Englisch",
-    "GERMAN": "Deutsch"
+    "GERMAN": "Deutsch",
+    "SET_PREFERENCES": "Studienvoraussetzungen festlegen",
+    "SET_GENERAL_INFORMATION": "Allgemeine Information festlegen"
   },
   "HOME": {
   },

@@ -147,7 +147,9 @@
     "CANCEL_STUDY_BUTTON": "Cancel",
     "REQUIRED_FIELDS": "Please enter all the required information.",
     "ENGLISH": "English",
-    "GERMAN": "German"
+    "GERMAN": "German",
+    "SET_PREFERENCES": "Define study requirements",
+    "SET_GENERAL_INFORMATION": "Define general information"
   },
   "HOME": {
   },
