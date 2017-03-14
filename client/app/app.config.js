@@ -6,8 +6,8 @@
 
 angular
     .module('userStudy')
-    .config(['$locationProvider', '$routeProvider', 'LoopBackResourceProvider', '$mdThemingProvider', '$translateProvider',
-        function ($locationProvider, $routeProvider, LoopBackResourceProvider, $mdThemingProvider, $translateProvider) {
+    .config(['$locationProvider', '$routeProvider', 'LoopBackResourceProvider', '$mdThemingProvider', '$translateProvider', '$mdDateLocaleProvider',
+        function ($locationProvider, $routeProvider, LoopBackResourceProvider, $mdThemingProvider, $translateProvider, $mdDateLocaleProvider) {
             $locationProvider.hashPrefix('!');
 
             $routeProvider.when('/home', {
@@ -84,17 +84,25 @@ angular
                     'default': '50'
                 });
 
-
+            /** Date and language configuration
+             *  uses moment.js and ng-translate
+             */
             $translateProvider.useStaticFilesLoader({
                 files: [{
                     prefix: './resc/localization/locale-',
                     suffix: '.json'
                 }]
             });
-
             $translateProvider.preferredLanguage('de');
+            moment.locale('de'); // check moment.js for locals and date formats
+            $mdDateLocaleProvider.formatDate = function (date) {
+                return moment(date).format('L');
+            };
+            $mdDateLocaleProvider.parseDate = function (dateString) {
+                var m = moment(dateString, 'L', true);
+                return m.isValid() ? m.toDate() : new Date(NaN);
+            };
             // Enable escaping of HTML
-
             $translateProvider.useSanitizeValueStrategy('escape');
         }])
     .run(['$rootScope', '$location', 'LoopBackAuth', 'AuthService', 'ByRoleService',

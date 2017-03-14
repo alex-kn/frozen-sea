@@ -129,7 +129,7 @@
 
                 <h2 class="md-headline align-items">
                     <i class="material-icons" md-colors="{color: 'accent'}">today</i>
-                    {{ day[0].startDate | date: 'fullDate'}}
+                    {{ day[0].startDate | date: 'dd.MM.yyyy'}}
                     <md-button ng-click="toggleDay(day)" class="md-icon-button md-accent" ng-show="day.show">
                         <md-icon class="material-icons md-24 md-primary">keyboard_arrow_down</md-icon>
                     </md-button>

@@ -31,6 +31,7 @@ angular.module('userStudy', [
     'SetPreferencesService',
     'ToastService',
     'EmailService',
+    'duScroll',
     'AuthService',
     'register',
     'adminDashboard',

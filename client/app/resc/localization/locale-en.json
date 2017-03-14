@@ -162,6 +162,10 @@
     "DELETE_OK": "Delete study",
     "DELETE_CANCEL": "Cancel",
     "ADVISER_NOT_LISTED": "If your supervisor is not listed, please send him or her an email"
+    "DELETE_CANCEL": "Cancel",
+    "SET_PREFERENCES": "Define study requirements",
+    "SET_GENERAL_INFORMATION": "Define general information"
+
   },
   "HOME": {
   },
@@ -237,7 +241,6 @@
     "STUDY_NAME_2":"Name of your study",
     "EXAMPLE":"Example: Driving behaviour after consumption of milk",
     "WHAT_NAME":"What is the name of your study?"
-
   },
   "ARCHIVE": {
     "TITLE" : "Archive",

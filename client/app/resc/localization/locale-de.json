@@ -161,6 +161,9 @@
     "DELETE_OK": "Studie löschen",
     "DELETE_CANCEL": "Abbrechen",
     "ADVISER_NOT_LISTED": "Wenn dein Betruer nicht gelistet ist, schicke ihm oder ihr eine E-Mail"
+    "DELETE_CANCEL": "Abbrechen",
+    "SET_PREFERENCES": "Studienvoraussetzungen festlegen",
+    "SET_GENERAL_INFORMATION": "Allgemeine Informationen festlegen"
   },
   "HOME": {
   },
@@ -343,7 +346,6 @@
     "PARTICIPATE": "Du hast dich für die Studie erfolgreich angemeldet",
     "CREATE_STUDY":"Deine Studie wurde erfolgreich erstellt"
   },
-
   "PREFERENCES": {
     "TITLE": "Studienkriterien",
     "DESCRIPTION": "Bitte gebe die Kriterien an, mit denen wir deine Studienliste filtern.",
