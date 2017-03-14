@@ -235,7 +235,7 @@
 
                             <md-input-container class="md-block margin-btm-0" flex="100" flex-gt-xs="33">
                                 <label>{{'CREATE_STUDY.APPOINTMENT_DEADLINE' | translate}}</label>
-                                <md-datepicker ng-model="appointment.deadline" md-max-date="study.startDate"></md-datepicker>
+                                <input type="number" ng-model="appointment.deadline">
                             </md-input-container>
 
                             <md-input-container class="md-block" flex="100" style="margin-top:0px">
