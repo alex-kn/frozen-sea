@@ -179,7 +179,7 @@
                                                    aria-label="{{'STUDY_DETAILS.CONFIRMED_PARTICIPANT' | translate}}">
                                             {{'STUDY_DETAILS.CONFIRMED_PARTICIPANT' | translate}}
                                         </md-button>
-                                        <md-button ng-click="declineParticipation(participation)"
+                                        <md-button ng-click="updateParticipationStatus(participation, 'declined')"
                                                    class="md-warn card-button"
                                                    ng-hide="participation.status == 'declined'"
                                                    aria-label="{{'STUDY_DETAILS.DECLINE_PARTICIPANT' | translate}}">
@@ -233,6 +233,11 @@
                                        ng-show="(myParticipation.status == 'absent') && date.participating"
                                        aria-label="{{'STUDY_DETAILS.ABSENT' | translate}}">
                                 {{'STUDY_DETAILS.ABSENT' | translate}}
+                            </md-button>
+                            <md-button class="button-red" disabled="true"
+                                       ng-show="(myParticipation.status == 'declined') && date.participating"
+                                       aria-label="{{'STUDY_DETAILS.DECLINED_PARTICIPANT' | translate}}">
+                                {{'STUDY_DETAILS.DECLINED_PARTICIPANT' | translate}}
                             </md-button>
                             <md-button class="button-green" disabled="true"
                                        ng-show="(myParticipation.status == 'confirmed') && date.participating"
