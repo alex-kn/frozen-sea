@@ -260,6 +260,9 @@ md-toolbar.toolbar {
 .custom-pointer {
   cursor: pointer; }
 
+.align-items {
+  display: inline-flex; }
+
 .grey-out {
   opacity: 0.5; }
 
