@@ -23,13 +23,13 @@
 
 
 
-    <h2 class="md-button align-items" ng-click="toggle()">
-        Suchoptionen
+    <h2 class="md-button align-items" ng-click="toggle()" ng-show="(studyIsReLoading || !studyIsLoading)">
+        {{'STUDY_LIST.SEARCH_OPTIONS' | translate}}
         <md-button class="md-icon-button md-accent" ng-show="show">
-            <md-icon class="arrow material-icons md-12 md-primary">keyboard_arrow_down</md-icon>
+            <md-icon class="material-icons md-12 md-primary">keyboard_arrow_down</md-icon>
         </md-button>
         <md-button class="md-icon-button md-accent" ng-hide="show">
-            <md-icon class="material-icons md-12 md-primary arrow">keyboard_arrow_left</md-icon>
+            <md-icon class="material-icons md-12 md-primary">keyboard_arrow_left</md-icon>
         </md-button>
     </h2>
     <div layout="row" ng-show="(studyIsReLoading || !studyIsLoading) && show" layout-align="start center">

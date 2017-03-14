@@ -146,7 +146,15 @@
     "CANCEL_STUDY_BUTTON": "Abbrechen",
     "REQUIRED_FIELDS": "Bitte fülle alle Pflichtfelder aus.",
     "ENGLISH": "Englisch",
-    "GERMAN": "Deutsch"
+    "GERMAN": "Deutsch",
+    "EXPLANATION_OK": "OK!",
+    "EXPLANATION_TITLE_1": "Deine Studie ",
+    "EXPLANATION_TITLE_2": " wurde erfolgreich erstellt!",
+    "EXPLANATION_1": "Bevor sich Teilnehmer bewerben können muss deine Studie von deinem Betreuer freigeschaltet werden. Dein Betreuer wurde automatisch benachrichtigt.",
+    "EXPLANATION_2": "Sobald deine Studie freigeschaltet wurde, kannst du in der Detailansicht der Studie Teilnehmer annehmen oder ablehnen.",
+    "EXPLANATION_3": "Nach erfolgreicher Teilnahme und Auszahlung der gewünschten Vergütung musst du die Teilnahmen bestätigen.",
+    "EXPLANATION_4": "Sollte ein Teilnehmer hingegen nicht am ausgewählten Termin erschienen sein kannst du dies auch in der Detailansicht vermerken.",
+    "EXPLANATION_5": "Versuchspersonenstunden werden automatisch verbucht, nachdem du die erfolgreiche Teilnahme bestätigt hast."
   },
   "HOME": {
   },
@@ -216,7 +224,13 @@
     "SUCCESS": "Du hast erfolgreich an dieser Studie teilgenommen",
     "FAIL" : "Du bist nicht zu deinem Termin erschienen",
     "FINI": "Diese Studie ist abgelaufen",
-    "TOOLTIP_NEW":"Erstelle eine neue Studie"
+    "TOOLTIP_NEW":"Erstelle eine neue Studie",
+    "SEARCH_OPTIONS":"Suchoptionen",
+    "CANCEL": "Abbrechen",
+    "STUDY_NAME": "Studienname",
+    "STUDY_NAME_2":"Name deiner Studie",
+    "EXAMPLE":"Zum Beispiel: Fahrverhalten nach erhöhtem Milchkonsum",
+    "WHAT_NAME":"Wie ist der Name deiner Studie?"
   },
   "ARCHIVE": {
     "TITLE" : "Archiv",

@@ -13,8 +13,8 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'ByRoleService',
-        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, ByRoleService) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'ByRoleService', '$filter', '$translate',
+        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, ByRoleService, $filter, $translate) {
 
             $scope.initialize = function() {
 
@@ -174,7 +174,23 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
 
                             }
 
-                            $location.path('/home');
+                            var confirm = $mdDialog.confirm()
+                                .title($filter('translate')('CREATE_STUDY.EXPLANATION_TITLE_1') + $filter('translate')('CREATE_STUDY.EXPLANATION_TITLE_2'))
+                                .textContent(
+                                    $filter('translate')('CREATE_STUDY.EXPLANATION_1') + "\n" +
+                                    $filter('translate')('CREATE_STUDY.EXPLANATION_2') + "\n"  +
+                                    $filter('translate')('CREATE_STUDY.EXPLANATION_3') + "\n"  +
+                                    $filter('translate')('CREATE_STUDY.EXPLANATION_4') + "\n"  +
+                                    $filter('translate')('CREATE_STUDY.EXPLANATION_5')
+                                )
+                                .ariaLabel($filter('translate')('CREATE_STUDY.EXPLANATION_1'))
+                                .ok($filter('translate')('CREATE_STUDY.EXPLANATION_OK'));
+
+                            $mdDialog.show(confirm).then(function () {
+                                $location.path('/home');
+                            }, function () {
+                            });
+
                         });
                 }
             };

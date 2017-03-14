@@ -204,14 +204,14 @@ angular
             $scope.showCreateStudyPrompt = function(ev) {
                 // Appending dialog to document.body to cover sidenav in docs app
                 var confirm = $mdDialog.prompt()
-                    .title('Wie ist der Name deiner Studie?')
-                    .textContent('Zum Beispiel: Fahrverhalten nach erhöhtem Milchkonsum')
-                    .placeholder('Name deiner Studie')
-                    .ariaLabel('Studienname')
+                    .title($filter('translate')('STUDY_LIST.WHAT_NAME'))
+                    .textContent($filter('translate')('STUDY_LIST.EXAMPLE'))
+                    .placeholder($filter('translate')('STUDY_LIST.STUDY_NAME_2'))
+                    .ariaLabel($filter('translate')('STUDY_LIST.STUDY_NAME'))
                     .initialValue('')
                     .targetEvent(ev)
-                    .ok('Studie erstellen')
-                    .cancel('Abbrechen');
+                    .ok($filter('translate')('STUDY_LIST.CREATE'))
+                    .cancel($filter('translate')('STUDY_LIST.CANCEL'));
 
                 $mdDialog.show(confirm).then(function(result) {
                     $location.path('/create-study').search({'study': result})
