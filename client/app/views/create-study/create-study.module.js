@@ -140,7 +140,8 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                                 android: $scope.preferences.android,
                                 ios: $scope.preferences.ios,
                                 windows: $scope.preferences.windows
-                            }
+                            },
+                            approved: false
                         })
                         .$promise
                         .then(function (response) {
