@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('login', ['ngRoute'])
-    .controller('LoginController', ['$scope', 'Subuser', 'ToastService', '$location','$rootScope','$translate', '$filter','$routeParams',
-        function($scope, Subuser, ToastService, $location, $rootScope, $translate, $filter, $routeParams) {
+    .controller('LoginController', ['$rootScope', '$scope', 'Subuser', 'ToastService', '$location','$translate', '$filter','$routeParams', 'ByRoleService', 'LoopBackAuth',
+        function($rootScope, $scope, Subuser, ToastService, $location, $translate, $filter, $routeParams, ByRoleService, LoopBackAuth) {
             //TODO: Error-Handling
 
             $scope.email="";
@@ -29,6 +29,15 @@ angular.module('login', ['ngRoute'])
                         tokenId: response.id
                     };
                     $location.path('/home');
+
+                    ByRoleService.getUsersByRole("admin").then(function (res) {
+
+                        res.forEach(function (user) {
+                            if (user.id == LoopBackAuth.currentUserId) {
+                                $rootScope.isAdmin = true;
+                            }
+                        });
+                    });
                 }, function(err) {
                     console.log(err);
                     $scope.errorMessage = $filter('translate')('LOGIN.ERROR');

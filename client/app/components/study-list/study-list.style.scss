@@ -63,6 +63,22 @@ md-toolbar.toolbar {
   background-color:	#90EE90;
 }
 
+.stuy-not-approved{
+  opacity : 0.5;
+}
+
+.advised-study-needs-approval{
+  background-color:	#ffff00;
+}
+
+.participated-study-finished{
+  background-color:	#90EE90;
+}
+
+.study-is-over {
+  opacity : 0.5;
+}
+
 .option {
   margin-left: 2em;
   margin-right: 1em;
@@ -89,6 +105,7 @@ md-toolbar.toolbar {
 .grey-out{
   opacity : 0.5;
 }
+
 
 .loading-animation {
   position:fixed;

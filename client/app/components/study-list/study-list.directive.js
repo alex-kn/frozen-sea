@@ -65,6 +65,12 @@ angular
                         $scope.studies.forEach(function (study) {
                             study.isThisMyOwnStudy = study.ownerId === LoopBackAuth.currentUserId;
 
+                            study.isApproved = true;
+                            study.isThisAStudyISupervise = false;
+                            study.isThisAStudyISuperviseAndNeedsApproval = false;
+                            study.isThisAStudyIParticipateInAndIFinishedIt = false;
+                            study.isFinished = false;
+
                             //TODO: study.isThisAStudyISupervise = $scope.thisStudy.advisorId === LoopBackAuth.currentUserId;
 
                             Participation.count({
