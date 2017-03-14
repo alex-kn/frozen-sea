@@ -122,6 +122,12 @@ md-toolbar.toolbar {
   cursor: pointer;
 }
 
+
+.align-items {
+  display: inline-flex;
+}
+
+
 .grey-out{
   opacity : 0.5;
 }
@@ -135,6 +141,10 @@ md-toolbar.toolbar {
   height:100%;
   background-position:center;
   z-index:10000000;
+}
+
+.arrow {
+
 }
 
 

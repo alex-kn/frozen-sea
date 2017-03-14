@@ -12,6 +12,7 @@
     </div>
     <md-button ng-click="showCreateStudyPrompt($event)" class="create-study-fab md-fab md-fab-bottom-right" aria-label="{{'STUDY_LIST.CREATE' | translate}}">
         <md-icon class="material-icons">add_new</md-icon>
+        <md-tooltip>{{'STUDY_LIST.TOOLTIP_NEW' | translate}}</md-tooltip>
     </md-button>
 </md-toolbar>
 <!-- END tool bar -->
@@ -19,14 +20,29 @@
 <!-- START study list -->
 <md-content layout-padding layout="column" flex-offset-gt-md="20" flex-offset-md="10" flex-gt-md="60" flex-md="80" flex>
 
-    <div layout="row" ng-show="studyIsReLoading || !studyIsLoading" layout-align="start center">
 
-        <md-input-container flex-xs="100" flex-sm="50"  flex-gt-sm="30">
+
+
+    <h2 class="md-button align-items" ng-click="toggle()">
+        Suchoptionen
+        <md-button class="md-icon-button md-accent" ng-show="show">
+            <md-icon class="arrow material-icons md-12 md-primary">keyboard_arrow_down</md-icon>
+        </md-button>
+        <md-button class="md-icon-button md-accent" ng-hide="show">
+            <md-icon class="material-icons md-12 md-primary arrow">keyboard_arrow_left</md-icon>
+        </md-button>
+    </h2>
+    <div layout="row" ng-show="(studyIsReLoading || !studyIsLoading) && show" layout-align="start center">
+
+
+
+
+        <md-input-container flex-xs="100" flex-sm="50"  flex-gt-sm="30" >
             <input type="text" ng-model="search" placeholder="{{'STUDY_LIST.SEARCH' | translate}}" aria-label="{{'STUDY_LIST.SEARCH' | translate}}">
         </md-input-container>
 
 
-        <md-input-container class="sort" layout="row" flex-gt-sm="100">
+        <md-input-container class="sort" layout="row" flex-gt-sm="100" >
             <div class="option">{{'STUDY_LIST.SORT_BY' | translate}}</div>
             <md-radio-group ng-model="sort_by" ng-change="dynamicOrderFunction()" layout="column" layout-xs="column">
                 <md-radio-button value="newest">{{'STUDY_LIST.NEWEST' | translate}}</md-radio-button>

@@ -8,6 +8,7 @@ angular
         function ($scope, $routeParams, Participation, Study, StudyDate, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter, ToastService, SetPreferencesService) {
 
 
+            $scope.show = false;
             $scope.studyIsLoading = true;
             $scope.studyIsReLoading = false;
             $scope.studies = [];
@@ -56,6 +57,10 @@ angular
                 } else {
                     $scope.studies = $scope.studiesTemp;
                 }
+            };
+
+            $scope.toggle = function() {
+                $scope.show = !$scope.show;
             };
 
 
