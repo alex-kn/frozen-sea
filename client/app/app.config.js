@@ -141,6 +141,11 @@ angular
                 console.log('route / and logged in: redirect to /home');
             }
 
+            // Route '/admin-dashboard' && no admin: redirect to home
+            if (($location.url() == '/admin-dashboard') &&  !$rootScope.isAdmin) {
+                $location.path('/home');
+            }
+
             //console.log('accesToken:' + LoopBackAuth.accessTokenId);
 
             /* Tests
