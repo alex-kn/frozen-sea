@@ -117,7 +117,7 @@ module.exports = function (Subuser) {
             }
 
             if (typeof tempMod === "undefined"){
-                var err = 'Role does not exist'
+                var err = 'Role does not exist';
                 return cb(err);
             }
             else {
@@ -132,13 +132,19 @@ module.exports = function (Subuser) {
 
                     for (var i = 0; i < userIds.length; i++) {
                         Subuser.findById(userIds[i], function (err, instance) {
-                            users.push({    id: instance.id,
-                                            username: instance.firstname + " " + instance.secondname,
-                                            email: instance.email
-                            });
-                            if (users.length === userIds.length) {
-                                cb(null, users);
-                                console.log(users);
+                            if(instance != undefined) {
+                                users.push({
+                                    id: instance.id,
+                                    firstName: instance.firstName,
+                                    secondName: instance.secondName,
+                                    email: instance.email
+                                });
+                                if (users.length === userIds.length) {
+                                    cb(null, users);
+                                    console.log(users);
+                                }
+                            } else {
+                                console.log("NULL INSTANCE")
                             }
                         })
                     }

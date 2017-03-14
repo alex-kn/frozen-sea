@@ -123,11 +123,12 @@
                             <md-input-container flex="100">
                                 <label>{{'CREATE_STUDY.ADVISER' | translate}}</label>
                                 <md-select name="adviser" ng-model="study.adviser" aria-label="{{'CREATE_STUDY.ADVISER_ARIA_LABEL' | translate}}" required>
-                                    <md-option ng-repeat="advisor in advisors" value="{{ advisor.username }}">{{ advisor.username }}</md-option>
+                                    <md-option ng-repeat="advisor in advisors" value="{{ advisor.email }}">{{ advisor.firstName }} {{ advisor.secondName }}</md-option>
                                 </md-select>
                                 <div class="errors" ng-messages="createStudyForm.adviser.$error">
                                     <div ng-message="required">{{'CREATE_STUDY.ADVISER_MESSAGE' | translate}}</div>
                                 </div>
+                                <md-tooltip>{{'CREATE_STUDY.ADVISER_NOT_LISTED' | translate}}</md-tooltip>
                             </md-input-container>
 
                         </div>

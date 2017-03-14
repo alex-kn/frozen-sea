@@ -107,6 +107,10 @@ angular.module('userStudy').filter('filterStudies', function() {
 
 
 
+            //Unapproved studies should not be shown
+            if(!study.approved ) {
+                isMatch = false;
+            }
 
             //The owner should always see his own studies
             if(study.ownerId == userPreferences.subuserId) {

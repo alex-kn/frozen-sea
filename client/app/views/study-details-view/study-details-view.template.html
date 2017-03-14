@@ -258,7 +258,7 @@
                             </md-button>
                             <md-button class="md-accent" ng-click="participate(date)"
                                        ng-disabled="waitingForParticipation"
-                                       ng-hide="date.participating || alreadyParticipated || (date.status != 'available') || isParticipating">
+                                       ng-hide="date.participating || alreadyParticipated || (date.status != 'available') || isParticipating || !study.approved">
                                 {{'STUDY_DETAILS.PARTICIPATE' |
                                 translate}}
                             </md-button>

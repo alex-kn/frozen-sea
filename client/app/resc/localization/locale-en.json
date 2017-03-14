@@ -160,7 +160,8 @@
     "DELETE_2": " ?",
     "DELETE_3": "Your progress will be lost",
     "DELETE_OK": "Delete study",
-    "DELETE_CANCEL": "Cancel"
+    "DELETE_CANCEL": "Cancel",
+    "ADVISER_NOT_LISTED": "If your supervisor is not listed, please send him or her an email"
   },
   "HOME": {
   },

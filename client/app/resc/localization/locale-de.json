@@ -159,7 +159,8 @@
     "DELETE_2": " löschen?",
     "DELETE_3": "Dein gesamter Fortschritt wird gelöscht",
     "DELETE_OK": "Studie löschen",
-    "DELETE_CANCEL": "Abbrechen"
+    "DELETE_CANCEL": "Abbrechen",
+    "ADVISER_NOT_LISTED": "Wenn dein Betruer nicht gelistet ist, schicke ihm oder ihr eine E-Mail"
   },
   "HOME": {
   },

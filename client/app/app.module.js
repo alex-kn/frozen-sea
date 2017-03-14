@@ -11,6 +11,7 @@ angular.module('userStudy', [
     'ngResource',
     'pascalprecht.translate',
     'ngAnimate',
+    'ngSanitize',
     'home',
     'login',
     'resetPassword',

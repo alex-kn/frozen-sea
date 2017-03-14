@@ -42,7 +42,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 };
 
                 $scope.readonly = false;
-                $scope.title = $filter('translate')('CREATE_STUDY_BUTTON');
+                $scope.title = $filter('translate')('CREATE_STUDY.CREATE_STUDY_BUTTON');
 
                 $scope.study = {
                     name: $routeParams.study,
@@ -174,13 +174,15 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
 
                             }
 
+
+
                             var confirm = $mdDialog.confirm()
                                 .title($filter('translate')('CREATE_STUDY.EXPLANATION_TITLE_1') + $filter('translate')('CREATE_STUDY.EXPLANATION_TITLE_2'))
-                                .textContent(
-                                    $filter('translate')('CREATE_STUDY.EXPLANATION_1') + "\n" +
-                                    $filter('translate')('CREATE_STUDY.EXPLANATION_2') + "\n"  +
-                                    $filter('translate')('CREATE_STUDY.EXPLANATION_3') + "\n"  +
-                                    $filter('translate')('CREATE_STUDY.EXPLANATION_4') + "\n"  +
+                                .htmlContent(
+                                    $filter('translate')('CREATE_STUDY.EXPLANATION_1') + "<br>" +
+                                    $filter('translate')('CREATE_STUDY.EXPLANATION_2') + "<br>" +
+                                    $filter('translate')('CREATE_STUDY.EXPLANATION_3') + " "  +
+                                    $filter('translate')('CREATE_STUDY.EXPLANATION_4') + " "  +
                                     $filter('translate')('CREATE_STUDY.EXPLANATION_5')
                                 )
                                 .ariaLabel($filter('translate')('CREATE_STUDY.EXPLANATION_1'))
