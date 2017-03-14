@@ -98,7 +98,7 @@
                 </md-radio-button>
 
                 <md-radio-button flex-xs="100" flex-gt-xs="33" value="reward_hours"
-                                 ng-show="study.reward.reward_hours"
+                                 ng-show="study.reward.reward_hours && isStudent"
                                  aria-label="{{'CREATE_STUDY.HOURS_ARIA_LABEL' | translate}}">
                     {{study.reward.reward_hours}}
                     {{'STUDY_DETAILS.CHOOSE_REWARD_HOURS' | translate}}

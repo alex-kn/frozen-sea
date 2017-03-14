@@ -25,7 +25,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.flexGtMd = 30;
             $scope.flexGtLg = 30;
 
-            var participations;
 
             $scope.study = Study.findById({id: $routeParams.study}, function (response) {
                 $scope.study.startDate = new Date($scope.study.startDate);
@@ -46,6 +45,13 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 groupDatesByDay();
                 calculateRequirements();
             });
+
+            Subuser
+                .preferences({id: LoopBackAuth.currentUserId})
+                .$promise
+                .then(function (response) {
+                    $scope.isStudent = response.matriculationNr > 0;
+                });
 
             $scope.study.$promise.then(function () {
                 $scope.studyIsReady = true;
@@ -106,7 +112,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         }
                     }
                 }, function (responseParticipationArray) {
-                    console.log(responseParticipationArray);
                     $q.all(responseParticipationArray.map(function (responseParticipation) {
                         responseParticipation.name = $filter('translate')('STUDY_DETAILS.LOADING_PARTICIPANT');
                         Participation.participant({id: responseParticipation.id}, function (r) {
@@ -334,7 +339,10 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                             ToastService.setToastText($filter('translate')('STUDY_DETAILS.PARTICIPATION_WITHDRAWN'));
                             ToastService.displayToast();
                             studyDate.participating = false;
-                            if($scope.myParticipation.status != 'declined'){studyDate.participants -= 1};
+                            if ($scope.myParticipation.status != 'declined') {
+                                studyDate.participants -= 1
+                            }
+                            ;
                             $scope.isParticipating = false;
                             $scope.waitingForParticipation = false;
                             studyDate.status = "available";
