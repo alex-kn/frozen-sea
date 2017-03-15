@@ -303,9 +303,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     $scope.waitingForParticipation = false;
                     return
                 }
-
-                ToastService.setToastText($filter('translate')('STUDY_DETAILS.PARTICIPATING'));
-                ToastService.displayToast();
+                studyDate.waiting = true;
 
                 Participation.count({
                     where: {
@@ -317,6 +315,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         ToastService.setToastText($filter('translate')('STUDY_DETAILS.PARTICIPATION_FAILED'));
                         ToastService.displayToast();
                         $scope.waitingForParticipation = false;
+                        studyDate.waiting = false;
                     } else {
                         $scope.myParticipation = Subuser.participations.create({
                             id: LoopBackAuth.currentUserId
@@ -335,10 +334,12 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                             $scope.isParticipating = true;
                             console.log("Participation created.");
                             $scope.waitingForParticipation = false;
+                            studyDate.waiting = false;
                         }, function (error) {
                             console.log("Participation could not be created.");
                             console.log(error);
                             $scope.waitingForParticipation = false;
+                            studyDate.waiting = false;
                         });
                     }
                 });
@@ -348,10 +349,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
             $scope.withdrawParticipation = function (studyDate) {
                 $scope.waitingForParticipation = true;
-
-                ToastService.setToastText($filter('translate')('STUDY_DETAILS.WITHDRAWING_PARTICIPATION'));
-                ToastService.displayToast();
-
+                studyDate.waiting = true;
                 Participation.find({
                     filter: {
                         where: {
@@ -373,11 +371,13 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
                             $scope.isParticipating = false;
                             $scope.waitingForParticipation = false;
+                            studyDate.waiting = false;
                             studyDate.status = "available";
                         }, function (error) {
                             console.log("Error deleting Participation");
                             console.log(error);
                             $scope.waitingForParticipation = false;
+                            studyDate.waiting = false;
                         });
 
                 });

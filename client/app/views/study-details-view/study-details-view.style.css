@@ -125,6 +125,8 @@ md-card {
   md-card md-card-content md-progress-circular {
     margin: auto;
     margin-top: 0.5rem; }
+  md-card md-card-action md-progress-circular {
+    margin: 0; }
 
 .pad {
   padding: 0 !important;

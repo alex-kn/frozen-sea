@@ -275,7 +275,7 @@
                             <!-- end participant list -->
                         </md-card-content>
 
-                        <md-card-action ng-hide="isOwner">
+                        <md-card-action ng-hide="isOwner" layout="row" layout-align="start center" layout-wrap>
                             <md-button class="button-red" disabled="true"
                                        ng-show="(myParticipation.status == 'pending') && date.participating"
                                        aria-label="{{'STUDY_DETAILS.NOT_YET_CONFIRMED' | translate}}">
@@ -313,6 +313,7 @@
                                 {{'STUDY_DETAILS.WITHDRAW_PARTICIPATION' |
                                 translate}}
                             </md-button>
+                            <md-progress-circular class="md-accent" ng-show="date.waiting" md-diameter="25"></md-progress-circular>
                         </md-card-action>
                     </md-card>
 

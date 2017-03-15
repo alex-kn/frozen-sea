@@ -83,6 +83,12 @@ md-card {
 
   }
 
+  md-card-action {
+    md-progress-circular {
+      margin: 0;
+    }
+  }
+
 }
 
 .pad {
