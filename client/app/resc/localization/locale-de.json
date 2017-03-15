@@ -339,7 +339,7 @@
     "USERNAME_EXISTS" :"Username exisitiert bereits.",
     "SUCCESS_USERNAME" : "Username erfolgreich geändert!",
     "SUCCESS_PASSWORD": "Passwort erfolgreich geändert!",
-    "CHANGE_EMAIL": "Bitte kontaktieren Sie admin@frozensea.com um Ihre Email-Adresse zu ändern!"
+    "CHANGE_EMAIL": "Bitte kontaktieren Sie frzn.sea@gmail.com um Ihre Email-Adresse zu ändern!"
   },
   "TOAST": {
     "PARTICIPATE": "Du hast dich für die Studie erfolgreich angemeldet",

@@ -36,7 +36,7 @@
                 <span flex>{{user.username}}</span>
                 <span flex>
                       <md-button>Admin</md-button>
-                        <md-switch class="md-primary" aria-label="Switch Admin" ng-model="user.isAdmin" ng-change="onChangeAdmin(user)">
+                        <md-switch ng-disabled="user.current" class="md-primary" aria-label="Switch Admin" ng-model="user.isAdmin" ng-change="onChangeAdmin(user)">
                             <div ng-show="user.isAdmin">{{'ADMIN_DASHBOARD.ON' | translate}}</div><div ng-show="!user.isAdmin">{{'ADMIN_DASHBOARD.OFF' | translate}}</div>
                         </md-switch>
                 </span>
@@ -47,7 +47,7 @@
                         </md-switch>
                 </span>
                 <span flex>
-                        <md-button class="md-raised md-warn" ng-click="deleteConfirm($event, user.id)">{{'ADMIN_DASHBOARD.CONFIRM_DELETE_TITLE' | translate}}</md-button>
+                        <md-button ng-disabled="user.current" class="md-raised md-warn" ng-click="deleteConfirm($event, user)">{{'ADMIN_DASHBOARD.CONFIRM_DELETE_TITLE' | translate}}</md-button>
                     </span>
             </div>
             <md-divider ng-if="!$last"></md-divider>

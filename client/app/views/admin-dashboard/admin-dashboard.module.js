@@ -9,7 +9,7 @@ angular.module('adminDashboard', ['ngRoute', 'ngMaterial'])
             $scope.users = {};
             $scope.admins = [];
             $scope.advisors = [];
-            var confirmUserId = "";
+            var confirmUser = "";
 
             createUserList();
 
@@ -32,8 +32,8 @@ angular.module('adminDashboard', ['ngRoute', 'ngMaterial'])
             };
 
 
-            $scope.deleteConfirm = function (ev, userId) {
-                confirmUserId = userId;
+            $scope.deleteConfirm = function (ev, user) {
+                confirmUser = user;
                 var confirm = $mdDialog.confirm()
                     .title($filter('translate')('ADMIN_DASHBOARD.CONFIRM_DELETE_TITLE'))
                     .textContent($filter('translate')('ADMIN_DASHBOARD.CONFIRM_DELETE_TEXT'))
@@ -43,7 +43,7 @@ angular.module('adminDashboard', ['ngRoute', 'ngMaterial'])
                     .cancel($filter('translate')('ADMIN_DASHBOARD.CONFIRM_DELETE_ABORT'));
 
                 $mdDialog.show(confirm).then(function () {
-                    deleteUser(confirmUserId);
+                    deleteUser(confirmUser);
                 }, function () {
                 });
             };
@@ -60,6 +60,10 @@ angular.module('adminDashboard', ['ngRoute', 'ngMaterial'])
                         for (var i = 0; i < $scope.admins.length; i++) {
 
                             for (var j = 0; j < value.length; j++) {
+                                if(value[j].id == LoopBackAuth.currentUserId) {
+                                    value[j].current = true;
+                                }
+
                                 if ($scope.admins[i].id == value[j].id) {
                                     value[j].isAdmin = true;
                                     console.log('>admin:', value[j]);
@@ -99,11 +103,11 @@ angular.module('adminDashboard', ['ngRoute', 'ngMaterial'])
 
                 $http.post('/api/Subusers/' + data.id + '/revokeRole', data).then(function (response) {
                     console.log(response);
-                    if (role == 'admin') {
+                    if (role == 'admin' && !user.deletion) {
                         ToastService.setToastText($filter('translate')('ADMIN_DASHBOARD.TOAST_ADMIN_REVOKE'));
                         ToastService.displayToast();
                     }
-                    if (role == 'advisor') {
+                    if (role == 'advisor' && !user.deletion) {
                         ToastService.setToastText($filter('translate')('ADMIN_DASHBOARD.TOAST_ADVISOR_REVOKE'));
                         ToastService.displayToast();
                     }
@@ -163,11 +167,14 @@ angular.module('adminDashboard', ['ngRoute', 'ngMaterial'])
                 });
             }
 
-            function deleteUser(userId) {
-                Subuser.deleteById({id: userId}, function (value, responseHeaders) {
+            function deleteUser(user) {
+                user.deletion = true;
+                revokeRole('admin', user);
+                revokeRole('advisor', user);
+                Subuser.deleteById({id: user.id}, function (value, responseHeaders) {
                     console.log(value);
                     for(var i=0; i<$scope.users.length; i++){
-                        if($scope.users[i].id == userId){
+                        if($scope.users[i].id == user.id){
                             $scope.users.splice(i, 1);
                             break;
                         }
