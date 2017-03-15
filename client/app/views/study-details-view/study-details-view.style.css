@@ -159,4 +159,13 @@ md-progress-linear {
       height: 1rem;
       border-radius: 10px; }
 
+.ng-hide.fade {
+  opacity: 0; }
+
+.ng-hide-add.fade, .ng-hide-remove.fade {
+  transition: all linear 500ms; }
+
+.margin-bot-5 {
+  margin-bottom: .5rem; }
+
 /*# sourceMappingURL=study-details-view.style.css.map */

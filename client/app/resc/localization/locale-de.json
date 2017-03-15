@@ -311,7 +311,8 @@
     "MOUSEOVER_HELP": "Klick mich für mehr Informationen zu dieser Seite",
     "MOUSEOVER_HELP_1": "Hilfestellung",
     "NOT_SPECIFIED" : "keine Angabe",
-    "ADD" : "Hinzufügen"
+    "ADD" : "Hinzufügen",
+    "UNTIL" : "bis"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

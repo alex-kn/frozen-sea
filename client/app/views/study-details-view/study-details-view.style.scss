@@ -126,3 +126,15 @@ md-progress-linear {
     }
   }
 }
+
+.ng-hide.fade{
+  opacity: 0;
+}
+
+.ng-hide-add.fade, .ng-hide-remove.fade {
+  transition: all linear 500ms;
+}
+
+.margin-bot-5 {
+  margin-bottom: .5rem;
+}

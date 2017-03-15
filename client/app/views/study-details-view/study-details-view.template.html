@@ -65,10 +65,10 @@
                     {{totalParticipants}}
                 </span>
 
-                <md-subheader ng-show="isOwner && (femaleParticipants + maleParticipants)" flex="25">
+                <md-subheader ng-show="isOwner && (femaleParticipants + maleParticipants)" flex="25" class="fade">
                     {{'STUDY_DETAILS.GENDER_DISTRIBUTION' | translate}}:
                 </md-subheader>
-                <md-progress-linear value="{{(femaleParticipants / (femaleParticipants + maleParticipants)) * 100}}"
+                <md-progress-linear value="{{(femaleParticipants / (femaleParticipants + maleParticipants)) * 100}}" class="fade"
                                     ng-show="isOwner && (femaleParticipants + maleParticipants)" flex="70" aria-label="{{'STUDY_DETAILS.GENDER_DISTRIBUTION' | translate}}">
                     {{totalParticipants}}
                 </md-progress-linear>
@@ -115,7 +115,7 @@
         </md-content>
         <!-- END rewards -->
 
-        <!-- START add dates -->
+        <!-- START dates -->
 
         <md-content class="md-padding">
             <div layout="row" layout-align="center center">
@@ -168,9 +168,10 @@
                         </md-card-header>
                         <md-card-content layout="column">
 
-                            <span class="align-items"><i class="material-icons"
+                            <span class="align-items margin-bot-5"><i class="material-icons"
                                                          md-colors="{color: 'accent'}">timelapse</i>{{ date.duration }} {{'STUDY_DETAILS.MINUTES' | translate}}</span>
-                            <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">room</i>{{ date.location }} </span>
+                            <span class="align-items margin-bot-5"><i class="material-icons" md-colors="{color: 'accent'}">room</i>{{ date.location }} </span>
+                            <span class="align-items margin-bot-5"><i class="material-icons" md-colors="{color: 'accent'}">person_add</i>{{'STUDY_DETAILS.UNTIL' | translate}} {{date.deadlineDate | date: 'dd.MM.yyyy, HH:mm'}}</span>
                             <md-divider ng-show="isOwner"></md-divider>
 
                             <!-- start participant list -->
@@ -285,7 +286,7 @@
                 </div>
             </div>
         </md-content>
-        <!-- END add dates -->
+        <!-- END dates -->
 
         <!-- START requirements -->
 
