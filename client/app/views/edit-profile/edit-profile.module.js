@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('editProfile', ['ngRoute', 'ngMaterial'])
-    .controller('editProfileController', ['$scope', 'Subuser','$route', '$filter', '$translate','ToastService','LoopBackAuth','Participation',
-        function ($scope, Subuser, $route, $filter, $translate,ToastService, LoopBackAuth, Participation) {
+    .controller('editProfileController', ['$scope', 'Subuser','$route', '$filter', '$translate','ToastService','LoopBackAuth','Participation','Study',
+        function ($scope, Subuser, $route, $filter, $translate,ToastService, LoopBackAuth, Participation, Study) {
             $scope.title = 'Profil bearbeiten';
             $scope.input = {};
             $scope.error = {};
@@ -87,12 +87,24 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
                         }
                     }
                 }, function(userParticipations){
+                    console.log(userParticipations);
+
                     for(var i = 0; i < userParticipations.length; i++) {
-                        if (userParticipations[i].status == 'finished') {
-                            rewardMoney += userParticipations[i].reward_money;
-                            rewardVouchers += userParticipations[i].reward_voucher;
-                            rewardHours += userParticipations[i].reward_hours;
-                        }
+                        Study.find({
+                            filter: {
+                                where: {
+                                    id: userParticipations[i].studyId
+                                }
+                            }
+                        }, function(Study){
+                            if(Study.approved == true){
+                                if (userParticipations[i].status == 'completed') {
+                                    rewardMoney += userParticipations[i].reward_money;
+                                    rewardVouchers += userParticipations[i].reward_voucher;
+                                    rewardHours += userParticipations[i].reward_hours;
+                                }
+                            }
+                        });
                     }
                     $scope.myRewards = {money: rewardMoney, vouchers: rewardVouchers, hours: rewardHours};
                     $scope.contentsLoaded[1] = true;
