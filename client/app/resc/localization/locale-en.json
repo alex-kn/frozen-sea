@@ -214,7 +214,8 @@
     "OPEN_MENU" : "Open user menu",
     "PROFILE_EDIT": "User Profile",
     "LOGOUT": "Sign out",
-    "MY_STUDIES": "My Studies"
+    "MY_STUDIES": "My Studies",
+    "CHANGE_LANGUAGE": "Change Language to German"
   },
   "STUDY_LIST": {
     "TITLE" : "Studies",
