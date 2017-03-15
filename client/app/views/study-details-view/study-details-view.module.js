@@ -23,6 +23,8 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.totalParticipants = 0;
             $scope.participantUserIds = [];
 
+            $scope.currentUser = Subuser.getCurrent();
+
             $scope.femaleParticipants = 0;
             $scope.maleParticipants = 0;
 
@@ -30,6 +32,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.flexGtMd = 30;
             $scope.flexGtLg = 30;
 
+            $scope.showMailForm = false;
 
             $scope.study = Study.findById({id: $routeParams.study}, function (response) {
                 $scope.study.startDate = new Date($scope.study.startDate);
@@ -458,7 +461,31 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 $mdDialog.show(confirm);
             };
 
+            $scope.showContactForm = function () {
+                $scope.showMailForm = true;
+                $('html,body').animate({scrollTop: document.body.scrollHeight},"fast");
+
+            };
+
+            $scope.clearContactForm = function () {
+                $scope.showMailForm = false;
+                $scope.subjectString = "";
+                $scope.bodyString = "";
+            };
+
             $scope.sendMailToParticipants = function () {
-                //TODO send mail to all participants of the study
+
+                $q.all($scope.participations.map(function (participation) {
+                    Participation.participant({id: participation.id}, function (subuser) {
+                        if(typeof subuser.email == 'undefined'){
+                            console.log("Mail is undefined. Skipping.");
+                            return;
+                        }
+
+                        EmailService.sendEmail(subuser.email, $scope.currentUser.email, $scope.subjectString, $scope.bodyString, $scope.bodyString);
+                        console.log("Mail sent to " +  subuser.email);
+                    })
+                }))
+
             }
         }]);
