@@ -386,22 +386,65 @@
         </md-content>
         <!-- END requirements -->
 
+        <md-content class="md-padding" ng-show="showMailForm">
+            <div>
+                <md-divider ></md-divider>
+                <md-subheader>{{'STUDY_DETAILS.CONTACT_PARTICIPANT' | translate}}:</md-subheader>
 
-        <!-- START button -->
-        <md-content class="md-padding" ng-show="isOwner">
+                <form name="contactForm">
+                    <div layout-gt-xs="column">
+                        <md-input-container layout="row" class="md-block" flex>
+                            <input type="text"
+                                   required ng-model="subjectString"
+                                   name="subject"
+                                   aria-label="{{'STUDY_DETAILS.SUBJECT' | translate}}"
+                                   placeholder="{{'STUDY_DETAILS.SUBJECT' | translate}}">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex>
+
+                        <textarea required ng-model="bodyString"
+                                  name="body" md-maxlength="10000"
+                                  aria-label="{{'STUDY_DETAILS.TEXT' | translate}}"
+                                  placeholder="{{'STUDY_DETAILS.TEXT' | translate}}">
+
+                        </textarea>
+                        </md-input-container>
+                        <md-input-container layout="row" flex layout-align="end start">
+
+
+                            <md-button ng-click="clearContactForm()">{{'STUDY_DETAILS.CANCEL' | translate}}</md-button>
+                            <md-button
+                                    ng-click="sendMailToParticipants()"
+                                    ng-disabled="contactForm.$invalid" class="md-accent md-raised">{{'STUDY_DETAILS.SEND' |
+                                translate}}
+                            </md-button>
+                        </md-input-container>
+                    </div>
+                </form>
+            </div>
+
+        </md-content>
+
+        <!-- START buttons -->
+        <md-content class="md-padding">
 
             <div layout="row" layout-xs="column">
 
                 <md-input-container>
-                    <md-button
+                    <md-button ng-show="isOwner"
                             ng-click="editStudy()"
                             class="md-accent md-raised">
                         {{'STUDY_DETAILS.EDIT_STUDY' | translate}}
                     </md-button>
-                    <md-button
-                            ng-click="sendMailToParticipants()"
+                    <md-button ng-show="isOwner"
+                            ng-click="showContactForm()"
                             class="md-accent md-raised">
                         {{'STUDY_DETAILS.CONTACT_PARTICIPANTS' | translate}}
+                    </md-button>
+                    <md-button ng-show="!isOwner"
+                            ng-click="showContactForm()"
+                            class="md-accent md-raised">
+                        {{'STUDY_DETAILS.CONTACT_CREATOR' | translate}}
                     </md-button>
                 </md-input-container>
 
@@ -409,7 +452,7 @@
             </div>
 
         </md-content>
-        <!-- END button -->
+        <!-- END buttons -->
 
     </md-content>
     <!-- END view study form -->
