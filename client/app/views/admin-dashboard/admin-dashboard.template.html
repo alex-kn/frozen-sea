@@ -1,4 +1,4 @@
-<link href="views/edit-profile/edit-profile.style.css" rel="stylesheet">
+<link href="views/admin-dashboard/admin-dashboard.style.css" rel="stylesheet">
 
 
 <div ng-controller="NavigationController">
@@ -16,8 +16,8 @@
         </div>
     </md-toolbar>
     <!-- END toolbar -->
-
-    <md-list flex>
+    <md-progress-circular ng-show="!usersLoaded" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular></div>
+    <md-list flex ng-show="usersLoaded">
         <md-list-item class="md-2-line">
             <div class="md-list-item-text" layout="row" layout-align="center center">
                 <span flex><b>{{'REGISTER.MAIL' | translate}}</b></span>

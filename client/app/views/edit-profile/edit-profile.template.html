@@ -16,7 +16,8 @@
         </div>
     </md-toolbar>
     <!-- END toolbar -->
-    <md-card flex-offset-gt-sm="20" flex-gt-sm="60" flex-offset-sm="100">
+    <md-progress-circular ng-show="!(contentsLoaded[0] && contentsLoaded[1])" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular></div>
+    <md-card flex-offset-gt-sm="20" flex-gt-sm="60" flex-offset-sm="100" ng-show="(contentsLoaded[0] && contentsLoaded[1])">
         <md-list ng-repeat="(key, value) in currentUserData" >
             <md-list-item class="md-2-line">
                 <div class="md-list-item-text" layout="row" layout-align="center center">
@@ -65,7 +66,7 @@
             <md-divider ng-if="!$last"></md-divider>
         </md-list>
     </md-card>
-    <md-card flex-offset-gt-sm="20" flex-gt-sm="60" flex-offset-sm="100">
+    <md-card flex-offset-gt-sm="20" flex-gt-sm="60" flex-offset-sm="100" ng-show="(contentsLoaded[0] && contentsLoaded[1])">
         <md-list-item class="md-2-line">
             <div class="md-list-item-text" layout="row" layout-align="center center">
                 <span flex><b>{{'EDIT_PROFILE.REWARDS' | translate}}</b></span>

@@ -7,6 +7,7 @@ angular.module('register', ['ngRoute'])
         function ($scope, Subuser, ToastService,$filter, $location, $rootScope, $translate, EmailService) {
 
             $scope.errorMessage = "";
+            $scope.registerProgress = true;
 
             $scope.changeLanguage = function (langKey) {
                 $translate.use(langKey);
@@ -22,6 +23,8 @@ angular.module('register', ['ngRoute'])
              */
 
             $scope.register = function (firstname, secondname, email, password) {
+                $scope.registerProgress = false;
+
                 return Subuser.create({
                     username: email,
                     email: email,
@@ -30,6 +33,7 @@ angular.module('register', ['ngRoute'])
                     password: password
                 }, function (value, responseHeaders) {
                     console.log('succ');
+                    $scope.registerProgress = true;
                     ToastService.setToastText($filter('translate')('LOGIN.REGISTRATION_SUCCESS'));
                     ToastService.displayToast();
                     $location.path('/login');

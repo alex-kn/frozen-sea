@@ -9,6 +9,7 @@ angular.module('adminDashboard', ['ngRoute', 'ngMaterial'])
             $scope.users = {};
             $scope.admins = [];
             $scope.advisors = [];
+            $scope.usersLoaded = false;
             var confirmUser = "";
 
             createUserList();
@@ -88,6 +89,7 @@ angular.module('adminDashboard', ['ngRoute', 'ngMaterial'])
                         }
                     });
                     $scope.users = value;
+                    $scope.usersLoaded = true;
                 }, function (err) {
                     console.log(err);
                 });
