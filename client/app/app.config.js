@@ -6,8 +6,8 @@
 
 angular
     .module('userStudy')
-    .config(['$locationProvider', '$routeProvider', 'LoopBackResourceProvider', '$mdThemingProvider', '$translateProvider', '$mdDateLocaleProvider',
-        function ($locationProvider, $routeProvider, LoopBackResourceProvider, $mdThemingProvider, $translateProvider, $mdDateLocaleProvider) {
+    .config(['$locationProvider', '$routeProvider', 'LoopBackResourceProvider', '$mdThemingProvider', '$translateProvider', '$qProvider','$mdDateLocaleProvider',
+        function ($locationProvider, $routeProvider, LoopBackResourceProvider, $mdThemingProvider, $translateProvider, $qProvider,$mdDateLocaleProvider) {
             $locationProvider.hashPrefix('!');
 
             $routeProvider.when('/home', {
@@ -59,6 +59,8 @@ angular
 
             // Change the URL where to access the LoopBack REST API server
             LoopBackResourceProvider.setUrlBase('http://localhost:3000/api');
+
+            $qProvider.errorOnUnhandledRejections(false);
 
             /**
              * Configure material design theme -> @url https://material.io/guidelines/style/color.html

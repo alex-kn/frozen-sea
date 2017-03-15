@@ -35,7 +35,8 @@
         <!-- END switch to login -->
 
         <!-- START registration form -->
-        <div class="registration-form" layout="row" layout-align="center start">
+        <md-progress-circular ng-show="!registerProgress" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular></div>
+        <div class="registration-form" layout="row" layout-align="center start" ng-show="registerProgress">
 
             <form  layout="column" flex-gt-xs="60" flex="100">
 

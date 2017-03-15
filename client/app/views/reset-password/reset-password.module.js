@@ -2,8 +2,11 @@ angular.module('resetPassword', ['ngRoute'])
     .controller('ResetPasswordController', ['$scope', 'Subuser', '$filter','$location', 'ToastService','$rootScope', '$translate', '$routeParams', '$http',
         function ($scope, Subuser, $filter,$location, ToastService,$rootScope, $translate, $routeParams, $http) {
         $scope.errorMessage = "";
+        $scope.resetProgress = true;
+
 
             $scope.resetPassword = function (passwordOne, passwordTwo) {
+                $scope.resetProgress = false;
                 if (passwordOne != passwordTwo) {
                     $scope.errorMessage = $filter('translate')('RESET_PASSWORD.NO_MATCH');
                 }
@@ -19,9 +22,11 @@ angular.module('resetPassword', ['ngRoute'])
                     }, function (httpResponse) {
                         console.log(httpResponse);
                         if(httpResponse.data.error.status == 401){
+                            $scope.resetProgress = true;
                             $scope.errorMessage = $filter('translate')('RESET_PASSWORD.OLD_TOKEN');
                         }
                         else {
+                            $scope.resetProgress = true;
                             $location.path('/home');
                         }
                     });

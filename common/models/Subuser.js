@@ -129,7 +129,7 @@ module.exports = function (Subuser) {
                     for (var i = 0; i < principals.length; i++) {
                         userIds.push(principals[i].principalId);
                     }
-                    console.log(userIds);
+
                     var counter = 0;
                     for (var i = 0; i < userIds.length; i++) {
                         Subuser.findById(userIds[i], function (err, instance) {

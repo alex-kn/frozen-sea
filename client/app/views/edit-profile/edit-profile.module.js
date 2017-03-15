@@ -8,6 +8,7 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
             $scope.input = {};
             $scope.error = {};
             $scope.myRewards = {};
+            $scope.contentsLoaded = [false, false];
             getRewards();
 
             $scope.toggleActive = {
@@ -31,6 +32,7 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
                 //$scope.currentUserData.Email = userData.email;
                 //$scope.currentUserData.Name = userData.name;
                 $scope.userId = userData.id;
+                $scope.contentsLoaded[0] = true;
             });
 
             /**
@@ -41,21 +43,10 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
                 $scope.toggleActive[key] = !$scope.toggleActive[key];
             };
 
-            $scope.changeUsername = function(){
-                Subuser.prototype$updateAttributes({ id: $scope.userId }, {'username': $scope.input.name}, function(){
-                    $route.reload();
-                    ToastService.setToastText($filter('translate')('EDIT_PROFILE.SUCCESS_USERNAME'));
-                    ToastService.displayToast();
-                },function(err) {
-                    if (err.data.error.status == 422) {
-                        $scope.error.username ='Username existiert bereits.';
-                    } else {
-                        $scope.error.username = err.data.error.message;
-                    }
-                })
-            };
+
 
             $scope.changePassword = function() {
+                $scope.contentsLoaded[0] = false;
                 var comparePassword = $scope.input.newPassword == $scope.input.repeatNewPassword;
 
                 if(!comparePassword){
@@ -64,9 +55,10 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
                     $scope.error.newPassword = '';
                 }
 
-                Subuser.login({username: $scope.currentUserData.Username, password: $scope.input.oldPassword}, function(){
+                Subuser.login({username: $scope.currentUserData.Email, password: $scope.input.oldPassword}, function(){
                     if (comparePassword) {
                         Subuser.prototype$updateAttributes({id: $scope.userId}, {'password': $scope.input.newPassword}, function () {
+                            $scope.contentsLoaded[0] = true;
                             $route.reload();
                             ToastService.setToastText($filter('translate')('EDIT_PROFILE.SUCCESS_PASSWORD'));
                             ToastService.displayToast();
@@ -76,6 +68,7 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
                     }
                     $scope.error.oldPassword = '';
                 }, function() {
+                    console.log();
                     $scope.error.oldPassword = 'Altes Passwort stimmt nicht überein.';
                 });
 
@@ -102,6 +95,24 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
                         }
                     }
                     $scope.myRewards = {money: rewardMoney, vouchers: rewardVouchers, hours: rewardHours};
+                    $scope.contentsLoaded[1] = true;
                 });
             }
+
+            /*
+            $scope.changeUsername = function(){
+                Subuser.prototype$updateAttributes({ id: $scope.userId }, {'username': $scope.input.name}, function(){
+                    $route.reload();
+                    ToastService.setToastText($filter('translate')('EDIT_PROFILE.SUCCESS_USERNAME'));
+                    ToastService.displayToast();
+                },function(err) {
+                    if (err.data.error.status == 422) {
+                        $scope.error.username ='Username existiert bereits.';
+                    } else {
+                        $scope.error.username = err.data.error.message;
+                    }
+                })
+            };
+            */
+
         }]);
