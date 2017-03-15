@@ -12,9 +12,10 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsEditController', ['$location', '$routeParams', '$scope', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study','StudyDate','ToastService','$filter',
+    .controller('StudyDetailsEditController', ['$location', '$routeParams', '$scope', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', 'StudyDate', 'ToastService', '$filter',
         function ($location, $routeParams, $scope, Subuser, Participation, LoopBackAuth, $http, Study, StudyDate, ToastService, $filter) {
 
+            $scope.today = new Date();
 
             $scope.study = Study
                 .findById({id: $routeParams.study}, function (response) {
@@ -23,23 +24,37 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                     $scope.isOwner = ($scope.study.ownerId == LoopBackAuth.currentUserId);
                     loadDates();
                     loadParticipations();
+                    initNewDate();
                 });
+
+            function initNewDate() {
+                $scope.newDate = {
+                    startDate: new Date(),
+                    hours: 8,
+                    minutes: 30,
+                    duration: $scope.study.duration,
+                    deadline: 0,
+                    location: $scope.study.locations_array[0],
+                    maxParticipants: 1
+                };
+            }
 
             function loadDates() {
                 $scope.dates = Study.dates({id: $scope.study.id}, function (response) {
                     //TODO sort dates
-                    response.reverse();
+
                     return Promise.all(response.map(function (res) {
                         res.startDate = new Date(res.startDate);
-                        res.endDate = new Date(res.endDate);
-                        res.deadline = 24;
                         res.participants = 0;
-
                         $scope.participations.$promise.then(function () {
                             $scope.participations.forEach(function (participation) {
                                 if (participation.studyDateId == res.id) {
                                     res.participants += 1;
                                 }
+                            });
+                        }).then(function () {
+                            response.sort(function (a, b) {
+                                return a.startDate - b.startDate;
                             });
                         });
 
@@ -61,32 +76,61 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                 });
             }
 
+            $scope.addDate = function () {
+                $scope.newDate.startDate.setHours($scope.newDate.hours);
+                $scope.newDate.startDate.setMinutes($scope.newDate.minutes);
+                StudyDate
+                    .create({
+                    studyId: $scope.study.id,
+                    ownerId: LoopBackAuth.currentUserId,
+                    status: 'available',
+                    startDate: $scope.newDate.startDate,
+                    duration: $scope.newDate.duration,
+                    location: $scope.newDate.location,
+                    maxParticipants: $scope.newDate.maxParticipants,
+                    deadline: $scope.newDate.deadline,
+                    minParticipants: 0
+                })
+                    .$promise
+                    .then(function (response) {
+                        console.log(response);
+                        response.new = true;
+                        response.startDate = new Date(response.startDate);
+                        response.participants = 0;
+                        $scope.dates.push(response);
+                        $scope.dates.sort(function (a, b) {
+                            return a.startDate - b.startDate;
+                        });
+                        ToastService.setToastText($filter('translate')('STUDY_DETAILS.ADD_DATE_SUCCESSFUL'));
+                        ToastService.displayToast();
+                    })
+            };
 
             $scope.removeDate = function (date) {
-                StudyDate.participations.count({id: date.id},function (response) {
-                    if(response.count){
+                StudyDate.participations.count({id: date.id}, function (response) {
+                    if (response.count) {
                         ToastService.setToastText($filter('translate')('STUDY_DETAILS.DELETE_DATE_FAILED'));
                         ToastService.displayToast();
-                    }else{
-                        StudyDate.deleteById({id: date.id},function (response) {
-                            console.log(response);
+                    } else {
+                        StudyDate.deleteById({id: date.id}, function (response) {
                             var index = $scope.dates.indexOf(date);
                             if (index > -1) {
                                 $scope.dates.splice(index, 1);
                             }
-
+                            ToastService.setToastText($filter('translate')('STUDY_DETAILS.DELETE_DATE_SUCCESSFUL'));
+                            ToastService.displayToast();
                         })
                     }
                 });
             };
 
-            $scope.saveDate = function(date){
+            $scope.saveDate = function (date) {
 
-                StudyDate.participations.count({id: date.id},function (response) {
-                    if(response.count > date.maxParticipants){
+                StudyDate.participations.count({id: date.id}, function (response) {
+                    if (response.count > date.maxParticipants) {
                         ToastService.setToastText($filter('translate')('STUDY_DETAILS.MAX_PARTICIPANT_CHANGE_FAILED'));
                         ToastService.displayToast();
-                    }else{
+                    } else {
                         var tempParticipants = date.participants;
                         date.$save().then(function () {
                             console.log("Date saved.");

@@ -260,6 +260,7 @@
     "PARTICIPATE" : "Teilnehmen",
     "WITHDRAW_PARTICIPATION" : "Teilnahme zurückziehen",
     "MINUTES" : "Minuten",
+    "HOURS" : "Stunden",
     "DELETE_STUDY" : "Studie löschen",
     "CONFIRM_PARTICIPANT" : "Bestätigen",
     "CONFIRMED_PARTICIPANT" : "Bestätigt!",
@@ -298,16 +299,19 @@
     "REWARD_UPDATED" : "Deine gewählte Vergütung wurde geändert!",
     "GENDER_DISTRIBUTION" : "Geschlechterverhältnis",
     "MODIFY_DATES" : "Termine modifizieren",
+    "ADD_DATE" : "Termin hinzufügen",
     "SAVE" : "Speichern",
     "SAVED" : "Gespeichert!",
     "MAX_PARTICIPANT_CHANGE_FAILED" : "Die maximale Teilnehmerzahl kann nicht niedriger sein als die Anzahl der bereits angemeldeten Teilnehmer.",
     "DELETE_DATE_FAILED" : "Das Löschen eines Termins mit angemeldeten Teilnehmern ist nicht möglich.",
     "DELETE_DATE_SUCCESSFUL" : "Termin erfolgreich gelöscht",
+    "ADD_DATE_SUCCESSFUL" : "Termin erfolgreich hinzugefügt!",
     "HOURS_IN_ADVANCE" : "Stunden vorher",
     "HELP": "Hilfestellung zu dieser Seite",
     "MOUSEOVER_HELP": "Klick mich für mehr Informationen zu dieser Seite",
     "MOUSEOVER_HELP_1": "Hilfestellung",
-    "NOT_SPECIFIED" : "keine Angabe"
+    "NOT_SPECIFIED" : "keine Angabe",
+    "ADD" : "Hinzufügen"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

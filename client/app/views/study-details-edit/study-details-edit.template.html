@@ -73,6 +73,112 @@
             </md-content>
             <!-- END general information -->
 
+            <!-- START add date -->
+
+            <md-content class="md-padding">
+
+                <h2 class="md-headline">{{'STUDY_DETAILS.ADD_DATE' | translate}}</h2>
+
+
+                <div layout="row" layout-xs="column" layout-wrap>
+                    <md-card ng-form="addDateForm" flex="100" flex-gt-md="45">
+                        <md-card-header style>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">add</md-icon>
+                            </md-card-avatar>
+                            <md-card-header-text>
+                                <span class="md-title">{{ newDate.startDate | date:'dd.MM.yy' }}</span>
+                                <span class="md-subhead">{{ newDate.hours}}:{{newDate.minutes}}</span>
+                            </md-card-header-text>
+                        </md-card-header>
+                        <md-card-content layout="column">
+
+                            <span layout-align="start center" class="align-items">
+                                <i class="material-icons" md-colors="{color: 'accent'}">today</i>
+
+                                <md-input-container class="md-block">
+                                    <md-datepicker ng-model="newDate.startDate" required
+                                               md-min-date="today"></md-datepicker>
+                                </md-input-container>
+                            </span>
+
+                            <span layout-align="start center" class="align-items time-input">
+                                <i class="material-icons" md-colors="{color: 'accent'}">access_time</i>
+                                <md-input-container class="md-block">
+                                    <input required type="number" ng-model="newDate.hours"
+                                           name="hours"
+                                           min="0" max="24"
+                                           aria-label="{{'STUDY_DETAILS.HOURS' | translate}}"
+                                           md-select-on-focus="true">
+                                </md-input-container>
+                                :
+                                <md-input-container class="md-block">
+                                    <input required type="number" ng-model="newDate.minutes"
+                                           name="minutes"
+                                           min="0" max="60"
+                                           aria-label="{{'STUDY_DETAILS.HOURS' | translate}}"
+                                           md-select-on-focus="true">
+                                </md-input-container>
+                            </span>
+
+                            <span layout-align="start center" class="align-items">
+                                <i class="material-icons" md-colors="{color: 'accent'}">room</i>
+                                <md-input-container class="md-block">
+                                    <md-select ng-model="newDate.location"
+                                               aria-label="{{'CREATE_STUDY.APPOINTMENT_LOCATION' | translate}}">
+                                        <md-option ng-repeat="location in study.locations_array" value="{{ location }}">{{ location }}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </span>
+
+                            <span layout-align="start center" class="align-items">
+                                <i class="material-icons" md-colors="{color: 'accent'}">timelapse</i>
+                                <md-input-container class="md-block">
+                                    <input required type="number" ng-model="newDate.duration" name="duration"
+                                           min="0"
+                                           aria-label="{{'CREATE_STUDY.DURATION' | translate}}"
+                                           md-select-on-focus="true">
+                                </md-input-container>
+                                {{'STUDY_DETAILS.MINUTES' | translate}}
+                            </span>
+
+                            <span layout-align="start center" class="align-items">
+                                <i class="material-icons" md-colors="{color: 'accent'}">group</i>
+                                <md-input-container class="md-block">
+                                    <input required type="number" ng-model="newDate.maxParticipants"
+                                           name="maxParticipants"
+                                           min="1"
+                                           aria-label="{{'CREATE_STUDY.MAX_PARTICIPANTS' | translate}}"
+                                           md-select-on-focus="true">
+                                </md-input-container>
+                                {{'CREATE_STUDY.APPOINTMENT_MAX_PARTICIPANTS' | translate}}
+                            </span>
+
+                            <span layout-align="start center" class="align-items">
+                                <i class="material-icons" md-colors="{color: 'accent'}">access_alarm</i>
+                                <md-input-container class="md-block">
+                                    <input required type="number" ng-model="newDate.deadline" name="deadline" min="0"
+                                           aria-label="{{'CREATE_STUDY.APPOINTMENT_DEADLINE' | translate}}"
+                                           md-select-on-focus="true">
+                                </md-input-container>
+                                {{'STUDY_DETAILS.HOURS_IN_ADVANCE' | translate}}
+                            </span>
+
+                        </md-card-content>
+                        <md-card-action>
+                            <md-button class="md-accent md-raised" ng-click="addDate(date)"
+                                       ng-disabled="addDateForm.$invalid"
+                                       aria-label="{{'STUDY_DETAILS.ADD' | translate}}">
+                                {{'STUDY_DETAILS.ADD' | translate}}
+                            </md-button>
+                        </md-card-action>
+                    </md-card>
+                </div>
+            </md-content>
+
+
+            <!-- END add date -->
+
             <!-- START modify dates -->
 
             <md-content class="md-padding">
@@ -81,7 +187,7 @@
 
                 <div layout="row" layout-xs="column" layout-wrap>
 
-                    <md-card ng-repeat="date in dates" flex="100" flex-gt-md="45">
+                    <md-card ng-repeat="date in dates" flex="100" flex-gt-md="45" flex-gt-lg="30" ng-class="{'new-date': date.new}">
                         <md-card-header style>
                             <md-card-avatar>
                                 <md-icon class="material-icons">today</md-icon>
@@ -117,9 +223,11 @@
                                 <i class="material-icons" md-colors="{color: 'accent'}">group</i>
                                 {{date.participants}} /
                                 <md-input-container class="md-block">
-                                    <input required type="number" ng-model="date.maxParticipants" name="maxParticipants" min="{{date.participants}}"
-                                           aria-label="{{'CREATE_STUDY.MAX_PARTICIPANTS' | translate}}" ng-change="date.changed = true"
-                                    md-select-on-focus="true">
+                                    <input required type="number" ng-model="date.maxParticipants" name="maxParticipants"
+                                           min="{{date.participants}}"
+                                           aria-label="{{'CREATE_STUDY.MAX_PARTICIPANTS' | translate}}"
+                                           ng-change="date.changed = true"
+                                           md-select-on-focus="true">
                                 </md-input-container>
                                 {{'CREATE_STUDY.APPOINTMENT_MAX_PARTICIPANTS' | translate}}
                             </span>
@@ -128,14 +236,15 @@
                                 <i class="material-icons" md-colors="{color: 'accent'}">access_alarm</i>
                                 <md-input-container class="md-block">
                                     <input required type="number" ng-model="date.deadline" name="deadline" min="0"
-                                           aria-label="{{'CREATE_STUDY.APPOINTMENT_DEADLINE' | translate}}" ng-change="date.changed = true"
+                                           aria-label="{{'CREATE_STUDY.APPOINTMENT_DEADLINE' | translate}}"
+                                           ng-change="date.changed = true"
                                            md-select-on-focus="true">
                                 </md-input-container>
                                 {{'STUDY_DETAILS.HOURS_IN_ADVANCE' | translate}}
                             </span>
                         </md-card-content>
                         <md-card-action>
-                            <md-button class="md-accent" ng-click="saveDate(date)"
+                            <md-button class="md-accent md-raised" ng-click="saveDate(date)"
                                        ng-show="date.changed"
                                        aria-label="{{'STUDY_DETAILS.SAVE' | translate}}">
                                 {{'STUDY_DETAILS.SAVE' | translate}}

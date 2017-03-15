@@ -100,5 +100,19 @@ form md-checkbox {
   .align-items .md-errors-spacer {
     min-height: 0 !important;
     max-height: 0 !important; }
+  .align-items .md-datepicker-button {
+    display: none !important; }
+  .align-items .md-datepicker-input-container {
+    margin-left: 0 !important; }
+
+.time-input input {
+  width: 1.5rem; }
+.time-input input[type=number]::-webkit-inner-spin-button,
+.time-input input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+.new-date {
+  background-color: lightgreen; }
 
 /*# sourceMappingURL=study-details-edit.style.css.map */
