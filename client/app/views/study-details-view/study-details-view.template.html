@@ -58,6 +58,15 @@
                 <md-progress-circular flex="75" ng-hide="ownerReady" class="md-accent owner-loading" md-mode="indeterminate" md-diameter="20">
                 </md-progress-circular>
 
+                <md-subheader flex="25" ng-show="isOwner">
+                    {{'STUDY_DETAILS.SUPERVISOR' | translate}}:
+                </md-subheader>
+                <span ng-show="advisorReady && isOwner" flex="75" aria-label="{{'STUDY_DETAILS.SUPERVISOR' | translate}}">
+                    {{advisor}}
+                </span>
+                <md-progress-circular flex="75" ng-hide="advisorReady || !isOwner" class="md-accent owner-loading" md-mode="indeterminate" md-diameter="20">
+                </md-progress-circular>
+
                 <md-subheader ng-show="isOwner" flex="25">
                     {{'STUDY_DETAILS.PARTICIPANTS' | translate}}:
                 </md-subheader>

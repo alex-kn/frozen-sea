@@ -44,6 +44,13 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     $scope.owner = res.firstName + " " + res.secondName;
                     $scope.ownerReady = true;
                 });
+                Study.advisor({id :$scope.study.id}, function (res){
+                    $scope.advisor = res.firstName + " " + res.secondName;
+                    $scope.advisorReady = true;
+                }, function (err) {
+                    console.log("no advisor found");
+                    $scope.advisorReady = true;
+                });
 
                 loadParticipations();
                 loadDates();
