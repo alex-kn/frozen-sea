@@ -84,6 +84,9 @@ form md-checkbox {
   form md-checkbox:last-of-type {
     margin-right: 0; }
 
+md-progress-circular {
+  margin: 7rem auto 4rem; }
+
 .button-green[disabled] {
   color: forestgreen !important; }
 
@@ -114,5 +117,8 @@ form md-checkbox {
 
 .new-date {
   background-color: lightgreen; }
+
+md-card md-card-action md-progress-circular {
+  margin: 0; }
 
 /*# sourceMappingURL=study-details-edit.style.css.map */

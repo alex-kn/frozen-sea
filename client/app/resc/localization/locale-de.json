@@ -323,7 +323,10 @@
     "UNLOCK_MOUSEOVER" : "Als Betreuer kannst du diese Studie freischalten!",
     "RELOCK" : "Klicke hier um die Freigabe wieder zurückziehen",
     "LOCKED" : "Nicht freigeschaltet",
-    "LOCKED_MOUSEOVER" :"Dein Betreuer wurde beim Erstellen der Studie automatisch benachrichtigt. Sollte die Studie nach mehreren Tagen immer noch nicht freigeschaltet sein, schreibe Ihm oder Ihr bitte persönlich eine Nachricht."
+    "LOCKED_MOUSEOVER" :"Dein Betreuer wurde beim Erstellen der Studie automatisch benachrichtigt. Sollte die Studie nach mehreren Tagen immer noch nicht freigeschaltet sein, schreibe Ihm oder Ihr bitte persönlich eine Nachricht.",
+    "GENERAL_INFORMATION" : "Allgemeine Informationen",
+    "SUPERVISOR" : "Betreuer",
+    "CONTACT_CREATOR": "Veranstalter kontaktieren"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

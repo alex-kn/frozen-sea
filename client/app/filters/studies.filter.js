@@ -108,7 +108,7 @@ angular.module('userStudy').filter('filterStudies', function() {
 
 
             //Unapproved studies should not be shown
-            if(!study.approved ) {
+            if(!study.approved) {
                 isMatch = false;
             }
 

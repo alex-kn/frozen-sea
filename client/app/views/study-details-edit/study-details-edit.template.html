@@ -19,10 +19,13 @@
     <md-content flex-offset-gt-sm="20" flex-gt-sm="60" flex="100">
 
         <!-- START edit general information -->
+
+
         <form name="editStudyForm" layout="column">
 
             <md-content class="md-padding">
 
+                <h2 class="md-headline">{{'STUDY_DETAILS.GENERAL_INFORMATION' | translate}}</h2>
 
                 <div layout-gt-xs="row">
 
@@ -58,10 +61,7 @@
 
                 </div>
 
-
-            </md-content>
-            <md-content class="md-padding" ng-show="study.changed">
-                <md-input-container layout="row">
+                <md-input-container layout="row" ng-show="study.changed">
                     <md-button
                             ng-click="updateStudy()"
                             ng-disabled="editStudyForm.$invalid" class="md-accent md-raised">
@@ -99,7 +99,9 @@
 
                                 <md-input-container class="md-block">
                                     <md-datepicker ng-model="newDate.startDate" required
-                                                   md-min-date="today"></md-datepicker>
+                                                   aria-label="{{'CREATE_STUDY.APPOINTMENT_TIME_ARIA_LABEL' | translate}}"
+                                                   md-min-date="today">
+                                    </md-datepicker>
                                 </md-input-container>
                             </span>
 
@@ -166,23 +168,27 @@
                             </span>
 
                     </md-card-content>
-                    <md-card-action>
-                        <md-button class="md-accent md-raised" ng-click="addDate(date)"
-                                   ng-disabled="addDateForm.$invalid"
+                    <md-card-action layout="row" layout-align="start center">
+                        <md-button class="md-accent md-raised" ng-click="addDate()"
+
+                                   ng-disabled="addDateForm.$invalid || newDate.adding"
                                    aria-label="{{'STUDY_DETAILS.ADD' | translate}}">
                             {{'STUDY_DETAILS.ADD' | translate}}
                         </md-button>
+                        <md-progress-circular class="md-accent" md-diameter="25" ng-show="newDate.adding">
+                        </md-progress-circular>
                     </md-card-action>
                 </md-card>
             </div>
         </md-content>
 
-
         <!-- END add date -->
 
         <!-- START modify dates -->
 
-        <md-content class="md-padding">
+        <md-progress-circular class="md-accent" ng-hide="datesAreReady"></md-progress-circular>
+
+        <md-content class="md-padding" ng-show="datesAreReady">
 
             <h2 class="md-headline">{{'STUDY_DETAILS.MODIFY_DATES' | translate}}</h2>
 
@@ -199,7 +205,7 @@
                             <span class="md-subhead">{{ date.startDate | date: 'HH:mm' }}</span>
                         </md-card-header-text>
                         <md-button ng-click="removeDate(date)" class="md-icon-button md-accent"
-                                   ng-hide="date.participants"
+                                   ng-hide="date.participants" ng-disabled="date.deleting"
                                    aria-label="{{'CREATE_STUDY.APPOINTMENT_CARD_DELETE_ARIA_LABEL' | translate}}">
                             <md-icon class="material-icons md-24 md-primary">close</md-icon>
                         </md-button>
@@ -245,9 +251,9 @@
                                 {{'STUDY_DETAILS.HOURS_IN_ADVANCE' | translate}}
                             </span>
                     </md-card-content>
-                    <md-card-action>
+                    <md-card-action layout="row" layout-align="start center">
                         <md-button class="md-accent md-raised" ng-click="saveDate(date)"
-                                   ng-show="date.changed"
+                                   ng-show="date.changed" ng-disabled="date.saving"
                                    aria-label="{{'STUDY_DETAILS.SAVE' | translate}}">
                             {{'STUDY_DETAILS.SAVE' | translate}}
                         </md-button>
@@ -256,6 +262,8 @@
                                    aria-label="{{'STUDY_DETAILS.SAVED' | translate}}">
                             {{'STUDY_DETAILS.SAVED' | translate}}
                         </md-button>
+                        <md-progress-circular class="md-accent" md-diameter="25" ng-show="date.saving">
+                        </md-progress-circular>
                     </md-card-action>
                 </md-card>
 
