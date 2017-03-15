@@ -79,8 +79,8 @@
       "accessType": "WRITE",
       "principalType": "ROLE",
       "principalId": "$authenticated",
-      "property": "updateAttributes",
-      "permission": "ALLOW"
+      "permission": "ALLOW",
+      "property": "updateAttributes"
     },
     {
       "accessType": "EXECUTE",

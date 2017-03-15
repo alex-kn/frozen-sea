@@ -161,7 +161,7 @@
 
 
 
-            <md-tab layout="column">
+            <md-tab layout="column" data-ng-if="isAdvisor"">
                 <md-tab-label>
                     {{'MY_STUDIES.ADVISED_STUDIES' | translate}}
                 </md-tab-label>
@@ -210,7 +210,7 @@
                             {{ study.description }}
                         </md-card-content>
                         <md-card-actions layout="row" layout-align="end center">
-                            <md-button{{'STUDY_LIST.DETAILS' | translate}}</md-button>
+                            <md-button>{{'STUDY_LIST.DETAILS' | translate}}</md-button>
                         </md-card-actions>
                     </md-card>
                 </md-tab-body>

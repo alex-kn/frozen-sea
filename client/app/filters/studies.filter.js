@@ -117,13 +117,9 @@ angular.module('userStudy').filter('filterStudies', function() {
                 isMatch = true;
             }
 
-
-            //The owner should always see his own studies //TODO
-            if(study.ownerId == userPreferences.subuserId) {
-            }
-
-            //Advisors should see all studies //TODO
-            if(study.ownerId == userPreferences.subuserId) {
+            //Advisors should see their advised studies
+            if(study.advisorId == userPreferences.subuserId) {
+                isMatch = true;
             }
 
 

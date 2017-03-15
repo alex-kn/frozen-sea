@@ -113,10 +113,6 @@
       "model": "StudyDate",
       "foreignKey": "studyId"
     },
-    "advisors": {
-      "type": "hasAndBelongsToMany",
-      "model": "Subuser"
-    },
     "owner": {
       "type": "belongsTo",
       "model": "Subuser",
@@ -126,6 +122,11 @@
       "type": "hasMany",
       "model": "Participation",
       "foreignKey": "studyId"
+    },
+    "advisor": {
+      "type": "belongsTo",
+      "model": "Subuser",
+      "foreignKey": ""
     }
   },
   "acls": [

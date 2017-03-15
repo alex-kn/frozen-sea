@@ -9,8 +9,8 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
             controller: 'CreateStudyController'
         });
     }])
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'ByRoleService', '$filter', '$translate', '$document',
-        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, ByRoleService, $filter, $translate, $document) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'ByRoleService', '$filter', '$translate', '$document', 'Subuser',
+        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, ByRoleService, $filter, $translate, $document, Subuser) {
             $scope.initialize = function() {
                 ByRoleService.getUsersByRole("advisor").then(function(res) {
                     $scope.advisors = res;
@@ -82,6 +82,8 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 var index = $scope.appointments.indexOf(item);
                 $scope.appointments.splice(index, 1);
             };
+
+
             $scope.createStudy = function () {
                 if ($scope.createStudyForm.$valid) {
                     return Study
@@ -93,6 +95,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                             creationDate: new Date(),
                             ownerId: LoopBackAuth.currentUserId,
                             duration: $scope.study.duration,
+                            advisorId: JSON.parse($scope.study.adviser).id,
                             keywords_array: $scope.study.keywords,
                             locations_array: $scope.study.locations,
                             required_study_programs_array: $scope.preferences.studyPrograms,

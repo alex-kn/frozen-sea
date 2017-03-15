@@ -24,6 +24,11 @@ angular
                         study.isThisAStudyISuperviseAndNeedsApproval = false; //TODO
 
 
+
+                        study.isThisAStudyISupervise = (study.advisorId == userId) && study.approved;
+                        study.isThisAStudyISuperviseAndNeedsApproval = (study.advisorId == userId) && !study.approved;
+
+
                         if(response != undefined) {
                             response.forEach(function (participation) {
                                 if (participation.studyId == study.id) {

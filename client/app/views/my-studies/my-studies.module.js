@@ -1,12 +1,13 @@
 angular
     .module('myStudies', ['ngRoute', 'ngMaterial'])
-    .controller('MyStudiesController', ['$scope', 'Study', 'Participation', 'Subuser', 'LoopBackAuth', '$filter', '$translate','$location', 'StudyHighlightService',
-        function ($scope, Study, Participation, Subuser, LoopBackAuth, $filter, $translate, $location, StudyHighlightService) {
+    .controller('MyStudiesController', ['$scope', 'Study', 'Participation', 'Subuser', 'LoopBackAuth', '$filter', '$translate','$location', 'StudyHighlightService', 'ByRoleService',
+        function ($scope, Study, Participation, Subuser, LoopBackAuth, $filter, $translate, $location, StudyHighlightService, ByRoleService) {
 
             $scope.title = $filter('translate')('MY_STUDIES.TITLE');
+            $scope.isAdvisor = false;
             $scope.myStudies = [];
             $scope.createdStudies = [];
-            $scope.advisedStudies = []; //TODO
+            $scope.advisedStudies = [];
             $scope.studyIsLoading = true;
 
 
@@ -49,6 +50,27 @@ angular
             }, function(studies) {
                 $scope.createdStudies = studies;
                 StudyHighlightService.highlightStudy($scope.createdStudies, LoopBackAuth.currentUserId);
+            });
+
+
+            //advisedStudies
+            Study.find({
+                filter: {
+                    where: {
+                        advisorId: LoopBackAuth.currentUserId
+                    }
+                }
+            }, function(studies) {
+                $scope.advisedStudies = studies;
+                StudyHighlightService.highlightStudy($scope.advisedStudies, LoopBackAuth.currentUserId);
+            });
+
+            ByRoleService.getUsersByRole("advisor").then(function(advisors) {
+                advisors.forEach(function(advisor) {
+                    if (LoopBackAuth.currentUserId == advisor.id) {
+                        $scope.isAdvisor = true;
+                    }
+                })
             });
 
 
