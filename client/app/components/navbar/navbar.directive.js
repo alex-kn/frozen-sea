@@ -3,8 +3,8 @@
  */
 
 angular.module('navBarDirective', [])
-    .controller('NavigationController', ['$scope', 'AuthService', '$location', '$route', '$translate', '$mdSidenav', '$log',
-        function ($scope, AuthService, $location, $route, $translate, $mdSidenav, $log) {
+    .controller('NavigationController', ['$scope', '$location', '$route', '$translate', '$mdSidenav', '$log','$rootScope','$window','Subuser',
+        function ($scope, $location, $route, $translate, $mdSidenav, $log, $rootScope, $window, Subuser) {
 
             $scope.toggleSidenav = buildToggler('left');
 
@@ -24,7 +24,10 @@ angular.module('navBarDirective', [])
 
             $scope.logout = function () {
                 console.log('NavigationController: logout');
-                AuthService.logout();
+                return Subuser.logout().$promise.then(function() {
+                    $rootScope.currentUser = null;
+                    $window.location.reload();
+                });
             };
 
             function buildToggler(navID) {
@@ -37,6 +40,8 @@ angular.module('navBarDirective', [])
                         });
                 };
             }
+
+
     }])
     .controller('SidenavController', function ($scope, $timeout, $mdSidenav, $log) {
         $scope.close = function () {

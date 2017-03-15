@@ -314,6 +314,18 @@
     "CANCEL": "Abbrechen"
   },
   "ADMIN_DASHBOARD" : {
-    "ADMIN_DASHBOARD": "Instrumententafel"
+    "ADMIN_DASHBOARD": "Instrumententafel",
+    "ROLES": "Rollen",
+    "ACTIONS": "Aktionen",
+    "ON": "An",
+    "OFF": "Aus",
+    "TOAST_ADMIN" : "Admin-Rechte erfolgreich gewährt!",
+    "TOAST_ADMIN_REVOKE": "Admin-Rechte erfolgreich entzogen!",
+    "TOAST_ADVISOR" : "Advisor-Rechte erfolgreich gewährt!",
+    "TOAST_ADVISOR_REVOKE": "Advisor-Rechte erfolgreich entzogen!",
+    "TOAST_DELETE": "User erfolgreich gelöscht!",
+    "CONFIRM_DELETE_TITLE": "User löschen",
+    "CONFIRM_DELETE_TEXT":"Wollen sie den User wirklich löschen? Dies kann nicht rückgängig gemacht werden!",
+    "CONFIRM_DELETE_ABORT": "Abbrechen"
   }
 }

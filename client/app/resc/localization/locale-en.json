@@ -258,6 +258,18 @@
     "CANCEL": "Cancel"
   },
   "ADMIN_DASHBOARD" : {
-    "ADMIN_DASHBOARD": "Administration Area"
+    "ADMIN_DASHBOARD": "Administration Area",
+    "ROLES": "Roles",
+    "ACTIONS": "Actions",
+    "ON": "On",
+    "OFF": "Off",
+    "TOAST_ADMIN" : "Admin rights successfully granted!",
+    "TOAST_ADMIN_REVOKE": "Admin rights successfully revoked!",
+    "TOAST_ADVISOR" : "Advisor rights successfully granted!",
+    "TOAST_ADVISOR_REVOKE": "Admin rights successfully revoked!",
+    "TOAST_DELETE": "User successfully deleted!",
+    "CONFIRM_DELETE_TITLE": "User deletion",
+    "CONFIRM_DELETE_TEXT":"Do you really want to delete this user? You can not undo this action!",
+    "CONFIRM_DELETE_ABORT": "Abort"
   }
 }
