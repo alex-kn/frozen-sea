@@ -312,7 +312,12 @@
     "MOUSEOVER_HELP_1": "Hilfestellung",
     "NOT_SPECIFIED" : "keine Angabe",
     "ADD" : "Hinzufügen",
-    "UNTIL" : "bis"
+    "UNTIL" : "bis",
+    "ARE_YOU_SURE" : "Bist du sicher?",
+    "DELETE_STUDY_CONFIRMATION" : "Das Löschen der Studie kann nicht rückgängig gemacht werden!",
+    "STUDY_DELETED" : "Studie erfolgreich gelöscht!",
+    "BACK" : "Zurück",
+    "STUDY_DELETION_FAILED" : "Eine Studie mit bereits angemeldeten Teilnehmern kann nicht gelöscht werden"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",
