@@ -89,9 +89,6 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                 });
                 $scope.study.startDate = $scope.dates[0].startDate;
                 $scope.study.endDate = $scope.dates[$scope.dates.length-1].startDate;
-                console.log($scope.dates.length)
-                console.log($scope.study.startDate);
-                console.log($scope.study.endDate);
                 $scope.study.$save();
             }
 
@@ -113,7 +110,6 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                     })
                     .$promise
                     .then(function (response) {
-                        console.log(response);
                         response.new = true;
                         response.startDate = new Date(response.startDate);
                         response.participants = 0;
