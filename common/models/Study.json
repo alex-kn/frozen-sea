@@ -31,6 +31,10 @@
       "type": "array",
       "required": false
     },
+    "approved": {
+      "type": "boolean",
+      "required": false
+    },
     "title": {
       "type": "string",
       "required": true

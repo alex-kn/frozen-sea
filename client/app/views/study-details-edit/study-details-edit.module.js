@@ -12,8 +12,8 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsEditController', ['$location','$routeParams', '$scope', 'Subuser','Participation','LoopBackAuth', '$http', 'Study',
-        function ($location, $routeParams, $scope, Subuser, Participation, LoopBackAuth, $http, Study) {
+    .controller('StudyDetailsEditController', ['$location', '$routeParams', '$scope', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study','StudyDate','ToastService','$filter',
+        function ($location, $routeParams, $scope, Subuser, Participation, LoopBackAuth, $http, Study, StudyDate, ToastService, $filter) {
 
 
             $scope.study = Study
@@ -22,47 +22,93 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                     $scope.study.endDate = new Date($scope.study.endDate);
                     $scope.isOwner = ($scope.study.ownerId == LoopBackAuth.currentUserId);
                     loadDates();
-                    loadRewards();
+                    loadParticipations();
                 });
 
             function loadDates() {
-                $scope.appointments = Study.dates({id: $scope.study.id}, function (response) {
+                $scope.dates = Study.dates({id: $scope.study.id}, function (response) {
+                    //TODO sort dates
+                    response.reverse();
                     return Promise.all(response.map(function (res) {
                         res.startDate = new Date(res.startDate);
                         res.endDate = new Date(res.endDate);
+                        res.deadline = 24;
+                        res.participants = 0;
+
+                        $scope.participations.$promise.then(function () {
+                            $scope.participations.forEach(function (participation) {
+                                if (participation.studyDateId == res.id) {
+                                    res.participants += 1;
+                                }
+                            });
+                        });
+
+
                         return res;
+
                     }));
                 });
             }
 
-            function loadRewards() {
-                if ($scope.study.reward.reward_money) $scope.money = true;
-                if ($scope.study.reward.reward_voucher) $scope.voucher = true;
-                if ($scope.study.reward.reward_hours) $scope.hours = true;
-                $scope.resetMoney = function () {
-                    $scope.study.reward.reward_money = null;
-                };
-                $scope.resetVoucher = function () {
-                    $scope.study.reward.reward_voucher = null;
-                }
-                $scope.resetHours = function () {
-                    $scope.study.reward.reward_hours = null;
-                }
+            function loadParticipations() {
+                $scope.participations = Participation.find({
+                    filter: {
+                        where: {
+                            studyId: $scope.study.id,
+                            status: {neq: 'declined'}
+                        }
+                    }
+                });
             }
 
 
-            $scope.removeAppointment = function () {
+            $scope.removeDate = function (date) {
+                StudyDate.participations.count({id: date.id},function (response) {
+                    if(response.count){
+                        ToastService.setToastText($filter('translate')('STUDY_DETAILS.DELETE_DATE_FAILED'));
+                        ToastService.displayToast();
+                    }else{
+                        StudyDate.deleteById({id: date.id},function (response) {
+                            console.log(response);
+                            var index = $scope.dates.indexOf(date);
+                            if (index > -1) {
+                                $scope.dates.splice(index, 1);
+                            }
+
+                        })
+                    }
+                });
+            };
+
+            $scope.saveDate = function(date){
+
+                StudyDate.participations.count({id: date.id},function (response) {
+                    if(response.count > date.maxParticipants){
+                        ToastService.setToastText($filter('translate')('STUDY_DETAILS.MAX_PARTICIPANT_CHANGE_FAILED'));
+                        ToastService.displayToast();
+                    }else{
+                        var tempParticipants = date.participants;
+                        date.$save().then(function () {
+                            console.log("Date saved.");
+                            date.changed = false;
+                            date.saved = true;
+                            date.participants = tempParticipants;
+                        });
+                    }
+                });
+
 
             };
 
             $scope.updateStudy = function () {
+
                 $scope.study
                     .$save()
-                    .then(function(res)  {
+                    .then(function (res) {
                         console.log("changes saved");
                         $location.path('/study-details-view').search({'study': $scope.study.id});
                         //TODO notify participants
-                    }).catch(function(req) {
+                    }).catch(function (req) {
                     console.log("error saving changes");
                 });
             }
@@ -73,7 +119,7 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
 
             $scope.deleteStudy = function () {
                 //TODO delete participations and studyDates aswell
-                Study.deleteById({id: $scope.study.id}, function (response){
+                Study.deleteById({id: $scope.study.id}, function (response) {
                     console.log("Study deleted!");
                     $location.path('/home');
                 });

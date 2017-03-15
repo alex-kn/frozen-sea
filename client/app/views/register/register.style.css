@@ -93,5 +93,10 @@ md-toolbar.toolbar {
 .registration md-icon {
   margin-right: .5rem;
   color: #EF5350; }
+.registration .spacer {
+  margin-right: 2rem; }
+.registration .flag {
+  height: 0.9rem;
+  width: 1.3rem; }
 
 /*# sourceMappingURL=register.style.css.map */

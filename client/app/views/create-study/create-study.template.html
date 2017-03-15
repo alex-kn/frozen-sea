@@ -26,7 +26,7 @@
         <!-- START create study form -->
         <form name="createStudyForm" layout="column">
 
-            <md-tabs md-dynamic-height md-border-bottom>
+            <md-tabs md-dynamic-height md-border-bottom md-selected="tabIndex">
 
                 <!-- START general tab -->
                 <md-tab label="{{'CREATE_STUDY.GENERAL_TAB_LABEL' | translate}}">
@@ -235,7 +235,7 @@
 
                             <md-input-container class="md-block margin-btm-0" flex="100" flex-gt-xs="33">
                                 <label>{{'CREATE_STUDY.APPOINTMENT_DEADLINE' | translate}}</label>
-                                <md-datepicker ng-model="appointment.deadline" md-max-date="study.startDate"></md-datepicker>
+                                <input type="number" ng-model="appointment.deadline">
                             </md-input-container>
 
                             <md-input-container class="md-block" flex="100" style="margin-top:0px">
@@ -269,6 +269,12 @@
                                     <span class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">person_add</i>{{ appointment.deadline | date:'dd.MM.yy' }} </span>
                                 </md-card-content>
                             </md-card>
+
+                        </div>
+
+                        <div layout="row" layout-xs="column" layout-wrap>
+
+                            <md-button class="md-accent" ng-click="selectTab()">{{'CREATE_STUDY.SET_PREFERENCES' | translate}}</md-button>
 
                         </div>
 
@@ -370,8 +376,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        </div>
                         </div>
                     </md-content>
                     <!-- END general requirements -->
@@ -522,8 +526,14 @@
                     </md-content>
                     <!-- END technical requirements -->
 
+                    <md-content class="md-padding">
+                        <div layout="row" layout-xs="column" layout-wrap>
+                            <md-button class="md-accent" ng-click="selectTab()">{{'CREATE_STUDY.SET_GENERAL_INFORMATION' | translate}}</md-button>
+                        </div>
+                    </md-content>
+
                 </md-tab>
-                <!-- START requirements tab -->
+                <!-- END requirements tab -->
 
             </md-tabs>
 

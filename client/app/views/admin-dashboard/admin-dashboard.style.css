@@ -75,30 +75,8 @@ md-toolbar.toolbar {
   margin-top: .5rem;
   color: #9E9E9E; }
 
-form .errors {
-  font-size: 12px;
-  color: #dd2c00;
-  margin-top: 10px; }
-form md-checkbox {
-  margin-right: 4rem; }
-  form md-checkbox:last-of-type {
-    margin-right: 0; }
+.error-message {
+  color: #EF5350;
+  font-size: 0.70em; }
 
-.button-green[disabled] {
-  color: forestgreen !important; }
-
-.align-items {
-  display: inline-flex;
-  margin-top: 1rem;
-  margin-bottom: 0; }
-  .align-items i {
-    margin-right: 1rem; }
-  .align-items md-input-container {
-    margin: 0; }
-  .align-items input {
-    width: 3rem; }
-  .align-items .md-errors-spacer {
-    min-height: 0 !important;
-    max-height: 0 !important; }
-
-/*# sourceMappingURL=study-details-edit.style.css.map */
+/*# sourceMappingURL=admin-dashboard.style.css.map */

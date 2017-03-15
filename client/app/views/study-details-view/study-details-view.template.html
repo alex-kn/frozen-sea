@@ -33,39 +33,45 @@
 
             </div>
 
-            <div class="study-details" layout-gt-xs="row" layout-align="center center" layout-wrap>
+            <div class="study-details" layout-gt-xs="row" layout-align="start center" layout-wrap>
 
-                <md-subheader flex="15">
+                <md-subheader ng-show="study.keywords_array.length" flex="25">
                     {{'STUDY_DETAILS.KEYWORDS' | translate}}:
                 </md-subheader>
-                <span flex="85" aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
+                <span flex="75" ng-show="study.keywords_array.length" aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
                     {{study.keywords_array.join(" | ")}}
                 </span>
 
-                <md-subheader flex="15">
+                <md-subheader flex="25">
                     {{'CREATE_STUDY.LOCATION' | translate}}:
                 </md-subheader>
-                <span flex="85" aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
+                <span flex="75" aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
                     {{study.locations_array.join(" | ")}}
                 </span>
 
-                <md-subheader flex="15">
+                <md-subheader flex="25">
                     {{'STUDY_DETAILS.BY' | translate}}:
                 </md-subheader>
-                <span ng-show="ownerReady" flex="85" aria-label="{{'STUDY_DETAILS.BY' | translate}}">
+                <span ng-show="ownerReady" flex="75" aria-label="{{'STUDY_DETAILS.BY' | translate}}">
                     {{owner}}
                 </span>
-                <md-progress-circular flex="85" ng-hide="ownerReady" class="md-accent owner-loading" md-mode="indeterminate" md-diameter="20">
+                <md-progress-circular flex="75" ng-hide="ownerReady" class="md-accent owner-loading" md-mode="indeterminate" md-diameter="20">
                 </md-progress-circular>
 
-                <md-subheader ng-show="isOwner" flex="15">
+                <md-subheader ng-show="isOwner" flex="25">
                     {{'STUDY_DETAILS.PARTICIPANTS' | translate}}:
                 </md-subheader>
-
-
-                <span ng-show="isOwner" flex="85" aria-label="{{'STUDY_DETAILS.PARTICIPANTS' | translate}}">
+                <span ng-show="isOwner" flex="75" aria-label="{{'STUDY_DETAILS.PARTICIPANTS' | translate}}">
                     {{totalParticipants}}
                 </span>
+
+                <md-subheader ng-show="isOwner && (femaleParticipants + maleParticipants)" flex="25">
+                    {{'STUDY_DETAILS.GENDER_DISTRIBUTION' | translate}}:
+                </md-subheader>
+                <md-progress-linear value="{{(femaleParticipants / (femaleParticipants + maleParticipants)) * 100}}"
+                                    ng-show="isOwner && (femaleParticipants + maleParticipants)" flex="70" aria-label="{{'STUDY_DETAILS.GENDER_DISTRIBUTION' | translate}}">
+                    {{totalParticipants}}
+                </md-progress-linear>
             </div>
 
 
@@ -98,7 +104,7 @@
                 </md-radio-button>
 
                 <md-radio-button flex-xs="100" flex-gt-xs="33" value="reward_hours"
-                                 ng-show="study.reward.reward_hours"
+                                 ng-show="study.reward.reward_hours && isStudent"
                                  aria-label="{{'CREATE_STUDY.HOURS_ARIA_LABEL' | translate}}">
                     {{study.reward.reward_hours}}
                     {{'STUDY_DETAILS.CHOOSE_REWARD_HOURS' | translate}}
@@ -123,7 +129,7 @@
 
                 <h2 class="md-headline align-items">
                     <i class="material-icons" md-colors="{color: 'accent'}">today</i>
-                    {{ day[0].startDate | date: 'fullDate'}}
+                    {{ day[0].startDate | date: 'dd.MM.yyyy'}}
                     <md-button ng-click="toggleDay(day)" class="md-icon-button md-accent" ng-show="day.show">
                         <md-icon class="material-icons md-24 md-primary">keyboard_arrow_down</md-icon>
                     </md-button>
@@ -179,7 +185,7 @@
                                                    aria-label="{{'STUDY_DETAILS.CONFIRMED_PARTICIPANT' | translate}}">
                                             {{'STUDY_DETAILS.CONFIRMED_PARTICIPANT' | translate}}
                                         </md-button>
-                                        <md-button ng-click="declineParticipation(participation)"
+                                        <md-button ng-click="updateParticipationStatus(participation, 'declined')"
                                                    class="md-warn card-button"
                                                    ng-hide="participation.status == 'declined'"
                                                    aria-label="{{'STUDY_DETAILS.DECLINE_PARTICIPANT' | translate}}">
@@ -217,6 +223,7 @@
                                             {{'STUDY_DETAILS.WAS_NOT_HERE' | translate}}
                                         </md-button>
                                     </span>
+                                    </span>
 
                                 </md-list-item>
                             </md-list>
@@ -233,6 +240,11 @@
                                        ng-show="(myParticipation.status == 'absent') && date.participating"
                                        aria-label="{{'STUDY_DETAILS.ABSENT' | translate}}">
                                 {{'STUDY_DETAILS.ABSENT' | translate}}
+                            </md-button>
+                            <md-button class="button-red" disabled="true"
+                                       ng-show="(myParticipation.status == 'declined') && date.participating"
+                                       aria-label="{{'STUDY_DETAILS.DECLINED_PARTICIPANT' | translate}}">
+                                {{'STUDY_DETAILS.DECLINED_PARTICIPANT' | translate}}
                             </md-button>
                             <md-button class="button-green" disabled="true"
                                        ng-show="(myParticipation.status == 'confirmed') && date.participating"

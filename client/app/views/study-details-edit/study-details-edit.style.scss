@@ -17,3 +17,32 @@ form {
   }
 
 }
+
+.button-green[disabled] {
+  color: forestgreen !important;
+}
+
+.align-items {
+  display: inline-flex;
+  margin-top: 1rem;
+  margin-bottom: 0;
+
+  i {
+    margin-right: 1rem;
+  }
+
+  md-input-container {
+    margin: 0;
+  }
+
+  input {
+    width: 3rem;
+  }
+
+  .md-errors-spacer {
+    min-height: 0 !important;
+    max-height: 0 !important;
+  }
+}
+
+
