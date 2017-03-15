@@ -7,57 +7,49 @@ angular
 
         function highlightStudy(studies, userId) {
 
-        //highlight studies of special interest
-            studies.forEach(function (study) {
-                study.isThisMyOwnStudy = study.ownerId === userId;
-                study.isFinished = new Date(study.endDate) < new Date();
-                study.isApproved = study.approved;
+            return new Promise(function(resolve, reject) {
 
-                study.isThisAStudyISupervise = false; //TODO
-                study.isThisAStudyISuperviseAndNeedsApproval = false; //TODO
+                //highlight studies of special interest
+                studies.forEach(function (study) {
+                    study.isThisMyOwnStudy = study.ownerId === userId;
+                    study.isFinished = new Date(study.endDate) < new Date();
+                    study.isApproved = study.approved;
 
-                Participation.count({
-                    where: {
-                        participantId: userId,
-                        studyId: study.id,
-                        status: "pending"
-                    }
-                }, function (response) {
-                    study.isThisAStudyIParticipateInAndIAmNotApproved = response.count > 0;
+                    study.isThisAStudyISupervise = false; //TODO
+                    study.isThisAStudyISuperviseAndNeedsApproval = false; //TODO
+
+
+                    Participation.find({filter: {
+                        where: {
+                            participantId: userId,
+                            studyId: study.id
+                        }
+                    }}, function (response) {
+                        if(response != undefined) {
+                            response.forEach(function (participation) {
+                                if (participation.status == "pending") {
+                                    study.isThisAStudyIParticipateInAndIAmNotApproved = true;
+                                }
+                                if (participation.status == "confirmed") {
+                                    study.isThisAStudyIParticipateInAndIAmApproved = true;
+                                }
+                                if (participation.status == "absent") {
+                                    study.isThisAStudyIParticipateInAndIDIDNTFinishedIt = true;
+                                }
+                                if (participation.status == "completed") {
+                                    study.isThisAStudyIParticipateInAndIFinishedIt = true;
+                                }
+                            });
+                        }
+                        return studies
+                    });
+
+
                 });
 
-                Participation.count({
-                    where: {
-                        participantId: userId,
-                        studyId: study.id,
-                        status: "confirmed"
-                    }
-                }, function (response) {
-                    study.isThisAStudyIParticipateInAndIAmApproved = response.count > 0
-                });
 
-                Participation.count({
-                    where: {
-                        participantId: userId,
-                        studyId: study.id,
-                        status: "absent"
-                    }
-                }, function (response) {
-                    study.isThisAStudyIParticipateInAndIDIDNTFinishedIt = response.count > 0;
-                });
-
-                Participation.count({
-                    where: {
-                        participantId: userId,
-                        studyId: study.id,
-                        status: "completed"
-                    }
-                }, function (response) {
-                    study.isThisAStudyIParticipateInAndIFinishedIt = response.count > 0
-                });
             });
 
-            return studies;
         }
 
         return {

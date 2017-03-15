@@ -57,6 +57,10 @@ angular
                 } else {
                     $scope.studies = $scope.studiesTemp;
                 }
+
+                StudyHighlightService.highlightStudy($scope.studies, LoopBackAuth.currentUserId).then(function(studies) {
+                    $scope.studies=studies;
+                });
             };
 
             $scope.toggle = function() {
@@ -73,7 +77,9 @@ angular
                     $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences);
 
 
-                    StudyHighlightService.highlightStudy($scope.studies, LoopBackAuth.currentUserId);
+                    StudyHighlightService.highlightStudy($scope.studies, LoopBackAuth.currentUserId).then(function(studies) {
+                        $scope.studies=studies;
+                    });
 
                 },function (error){
                     if(error.status == 404){

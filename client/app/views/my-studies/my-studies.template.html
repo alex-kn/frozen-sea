@@ -52,7 +52,18 @@
                     {{'MY_STUDIES.MY_STUDIES' | translate}}
                 </md-tab-label>
                 <md-tab-body>
-                    <md-card ng-repeat="study in myStudies | filter:search" class="custom-pointer" ng-click="showDetails(study)">
+                    <md-card ng-repeat="study in myStudies | filter:search" class="custom-pointer" ng-click="showDetails(study)"
+                             ng-class="{
+                     'stuy-not-approved': !study.isApproved,
+                     'my-study': study.isThisMyOwnStudy,
+                     'advised-study': study.isThisAStudyISupervise,
+                     'advised-study-needs-approval': study.isThisAStudyISuperviseAndNeedsApproval,
+                     'participated-study-not-approved': study.isThisAStudyIParticipateInAndIAmNotApproved,
+                     'participated-study-approved':study.isThisAStudyIParticipateInAndIAmApproved,
+                     'participated-study-finished':study.isThisAStudyIParticipateInAndIFinishedIt,
+                     'participated-study-not-finished':study.isThisAStudyIParticipateInAndIDIDNTFinishedIt,
+                     'study-is-over': study.isFinished
+                     }">
                         <md-card-title>
                             <md-card-title-text>
                                 <div class="title-box">
@@ -98,7 +109,18 @@
                     {{'MY_STUDIES.CREATED_STUDIES' | translate}}
                 </md-tab-label>
                 <md-tab-body>
-                    <md-card ng-repeat="study in createdStudies | filter:search" class="custom-pointer" ng-click="showDetails(study)">
+                    <md-card ng-repeat="study in createdStudies | filter:search" class="custom-pointer" ng-click="showDetails(study)"
+                             ng-class="{
+                     'stuy-not-approved': !study.isApproved,
+                     'my-study': study.isThisMyOwnStudy,
+                     'advised-study': study.isThisAStudyISupervise,
+                     'advised-study-needs-approval': study.isThisAStudyISuperviseAndNeedsApproval,
+                     'participated-study-not-approved': study.isThisAStudyIParticipateInAndIAmNotApproved,
+                     'participated-study-approved':study.isThisAStudyIParticipateInAndIAmApproved,
+                     'participated-study-finished':study.isThisAStudyIParticipateInAndIFinishedIt,
+                     'participated-study-not-finished':study.isThisAStudyIParticipateInAndIDIDNTFinishedIt,
+                     'study-is-over': study.isFinished
+                     }">
                         <md-card-title>
                             <md-card-title-text>
                                 <div class="title-box">
@@ -144,7 +166,18 @@
                     {{'MY_STUDIES.ADVISED_STUDIES' | translate}}
                 </md-tab-label>
                 <md-tab-body>
-                    <md-card ng-repeat="study in advisedStudies | filter:search" class="custom-pointer" ng-click="showDetails(study)">
+                    <md-card ng-repeat="study in advisedStudies | filter:search" class="custom-pointer" ng-click="showDetails(study)"
+                    ng-class="{
+                    'stuy-not-approved': !study.isApproved,
+                    'my-study': study.isThisMyOwnStudy,
+                    'advised-study': study.isThisAStudyISupervise,
+                    'advised-study-needs-approval': study.isThisAStudyISuperviseAndNeedsApproval,
+                    'participated-study-not-approved': study.isThisAStudyIParticipateInAndIAmNotApproved,
+                    'participated-study-approved':study.isThisAStudyIParticipateInAndIAmApproved,
+                    'participated-study-finished':study.isThisAStudyIParticipateInAndIFinishedIt,
+                    'participated-study-not-finished':study.isThisAStudyIParticipateInAndIDIDNTFinishedIt,
+                    'study-is-over': study.isFinished
+                    }">
                         <md-card-title>
                             <md-card-title-text>
                                 <div class="title-box">

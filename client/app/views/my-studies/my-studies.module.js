@@ -18,23 +18,30 @@ angular
                     }
                 }
             }, function(userParticipations){
-                Study.find(function(allStudies){
-                    for(var i = 0; i < userParticipations.length; i++) {
-                        for (var j = 0; j < allStudies.length; j++) {
-                            if (allStudies[j].id == userParticipations[i].studyId) {
-                                $scope.myStudies.push(allStudies[j]);
-                                $scope.myStudies = removeDuplicates($scope.myStudies, 'id');
-                            }
+
+                var studyIds = [];
+                userParticipations.map(function(participation) {
+                    studyIds.push(participation.studyId);
+                });
+
+                studyIds = removeDuplicates(studyIds);
+                Study.find({filter: {
+                    where: {
+                        id: {
+                            inq: studyIds
                         }
                     }
-
-                    StudyHighlightService.highlightStudy($scope.myStudies, LoopBackAuth.currentUserId);
+                }}, function(studies){
+                    $scope.myStudies=studies;
+                    StudyHighlightService.highlightStudy($scope.myStudies, LoopBackAuth.currentUserId).then(function(studies) {
+                        $scope.myStudies=studies;
+                    });
                     $scope.studyIsLoading = false;
                 });
             });
 
 
-            //createdSTudies
+            //createdStudies
             Study.find({
                 filter: {
                     where: {
@@ -43,7 +50,9 @@ angular
                 }
             }, function(studies) {
                 $scope.createdStudies = studies;
-                StudyHighlightService.highlightStudy($scope.createdStudies, LoopBackAuth.currentUserId);
+                StudyHighlightService.highlightStudy($scope.createdStudies, LoopBackAuth.currentUserId).then(function(studies) {
+                    $scope.createdStudies=studies;
+                });
             });
 
 
@@ -55,12 +64,12 @@ angular
                 $scope.show = !$scope.show;
             };
 
-            function removeDuplicates(array, property) {
+            function removeDuplicates(array) {
                 var new_array = [];
                 var lookup  = {};
 
                 for (var i in array) {
-                    lookup[array[i][property]] = array[i];
+                    lookup[array[i]] = array[i];
                 }
                 for (i in lookup) {
                     new_array.push(lookup[i]);
