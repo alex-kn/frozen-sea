@@ -237,7 +237,7 @@
     "SUPERVISED_STUDY": "Diese Studie wird von dir betreut",
     "SUPERVISED_STUDY_AND_APPROVAL": "Diese Studie muss von dir freigegeben werden",
     "READY_TO_GO": "Deine Anmeldung zu dieser Studie wurde vom Studienersteller bestätigt",
-    "NEEDS_CONFIRM" :"Deine Anmelund zu dieser Studie muss vom Studienersteller bestätigt werden",
+    "NEEDS_CONFIRM" :"Deine Anmelung zu dieser Studie muss vom Studienersteller bestätigt werden",
     "SUCCESS": "Du hast erfolgreich an dieser Studie teilgenommen",
     "FAIL" : "Du bist nicht zu deinem Termin erschienen",
     "FINI": "Diese Studie ist abgelaufen",
@@ -247,7 +247,8 @@
     "STUDY_NAME": "Studienname",
     "STUDY_NAME_2":"Name deiner Studie",
     "EXAMPLE":"Zum Beispiel: Fahrverhalten nach erhöhtem Milchkonsum",
-    "WHAT_NAME":"Wie ist der Name deiner Studie?"
+    "WHAT_NAME":"Wie ist der Name deiner Studie?",
+    "CAREFUL": "Lese immer die Beschreibung und die Voraussetzungen einer Studie bevor du teilnimmst."
   },
   "ARCHIVE": {
     "TITLE" : "Archiv",
