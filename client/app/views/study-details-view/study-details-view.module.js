@@ -45,6 +45,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 }
                 Study.owner({id: $scope.study.id}, function (res) {
                     $scope.owner = res.firstName + " " + res.secondName;
+                    $scope.ownerMail = res.email;
                     $scope.ownerReady = true;
                 });
                 Study.advisor({id :$scope.study.id}, function (res){
@@ -475,17 +476,21 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
             $scope.sendMailToParticipants = function () {
 
-                $q.all($scope.participations.map(function (participation) {
-                    Participation.participant({id: participation.id}, function (subuser) {
-                        if(typeof subuser.email == 'undefined'){
-                            console.log("Mail is undefined. Skipping.");
-                            return;
-                        }
+                if($scope.isOwner) {
+                    $q.all($scope.participations.map(function (participation) {
+                        Participation.participant({id: participation.id}, function (subuser) {
+                            if (typeof subuser.email == 'undefined') {
+                                console.log("Mail is undefined. Skipping.");
+                                return;
+                            }
 
-                        EmailService.sendEmail(subuser.email, $scope.currentUser.email, $scope.subjectString, $scope.bodyString, $scope.bodyString);
-                        console.log("Mail sent to " +  subuser.email);
-                    })
-                }))
-
+                            EmailService.sendEmail(subuser.email, $scope.currentUser.email, $scope.subjectString, $scope.bodyString, $scope.bodyString);
+                            console.log("send mail to " + subuser.email + " from " + $scope.currentUser.email);
+                        })
+                    }))
+                }else{
+                    console.log("send mail to " + $scope.ownerMail + " from " + $scope.currentUser.email);
+                    EmailService.sendEmail($scope.ownerMail, $scope.currentUser.email, $scope.subjectString, $scope.bodyString, $scope.bodyString);
+                }
             }
         }]);

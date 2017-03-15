@@ -325,7 +325,8 @@
     "LOCKED" : "Nicht freigeschaltet",
     "LOCKED_MOUSEOVER" :"Dein Betreuer wurde beim Erstellen der Studie automatisch benachrichtigt. Sollte die Studie nach mehreren Tagen immer noch nicht freigeschaltet sein, schreibe Ihm oder Ihr bitte persönlich eine Nachricht.",
     "GENERAL_INFORMATION" : "Allgemeine Informationen",
-    "SUPERVISOR" : "Betreuer"
+    "SUPERVISOR" : "Betreuer",
+    "CONTACT_CREATOR": "Veranstalter kontaktieren"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

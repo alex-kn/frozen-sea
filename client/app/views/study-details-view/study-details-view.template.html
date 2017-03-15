@@ -426,20 +426,25 @@
         </md-content>
 
         <!-- START buttons -->
-        <md-content class="md-padding" ng-show="isOwner">
+        <md-content class="md-padding">
 
             <div layout="row" layout-xs="column">
 
                 <md-input-container>
-                    <md-button
+                    <md-button ng-show="isOwner"
                             ng-click="editStudy()"
                             class="md-accent md-raised">
                         {{'STUDY_DETAILS.EDIT_STUDY' | translate}}
                     </md-button>
-                    <md-button
+                    <md-button ng-show="isOwner"
                             ng-click="showContactForm()"
                             class="md-accent md-raised">
                         {{'STUDY_DETAILS.CONTACT_PARTICIPANTS' | translate}}
+                    </md-button>
+                    <md-button ng-show="!isOwner"
+                            ng-click="showContactForm()"
+                            class="md-accent md-raised">
+                        {{'STUDY_DETAILS.CONTACT_CREATOR' | translate}}
                     </md-button>
                 </md-input-container>
 

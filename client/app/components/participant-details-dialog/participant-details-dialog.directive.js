@@ -45,7 +45,7 @@ angular
                 $scope.subjectString = "";
                 $scope.bodyString = "";
 
-            }
+            };
 
             $scope.cancel = function() {
                 $mdDialog.cancel();
