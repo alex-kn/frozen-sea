@@ -80,6 +80,9 @@ md-toolbar.toolbar {
   .align-items i {
     margin-right: .5rem; }
 
+.md-button i {
+  margin-left: .5rem !important; }
+
 .participating.confirmed {
   background-color: lightgreen; }
 
@@ -136,9 +139,6 @@ md-card {
 .button-red[disabled] {
   color: red !important; }
 
-.button-red[disabled] {
-  color: red !important; }
-
 .study-details {
   margin-top: 1rem; }
   .study-details * {
@@ -167,5 +167,8 @@ md-progress-linear {
 
 .margin-bot-5 {
   margin-bottom: .5rem; }
+
+.md-button.padding {
+  padding: 0 4rem; }
 
 /*# sourceMappingURL=study-details-view.style.css.map */
