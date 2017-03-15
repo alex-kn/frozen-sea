@@ -300,7 +300,8 @@
     "MAX_PARTICIPANT_CHANGE_FAILED" : "Die maximale Teilnehmerzahl kann nicht niedriger sein als die Anzahl der bereits angemeldeten Teilnehmer.",
     "DELETE_DATE_FAILED" : "Das Löschen eines Termins mit angemeldeten Teilnehmern ist nicht möglich.",
     "DELETE_DATE_SUCCESSFUL" : "Termin erfolgreich gelöscht",
-    "HOURS_IN_ADVANCE" : "Stunden vorher"
+    "HOURS_IN_ADVANCE" : "Stunden vorher",
+    "NOT_SPECIFIED" : "keine Angabe"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",
