@@ -83,7 +83,7 @@ For retrieving experiment hours of students, call https://#path-to-api#/getVPSFr
 In the original version #path-to-website# resolves to https://frozen-sea.herokuapp.com and #path-to-api# to https://frozen-sea.herokuapp.com/api.
 
 # Contributors
-The website was designed and built by Alexander Knittel, Florian, Jan Mayer and Mathis Gales, with the help and supervision of Juliane Franze and Tobias Seitz
+The website was designed and built by Alexander Knittel, Fabian, Jan Mayer and Mathis Gales, with the help and supervision of Juliane Franze and Tobias Seitz
 For more information or help, please contact: mathis.gales@gmail.com.
 
 
