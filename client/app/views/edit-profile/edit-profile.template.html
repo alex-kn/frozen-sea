@@ -22,7 +22,7 @@
                 <div class="md-list-item-text" layout="row" layout-align="center center">
                     <span flex><b>
                         <div ng-show="key == 'Passwort'">{{'EDIT_PROFILE.PASSWORD' | translate}}</div>
-                        <div ng-show="key == 'Username'">{{key}}</div>
+                        <div ng-show="key == 'Email'">{{key}}</div>
                     </b></span>
                     <span flex></span>
                     <span flex>{{value}}</span>
@@ -34,15 +34,12 @@
                 </div>
 
             </md-list-item>
-            <md-list-item ng-show="toggleActive[key] && key == 'Username'">
-                <span flex></span>
+            <md-list-item ng-show="toggleActive[key] && key == 'Email'">
                 <span flex>
                     <md-input-container >
-                        <input ng-model="input.name" required type="text" placeholder="{{'EDIT_PROFILE.NEW_USERNAME' | translate}}">
-                        <div ng-show="error.username" class="error-message">{{'EDIT_PROFILE.USERNAME_EXISTS' | translate}}</div>
+                    {{'EDIT_PROFILE.CHANGE_EMAIL' | translate}}
                     </md-input-container>
                    </span>
-                <span><md-button ng-disabled="!input.name" ng-click="changeUsername()">{{'EDIT_PROFILE.CHANGE' | translate}}</md-button></span>
             </md-list-item>
             <md-list-item ng-show="toggleActive[key] && key == 'Passwort'">
                 <span flex>

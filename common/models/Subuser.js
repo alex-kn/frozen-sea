@@ -133,8 +133,6 @@ module.exports = function (Subuser) {
                     var counter = 0;
                     for (var i = 0; i < userIds.length; i++) {
                         Subuser.findById(userIds[i], function (err, instance) {
-                            console.log(instance);
-
                             if (instance != null) {
                                 users.push({
                                     id: instance.id,
@@ -147,7 +145,6 @@ module.exports = function (Subuser) {
                             }
                                 if ((users.length+counter) === userIds.length) {
                                     cb(null, users);
-                                    console.log(users);
                                 }
                         })
                     }

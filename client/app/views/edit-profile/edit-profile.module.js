@@ -11,13 +11,13 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
             getRewards();
 
             $scope.toggleActive = {
-                Username: false,
+                Email: false,
                 Passwort: false
             };
 
             $scope.currentUserData = {
-                Username:'',
-                //Email:'',
+                //Username:'',
+                Email:'',
                 //Name:'',
                 Passwort:''
             };
@@ -27,7 +27,7 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
              * Get Current userdata and save to $scope.currentUserData
              */
             Subuser.getCurrent(function(userData){
-                $scope.currentUserData.Username = userData.username;
+                $scope.currentUserData.Email = userData.email;
                 //$scope.currentUserData.Email = userData.email;
                 //$scope.currentUserData.Name = userData.name;
                 $scope.userId = userData.id;
