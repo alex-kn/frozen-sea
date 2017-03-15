@@ -77,9 +77,7 @@ angular
                     $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences);
 
 
-                    StudyHighlightService.highlightStudy($scope.studies, LoopBackAuth.currentUserId).then(function(studies) {
-                        $scope.studies=studies;
-                    });
+                    StudyHighlightService.highlightStudy($scope.studies, LoopBackAuth.currentUserId);
 
                 },function (error){
                     if(error.status == 404){

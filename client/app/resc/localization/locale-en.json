@@ -163,7 +163,9 @@
     "ADVISER_NOT_LISTED": "If your supervisor is not listed, please send him or her an email",
     "DELETE_CANCEL": "Cancel",
     "SET_PREFERENCES": "Define study requirements",
-    "SET_GENERAL_INFORMATION": "Define general information"
+    "SET_PREFERENCES_2": "Choose requirements, which participants have to conform to",
+    "SET_GENERAL_INFORMATION": "Define general information",
+    "SET_GENERAL_INFORMATION_2": "Switch back to the gernal information tab"
   },
   "HOME": {
   },

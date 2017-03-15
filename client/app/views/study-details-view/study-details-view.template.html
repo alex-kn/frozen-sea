@@ -118,7 +118,18 @@
         <!-- START add dates -->
 
         <md-content class="md-padding">
-            <md-divider></md-divider>
+            <div layout="row" layout-align="center center">
+                <div flex="80">
+                    <md-divider></md-divider>
+                </div>
+                <md-button flex="20" class="md-icon-button md-accent" ng-click="help()">
+                    <div layout="row" layout-align="center center">
+                        {{'STUDY_DETAILS.MOUSEOVER_HELP_1' |translate}}
+                    <md-icon class="material-icons md-24 md-primary">help_outline</md-icon>
+                    </div>
+                    <md-tooltip>{{'STUDY_DETAILS.MOUSEOVER_HELP' |translate}}</md-tooltip>
+                </md-button>
+            </div>
 
             <md-progress-circular ng-hide="datesAreReady" class="md-accent" md-mode="indeterminate">
             </md-progress-circular>

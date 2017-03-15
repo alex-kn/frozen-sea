@@ -148,6 +148,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                                     .then(function (response) {
                                     });
                             }
+
                             var confirm = $mdDialog.confirm()
                                 .title($filter('translate')('CREATE_STUDY.EXPLANATION_TITLE_1') + $filter('translate')('CREATE_STUDY.EXPLANATION_TITLE_2'))
                                 .htmlContent(
@@ -159,10 +160,11 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                                 )
                                 .ariaLabel($filter('translate')('CREATE_STUDY.EXPLANATION_1'))
                                 .ok($filter('translate')('CREATE_STUDY.EXPLANATION_OK'));
-                            $mdDialog.show(confirm).then(function () {
-                                $location.path('/home');
-                            }, function () {
-                            });
+                            //$mdDialog.show(confirm).then(function () {
+                            //    $location.path('/home');
+                            //}, function () {
+                            //});
+                            $location.path('/home');
                         });
                 }
             };

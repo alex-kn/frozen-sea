@@ -116,18 +116,20 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         }
                     }
                 }, function (responseParticipationArray) {
-                    var result = responseParticipationArray.map(function(a) {return a.id;});
+                    var result = responseParticipationArray.map(function (a) {
+                        return a.id;
+                    });
 
                     $q.all(responseParticipationArray.map(function (responseParticipation) {
                         responseParticipation.name = $filter('translate')('STUDY_DETAILS.LOADING_PARTICIPANT');
                         Participation.participant({id: responseParticipation.id}, function (responseUser) {
                             responseParticipation.name = (responseUser.firstName + " " + responseUser.secondName);
-                            Preference.findOne({filter:{where: {subuserId: responseUser.id}}},function (r) {
-                                if(r.gender == 'female'){
+                            Preference.findOne({filter: {where: {subuserId: responseUser.id}}}, function (r) {
+                                if (r.gender == 'female') {
                                     $scope.femaleParticipants += 1;
-                                }else if(r.gender == 'male'){
+                                } else if (r.gender == 'male') {
                                     $scope.maleParticipants += 1;
-                                }else{
+                                } else {
                                     console.log("Mr. " + responseUser.lastname + " has not specified a gender");
                                 }
                             });
@@ -139,7 +141,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
                 if ($scope.isOwner) {
 
-                }else{
+                } else {
                     Participation.find({
                         filter: {
                             where: {
@@ -394,6 +396,27 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 day.show = !day.show;
             };
 
+
+            var helpDialog = $mdDialog.confirm()
+                .title($filter('translate')('STUDY_DETAILS.HELP_1'))
+                .htmlContent(
+                    $filter('translate')('CREATE_STUDY.EXPLANATION_1') + "<br>" +
+                    $filter('translate')('CREATE_STUDY.EXPLANATION_2') + "<br>" +
+                    $filter('translate')('CREATE_STUDY.EXPLANATION_3') + " " +
+                    $filter('translate')('CREATE_STUDY.EXPLANATION_4') + " " +
+                    $filter('translate')('CREATE_STUDY.EXPLANATION_5')
+                )
+                .ariaLabel($filter('translate')('CREATE_STUDY.EXPLANATION_1'))
+                .ok($filter('translate')('CREATE_STUDY.EXPLANATION_OK'));
+
+
+            $scope.help = function () {
+                $mdDialog.show(helpDialog).then(function () {
+                }, function () {
+                });
+            }
+
+
             $scope.showParticipantDetails = function (participation, ev) {
                 var confirm = $mdDialog.confirm({
                     locals: {data: participation},
@@ -411,5 +434,4 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.sendMailToParticipants = function () {
                 //TODO send mail to all participants of the study
             }
-        }])
-;
+        }]);

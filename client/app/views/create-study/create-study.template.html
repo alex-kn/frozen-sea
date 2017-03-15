@@ -275,7 +275,10 @@
 
                         <div layout="row" layout-xs="column" layout-wrap>
 
-                            <md-button class="md-accent" ng-click="selectTab()">{{'CREATE_STUDY.SET_PREFERENCES' | translate}}</md-button>
+                            <md-button class="md-primary md-raised" ng-click="selectTab()">
+                                {{'CREATE_STUDY.SET_PREFERENCES' | translate}}
+                                <md-tooltip>{{'CREATE_STUDY.SET_PREFERENCES_2' | translate}}</md-tooltip>
+                            </md-button>
 
                         </div>
 
@@ -529,7 +532,10 @@
 
                     <md-content class="md-padding">
                         <div layout="row" layout-xs="column" layout-wrap>
-                            <md-button class="md-accent" ng-click="selectTab()">{{'CREATE_STUDY.SET_GENERAL_INFORMATION' | translate}}</md-button>
+                            <md-button class="md-primary md-raised" ng-click="selectTab()">
+                                {{'CREATE_STUDY.SET_GENERAL_INFORMATION' | translate}}
+                                <md-tooltip>{{'CREATE_STUDY.SET_GENERAL_INFORMATION_2' | translate}}</md-tooltip>
+                            </md-button>
                         </div>
                     </md-content>
 

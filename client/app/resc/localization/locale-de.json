@@ -162,7 +162,9 @@
     "ADVISER_NOT_LISTED": "Wenn dein Betruer nicht gelistet ist, schicke ihm oder ihr eine E-Mail",
     "DELETE_CANCEL": "Abbrechen",
     "SET_PREFERENCES": "Studienvoraussetzungen festlegen",
-    "SET_GENERAL_INFORMATION": "Allgemeine Informationen festlegen"
+    "SET_PREFERENCES_2": "Wähle Voraussetzungen aus, welche die Teilnehmer erfüllen müssen",
+    "SET_GENERAL_INFORMATION": "Allgemeine Informationen festlegen",
+    "SET_GENERAL_INFORMATION_2": "Wechsele zurück zum Allgemeine Informationen Tab"
   },
   "HOME": {
   },
@@ -301,7 +303,11 @@
     "MAX_PARTICIPANT_CHANGE_FAILED" : "Die maximale Teilnehmerzahl kann nicht niedriger sein als die Anzahl der bereits angemeldeten Teilnehmer.",
     "DELETE_DATE_FAILED" : "Das Löschen eines Termins mit angemeldeten Teilnehmern ist nicht möglich.",
     "DELETE_DATE_SUCCESSFUL" : "Termin erfolgreich gelöscht",
-    "HOURS_IN_ADVANCE" : "Stunden vorher"
+    "HOURS_IN_ADVANCE" : "Stunden vorher",
+    "HELP": "Hilfestellung zu dieser Seite",
+    "MOUSEOVER_HELP": "Klick mich für mehr Informationen zu dieser Seite",
+    "MOUSEOVER_HELP_1": "Hilfestellung"
+
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",
