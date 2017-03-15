@@ -33,9 +33,7 @@ angular
                     }
                 }}, function(studies){
                     $scope.myStudies=studies;
-                    StudyHighlightService.highlightStudy($scope.myStudies, LoopBackAuth.currentUserId).then(function(studies) {
-                        $scope.myStudies=studies;
-                    });
+                    StudyHighlightService.highlightStudy($scope.myStudies, LoopBackAuth.currentUserId);
                     $scope.studyIsLoading = false;
                 });
             });
@@ -50,9 +48,7 @@ angular
                 }
             }, function(studies) {
                 $scope.createdStudies = studies;
-                StudyHighlightService.highlightStudy($scope.createdStudies, LoopBackAuth.currentUserId).then(function(studies) {
-                    $scope.createdStudies=studies;
-                });
+                StudyHighlightService.highlightStudy($scope.createdStudies, LoopBackAuth.currentUserId);
             });
 
 
