@@ -12,10 +12,11 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsViewController', ['$mdDialog', '$q', '$location', '$routeParams', '$scope', 'StudyDate','Preference', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter', 'ToastService', 'EmailService',
-        function ($mdDialog, $q, $location, $routeParams, $scope, StudyDate,Preference, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService, EmailService) {
+    .controller('StudyDetailsViewController', ['$mdDialog', '$q', '$location', '$routeParams', '$scope', 'StudyDate','Preference', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter', 'ToastService', 'EmailService', 'ByRoleService',
+        function ($mdDialog, $q, $location, $routeParams, $scope, StudyDate,Preference, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService, EmailService, ByRoleService) {
 
             $scope.isOwner = false;
+            $scope.isAdvisor = false;
             $scope.studyIsLoading = true;
             $scope.isParticipating = false;
             $scope.alreadyParticipated = false;
@@ -362,7 +363,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                             if ($scope.myParticipation.status != 'declined') {
                                 studyDate.participants -= 1
                             }
-                            ;
+
                             $scope.isParticipating = false;
                             $scope.waitingForParticipation = false;
                             studyDate.status = "available";
@@ -394,6 +395,25 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
             $scope.toggleDay = function (day) {
                 day.show = !day.show;
+            };
+
+
+            ByRoleService.getUsersByRole("advisor").then(function(advisors) {
+                advisors.forEach(function(advisor) {
+                    if (LoopBackAuth.currentUserId == advisor.id) {
+                        $scope.isAdvisor = true;
+                    }
+                })
+            });
+
+            $scope.unlock = function() {
+                Study.update({where: {id: $scope.study.id}}, {approved: true});
+                $scope.study.approved = true;
+            };
+
+            $scope.relock = function() {
+                Study.update({where: {id: $scope.study.id}}, {approved: false});
+                $scope.study.approved = false;
             };
 
 
