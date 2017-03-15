@@ -317,7 +317,8 @@
     "DELETE_STUDY_CONFIRMATION" : "Das Löschen der Studie kann nicht rückgängig gemacht werden!",
     "STUDY_DELETED" : "Studie erfolgreich gelöscht!",
     "BACK" : "Zurück",
-    "STUDY_DELETION_FAILED" : "Eine Studie mit bereits angemeldeten Teilnehmern kann nicht gelöscht werden"
+    "STUDY_DELETION_FAILED" : "Eine Studie mit bereits angemeldeten Teilnehmern kann nicht gelöscht werden",
+    "GENERAL_INFORMATION" : "Allgemeine Informationen"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

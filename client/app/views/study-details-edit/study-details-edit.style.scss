@@ -18,6 +18,10 @@ form {
 
 }
 
+md-progress-circular {
+  margin: 7rem auto 4rem;
+}
+
 .button-green[disabled] {
   color: forestgreen !important;
 }
@@ -68,4 +72,14 @@ form {
 
 .new-date {
   background-color: lightgreen;
+}
+
+md-card{
+
+  md-card-action{
+
+    md-progress-circular{
+      margin: 0;
+    }
+  }
 }
