@@ -17,6 +17,11 @@
       "required": false,
       "description": "first date of the study"
     },
+    "creationDate": {
+      "type": "date",
+      "required": false,
+      "description": "date of creation"
+    },
     "endDate": {
       "type": "date",
       "required": false,

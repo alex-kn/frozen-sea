@@ -160,12 +160,10 @@
     "DELETE_2": " ?",
     "DELETE_3": "Your progress will be lost",
     "DELETE_OK": "Delete study",
-    "DELETE_CANCEL": "Cancel",
-    "ADVISER_NOT_LISTED": "If your supervisor is not listed, please send him or her an email"
+    "ADVISER_NOT_LISTED": "If your supervisor is not listed, please send him or her an email",
     "DELETE_CANCEL": "Cancel",
     "SET_PREFERENCES": "Define study requirements",
     "SET_GENERAL_INFORMATION": "Define general information"
-
   },
   "HOME": {
   },
@@ -305,5 +303,11 @@
     "CONFIRM_DELETE_TITLE": "User deletion",
     "CONFIRM_DELETE_TEXT":"Do you really want to delete this user? You can not undo this action!",
     "CONFIRM_DELETE_ABORT": "Abort"
+  },
+  "MY_STUDIES" : {
+    "TITLE": "My studies",
+    "MY_STUDIES" : "My participations",
+    "CREATED_STUDIES" : "My created studies",
+    "ADVISED_STUDIES" : "My advised studies"
   }
 }

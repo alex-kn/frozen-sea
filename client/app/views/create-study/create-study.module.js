@@ -90,6 +90,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                             description: $scope.study.description,
                             startDate: AppointmentService.getDates($scope.appointments).startDate,
                             endDate: AppointmentService.getDates($scope.appointments).endDate,
+                            creationDate: new Date(),
                             ownerId: LoopBackAuth.currentUserId,
                             duration: $scope.study.duration,
                             keywords_array: $scope.study.keywords,

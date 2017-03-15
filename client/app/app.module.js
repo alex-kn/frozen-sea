@@ -35,5 +35,6 @@ angular.module('userStudy', [
     'register',
     'adminDashboard',
     'ngMaterial',
-    'ByRoleService'
+    'ByRoleService',
+    'StudyHighlightService'
 ]);

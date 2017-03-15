@@ -159,8 +159,7 @@
     "DELETE_2": " löschen?",
     "DELETE_3": "Dein gesamter Fortschritt wird gelöscht",
     "DELETE_OK": "Studie löschen",
-    "DELETE_CANCEL": "Abbrechen",
-    "ADVISER_NOT_LISTED": "Wenn dein Betruer nicht gelistet ist, schicke ihm oder ihr eine E-Mail"
+    "ADVISER_NOT_LISTED": "Wenn dein Betruer nicht gelistet ist, schicke ihm oder ihr eine E-Mail",
     "DELETE_CANCEL": "Abbrechen",
     "SET_PREFERENCES": "Studienvoraussetzungen festlegen",
     "SET_GENERAL_INFORMATION": "Allgemeine Informationen festlegen"
@@ -367,5 +366,11 @@
     "CONFIRM_DELETE_TITLE": "User löschen",
     "CONFIRM_DELETE_TEXT":"Wollen sie den User wirklich löschen? Dies kann nicht rückgängig gemacht werden!",
     "CONFIRM_DELETE_ABORT": "Abbrechen"
+  },
+  "MY_STUDIES" : {
+    "TITLE": "Meine Studien",
+    "MY_STUDIES" : "Meine Teilnahmen",
+    "CREATED_STUDIES" : "Meine erstellten Studien",
+    "ADVISED_STUDIES" : "Meine betreute Studien"
   }
 }

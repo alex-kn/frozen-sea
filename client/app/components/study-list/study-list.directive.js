@@ -4,8 +4,8 @@
 
 angular
     .module('studyListDirective', ['participateDialogDirective'])
-    .controller('StudyListController', ['$scope', '$routeParams', 'Participation', 'Study', 'StudyDate', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$translate', '$filter', 'ToastService', 'SetPreferencesService',
-        function ($scope, $routeParams, Participation, Study, StudyDate, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter, ToastService, SetPreferencesService) {
+    .controller('StudyListController', ['$scope', '$routeParams', 'Participation', 'Study', 'StudyDate', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$translate', '$filter', 'ToastService', 'SetPreferencesService', 'StudyHighlightService',
+        function ($scope, $routeParams, Participation, Study, StudyDate, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter, ToastService, SetPreferencesService, StudyHighlightService) {
 
 
             $scope.show = false;
@@ -20,7 +20,7 @@ angular
             $scope.dynamicOrderFunction = function() {
                 if ($scope.sort_by == "newest") {
                     $scope.studies.sort(function(a,b) {
-                        return new Date(a.startDate) > new Date(b.startDate)
+                        return new Date(a.creationDate) > new Date(b.creationDate)
                     })
                 }
                 if ($scope.sort_by == "ends_soon") {
@@ -72,40 +72,8 @@ angular
                     //filter all studies that don't match user profile
                     $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences);
 
-                        //highlight studies of special interest
-                        $scope.studies.forEach(function (study) {
-                            study.isThisMyOwnStudy = study.ownerId === LoopBackAuth.currentUserId;
-                            study.isFinished = new Date(study.endDate) < new Date();
 
-
-                            study.isApproved = true; //TODO
-                            study.isThisAStudyISupervise = false; //TODO
-                            study.isThisAStudyISuperviseAndNeedsApproval = false; //TODO
-                            study.isThisAStudyIParticipateInAndIFinishedIt = false; //TODO
-                            study.isThisAStudyIParticipateInAndIDIDNTFinishedIt = false; //TODO
-
-
-                            Participation.count({
-                                where: {
-                                    participantId: LoopBackAuth.currentUserId,
-                                    studyId: study.id,
-                                    status: "pending"
-                                }
-                            }, function (response) {
-                                study.isThisAStudyIParticipateInAndIAmNotApproved = response.count > 0;
-                            });
-
-                            Participation.count({
-                                where: {
-                                    participantId: LoopBackAuth.currentUserId,
-                                    studyId: study.id,
-                                    status: "confirmed"
-                                }
-                            }, function (response) {
-                                study.isThisAStudyIParticipateInAndIAmApproved = response.count > 0
-                            });
-                        })
-
+                    StudyHighlightService.highlightStudy($scope.studies, LoopBackAuth.currentUserId);
 
                 },function (error){
                     if(error.status == 404){
