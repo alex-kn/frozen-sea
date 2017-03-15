@@ -63,8 +63,8 @@ where principalId is the id of your new admin account, roldeId is the id of the 
 The calculation of experiment hours is tied to the Subuser, Preference and Participation objects, so all three need to be migrated if no experiment hours should be lost.
  
 # Changing the website email-adresss
-//TODO
-Additionally you may want to change all mentions of the old email in all the localization files. (Best you perform a complete replace-all refactor over the whole project)
+You need to change the \server\datasources.json file to point to the new email account.
+Additionally you need to change all mentions of the old email in all the localization files. Best you perform a complete replace-all refactor over the whole project.
 
 # API Reference
 A complete API Reference is provided by navigating to https://#path-to-website#/explorer
