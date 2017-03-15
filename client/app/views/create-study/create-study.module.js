@@ -15,6 +15,11 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 ByRoleService.getUsersByRole("advisor").then(function(res) {
                     $scope.advisors = res;
                 });
+
+                var today = new Date();
+                var tomorrow = new Date();
+                tomorrow.setDate(today.getDate() + 1);
+
                 $scope.tabIndex = 0;
                 $scope.preferences = {
                     studyPrograms: [],
@@ -49,11 +54,11 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 };
                 $scope.appointments = [];
                 $scope.appointment = {
-                    date: new Date(),
+                    date: tomorrow,
                     time: '08:30',
                     bufferTime: null,
                     duration: $scope.study.duration,
-                    deadline: $scope.study.startDate,
+                    deadline: 1,
                     location: null,
                     participants: 1
                 };
@@ -82,7 +87,6 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 var index = $scope.appointments.indexOf(item);
                 $scope.appointments.splice(index, 1);
             };
-
 
             $scope.createStudy = function () {
                 if ($scope.createStudyForm.$valid) {
