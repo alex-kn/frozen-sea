@@ -80,8 +80,25 @@
         <!-- END general information -->
 
         <!-- START rewards -->
+
+
+        <div class="md-padding" layout="row" layout-align="center center" ng-show="isAdvisor">
+            <div flex="80">
+                <md-divider></md-divider>
+            </div>
+            <md-button flex="20" class="md-raised md-accent" ng-click="unlock()" ng-hide="study.approved">
+                {{'STUDY_DETAILS.UNLOCK' |translate}}
+                <md-tooltip>{{'STUDY_DETAILS.UNLOCK_MOUSEOVER' |translate}}</md-tooltip>
+            </md-button>
+            <md-button flex="20" class="md-primary" ng-click="relock()" ng-show="study.approved">
+                {{'STUDY_DETAILS.UNLOCKED' |translate}}
+                <md-tooltip>{{'STUDY_DETAILS.RELOCK' |translate}}</md-tooltip>
+            </md-button>
+        </div>
+
+
         <md-content class="md-padding" ng-hide="isOwner">
-            <md-divider></md-divider>
+            <md-divider ng-hide="isAdvisor"></md-divider>
 
 
             <h2 class="md-headline">{{'STUDY_DETAILS.CHOOSE_REWARD' | translate}}</h2>
@@ -119,8 +136,18 @@
 
         <md-content class="md-padding">
             <div layout="row" layout-align="center center">
-                <div flex="80">
+                <div flex="20" md-colors="{color:'red'}" class="md-subhead md-accent" ng-hide="study.approved">
+                    {{'STUDY_DETAILS.LOCKED' |translate}}
+                    <md-tooltip>{{'STUDY_DETAILS.LOCKED_MOUSEOVER' |translate}}</md-tooltip>
+                </div>
+                <div flex="15" md-colors="{color:'accent'}" class="md-subhead md-accent" ng-show="study.approved">
+                    {{'STUDY_DETAILS.UNLOCKED' |translate}}
+                </div>
+                <div flex="60" ng-hide="study.approved">
                     <md-divider></md-divider>
+                </div>
+                <div flex="65" ng-show="study.approved">
+                    <md-divider ></md-divider>
                 </div>
                 <md-button flex="20" class="md-icon-button md-accent" ng-click="help()">
                     <div layout="row" layout-align="center center">

@@ -318,6 +318,12 @@
     "STUDY_DELETED" : "Studie erfolgreich gelöscht!",
     "BACK" : "Zurück",
     "STUDY_DELETION_FAILED" : "Eine Studie mit bereits angemeldeten Teilnehmern kann nicht gelöscht werden",
+    "UNLOCK" : "Freischalten",
+    "UNLOCKED" : "Freigeschaltet",
+    "UNLOCK_MOUSEOVER" : "Als Betreuer kannst du diese Studie freischalten!",
+    "RELOCK" : "Klicke hier um die Freigabe wieder zurückziehen",
+    "LOCKED" : "Nicht freigeschaltet",
+    "LOCKED_MOUSEOVER" :"Dein Betreuer wurde beim Erstellen der Studie automatisch benachrichtigt. Sollte die Studie nach mehreren Tagen immer noch nicht freigeschaltet sein, schreibe Ihm oder Ihr bitte persönlich eine Nachricht.",
     "GENERAL_INFORMATION" : "Allgemeine Informationen"
   },
   "PARTICIPATION_DIALOG": {
