@@ -12,8 +12,8 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsEditController', ['$location', '$routeParams', '$scope', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', 'StudyDate', 'ToastService', '$filter',
-        function ($location, $routeParams, $scope, Subuser, Participation, LoopBackAuth, $http, Study, StudyDate, ToastService, $filter) {
+    .controller('StudyDetailsEditController', ['$location', '$routeParams', '$scope', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', 'StudyDate', 'ToastService', '$filter','$mdDialog',
+        function ($location, $routeParams, $scope, Subuser, Participation, LoopBackAuth, $http, Study, StudyDate, ToastService, $filter, $mdDialog) {
 
             $scope.today = new Date();
 
@@ -24,6 +24,7 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                     $scope.isOwner = ($scope.study.ownerId == LoopBackAuth.currentUserId);
                     loadDates();
                     loadParticipations();
+                    loadParticipantCount();
                     initNewDate();
                 });
 
@@ -74,6 +75,12 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                         }
                     }
                 });
+            }
+
+            function loadParticipantCount() {
+                Study.participations.count({id: $scope.study.id}, function (response) {
+                    $scope.totalParticipants = response.count;
+                })
             }
 
             $scope.addDate = function () {
@@ -157,16 +164,38 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                 });
             }
 
-            $scope.discardChanges = function () {
+            $scope.back = function () {
                 $location.path('/study-details-view').search({'study': $scope.study.id});
             }
 
-            $scope.deleteStudy = function () {
-                //TODO delete participations and studyDates aswell
-                Study.deleteById({id: $scope.study.id}, function (response) {
-                    console.log("Study deleted!");
-                    $location.path('/home');
+            $scope.deleteStudy = function(ev) {
+                loadParticipantCount();
+                if($scope.totalParticipants){
+                    ToastService.setToastText($filter('translate')('STUDY_DETAILS.STUDY_DELETION_FAILED'));
+                    ToastService.displayToast();
+                    return;
+                }
+
+                var confirm = $mdDialog.confirm()
+                    .title($filter('translate')('STUDY_DETAILS.ARE_YOU_SURE'))
+                    .textContent($filter('translate')('STUDY_DETAILS.DELETE_STUDY_CONFIRMATION'))
+                    .ariaLabel($filter('translate')('STUDY_DETAILS.ARE_YOU_SURE'))
+                    .targetEvent(ev)
+                    .ok($filter('translate')('STUDY_DETAILS.YES'))
+                    .cancel($filter('translate')('STUDY_DETAILS.NO'));
+
+                $mdDialog.show(confirm).then(function() {
+                    Study.studyDates.destroyAll({id: $scope.study.id});
+
+                    Study.deleteById({id: $scope.study.id}, function (response) {
+                        console.log("Study deleted!");
+                        $location.path('/home');
+                        ToastService.setToastText($filter('translate')('STUDY_DETAILS.STUDY_DELETED'));
+                        ToastService.displayToast();
+                    });
+                }, function() {
+
                 });
-            }
+            };
 
         }]);
