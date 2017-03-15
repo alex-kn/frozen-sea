@@ -79,4 +79,7 @@ md-toolbar.toolbar {
   color: #EF5350;
   font-size: 0.70em; }
 
+.align-items {
+  display: inline-flex; }
+
 /*# sourceMappingURL=edit-profile.style.css.map */
