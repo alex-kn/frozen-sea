@@ -32,7 +32,6 @@ angular.module('userStudy', [
     'ToastService',
     'EmailService',
     'duScroll',
-    'AuthService',
     'register',
     'adminDashboard',
     'ngMaterial',

@@ -105,8 +105,8 @@ angular
             // Enable escaping of HTML
             $translateProvider.useSanitizeValueStrategy('escape');
         }])
-    .run(['$rootScope', '$location', 'LoopBackAuth', 'AuthService', 'ByRoleService',
-        function ($rootScope, $location, LoopBackAuth, AuthService, ByRoleService) {
+    .run(['$rootScope', '$location', 'LoopBackAuth', 'ByRoleService',
+        function ($rootScope, $location, LoopBackAuth, ByRoleService) {
 
             var publicRoutes = ['/register', '/login', '/reset-password/', '/reset-password-request'];
 

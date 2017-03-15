@@ -129,28 +129,76 @@ module.exports = function (Subuser) {
                     for (var i = 0; i < principals.length; i++) {
                         userIds.push(principals[i].principalId);
                     }
-
+                    console.log(userIds);
+                    var counter = 0;
                     for (var i = 0; i < userIds.length; i++) {
                         Subuser.findById(userIds[i], function (err, instance) {
-                            if(instance != undefined) {
+                            console.log(instance);
+
+                            if (instance != null) {
                                 users.push({
                                     id: instance.id,
                                     firstName: instance.firstName,
                                     secondName: instance.secondName,
                                     email: instance.email
                                 });
-                                if (users.length === userIds.length) {
+                            }
+                            else {
+                              counter++;
+                            }
+                                if ((users.length+counter) === userIds.length) {
                                     cb(null, users);
                                     console.log(users);
                                 }
-                            } else {
-                                console.log("NULL INSTANCE")
-                            }
                         })
                     }
                 });
             }
         });
+    };
+
+    Subuser.setRole = function (id, role, userId ,cb) {
+        var loopback = require('loopback');
+        var Role = loopback.getModel('Role');
+        var RoleMapping = loopback.getModel('RoleMapping');
+
+        RoleMapping.findOne({ where: { 'roleId': role, 'principalId': userId}}, function(err, roleCb){
+            if(roleCb != null){
+                err = 'Role already exists';
+                return cb(err);
+            }
+        });
+
+        Role.findOne({ where: { 'id': role}}, function(err, roleCb){
+            roleCb.principals.create({
+                principalType: RoleMapping.USER,
+                principalId: userId
+            }, function(err, principal) {
+                if (err) return cb(err);
+
+                cb(null, principal);
+            });
+        });
+    };
+
+    Subuser.revokeRole = function (id, role, userId ,cb) {
+        var loopback = require('loopback');
+        var Role = loopback.getModel('Role');
+        var RoleMapping = loopback.getModel('RoleMapping');
+
+        Role.findOne({where: {'name': role}}, function (err, roleCb) {
+            roleCb.principals.destroyAll({
+                principalType: RoleMapping.USER,
+                principalId: userId
+            }, function (err, principal) {
+                if (err) {
+                    return cb(err);
+                }
+                console.log(principal);
+                cb(null, principal);
+            });
+        });
+
     };
 
     /**
@@ -181,6 +229,36 @@ module.exports = function (Subuser) {
         http: {
             verb: 'get',
             path: '/:id/byrole/:role',
+            status: 200,
+            errorStatus: 500
+        }
+    });
+
+    Subuser.remoteMethod('setRole', {
+        accepts: [
+            {arg: 'id', type: 'string', required: true},
+            {arg: 'role', type: 'string', required: true},
+            {arg: 'userId', type: 'string', required: true}
+        ],
+        returns: {arg: 'principal', type: 'object'},
+        http: {
+            verb: 'post',
+            path: '/:id/setRole/',
+            status: 200,
+            errorStatus: 500
+        }
+    });
+
+    Subuser.remoteMethod('revokeRole', {
+        accepts: [
+            {arg: 'id', type: 'string', required: true},
+            {arg: 'role', type: 'string', required: true},
+            {arg: 'userId', type: 'string', required: true}
+        ],
+        returns: {arg: 'principal', type: 'object'},
+        http: {
+            verb: 'post',
+            path: '/:id/revokeRole/',
             status: 200,
             errorStatus: 500
         }
