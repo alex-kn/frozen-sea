@@ -59,7 +59,8 @@ AND
     }
 }  
 
-where principalId is the id of your new admin account, roldeId is the id of the role and id is a random new id for the RoleMapping instance.
+where principalId is the id of your new admin account, roldeId is the id of the role and id is a random new id for the RoleMapping instance.  
+The calculation of experiment hours is tied to the Subuser, Preference and Participation objects, so all three need to be migrated if no experiment hours should be lost.
  
 # Changing the website email-adresss
 //TODO
