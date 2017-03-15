@@ -215,7 +215,8 @@
     "OPEN_MENU" : "Öffne Benutzereinstellungen",
     "PROFILE_EDIT": "Benutzereinstellungen",
     "LOGOUT": "Logout",
-    "MY_STUDIES": "Meine Studien"
+    "MY_STUDIES": "Meine Studien",
+    "CHANGE_LANGUAGE": "Sprache zu Englisch ändern"
   },
   "STUDY_LIST": {
     "TITLE" : "Studien",

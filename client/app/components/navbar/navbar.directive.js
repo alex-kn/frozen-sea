@@ -12,6 +12,12 @@ angular.module('navBarDirective', [])
                 $translate.use(langKey);
             };
 
+            var language = 'de';
+            $scope.toggleLanguage = function() {
+                language === 'de' ? language = 'en' : language = 'de';
+                $translate.use(language);
+            };
+
             $scope.$route = $route;
 
             $scope.openMenu = function ($mdOpenMenu, event) {

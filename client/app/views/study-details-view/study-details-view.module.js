@@ -429,7 +429,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
 
             var helpDialog = $mdDialog.confirm()
-                .title($filter('translate')('STUDY_DETAILS.HELP_1'))
+                .title($filter('translate')('STUDY_DETAILS.HELP'))
                 .htmlContent(
                     $filter('translate')('CREATE_STUDY.EXPLANATION_1') + "<br>" +
                     $filter('translate')('CREATE_STUDY.EXPLANATION_2') + "<br>" +
