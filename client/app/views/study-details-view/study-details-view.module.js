@@ -490,17 +490,16 @@ console.log(date.status);
 
                     if(status == 'confirmed') {
                         Participation.participant({id:participation.id},function(participant) {
-                            var subject = "Your participation in " + $scope.study.title + " has been confirmed";
-                            var text = "Your participation in " + $scope.study.title + " has been confirmed. If you do not receive your reward in the next few days, please contact the study creator. Experiment hours are registered automatically and you can check them in your profile page.";
+                            var subject = "Your registration for " + $scope.study.title + " has been confirmed";
+                            var text = "Your registration for " + $scope.study.title + " has been confirmed. Check <a href=" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + ">" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + "</a> for information on the location and time.";
                             EmailService.sendEmail(participant.email, "frzn.sea@gmail.com", subject, text, text, false);
                         });
                     }
 
-
-                    if(status == 'confirmed') {
+                    if(status == 'declined') {
                         Participation.participant({id:participation.id},function(participant) {
-                            var subject = "Your participation in " + $scope.study.title + " has been confirmed";
-                            var text = "Your participation in " + $scope.study.title + " has been confirmed. If you do not receive your reward in the next few days, please contact the study creator. Experiment hours are registered automatically and you can check them in your profile page.";
+                            var subject = "Your participation in " + $scope.study.title + " has been declined";
+                            var text = "We are sorry that your participation in " + $scope.study.title + " has been declined by the study creator.";
                             EmailService.sendEmail(participant.email, "frzn.sea@gmail.com", subject, text, text, false);
                         });
                     }
