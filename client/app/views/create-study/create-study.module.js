@@ -9,8 +9,13 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
             controller: 'CreateStudyController'
         });
     }])
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'ByRoleService', '$filter', '$translate', '$document', 'Subuser', '$mdConstant',
-        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, ByRoleService, $filter, $translate, $document, Subuser, $mdConstant) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$rootScope',
+        '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth',
+        '$http', 'ToastService', 'AppointmentService', 'ByRoleService',
+        '$filter', '$translate', '$document', 'Subuser', '$mdConstant', 'EmailService',
+        function ($scope, $routeParams, $rootScope, $location, $mdDialog, Study, StudyDate,
+                  LoopBackAuth, $http, ToastService, AppointmentService, ByRoleService,
+                  $filter, $translate, $document, Subuser, $mdConstant, EmailService) {
 
 
             $scope.keySeperatorsKeywords = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, $mdConstant.KEY_CODE.SPACE];
@@ -158,6 +163,16 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                         .then(function (response) {
                             // log study title to show in toast on home
                             ToastService.setToastText('TOAST.CREATE_STUDY');
+
+                            $scope.emailText = "A new study with you as supervisor was created. Please navigate to " + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +response.id + " to check and unlock the study.";
+                            EmailService.sendEmail(JSON.parse($scope.study.adviser).email,
+                                "frzn.sea@gmail.com",
+                                "New study with you as supervisor",
+                                $scope.emailText,
+                                $scope.emailText,
+                                false);
+
+
                             for (var i = 0; i < $scope.appointments.length; i++) {
                                 var date = $scope.appointments[i].date; //only the correct date
                                 var time = $scope.appointments[i].time; //only the correct hours:minutes

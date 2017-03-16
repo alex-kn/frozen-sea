@@ -76,9 +76,6 @@ angular
                 $scope.myFilter = {};
                 if($scope.show_too_old) { //load all studies that are not finished yet
                     $scope.myFilter = {filter: {where: {endDate:  {gte: new Date()}}}};
-                    console.log("NEW ONLY");
-                } else {
-                    console.log("OLD");
                 }
                 $scope.studiesTemp = Study.find($scope.myFilter,
                     function(list) {
@@ -91,9 +88,6 @@ angular
 
                 if ($scope.show_non_matches) {
                     $scope.studies = $filter('filterStudies')($scope.studies, $scope.preferences);
-                    console.log("MATCHES ONLY");
-                } else {
-                    console.log("NON MATCHES");
                 }
                 $scope.thereAreMatchingStudies = $scope.studies.length > 0;
 
