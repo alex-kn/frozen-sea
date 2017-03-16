@@ -40,6 +40,11 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                 };
             }
 
+            /**
+             * @description
+             *
+             * Load the StudyDates and sort them according to date
+             */
             function loadDates() {
                 $scope.dates = Study.dates({id: $scope.study.id}, function (response) {
 
@@ -83,6 +88,12 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                 })
             }
 
+            /**
+             * @description
+             *
+             * Sort the StudyDates and update startDate and endDate of the
+             * Study according to the dates of the StudyDates
+             */
             function sortDatesAndUpdateStudy() {
                 $scope.dates.sort(function (a, b) {
                     return a.startDate - b.startDate;
@@ -92,6 +103,11 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                 $scope.study.$save();
             }
 
+            /**
+             * @description
+             *
+             * Add a new studyDate to the Study
+             */
             $scope.addDate = function () {
                 $scope.newDate.adding = true;
                 $scope.newDate.startDate.setHours($scope.newDate.hours);
@@ -123,6 +139,13 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                     })
             };
 
+            /**
+             * @description
+             *
+             * Remove a specific StudyDate, if it has no participants
+             *
+             * @param date The date to remove
+             */
             $scope.removeDate = function (date) {
                 date.deleting = true;
                 StudyDate.participations.count({id: date.id}, function (response) {
@@ -143,6 +166,13 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                 });
             };
 
+            /**
+             * @description
+             *
+             * Save changes made to a specific date
+             *
+             * @param date
+             */
             $scope.saveDate = function (date) {
                 date.saving = true;
                 StudyDate.participations.count({id: date.id}, function (response) {
@@ -173,6 +203,13 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                 $location.path('/study-details-view').search({'study': $scope.study.id});
             };
 
+            /**
+             * @description
+             *
+             * Delete the Study. This is only possible, if the study has no Participations
+             *
+             * @param ev
+             */
             $scope.deleteStudy = function (ev) {
                 loadParticipantCount();
                 if ($scope.totalParticipants) {
