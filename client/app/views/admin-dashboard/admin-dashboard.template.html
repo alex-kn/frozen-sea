@@ -48,6 +48,7 @@
                 </span>
                 <span flex>
                         <md-button ng-disabled="user.current" class="md-raised md-warn" ng-click="deleteConfirm($event, user)">{{'ADMIN_DASHBOARD.CONFIRM_DELETE_TITLE' | translate}}</md-button>
+                        <md-button class="md-raised md-primary" ng-click="emailPrompt($event, user)">{{'ADMIN_DASHBOARD.CHANGE_EMAIL' | translate}}</md-button>
                     </span>
             </div>
             <md-divider ng-if="!$last"></md-divider>

@@ -438,7 +438,10 @@
     "TOAST_DELETE": "User erfolgreich gelöscht!",
     "CONFIRM_DELETE_TITLE": "User löschen",
     "CONFIRM_DELETE_TEXT": "Wollen sie den User wirklich löschen? Dies kann nicht rückgängig gemacht werden!",
-    "CONFIRM_DELETE_ABORT": "Abbrechen"
+    "CONFIRM_DELETE_ABORT": "Abbrechen",
+    "CHANGE_EMAIL":"Email ändern",
+    "CHANGE_EMAIL_PLACEHOLDER":"Neue Email",
+    "CHANGE_EMAIL_TEXT":"Neue Email eingeben."
   },
   "MY_STUDIES": {
     "TITLE": "Meine Studien",
