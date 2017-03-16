@@ -88,8 +88,9 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
                     }
                 }, function(userParticipations){
                     console.log(userParticipations);
-
                     for(var i = 0; i < userParticipations.length; i++) {
+                        //get find once get id's with function
+
                         Study.find({
                             filter: {
                                 where: {

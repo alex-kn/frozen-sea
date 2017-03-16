@@ -116,7 +116,7 @@ module.exports = function (Subuser) {
                 tempMod = models[i]
             }
 
-            if (typeof tempMod === "undefined"){
+            if (typeof tempMod === "undefined") {
                 var err = 'Role does not exist';
                 return cb(err);
             }
@@ -142,11 +142,11 @@ module.exports = function (Subuser) {
                                 });
                             }
                             else {
-                              counter++;
+                                counter++;
                             }
-                                if ((users.length+counter) === userIds.length) {
-                                    cb(null, users);
-                                }
+                            if ((users.length + counter) === userIds.length) {
+                                cb(null, users);
+                            }
                         })
                     }
                 });
@@ -154,23 +154,23 @@ module.exports = function (Subuser) {
         });
     };
 
-    Subuser.setRole = function (id, role, userId ,cb) {
+    Subuser.setRole = function (id, role, userId, cb) {
         var loopback = require('loopback');
         var Role = loopback.getModel('Role');
         var RoleMapping = loopback.getModel('RoleMapping');
 
-        RoleMapping.findOne({ where: { 'roleId': role, 'principalId': userId}}, function(err, roleCb){
-            if(roleCb != null){
+        RoleMapping.findOne({where: {'roleId': role, 'principalId': userId}}, function (err, roleCb) {
+            if (roleCb != null) {
                 err = 'Role already exists';
                 return cb(err);
             }
         });
 
-        Role.findOne({ where: { 'id': role}}, function(err, roleCb){
+        Role.findOne({where: {'id': role}}, function (err, roleCb) {
             roleCb.principals.create({
                 principalType: RoleMapping.USER,
                 principalId: userId
-            }, function(err, principal) {
+            }, function (err, principal) {
                 if (err) return cb(err);
 
                 cb(null, principal);
@@ -178,7 +178,7 @@ module.exports = function (Subuser) {
         });
     };
 
-    Subuser.revokeRole = function (id, role, userId ,cb) {
+    Subuser.revokeRole = function (id, role, userId, cb) {
         var loopback = require('loopback');
         var Role = loopback.getModel('Role');
         var RoleMapping = loopback.getModel('RoleMapping');
@@ -213,6 +213,60 @@ module.exports = function (Subuser) {
         ],
         returns: {arg: 'mail', type: 'object'}
     });
+
+
+    //TODO: Check getVpsByMat
+    Subuser.getVpsByMat = function (mat, cb) {
+        var loopback = require('loopback');
+        var Study = loopback.getModel('Study');
+        var Participation = loopback.getModel('Participation');
+        var Preference = loopback.getModel('Preference');
+
+        var rewardHours = 0;
+
+        Preference.find({where: {matriculationNr: mat}}, function (err, preference) {
+            if ((typeof preference[0] === 'undefined')) {
+                var err = 'Could not find matriculationNr';
+                return cb(err);
+            }
+            else {
+                Participation.find({where: {participantId: preference.subuserId}}, function (err, userParticipations) {
+                    if ((typeof userParticipations[0] === 'undefined')) {
+                        cb(null, {matriculationNr: mat, rewardHours: 0});
+                    }
+                    else {
+                        for (var i = 0; i < userParticipations.length; i++) {
+                            //get find once get id's with function
+                            /*
+                             for (var i=0; i < myArray.length; i++) {
+                             if (myArray[i].name === nameKey) {
+                             return myArray[i];
+                             }
+                             }
+                             */
+                            Study.find({where: {id: userParticipations[i].studyId}}, function (err, study) {
+                                console.log(userParticipations);
+                                if ((typeof study[0] === 'undefined')) {
+                                    cb(null, {matriculationNr: mat, rewardHours: 0});
+                                }
+                                else {
+                                    if (study.approved == true) {
+                                        if (userParticipations[i].status == 'completed') {
+                                            rewardHours += userParticipations[i].reward_hours;
+                                        }
+                                    }
+                                }
+                            });
+
+                        }
+                        cb(null, {matriculationNr: mat, rewardHours: rewardHours});
+                    }
+                });
+
+            }
+        });
+    };
+
 
     /**
      * exposes getUsersByRole method to api
@@ -256,6 +310,19 @@ module.exports = function (Subuser) {
         http: {
             verb: 'post',
             path: '/:id/revokeRole/',
+            status: 200,
+            errorStatus: 500
+        }
+    });
+
+    Subuser.remoteMethod('getVpsByMat', {
+        accepts: [
+            {arg: 'mat', type: 'number', required: true},
+        ],
+        returns: {arg: 'vps', type: 'object'},
+        http: {
+            verb: 'get',
+            path: '/getVpsByMat/:mat',
             status: 200,
             errorStatus: 500
         }
