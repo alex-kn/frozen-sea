@@ -216,7 +216,9 @@
                                               ng-click="showParticipantDetails(participation, $event)">
 
                                     <md-icon class="material-icons">person</md-icon>
-                                    <span> {{participation.name}}</span>
+                                    <md-button>{{participation.name}}
+                                        <md-tooltip>{{'STUDY_DETAILS.MOUSEOVER_PARTICIPANT' | translate}}</md-tooltip>
+                                    </md-button>
                                     <span ng-hide="date.status == 'finished'" class="md-secondary">
                                         <md-button ng-click="updateParticipationStatus(participation, 'confirmed')"
                                                    class="card-button md-raised md-accent"

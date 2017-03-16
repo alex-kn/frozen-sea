@@ -9,6 +9,9 @@ angular
             $scope.createdStudies = [];
             $scope.advisedStudies = [];
             $scope.studyIsLoading = true;
+            $scope.thereAreCreatedStudies = true;
+            $scope.thereAreAdvisedStudies = true;
+            $scope.thereAreParticipations = true;
 
 
             //myStudies
@@ -36,6 +39,7 @@ angular
                     $scope.myStudies=studies;
                     StudyHighlightService.highlightStudy($scope.myStudies, LoopBackAuth.currentUserId);
                     $scope.studyIsLoading = false;
+                    $scope.thereAreParticipations = $scope.myStudies.length > 0;
                 });
             });
 
@@ -50,6 +54,7 @@ angular
             }, function(studies) {
                 $scope.createdStudies = studies;
                 StudyHighlightService.highlightStudy($scope.createdStudies, LoopBackAuth.currentUserId);
+                $scope.thereAreCreatedStudies = $scope.createdStudies.length > 0;
             });
 
 
@@ -63,6 +68,8 @@ angular
             }, function(studies) {
                 $scope.advisedStudies = studies;
                 StudyHighlightService.highlightStudy($scope.advisedStudies, LoopBackAuth.currentUserId);
+                $scope.thereAreAdvisedStudies = $scope.advisedStudies.length > 0;
+
             });
 
             ByRoleService.getUsersByRole("advisor").then(function(advisors) {

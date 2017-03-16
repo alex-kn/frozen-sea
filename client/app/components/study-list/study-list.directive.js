@@ -8,6 +8,7 @@ angular
         function ($scope, $routeParams, Participation, Study, StudyDate, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter, ToastService, SetPreferencesService, StudyHighlightService) {
 
 
+            $scope.thereAreMatchingStudies = true;
             $scope.show = false;
             $scope.studyIsLoading = true;
             $scope.studyIsReLoading = false;
@@ -54,6 +55,7 @@ angular
                         compareStudyDetailsWithUserPreferences();
                     }
                 );
+
             };
 
             $scope.loadStudies(); //initial load
@@ -85,6 +87,7 @@ angular
                     //filter all studies that don't match user profile
                     $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences);
 
+                    $scope.thereAreMatchingStudies = $scope.studies.length > 0;
 
                     StudyHighlightService.highlightStudy($scope.studies, LoopBackAuth.currentUserId);
 
