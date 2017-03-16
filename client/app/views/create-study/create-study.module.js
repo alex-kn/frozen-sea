@@ -164,7 +164,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                             // log study title to show in toast on home
                             ToastService.setToastText('TOAST.CREATE_STUDY');
 
-                            $scope.emailText = "A new study with you as supervisor was created. Please navigate to " + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +response.id + " to check and unlock the study.";
+                            $scope.emailText = "A new study with you as supervisor was created. Please navigate to <a href=" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +response.id + ">" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +response.id + "</a> to check and unlock the study.";
                             EmailService.sendEmail(JSON.parse($scope.study.adviser).email,
                                 "frzn.sea@gmail.com",
                                 "New study with you as supervisor",
