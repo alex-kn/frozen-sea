@@ -117,9 +117,8 @@
 
 
         <div class="md-padding" layout="row" layout-align="start center" ng-show="isAdmin">
-            <md-switch class="md-primary padding" ng-model="isOwner" flex>
-                {{'STUDY_DETAILS.UNLOCKED' |translate}} {{isOwner}}
-                <md-tooltip md-delay="500">{{'STUDY_DETAILS.RELOCK' |translate}}</md-tooltip>
+            As Participant <md-switch class="md-primary padding" ng-model="isOwner" flex>
+                <md-tooltip md-delay="500">{{'STUDY_DETAILS.RELOCK' |translate}}</md-tooltip> Owner
             </md-switch>
         </div>
 
