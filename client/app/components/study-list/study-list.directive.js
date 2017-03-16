@@ -36,13 +36,6 @@ angular
             /**
              * Filter and search study list
              */
-            $scope.showSearch = function() {
-                document.getElementById('search-gt-xs').classList.remove('hide');
-            };
-            function hideSearch() {
-                document.getElementById('search-gt-xs').classList.add('hide');
-
-            }
             $scope.toggleFilterOnMobile = function(key) {
                 if (key === 'search') {
                     $scope.search = true;
@@ -58,18 +51,17 @@ angular
                     $scope.sort = true;
                 }
             };
-            $scope.dynamicOrderFunction = function(sortBy) {
-                if (sortBy == 'newest') {
+            $scope.dynamicOrderFunction = function() {
+                if ($scope.sort_by == 'newest') {
                     $scope.studies.sort(function(a,b) {
                         return new Date(a.creationDate) > new Date(b.creationDate)
                     })
                 }
-                if (sortBy == 'ends_soon') {
+                if ($scope.sort_by == 'ends_soon') {
                     $scope.studies.sort(function(a,b) {
                         return new Date(a.endDate) > new Date(b.endDate)
                     })
                 }
-                hideSearch();
             };
 
             /**
@@ -101,7 +93,6 @@ angular
                 StudyHighlightService.highlightStudy($scope.studies, LoopBackAuth.currentUserId).then(function(studies) {
                     $scope.studies = studies;
                 });
-                hideSearch();
             };
 
             /**
