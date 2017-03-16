@@ -130,7 +130,7 @@
         <md-divider ng-hide="isAdvisor || (!study.approved && !isOwner)"></md-divider>
 
         <!-- START rewards -->
-        <md-content class="md-padding" ng-hide="isOwner || study.approved">
+        <md-content class="md-padding" ng-hide="!appointments.length || (!isOwner && !study.approved)">
 
 
             <h2 class="md-headline">{{'STUDY_DETAILS.CHOOSE_REWARD' | translate}}</h2>
@@ -164,26 +164,32 @@
         </md-content>
         <!-- END rewards -->
 
+        <div layout="row" layout-align="start center">
+            <md-button class="md-subhead button-red" ng-hide="study.approved" disabled="true">
+                {{'STUDY_DETAILS.LOCKED' |translate}}
+            </md-button>
+            <md-button class="md-subhead button-green" ng-hide="!study.approved || !isOwner" disabled="true">
+                {{'STUDY_DETAILS.UNLOCKED' |translate}}
+            </md-button>
+            <div flex>
+                <md-divider></md-divider>
+            </div>
+            <md-button class="md-accent" ng-click="help()">
+                <div layout="row" layout-align="center center">
+                    <span hide-xs>{{'STUDY_DETAILS.MOUSEOVER_HELP_1' |translate}}</span>
+                    <i class="material-icons md-24 md-primary">help_outline</i>
+                </div>
+            </md-button>
+        </div>
+
         <!-- START dates -->
 
-        <md-content class="md-padding">
-            <div layout="row" layout-align="start center">
-                <md-button class="md-subhead button-red" ng-hide="study.approved" disabled="true">
-                    {{'STUDY_DETAILS.LOCKED' |translate}}
-                </md-button>
-                <md-button class="md-subhead button-green" ng-show="study.approved" disabled="true">
-                    {{'STUDY_DETAILS.UNLOCKED' |translate}}
-                </md-button>
-                <div flex>
-                    <md-divider></md-divider>
-                </div>
-                <md-button class="md-accent" ng-click="help()">
-                    <div layout="row" layout-align="center center">
-                        <span hide-xs>{{'STUDY_DETAILS.MOUSEOVER_HELP_1' |translate}}</span>
-                        <i class="material-icons md-24 md-primary">help_outline</i>
-                    </div>
-                </md-button>
-            </div>
+        <md-content class="md-padding" ng-hide="appointments.length">
+            <p>{{'STUDY_DETAILS.ONLINE_ONLY' | translate}}</p>
+        </md-content>
+
+        <md-content class="md-padding" ng-show="appointments.length">
+
 
             <md-progress-circular ng-hide="datesAreReady || (!study.approved && !isOwner)" class="md-accent" md-mode="indeterminate">
             </md-progress-circular>
@@ -347,12 +353,14 @@ person_add</i>{{'STUDY_DETAILS.UNTIL' | translate}} {{date.deadlineDate | date: 
         </md-content>
         <!-- END dates -->
 
+
         <!-- START requirements -->
 
         <md-content class="md-padding"
                     ng-show="(study.approved || isOwner) && (study.minimum_age || study.minimum_height || smartphoneArray.length ||
                     visualAidArray.length || handedness || languageArray.length || student)">
             <md-divider></md-divider>
+
             <h2 class="md-headline">{{'CREATE_STUDY.REQUIREMENTS_TAB_LABEL' | translate}} <span
                     md-colors="{color: 'accent'}">{{ study.name }}</span></h2>
 

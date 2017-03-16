@@ -241,6 +241,40 @@ module.exports = function (Subuser) {
         });
     };
 
+    Subuser.getAllVps = function (cb) {
+        var loopback = require('loopback');
+        var Study = loopback.getModel('Study');
+        var Participation = loopback.getModel('Participation');
+        var Preference = loopback.getModel('Preference');
+        var matNrs = [];
+        var allMatVps = [];
+
+        Preference.find({}, function (err, preference) {
+            if ((typeof preference[0] === 'undefined')) {
+                err = 'No Preferences';
+                return cb(err);
+            }
+            else {
+                for (var i = 0; i < preference.length; i++) {
+                    if (preference[i].matriculationNr) {
+                        matNrs.push(preference[i].matriculationNr);
+                    }
+                }
+                for (var i = 0; i < matNrs.length; i++) {
+                    Subuser.getVpsByMat(matNrs[i], function (err, response) {
+                        if (err) {
+                            return cb(err);
+                        }
+                        allMatVps.push(response);
+                        if (matNrs.length == allMatVps.length) {
+                            cb(null, allMatVps);
+                        }
+                    });
+                }
+            }
+        });
+    };
+
     /**
      * exposes sendEmail method to api
      */
@@ -312,6 +346,16 @@ module.exports = function (Subuser) {
         http: {
             verb: 'get',
             path: '/getVpsByMat/:mat',
+            status: 200,
+            errorStatus: 500
+        }
+    });
+
+    Subuser.remoteMethod('getAllVps', {
+        returns: {arg: 'vps', type: 'array'},
+        http: {
+            verb: 'get',
+            path: '/getAllVps/',
             status: 200,
             errorStatus: 500
         }

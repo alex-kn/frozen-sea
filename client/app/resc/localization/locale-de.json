@@ -352,7 +352,8 @@
     "PARTICIPANT_DETAILS" : "Teilnehmerdetails",
     "VIEW_AS" : "Ansicht als",
     "PARTICIPANT" : "Teilnehmer",
-    "CREATOR" : "Studienorganisator"
+    "CREATOR" : "Studienorganisator",
+    "ONLINE_ONLY" : "Diese Studie ist ein Online-Studie und hat keine Termine. Eine Teilnahme ist durch Klicken des Links in der Beschreibung möglich!"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

@@ -72,6 +72,12 @@
     },
     {
       "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "getAllVps"
+    },
+    {
+      "principalType": "ROLE",
       "principalId": "admin",
       "permission": "ALLOW",
       "property": "revokeRole"
