@@ -17,6 +17,10 @@ html, body {
   position: relative !important;
   bottom: -7px !important; }
 
+.image-header {
+  display: flex;
+  align-items: center; }
+
 .material-icons.md-18 {
   font-size: 18px; }
 
@@ -93,6 +97,10 @@ html, body {
 .hint-chips {
   position: relative !important;
   bottom: -7px !important; }
+
+.image-header {
+  display: flex;
+  align-items: center; }
 
 .material-icons.md-18 {
   font-size: 18px; }
@@ -180,9 +188,11 @@ nav-bar .md-toolbar-tools {
 nav-bar .nav, nav-bar .user-profil {
   color: #9fb4be; }
   nav-bar .nav .active, nav-bar .user-profil .active {
-    color: #dce3e7; }
+    color: #dce3e7;
+    border-bottom: 2px solid #FFAB40; }
   nav-bar .nav a, nav-bar .user-profil a {
-    margin-left: 2rem; }
+    margin-left: 2rem;
+    padding: 0 .5rem 3px .5rem; }
     nav-bar .nav a:first-of-type, nav-bar .user-profil a:first-of-type {
       margin-left: 1rem; }
     nav-bar .nav a:hover, nav-bar .user-profil a:hover {

@@ -14,10 +14,12 @@ nav-bar {
 
     .active {
       color: lighten($primary-color, 70);
+      border-bottom: 2px solid #FFAB40;
     }
 
     a {
       margin-left: 2rem;
+      padding: 0 .5rem 3px .5rem;
 
       &:first-of-type {
         margin-left: 1rem;

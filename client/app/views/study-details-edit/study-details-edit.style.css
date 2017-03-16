@@ -16,6 +16,10 @@ html, body {
   position: relative !important;
   bottom: -7px !important; }
 
+.image-header {
+  display: flex;
+  align-items: center; }
+
 .material-icons.md-18 {
   font-size: 18px; }
 
