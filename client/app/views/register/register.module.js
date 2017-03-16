@@ -48,6 +48,7 @@ angular.module('register', ['ngRoute'])
                     else if(httpResponse.data.error.message.includes("username") && httpResponse.data.error.status == 422){
                         $scope.errorMessage = $filter('translate')('REGISTER.ERROR_USERNAME');
                     }
+                    $scope.registerProgress = true;
                 });
             };
 
