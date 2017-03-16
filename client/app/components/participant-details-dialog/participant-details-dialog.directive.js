@@ -10,18 +10,17 @@ angular
 
             $scope.showContactForm = false;
             $scope.participation = data;
-            $scope.isLoading = true;
 
             Participation.participant({id: $scope.participation.id}, function (r) {
                 $scope.user = r;
                 $scope.pref = Preference.findOne({filter:{where: {subuserId: r.id}}}, function () {
-                    $scope.userDataReady = true;
                     if($scope.pref.gender) {
                         $scope.pref.genderString = $filter('translate')('USER_PREFERENCES.' + $scope.pref.gender.toUpperCase());
                     }else{
                         $scope.pref.genderString = $filter('translate')('STUDY_DETAILS.NOT_SPECIFIED');
                     }
-                    $scope.isLoading = false;
+                    $scope.userDataReady = true;
+
                 });
 
             });

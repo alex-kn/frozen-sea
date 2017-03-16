@@ -12,8 +12,8 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('StudyDetailsViewController', ['$mdDialog', '$q', '$location', '$routeParams', '$scope', 'StudyDate','Preference', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter', 'ToastService', 'EmailService', 'ByRoleService',
-        function ($mdDialog, $q, $location, $routeParams, $scope, StudyDate,Preference, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService, EmailService, ByRoleService) {
+    .controller('StudyDetailsViewController', ['$mdDialog', '$q', '$location', '$routeParams', '$scope', 'StudyDate', 'Preference', 'Subuser', 'Participation', 'LoopBackAuth', '$http', 'Study', '$filter', 'ToastService', 'EmailService', 'ByRoleService',
+        function ($mdDialog, $q, $location, $routeParams, $scope, StudyDate, Preference, Subuser, Participation, LoopBackAuth, $http, Study, $filter, ToastService, EmailService, ByRoleService) {
 
             $scope.isOwner = false;
             $scope.isAdvisor = false;
@@ -22,6 +22,8 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.alreadyParticipated = false;
             $scope.totalParticipants = 0;
             $scope.participantUserIds = [];
+
+            $scope.Math = window.Math;
 
             $scope.currentUser = Subuser.getCurrent();
 
@@ -48,7 +50,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     $scope.ownerMail = res.email;
                     $scope.ownerReady = true;
                 });
-                Study.advisor({id :$scope.study.id}, function (res){
+                Study.advisor({id: $scope.study.id}, function (res) {
                     $scope.advisor = res.firstName + " " + res.secondName;
                     $scope.advisorReady = true;
                 }, function (err) {
@@ -73,8 +75,8 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 $scope.studyIsReady = true;
             });
 
-            ByRoleService.getUsersByRole("advisor").then(function(advisors) {
-                advisors.forEach(function(advisor) {
+            ByRoleService.getUsersByRole("advisor").then(function (advisors) {
+                advisors.forEach(function (advisor) {
                     if (LoopBackAuth.currentUserId == advisor.id) {
                         $scope.isAdvisor = true;
                     }
@@ -235,7 +237,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     }));
                     $scope.datesGroupedByDay.push(days);
 
-                    if(!$scope.isOwner){
+                    if (!$scope.isOwner) {
                         $scope.datesGroupedByDay[0].show = true;
                     }
 
@@ -492,7 +494,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
              *
              * Unlock the study (for Supervisors)
              */
-            $scope.unlock = function() {
+            $scope.unlock = function () {
                 Study.update({where: {id: $scope.study.id}}, {approved: true});
                 $scope.study.approved = true;
             };
@@ -502,7 +504,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
              *
              * Relock the study (for Supervisors)
              */
-            $scope.relock = function() {
+            $scope.relock = function () {
                 Study.update({where: {id: $scope.study.id}}, {approved: false});
                 $scope.study.approved = false;
             };
@@ -514,15 +516,22 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
              * Show help dialog
              */
             $scope.help = function () {
+                if ($scope.isOwner) {
+                    var html = "<p>" +
+                        $filter('translate')('STUDY_DETAILS.EXPLANATION_OWNER_1') + "</p><p> " +
+                        $filter('translate')('STUDY_DETAILS.EXPLANATION_OWNER_2') + "</p><p>" +
+                        $filter('translate')('STUDY_DETAILS.EXPLANATION_OWNER_3') + "</p><p>" +
+                        $filter('translate')('STUDY_DETAILS.EXPLANATION_OWNER_4') + "</p><p>" +
+                        $filter('translate')('STUDY_DETAILS.EXPLANATION_OWNER_5') + "</p>"
+                } else {
+                    var html = "<p>" +
+                        $filter('translate')('STUDY_DETAILS.EXPLANATION_1') + "</p><p> " +
+                        $filter('translate')('STUDY_DETAILS.EXPLANATION_2') + "</p>"
+                }
+
                 var helpDialog = $mdDialog.confirm()
                     .title($filter('translate')('STUDY_DETAILS.HELP'))
-                    .htmlContent(
-                        $filter('translate')('CREATE_STUDY.EXPLANATION_1') + "<br>" +
-                        $filter('translate')('CREATE_STUDY.EXPLANATION_2') + "<br>" +
-                        $filter('translate')('CREATE_STUDY.EXPLANATION_3') + " " +
-                        $filter('translate')('CREATE_STUDY.EXPLANATION_4') + " " +
-                        $filter('translate')('CREATE_STUDY.EXPLANATION_5')
-                    )
+                    .htmlContent(html)
                     .ariaLabel($filter('translate')('CREATE_STUDY.EXPLANATION_1'))
                     .ok($filter('translate')('CREATE_STUDY.EXPLANATION_OK'));
 
@@ -555,7 +564,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
             $scope.showContactForm = function () {
                 $scope.showMailForm = true;
-                $('html,body').animate({scrollTop: document.body.scrollHeight},"fast");
+                $('html,body').animate({scrollTop: document.body.scrollHeight}, "fast");
 
             };
 
@@ -566,7 +575,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             };
 
             $scope.sendMailToParticipants = function () {
-                if($scope.isOwner) {
+                if ($scope.isOwner) {
                     $q.all($scope.participations.map(function (participation) {
                         Participation.participant({id: participation.id}, function (subuser) {
                             if (typeof subuser.email == 'undefined') {
@@ -578,7 +587,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                             console.log("send mail to " + subuser.email + " from " + $scope.currentUser.email);
                         })
                     }))
-                }else{
+                } else {
                     console.log("send mail to " + $scope.ownerMail + " from " + $scope.currentUser.email);
                     EmailService.sendEmail($scope.ownerMail, $scope.currentUser.email, $scope.subjectString, $scope.bodyString, $scope.bodyString);
                 }
