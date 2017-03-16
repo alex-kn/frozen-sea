@@ -566,7 +566,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.showContactForm = function () {
                 $scope.showMailForm = true;
                 $('html,body').animate({scrollTop: document.body.scrollHeight}, "fast");
-
             };
 
             $scope.clearContactForm = function () {

@@ -349,7 +349,10 @@
     "EXPLANATION_OWNER_5": "Mit einem Klick auf \"Studiendetails editieren\" kannst du im nachhinein noch Änderungen an den Studiendetails vornehmen, Termine ohne Teilnehmer löschen sowie neue Termine hinzufügen.",
     "EXPLANATION_1": "Nach Auswahl einer gewünschten Vergütung kannst du dich hier zu einem Termin bewerben. Nachdem dich der Studienveranstalter bestätigt hat, bist du erfolgreich angemeldet",
     "EXPLANATION_2": "Beachte bitte, dass die Vergütung nur ausgeschüttet werden kann, nachdem der Veranstalter nach dem Termin deine Anwesenheit bestätigt hat.",
-    "PARTICIPANT_DETAILS" : "Teilnehmerdetails"
+    "PARTICIPANT_DETAILS" : "Teilnehmerdetails",
+    "VIEW_AS" : "Ansicht als",
+    "PARTICIPANT" : "Teilnehmer",
+    "CREATOR" : "Studienorganisator"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

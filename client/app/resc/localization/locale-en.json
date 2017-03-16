@@ -348,7 +348,10 @@
     "EXPLANATION_OWNER_5": "A click on \"Edit Study Details\" lets you make subsequent changes to the study. Empty appointments can also be deleted and new appointments can be created",
     "EXPLANATION_1": "After choosing a reward, you can apply for an appointment here. You are registered successfully after confirmation by the study organizer.",
     "EXPLANATION_2": "Please note that rewards will only be distributed to participants whose presence was confirmed by the study organizer.",
-    "PARTICIPANT_DETAILS" : "Participant details"
+    "PARTICIPANT_DETAILS" : "Participant details",
+    "VIEW_AS" : "View as",
+    "PARTICIPANT" : "Participant",
+    "CREATOR" : "Study organizer"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Cancel",
