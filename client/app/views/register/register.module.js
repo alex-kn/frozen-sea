@@ -3,8 +3,8 @@
  */
 
 angular.module('register', ['ngRoute'])
-    .controller('RegisterController', ['$scope', 'Subuser','ToastService','$filter', '$location', '$rootScope', '$translate','EmailService',
-        function ($scope, Subuser, ToastService,$filter, $location, $rootScope, $translate, EmailService) {
+    .controller('RegisterController', ['$scope', 'Subuser','ToastService','$filter', '$location', '$rootScope', '$translate',
+        function ($scope, Subuser, ToastService,$filter, $location, $rootScope, $translate) {
 
             $scope.errorMessage = "";
             $scope.registerProgress = true;
@@ -44,15 +44,7 @@ angular.module('register', ['ngRoute'])
                     $location.path('/login');
 
                 }, function (httpResponse) {
-                    if((httpResponse.data.error.message.includes("username") && httpResponse.data.error.message.includes("email") && httpResponse.data.error.status == 422)){
-                        $scope.errorMessage = $filter('translate')('REGISTER.ERROR_EMAIL_USERNAME');
-                    }
-                    else if(httpResponse.data.error.message.includes("email") && httpResponse.data.error.status == 422){
-                        $scope.errorMessage = $filter('translate')('REGISTER.ERROR_EMAIL');
-                    }
-                    else if(httpResponse.data.error.message.includes("username") && httpResponse.data.error.status == 422){
-                        $scope.errorMessage = $filter('translate')('REGISTER.ERROR_USERNAME');
-                    }
+                    $scope.errorMessage = $filter('translate')('REGISTER.ERROR_EMAIL');
                     $scope.registerProgress = true;
                 });
             };
