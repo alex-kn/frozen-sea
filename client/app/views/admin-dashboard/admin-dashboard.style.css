@@ -128,4 +128,7 @@ md-nav-bar .md-nav-bar {
   background-position: center;
   z-index: 10000000; }
 
+.role-switch {
+  display: inline-flex; }
+
 /*# sourceMappingURL=admin-dashboard.style.css.map */

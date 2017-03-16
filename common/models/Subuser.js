@@ -10,7 +10,10 @@ module.exports = function (Subuser) {
     Subuser.afterRemote('create', function (context, Subuser, next) {
         console.log('> user.afterRemote triggered');
 
+
         var options = {
+            host: 'localhost',
+            port: '80',
             type: 'email',
             to: Subuser.email,
             from: 'frzn.sea@gmail.com',
