@@ -11,6 +11,7 @@
     "PASSWORD": "Password",
     "LOGIN": "Sign in",
     "ERROR": "Your login credentials are wrong!",
+    "ERROR_VERIFIED": "Your account is not verified. Click on the verification link in you email!",
     "REGISTRATION_SUCCESS":"Registration successful! To log in, please click on the verification link in your email.",
     "VERIFICATION_SUCCESS":"Verification successful! You can now log in.",
     "USERNAME_ERROR": "Please enter your username",

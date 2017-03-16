@@ -11,6 +11,7 @@
     "PASSWORD": "Passwort",
     "LOGIN": "Einloggen",
     "ERROR": "Ihre Anmeldedaten sind falsch!",
+    "ERROR_VERIFIED": "Ihr Account ist nicht verifiziert. Klicken Sie auf den Verifizierungs-Link in Ihrer Email!",
     "REGISTRATION_SUCCESS": "Registration erfolgreich! Um sich einloggen zu können, klicken sie bitte auf den Bestätigungslink in Ihrem Email-Postfach.",
     "VERIFICATION_SUCCESS": "Email-Verifikation erfolgreich! Sie können sich jetzt einloggen.",
     "USERNAME_ERROR": "Bitte gib deinen Benutzernamen ein",
