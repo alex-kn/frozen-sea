@@ -8,8 +8,11 @@
             {{'LOGIN.NO_MORE' | translate}} <br/>
             {{'LOGIN.FIND' | translate}}
         </p>
-        <md-button class="md-accent md-raised">{{'LOGIN.MORE' | translate}}</md-button>
+        <md-button class="md-accent md-raised" ng-click="toggleShowMore()">{{'LOGIN.MORE' | translate}}</md-button>
 
+        <div ng-show="showMore"  layout-padding layout-margin>
+            {{'LOGIN.MORE_TEXT' | translate}}
+        </div>
     </section>
 
     <!-- START registration -->

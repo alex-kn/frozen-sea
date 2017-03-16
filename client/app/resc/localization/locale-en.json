@@ -12,7 +12,8 @@
     "LOGIN": "Sign in",
     "ERROR": "Your login credentials are wrong!",
     "REGISTRATION_SUCCESS":"Registration successful! To log in, please click on the verification link in your email.",
-    "VERIFICATION_SUCCESS":"Verification successful! You can now log in."
+    "VERIFICATION_SUCCESS":"Verification successful! You can now log in.",
+    "MORE_TEXT": "With Frozen Sea you can create and manage or particpiate in studies. Studies are filtered for you personally and experiment hours are registered automatically."
   },
   "REGISTER": {
     "WELCOME": "Welcome to Frozen Sea",
@@ -30,7 +31,8 @@
     "ERROR": "Sign up failed, your username might be taken or there is already an account with this e-mail address!",
     "ERROR_USERNAME": "Sign up failed, your username is already taken!",
     "ERROR_EMAIL": "Sign up failed, there already exists an account with this e-mail address!",
-    "ERROR_EMAIL_USERNAME": "Sign up failed, your username is already taken and there exists an account with this e-mail address!"
+    "ERROR_EMAIL_USERNAME": "Sign up failed, your username is already taken and there exists an account with this e-mail address!",
+    "MORE_TEXT": "With Frozen Sea you can create and manage or particpiate in studies. Studies are filtered for you personally and experiment hours are registered automatically."
   },
   "RESET_PASSWORD": {
     "RESET_PASSWORD": "Reset Passwort",
@@ -251,8 +253,7 @@
     "CAREFUL": "Always carefully read the description and the requirements of a study before you participate!",
     "FILTER": "Filter by",
     "FILTER_TIP": "Filter the study list",
-    "SORT_TIP": "Sort the study list"
-    "CAREFUL": "Always carefully read the description and the requirements of a study before you participate!",
+    "SORT_TIP": "Sort the study list",
     "NO_FOUND": "Sorry, we could not find any matching studies."
 
   },
