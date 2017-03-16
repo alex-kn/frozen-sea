@@ -532,7 +532,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 var helpDialog = $mdDialog.confirm()
                     .title($filter('translate')('STUDY_DETAILS.HELP'))
                     .htmlContent(html)
-                    .ariaLabel($filter('translate')('CREATE_STUDY.EXPLANATION_1'))
+                    .ariaLabel($filter('translate')('STUDY_DETAILS.HELP'))
                     .ok($filter('translate')('CREATE_STUDY.EXPLANATION_OK'));
 
                 $mdDialog.show(helpDialog).then(function () {
@@ -555,6 +555,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     template: '<participant-details-dialog></participant-details-dialog-dialog>',
                     clickOutsideToClose: false,
                     parent: angular.element(document.body),
+                    ariaLabel: $filter('translate')('STUDY_DETAILS.PARTICIPANTS_DETAILS'),
                     targetEvent: ev,
                     fullscreen: true
                 });
