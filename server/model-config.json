@@ -46,7 +46,10 @@
   },
   "Subuser": {
     "dataSource": "userstudy-db",
-    "public": true
+    "public": true,
+    "options": {
+      "emailVerificationRequired": true
+    }
   },
   "Preference": {
     "dataSource": "userstudy-db",
