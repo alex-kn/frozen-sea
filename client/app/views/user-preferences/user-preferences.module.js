@@ -33,7 +33,7 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
         });
 
         $scope.savePreferences = function () {
-            $scope.preferences.course = self.selectedItem;
+            $scope.preferences.course = self.searchText;
             if(!$scope.preferences.student){
                 $scope.preferences.course = null;
                 $scope.preferences.matriculationNr = null;
