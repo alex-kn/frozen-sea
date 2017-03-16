@@ -7,8 +7,13 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
             $scope.title = 'Profil bearbeiten';
             $scope.input = {};
             $scope.error = {};
-            $scope.myRewards = {};
             $scope.contentsLoaded = [false, false];
+            $scope.myRewards = {
+                money: 0,
+                vouchers: 0,
+                hours: 0
+            };
+
             getRewards();
 
             $scope.toggleActive = {
