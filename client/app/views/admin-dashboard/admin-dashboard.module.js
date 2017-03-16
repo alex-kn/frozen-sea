@@ -72,7 +72,7 @@ angular.module('adminDashboard', ['ngRoute', 'ngMaterial'])
 
             function changeEmail(email, emailUser) {
                 Subuser.prototype$updateAttributes({id: emailUser.id}, {'email': email}, function () {
-                    ToastService.setToastText($filter('translate')('EDIT_PROFILE.SUCCESS_PASSWORD'));
+                    ToastService.setToastText($filter('translate')('ADMIN_DASHBOARD.CHANGE_EMAIL_SUCCESS'));
                     ToastService.displayToast();
                     createUserList();
                 }, function (err) {

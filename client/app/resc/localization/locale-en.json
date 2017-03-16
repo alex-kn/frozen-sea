@@ -16,7 +16,7 @@
     "VERIFICATION_SUCCESS":"Verification successful! You can now log in.",
     "USERNAME_ERROR": "Please enter your username",
     "PASSWORD_ERROR": "Please enter your password",
-    "MORE_TEXT": "With Frozen Sea you can create and manage or particpiate in studies. Studies are filtered for you personally and experiment hours are registered automatically."
+    "MORE_TEXT": "With Frozen Sea you can create and manage or participate in studies. Studies are filtered for you personally and experiment hours are registered automatically."
   },
   "REGISTER": {
     "WELCOME": "Welcome to Frozen Sea",
@@ -56,6 +56,7 @@
     "GENERAL_TAB_LABEL": "General",
     "ONLINE": "Is your study an online stuy?",
     "ONLINE_DESCRIPTION": "Please provide the link to your online study in the description. Online studies do not have any appointments.",
+    "ONLINE_TIP": "An online study does not have any appointments, just provide the link to your study",
     "HEADLINE_GENERAL_INFORMATION": "General information for ",
     "TITLE": "Title",
     "TITLE_PLACEHOLDER": "Title",
@@ -71,9 +72,11 @@
     "DURATION_ARIA_LABEL": "Duration in minutes",
     "DURATION_MESSAGE": "Please enter the duration of a study appointment",
     "DURATION_MIN": "Please enter a duration of at least 10 Minutes",
+    "DURATION_TIP": "Please specify the duration (in minutes) of an appointment",
     "LINK": "Link to your online study",
     "LINK_REQUIRED": "Please provide the link to your online study",
     "LINK_PATTERN": "Please provide a valid link",
+    "LINK_TIP": "Please provide the link to your online study",
     "LOCATION": "Location",
     "LOCATION_PLACEHOLDER": "Location(s)",
     "LOCATION_ARIA_LABEL": "Location(s)",
@@ -109,12 +112,14 @@
     "STUDY_START_MESSAGE": "Please enter the study begin as follows DD.MM.YYYY",
     "STUDY_END": "Study end",
     "STUDY_END_MESSAGE": "Please enter the study end as follows DD.MM.YYYY",
-    "APPOINTMENT_TIME": "Time",
+    "APPOINTMENT_TIME": "Beginn des Termins",
     "APPOINTMENT_TIME_MESSAGE": "Please enter the start time of the appointment",
+    "APPOINTMENT_TIME_PATTERN": "Please enter the starting time in the following format: HH:MM",
     "APPOINTMENT_PLACEHOLDER": "Time",
     "APPOINTMENT_TIME_ARIA_LABEL": "Appointment time",
     "APPOINTMENT_BUFFER": "Buffer (in minutes)",
-    "APPOINTMENT_BUFFER_PLACEHOLDER": "Buffer",
+    "APPOINTMENT_BUFFER_TIP": "Please specify the break (in minutes) between two appointments",
+    "APPOINTMENT_BUFFER_PLACEHOLDER": "Break (in minutes)",
     "APPOINTMENT_BUFFER_ARIA_LABEL": "Buffer",
     "APPOINTMENT_DAY": "Day",
     "APPOINTMENT_DAY_MESSAGE": "Please enter the date of the appointment",
@@ -428,7 +433,8 @@
     "CONFIRM_DELETE_ABORT": "Abort",
     "CHANGE_EMAIL":"Change email",
     "CHANGE_EMAIL_PLACEHOLDER":"New email",
-    "CHANGE_EMAIL_TEXT":"Enter new email."
+    "CHANGE_EMAIL_TEXT":"Enter new email.",
+    "CHANGE_EMAIL_SUCCESS":"Email changed successfully!"
   },
   "MY_STUDIES" : {
     "TITLE": "My studies",
