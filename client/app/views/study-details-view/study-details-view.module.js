@@ -142,7 +142,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                 } else if (r.gender == 'male') {
                                     $scope.maleParticipants += 1;
                                 } else {
-                                    console.log("Mr. " + responseUser.lastname + " has not specified a gender");
+                                    console.log("Mr. " + responseUser.secondName + " has not specified a gender");
                                 }
                             });
 
