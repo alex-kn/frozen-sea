@@ -76,7 +76,7 @@
 
         <!-- START add date -->
 
-        <md-content class="md-padding">
+        <md-content ng-show="dates.length" class="md-padding">
 
             <h2 class="md-headline">{{'STUDY_DETAILS.ADD_DATE' | translate}}</h2>
 
@@ -186,9 +186,9 @@
 
         <!-- START modify dates -->
 
-        <md-progress-circular class="md-accent" ng-hide="datesAreReady"></md-progress-circular>
+        <md-progress-circular class="md-accent" ng-hide="datesAreReady || dates.length"></md-progress-circular>
 
-        <md-content class="md-padding" ng-show="datesAreReady">
+        <md-content class="md-padding" ng-show="datesAreReady && dates.length">
 
             <h2 class="md-headline">{{'STUDY_DETAILS.MODIFY_DATES' | translate}}</h2>
 

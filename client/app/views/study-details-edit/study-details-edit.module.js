@@ -47,7 +47,7 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
              */
             function loadDates() {
                 $scope.dates = Study.dates({id: $scope.study.id}, function (response) {
-                    if(!response.length) {$scope.datesAreReady = true}
+                    $scope.datesAreReady = true;
                     return Promise.all(response.map(function (res) {
                         res.startDate = new Date(res.startDate);
                         res.participants = 0;
@@ -61,7 +61,6 @@ angular.module('studyDetailsEdit', ['ngRoute', 'ngMaterial'])
                             response.sort(function (a, b) {
                                 return a.startDate - b.startDate;
                             });
-                            $scope.datesAreReady = true;
                         });
 
 

@@ -184,8 +184,9 @@
 
         <!-- START dates -->
 
-        <md-content class="md-padding" ng-hide="appointments.length">
+        <md-content class="md-padding" ng-hide="appointments.length" layout-align="center center">
             <p>{{'STUDY_DETAILS.ONLINE_ONLY' | translate}}</p>
+            <a ng-show="study.link" ng-href="{{study.link}}" target="_blank">{{study.link}}</a>
         </md-content>
 
         <md-content class="md-padding" ng-show="appointments.length">
