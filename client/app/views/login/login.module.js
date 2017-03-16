@@ -37,7 +37,12 @@ angular.module('login', ['ngRoute'])
 
                 }, function(err) {
                     console.log(err);
-                    $scope.errorMessage = $filter('translate')('LOGIN.ERROR');
+                    if(err.data.error.code == 'LOGIN_FAILED_EMAIL_NOT_VERIFIED'){
+                        $scope.errorMessage = $filter('translate')('LOGIN.ERROR_VERIFIED');
+                    }
+                    else {
+                        $scope.errorMessage = $filter('translate')('LOGIN.ERROR');
+                    }
                 });
             }
         }]);
