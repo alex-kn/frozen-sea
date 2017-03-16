@@ -15,8 +15,8 @@ angular
                 $scope.studyIsReLoading = false;
                 $scope.studies = [];
                 $scope.thereAreMatchingStudies = true;
-                $scope.show_too_old = true;
-                $scope.show_non_matches = true;
+                $scope.show_too_old = false;
+                $scope.show_non_matches = false;
                 $scope.sort_by =  "ends_soon"; //default sort value
                 $scope.searchGtXs = false;
                 $scope.search = false;
@@ -74,7 +74,7 @@ angular
             };
             $scope.loadStudies = function() {
                 $scope.myFilter = {};
-                if($scope.show_too_old) { //load all studies that are not finished yet
+                if(!$scope.show_too_old) { //load all studies that are not finished yet
                     $scope.myFilter = {filter: {where: {endDate:  {gte: new Date()}}}};
                 }
                 $scope.studiesTemp = Study.find($scope.myFilter,
