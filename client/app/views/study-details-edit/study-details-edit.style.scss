@@ -18,6 +18,10 @@ form {
 
 }
 
+md-progress-circular {
+  margin: 7rem auto 4rem;
+}
+
 .button-green[disabled] {
   color: forestgreen !important;
 }
@@ -43,6 +47,39 @@ form {
     min-height: 0 !important;
     max-height: 0 !important;
   }
+
+  .md-datepicker-button{
+    display: none !important;
+  }
+
+  .md-datepicker-input-container{
+    margin-left: 0 !important;
+  }
+}
+.time-input {
+
+  input {
+    width: 1.5rem;
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
 }
 
+.new-date {
+  background-color: lightgreen;
+}
 
+md-card{
+
+  md-card-action{
+
+    md-progress-circular{
+      margin: 0;
+    }
+  }
+}

@@ -16,6 +16,10 @@ html, body {
   position: relative !important;
   bottom: -7px !important; }
 
+.image-header {
+  display: flex;
+  align-items: center; }
+
 .material-icons.md-18 {
   font-size: 18px; }
 
@@ -80,6 +84,9 @@ md-toolbar.toolbar {
   .align-items i {
     margin-right: .5rem; }
 
+.md-button i {
+  margin-left: .5rem !important; }
+
 .participating.confirmed {
   background-color: lightgreen; }
 
@@ -122,6 +129,8 @@ md-card {
   md-card md-card-content md-progress-circular {
     margin: auto;
     margin-top: 0.5rem; }
+  md-card md-card-action md-progress-circular {
+    margin: 0; }
 
 .pad {
   padding: 0 !important;
@@ -132,9 +141,6 @@ md-card {
 
 .button-green[disabled] {
   color: green !important; }
-
-.button-red[disabled] {
-  color: red !important; }
 
 .button-red[disabled] {
   color: red !important; }
@@ -158,5 +164,17 @@ md-progress-linear {
       background-color: lightcoral;
       height: 1rem;
       border-radius: 10px; }
+
+.ng-hide.fade {
+  opacity: 0; }
+
+.ng-hide-add.fade, .ng-hide-remove.fade {
+  transition: all linear 500ms; }
+
+.margin-bot-5 {
+  margin-bottom: .5rem; }
+
+.md-button.padding {
+  padding: 0 4rem; }
 
 /*# sourceMappingURL=study-details-view.style.css.map */

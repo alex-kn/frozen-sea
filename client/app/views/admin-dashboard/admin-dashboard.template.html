@@ -8,15 +8,15 @@
 <md-content>
     <!-- START tool bar -->
     <md-toolbar class="toolbar md-hue-1" layout="row" layout-align="start center">
-        <div class="md-toolbar-tools" flex-offset-gt-sm="15">
-            <h2 class="md-display-3">
+        <div class="md-toolbar-tools" flex-offset-gt-sm="20" flex-offset-md="10">
+            <h2 class="md-display-3 image-header">
                 <i class="material-icons">bubble_chart</i>
                 {{'ADMIN_DASHBOARD.ADMIN_DASHBOARD' | translate}}
             </h2>
         </div>
     </md-toolbar>
     <!-- END toolbar -->
-    <md-progress-circular ng-show="!usersLoaded" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular></div>
+    <md-progress-circular ng-show="!usersLoaded" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular>
     <md-list flex ng-show="usersLoaded">
         <md-list-item class="md-2-line">
             <div class="md-list-item-text" layout="row" layout-align="center center">
@@ -33,7 +33,7 @@
         <md-list-item class="md-2-line" ng-model="users" ng-repeat="user in users">
             <div class="md-list-item-text" layout="row" layout-align="center center">
                 <span flex>{{user.email}}</span>
-                <span flex>{{user.username}}</span>
+                <span flex>{{user.firstName}} {{user.secondName}}</span>
                 <span flex>
                       <md-button>Admin</md-button>
                         <md-switch ng-disabled="user.current" class="md-primary" aria-label="Switch Admin" ng-model="user.isAdmin" ng-change="onChangeAdmin(user)">

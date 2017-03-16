@@ -15,7 +15,7 @@
     <!-- START registration -->
     <section class="login" layout="column" layout-padding flex="100" flex-gt-sm="60">
 
-        <!-- START switch to login -->
+        <!-- START switch to register -->
         <div class="switch-to-login" layout="row" layout-align="end center">
 
 
@@ -31,12 +31,12 @@
             <span>{{'LOGIN.NO_ACCOUNT' | translate}}</span>
             <md-button href="#!/register" class="md-accent">{{'LOGIN.REGISTER' | translate}}</md-button>
         </div>
-        <!-- END switch to login -->
+        <!-- END switch to register -->
 
-        <!-- START registration form -->
+        <!-- START login form -->
         <div class="login-form" layout="row" layout-align="center start">
 
-            <form  layout="column" flex-gt-xs="60" flex="100">
+            <form  layout="column" flex-gt-xs="60" flex="100" ng-keyup="$event.keyCode == 13 && loginUser(email, password)">
 
                 <h2>{{'LOGIN.LOGIN_HERE' | translate}}</h2>
 
@@ -58,9 +58,9 @@
 
             </form>
         </div>
-        <!-- END registration form -->
+        <!-- END login form -->
 
     </section>
-    <!-- END registration -->
+    <!-- END login -->
 
 </md-content>

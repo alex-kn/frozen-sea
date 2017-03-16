@@ -16,18 +16,27 @@ angular
             $scope.show_non_matches = true;
             $scope.sort_by =  "ends_soon"; //default sort value
 
+            $scope.showSearch = function() {
+                var input = document.getElementById('search');
+                input.classList.remove('hide');
+            };
+            function hideSearch() {
+                var input = document.getElementById('search');
+                input.classList.add('hide');
+            }
 
-            $scope.dynamicOrderFunction = function() {
-                if ($scope.sort_by == "newest") {
+            $scope.dynamicOrderFunction = function(sortBy) {
+                if (sortBy == 'newest') {
                     $scope.studies.sort(function(a,b) {
                         return new Date(a.creationDate) > new Date(b.creationDate)
                     })
                 }
-                if ($scope.sort_by == "ends_soon") {
+                if (sortBy == 'ends_soon') {
                     $scope.studies.sort(function(a,b) {
                         return new Date(a.endDate) > new Date(b.endDate)
                     })
                 }
+                hideSearch();
             };
 
             $scope.reloadStudies = function() {

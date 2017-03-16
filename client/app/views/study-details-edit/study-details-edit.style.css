@@ -16,6 +16,10 @@ html, body {
   position: relative !important;
   bottom: -7px !important; }
 
+.image-header {
+  display: flex;
+  align-items: center; }
+
 .material-icons.md-18 {
   font-size: 18px; }
 
@@ -84,6 +88,9 @@ form md-checkbox {
   form md-checkbox:last-of-type {
     margin-right: 0; }
 
+md-progress-circular {
+  margin: 7rem auto 4rem; }
+
 .button-green[disabled] {
   color: forestgreen !important; }
 
@@ -100,5 +107,22 @@ form md-checkbox {
   .align-items .md-errors-spacer {
     min-height: 0 !important;
     max-height: 0 !important; }
+  .align-items .md-datepicker-button {
+    display: none !important; }
+  .align-items .md-datepicker-input-container {
+    margin-left: 0 !important; }
+
+.time-input input {
+  width: 1.5rem; }
+.time-input input[type=number]::-webkit-inner-spin-button,
+.time-input input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+.new-date {
+  background-color: lightgreen; }
+
+md-card md-card-action md-progress-circular {
+  margin: 0; }
 
 /*# sourceMappingURL=study-details-edit.style.css.map */

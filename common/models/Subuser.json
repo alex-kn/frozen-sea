@@ -40,8 +40,9 @@
       "foreignKey": "participantId"
     },
     "supervised_studies": {
-      "type": "hasAndBelongsToMany",
-      "model": "Study"
+      "type": "hasMany",
+      "model": "Study",
+      "foreignKey": "advisorId"
     }
   },
   "acls": [

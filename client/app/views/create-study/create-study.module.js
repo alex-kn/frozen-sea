@@ -9,12 +9,18 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
             controller: 'CreateStudyController'
         });
     }])
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'ByRoleService', '$filter', '$translate', '$document',
-        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, ByRoleService, $filter, $translate, $document) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'ByRoleService', '$filter', '$translate', '$document', 'Subuser',
+        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, ByRoleService, $filter, $translate, $document, Subuser) {
+
             $scope.initialize = function() {
                 ByRoleService.getUsersByRole("advisor").then(function(res) {
                     $scope.advisors = res;
                 });
+
+                var today = new Date();
+                var tomorrow = new Date();
+                tomorrow.setDate(today.getDate() + 1);
+
                 $scope.tabIndex = 0;
                 $scope.preferences = {
                     studyPrograms: [],
@@ -49,21 +55,27 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 };
                 $scope.appointments = [];
                 $scope.appointment = {
-                    date: new Date(),
+                    date: tomorrow,
                     time: '08:30',
                     bufferTime: null,
                     duration: $scope.study.duration,
-                    deadline: $scope.study.startDate,
+                    deadline: 1,
                     location: null,
                     participants: 1
                 };
             };
 
+            /* Switch between general and requirements tab on button click */
             $scope.selectTab = function() {
                 $scope.tabIndex === 1 ? $scope.tabIndex = 0 : $scope.tabIndex = 1;
                 $document.scrollTop(0, 500);
             };
 
+            /**
+             * Add appointment to appointments array
+             * Fill the appointment list to display appointment card
+             * Requires AppointmentService
+             */
             $scope.addAppointment = function() {
                 var appointment = {
                     date: $scope.appointment.date,
@@ -78,10 +90,21 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 console.log($scope.appointments);
                 $scope.appointment.time = AppointmentService.addDurationToAppointmentTime(appointment.time, appointment.duration, appointment.bufferTime);
             };
+
+            /**
+             * Remove appointment from appointments array
+             * Remove selected appointment card
+             * @param item appointment object
+             */
             $scope.removeAppointment= function(item) {
                 var index = $scope.appointments.indexOf(item);
                 $scope.appointments.splice(index, 1);
             };
+
+            /**
+             * Create a new study object that is saved to the database
+             * Iterate through the appointments array to save all related appointments
+             */
             $scope.createStudy = function () {
                 if ($scope.createStudyForm.$valid) {
                     return Study
@@ -93,6 +116,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                             creationDate: new Date(),
                             ownerId: LoopBackAuth.currentUserId,
                             duration: $scope.study.duration,
+                            advisorId: JSON.parse($scope.study.adviser).id,
                             keywords_array: $scope.study.keywords,
                             locations_array: $scope.study.locations,
                             required_study_programs_array: $scope.preferences.studyPrograms,
@@ -160,10 +184,6 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                                 )
                                 .ariaLabel($filter('translate')('CREATE_STUDY.EXPLANATION_1'))
                                 .ok($filter('translate')('CREATE_STUDY.EXPLANATION_OK'));
-                            //$mdDialog.show(confirm).then(function () {
-                            //    $location.path('/home');
-                            //}, function () {
-                            //});
                             $location.path('/home');
                         });
                 }
@@ -173,7 +193,6 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
              * @param ev event
              */
             $scope.cancelStudy = function (ev) {
-                // Appending dialog to document.body to cover sidenav in docs app
                 var confirm = $mdDialog.confirm()
                     .title($filter('translate')('CREATE_STUDY.DELETE_1')  + $scope.study.name + $filter('translate')('CREATE_STUDY.DELETE_2'))
                     .textContent($filter('translate')('CREATE_STUDY.DELETE_3'))

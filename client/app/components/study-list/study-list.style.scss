@@ -33,8 +33,12 @@ md-toolbar.toolbar {
     top: 5.75rem;
     right: 22%;
 
-    @media screen and (max-width: 600px) {
-      right: 10%;
+    @media screen and (max-width: 1279px) {
+      right: 12%;
+    }
+
+    @media screen and (max-width: 959px) {
+      right: 8%;
     }
   }
 }
@@ -141,6 +145,35 @@ md-toolbar.toolbar {
   height:100%;
   background-position:center;
   z-index:10000000;
+}
+
+md-nav-bar .md-nav-bar {
+  border-color: #fff;
+
+  .md-button {
+    min-width: 64px;
+  }
+
+  ._md-nav-button {
+    padding: 12px 8px;
+  }
+}
+
+.search-input {
+  margin-left: 8px;
+  width: 120px;
+  border: none;
+  font-size: 16px;
+  font-weight: 300;
+
+  &:focus {
+    outline: none;
+    color: #303030;
+  }
+}
+
+.hide {
+  display: none;
 }
 
 

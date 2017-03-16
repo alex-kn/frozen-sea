@@ -51,10 +51,12 @@
     "DESCRIPTION_PLACEHOLDER": "Description",
     "DESCRIPTION_ARIA_LABEL": "Description",
     "DESCRIPTION_MESSAGE": "Please enter a meaningful description",
+    "DESCRIPTION_LENGTH": "Please stick to a maximum of 600 characters",
     "DURATION": "Duration in minutes",
     "DURATION_PLACEHOLDER": "Duration in minutes",
     "DURATION_ARIA_LABEL": "Duration in minutes",
     "DURATION_MESSAGE": "Please enter the duration of a study appointment",
+    "DURATION_MIN": "Please enter a duration of at least 10 Minutes",
     "LOCATION": "Location",
     "LOCATION_PLACEHOLDER": "Location(s)",
     "LOCATION_ARIA_LABEL": "Location(s)",
@@ -90,15 +92,19 @@
     "STUDY_END": "Study end",
     "STUDY_END_MESSAGE": "Please enter the study end as follows DD.MM.YYYY",
     "APPOINTMENT_TIME": "Time",
+    "APPOINTMENT_TIME_MESSAGE": "Please enter the start time of the appointment",
     "APPOINTMENT_PLACEHOLDER": "Time",
-    "APPOINTMENT_OCLOCK": "",
     "APPOINTMENT_TIME_ARIA_LABEL": "Appointment time",
     "APPOINTMENT_BUFFER": "Buffer (in minutes)",
     "APPOINTMENT_BUFFER_PLACEHOLDER": "Buffer",
     "APPOINTMENT_BUFFER_ARIA_LABEL": "Buffer",
     "APPOINTMENT_DAY": "Day",
+    "APPOINTMENT_DAY_MESSAGE": "Please enter the date of the appointment",
     "APPOINTMENT_DEADLINE": "Registration deadline",
-    "APPOINTMENT_LOCATION": "Ort",
+    "APPOINTMENT_DEADLINE_MESSAGE": "Please enter the deadline for applying to the study appointment",
+    "APPOINTMENT_DEADLINE_MIN": "Please enter a deadline of at least one hour prior to the begin of the study appointment",
+    "APPOINTMENT_LOCATION": "Location",
+    "APPOINTMENT_LOCATION_MESSAGE": "Please choose a location for the appointment that you specified above",
     "APPOINTMENT_PARTICIPANTS": "Number of participants",
     "APPOINTMENT_MAX_PARTICIPANTS": "participants",
     "ADD_APPOINTMENT_BUTTON": "Add appointment",
@@ -208,7 +214,8 @@
     "OPEN_MENU" : "Open user menu",
     "PROFILE_EDIT": "User Profile",
     "LOGOUT": "Sign out",
-    "MY_STUDIES": "My Studies"
+    "MY_STUDIES": "My Studies",
+    "CHANGE_LANGUAGE": "Change Language to German"
   },
   "STUDY_LIST": {
     "TITLE" : "Studies",
@@ -240,7 +247,9 @@
     "STUDY_NAME": "Study name",
     "STUDY_NAME_2":"Name of your study",
     "EXAMPLE":"Example: Driving behaviour after consumption of milk",
-    "WHAT_NAME":"What is the name of your study?"
+    "WHAT_NAME":"What is the name of your study?",
+    "CAREFUL": "Always carefully read the description and the requirements of a study before you participate!"
+
   },
   "ARCHIVE": {
     "TITLE" : "Archive",

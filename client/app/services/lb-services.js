@@ -1435,58 +1435,10 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "PUT",
             },
 
-            // INTERNAL. Use Study.advisors.findById() instead.
-            "prototype$__findById__advisors": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/advisors/:fk",
+            // INTERNAL. Use Study.advisor() instead.
+            "prototype$__get__advisor": {
+              url: urlBase + "/Studies/:id/advisor",
               method: "GET",
-            },
-
-            // INTERNAL. Use Study.advisors.destroyById() instead.
-            "prototype$__destroyById__advisors": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/advisors/:fk",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Study.advisors.updateById() instead.
-            "prototype$__updateById__advisors": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/advisors/:fk",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Study.advisors.link() instead.
-            "prototype$__link__advisors": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/advisors/rel/:fk",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Study.advisors.unlink() instead.
-            "prototype$__unlink__advisors": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/advisors/rel/:fk",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Study.advisors.exists() instead.
-            "prototype$__exists__advisors": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/advisors/rel/:fk",
-              method: "HEAD",
             },
 
             // INTERNAL. Use Study.owner() instead.
@@ -1542,31 +1494,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
             // INTERNAL. Use Study.participations.count() instead.
             "prototype$__count__participations": {
               url: urlBase + "/Studies/:id/participations/count",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Study.advisors() instead.
-            "prototype$__get__advisors": {
-              isArray: true,
-              url: urlBase + "/Studies/:id/advisors",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Study.advisors.create() instead.
-            "prototype$__create__advisors": {
-              url: urlBase + "/Studies/:id/advisors",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Study.advisors.destroyAll() instead.
-            "prototype$__delete__advisors": {
-              url: urlBase + "/Studies/:id/advisors",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Study.advisors.count() instead.
-            "prototype$__count__advisors": {
-              url: urlBase + "/Studies/:id/advisors/count",
               method: "GET",
             },
 
@@ -2198,33 +2125,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               },
               url: urlBase + "/Subusers/:id/supervised_studies/:fk",
               method: "PUT",
-            },
-
-            // INTERNAL. Use Subuser.supervised_studies.link() instead.
-            "::link::Subuser::supervised_studies": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Subusers/:id/supervised_studies/rel/:fk",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Subuser.supervised_studies.unlink() instead.
-            "::unlink::Subuser::supervised_studies": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Subusers/:id/supervised_studies/rel/:fk",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Subuser.supervised_studies.exists() instead.
-            "::exists::Subuser::supervised_studies": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Subusers/:id/supervised_studies/rel/:fk",
-              method: "HEAD",
             },
 
             // INTERNAL. Use Subuser.created_studies() instead.
@@ -3158,108 +3058,21 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
           var action = TargetResource["::updateById::Study::participations"];
           return action.apply(R, arguments);
         };
-    /**
-     * @ngdoc object
-     * @name lbServices.Study.advisors
-     * @header lbServices.Study.advisors
-     * @object
-     * @description
-     *
-     * The object `Study.advisors` groups methods
-     * manipulating `Subuser` instances related to `Study`.
-     *
-     * Call {@link lbServices.Study#advisors Study.advisors()}
-     * to query all related instances.
-     */
-
 
             /**
              * @ngdoc method
-             * @name lbServices.Study#advisors
+             * @name lbServices.Study#advisor
              * @methodOf lbServices.Study
              *
              * @description
              *
-             * Queries advisors of Study.
+             * Fetches belongsTo relation advisor.
              *
              * @param {Object=} parameters Request parameters.
              *
              *  - `id` – `{*}` - PersistedModel id
              *
-             *  - `filter` – `{object=}` -
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Subuser` object.)
-             * </em>
-             */
-        R.advisors = function() {
-          var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::get::Study::advisors"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.advisors#count
-             * @methodOf lbServices.Study.advisors
-             *
-             * @description
-             *
-             * Counts advisors of Study.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             *  - `where` – `{object=}` - Criteria to match model instances
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * Data properties:
-             *
-             *  - `count` – `{number=}` -
-             */
-        R.advisors.count = function() {
-          var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::count::Study::advisors"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.advisors#create
-             * @methodOf lbServices.Study.advisors
-             *
-             * @description
-             *
-             * Creates a new instance in advisors of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
+             *  - `refresh` – `{boolean=}` -
              *
              * @param {function(Object,Object)=} successCb
              *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -3276,296 +3089,9 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              * This usually means the response is a `Subuser` object.)
              * </em>
              */
-        R.advisors.create = function() {
+        R.advisor = function() {
           var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::create::Study::advisors"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.advisors#createMany
-             * @methodOf lbServices.Study.advisors
-             *
-             * @description
-             *
-             * Creates a new instance in advisors of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Subuser` object.)
-             * </em>
-             */
-        R.advisors.createMany = function() {
-          var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::createMany::Study::advisors"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.advisors#destroyAll
-             * @methodOf lbServices.Study.advisors
-             *
-             * @description
-             *
-             * Deletes all advisors of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * This method returns no data.
-             */
-        R.advisors.destroyAll = function() {
-          var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::delete::Study::advisors"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.advisors#destroyById
-             * @methodOf lbServices.Study.advisors
-             *
-             * @description
-             *
-             * Delete a related item by id for advisors.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             *  - `fk` – `{*}` - Foreign key for advisors
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * This method returns no data.
-             */
-        R.advisors.destroyById = function() {
-          var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::destroyById::Study::advisors"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.advisors#exists
-             * @methodOf lbServices.Study.advisors
-             *
-             * @description
-             *
-             * Check the existence of advisors relation to an item by id.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             *  - `fk` – `{*}` - Foreign key for advisors
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Subuser` object.)
-             * </em>
-             */
-        R.advisors.exists = function() {
-          var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::exists::Study::advisors"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.advisors#findById
-             * @methodOf lbServices.Study.advisors
-             *
-             * @description
-             *
-             * Find a related item by id for advisors.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             *  - `fk` – `{*}` - Foreign key for advisors
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Subuser` object.)
-             * </em>
-             */
-        R.advisors.findById = function() {
-          var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::findById::Study::advisors"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.advisors#link
-             * @methodOf lbServices.Study.advisors
-             *
-             * @description
-             *
-             * Add a related item by id for advisors.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             *  - `fk` – `{*}` - Foreign key for advisors
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Subuser` object.)
-             * </em>
-             */
-        R.advisors.link = function() {
-          var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::link::Study::advisors"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.advisors#unlink
-             * @methodOf lbServices.Study.advisors
-             *
-             * @description
-             *
-             * Remove the advisors relation to an item by id.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             *  - `fk` – `{*}` - Foreign key for advisors
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * This method returns no data.
-             */
-        R.advisors.unlink = function() {
-          var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::unlink::Study::advisors"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Study.advisors#updateById
-             * @methodOf lbServices.Study.advisors
-             *
-             * @description
-             *
-             * Update a related item by id for advisors.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             *  - `fk` – `{*}` - Foreign key for advisors
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Subuser` object.)
-             * </em>
-             */
-        R.advisors.updateById = function() {
-          var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::updateById::Study::advisors"];
+          var action = TargetResource["::get::Study::advisor"];
           return action.apply(R, arguments);
         };
 
@@ -6394,33 +5920,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "PUT",
             },
 
-            // INTERNAL. Use Subuser.supervised_studies.link() instead.
-            "prototype$__link__supervised_studies": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Subusers/:id/supervised_studies/rel/:fk",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Subuser.supervised_studies.unlink() instead.
-            "prototype$__unlink__supervised_studies": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Subusers/:id/supervised_studies/rel/:fk",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Subuser.supervised_studies.exists() instead.
-            "prototype$__exists__supervised_studies": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Subusers/:id/supervised_studies/rel/:fk",
-              method: "HEAD",
-            },
-
             // INTERNAL. Use Subuser.preferences() instead.
             "prototype$__get__preferences": {
               url: urlBase + "/Subusers/:id/preferences",
@@ -7473,95 +6972,101 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "GET",
             },
 
-            // INTERNAL. Use Study.advisors.findById() instead.
-            "::findById::Study::advisors": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/advisors/:fk",
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser#setRole
+             * @methodOf lbServices.Subuser
+             *
+             * @description
+             *
+             * <em>
+             * (The remote method definition does not provide any description.)
+             * </em>
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             *  - `id` – `{string}` -
+             *
+             *  - `role` – `{string}` -
+             *
+             *  - `userId` – `{string}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `principal` – `{object=}` -
+             */
+            "setRole": {
+              url: urlBase + "/Subusers/:id/setRole/",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser#revokeRole
+             * @methodOf lbServices.Subuser
+             *
+             * @description
+             *
+             * <em>
+             * (The remote method definition does not provide any description.)
+             * </em>
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             *  - `id` – `{string}` -
+             *
+             *  - `role` – `{string}` -
+             *
+             *  - `userId` – `{string}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `principal` – `{object=}` -
+             */
+            "revokeRole": {
+              url: urlBase + "/Subusers/:id/revokeRole/",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Study.advisor() instead.
+            "::get::Study::advisor": {
+              url: urlBase + "/Studies/:id/advisor",
               method: "GET",
-            },
-
-            // INTERNAL. Use Study.advisors.destroyById() instead.
-            "::destroyById::Study::advisors": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/advisors/:fk",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Study.advisors.updateById() instead.
-            "::updateById::Study::advisors": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/advisors/:fk",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Study.advisors.link() instead.
-            "::link::Study::advisors": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/advisors/rel/:fk",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Study.advisors.unlink() instead.
-            "::unlink::Study::advisors": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/advisors/rel/:fk",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Study.advisors.exists() instead.
-            "::exists::Study::advisors": {
-              params: {
-                'fk': '@fk',
-              },
-              url: urlBase + "/Studies/:id/advisors/rel/:fk",
-              method: "HEAD",
             },
 
             // INTERNAL. Use Study.owner() instead.
             "::get::Study::owner": {
               url: urlBase + "/Studies/:id/owner",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Study.advisors() instead.
-            "::get::Study::advisors": {
-              isArray: true,
-              url: urlBase + "/Studies/:id/advisors",
-              method: "GET",
-            },
-
-            // INTERNAL. Use Study.advisors.create() instead.
-            "::create::Study::advisors": {
-              url: urlBase + "/Studies/:id/advisors",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Study.advisors.createMany() instead.
-            "::createMany::Study::advisors": {
-              isArray: true,
-              url: urlBase + "/Studies/:id/advisors",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Study.advisors.destroyAll() instead.
-            "::delete::Study::advisors": {
-              url: urlBase + "/Studies/:id/advisors",
-              method: "DELETE",
-            },
-
-            // INTERNAL. Use Study.advisors.count() instead.
-            "::count::Study::advisors": {
-              url: urlBase + "/Studies/:id/advisors/count",
               method: "GET",
             },
 
@@ -9465,42 +8970,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
             /**
              * @ngdoc method
-             * @name lbServices.Subuser.supervised_studies#exists
-             * @methodOf lbServices.Subuser.supervised_studies
-             *
-             * @description
-             *
-             * Check the existence of supervised_studies relation to an item by id.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             *  - `fk` – `{*}` - Foreign key for supervised_studies
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study` object.)
-             * </em>
-             */
-        R.supervised_studies.exists = function() {
-          var TargetResource = $injector.get("Study");
-          var action = TargetResource["::exists::Subuser::supervised_studies"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
              * @name lbServices.Subuser.supervised_studies#findById
              * @methodOf lbServices.Subuser.supervised_studies
              *
@@ -9532,79 +9001,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         R.supervised_studies.findById = function() {
           var TargetResource = $injector.get("Study");
           var action = TargetResource["::findById::Subuser::supervised_studies"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser.supervised_studies#link
-             * @methodOf lbServices.Subuser.supervised_studies
-             *
-             * @description
-             *
-             * Add a related item by id for supervised_studies.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             *  - `fk` – `{*}` - Foreign key for supervised_studies
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Study` object.)
-             * </em>
-             */
-        R.supervised_studies.link = function() {
-          var TargetResource = $injector.get("Study");
-          var action = TargetResource["::link::Subuser::supervised_studies"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Subuser.supervised_studies#unlink
-             * @methodOf lbServices.Subuser.supervised_studies
-             *
-             * @description
-             *
-             * Remove the supervised_studies relation to an item by id.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - User id
-             *
-             *  - `fk` – `{*}` - Foreign key for supervised_studies
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * This method returns no data.
-             */
-        R.supervised_studies.unlink = function() {
-          var TargetResource = $injector.get("Study");
-          var action = TargetResource["::unlink::Subuser::supervised_studies"];
           return action.apply(R, arguments);
         };
 

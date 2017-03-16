@@ -7,8 +7,8 @@
 <md-content>
     <!-- START tool bar -->
     <md-toolbar class="toolbar md-hue-1" layout="row" layout-align="start center">
-        <div class="md-toolbar-tools" flex-offset-gt-sm="15">
-            <h2 class="md-display-3">
+        <div class="md-toolbar-tools" flex-offset-gt-sm="20" flex-offset-md="10">
+            <h2 class="md-display-3 image-header">
                 <i class="material-icons">bubble_chart</i>
                 {{'NAVBAR.MY_STUDIES' | translate}}
             </h2>
@@ -161,7 +161,7 @@
 
 
 
-            <md-tab layout="column">
+            <md-tab layout="column" data-ng-if="isAdvisor"">
                 <md-tab-label>
                     {{'MY_STUDIES.ADVISED_STUDIES' | translate}}
                 </md-tab-label>
@@ -210,7 +210,7 @@
                             {{ study.description }}
                         </md-card-content>
                         <md-card-actions layout="row" layout-align="end center">
-                            <md-button{{'STUDY_LIST.DETAILS' | translate}}</md-button>
+                            <md-button>{{'STUDY_LIST.DETAILS' | translate}}</md-button>
                         </md-card-actions>
                     </md-card>
                 </md-tab-body>
