@@ -24,19 +24,9 @@
 <!-- START study list -->
 <md-content layout-padding layout="column" flex-offset-gt-md="20" flex-offset-md="10" flex-gt-md="60" flex-md="80" flex>
 
+    <!-- START filter -->
     <div layout="row" layout-align="start center">
 
-        <!--
-        <md-button class="md-icon-button" aria-label="Search for studies">
-            <md-icon class="material-icons">search</md-icon>
-        </md-button>
-        <md-input-container flex-xs="100" flex-sm="50"  flex-gt-sm="30" hide>
-            <input type="text"
-                   ng-model="search"
-                   placeholder="{{'STUDY_LIST.SEARCH' | translate}}"
-                   aria-label="{{'STUDY_LIST.SEARCH' | translate}}">
-        </md-input-container>
-        -->
         <md-nav-bar
                 hide-xs
                 md-selected-nav-item="currentNavItem"
@@ -59,7 +49,9 @@
             <md-nav-item md-nav-click="4" ng-click="refilter()" name="4">
                 Unpassend
             </md-nav-item>
-
+            <md-nav-item md-nav-click="4" ng-click="refilter()" name="5">
+                Vergangene Studien
+            </md-nav-item>
         </md-nav-bar>
 
 
@@ -84,11 +76,12 @@
         -->
 
     </div>
-
+    <!-- END filter -->
 
     <md-progress-circular ng-show="studyIsLoading || studyIsReLoading" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular>
 
     <div layout="column"  ng-class="{'grey-out': studyIsReLoading}">
+        <h2 layout-padding class="md-subhead not-found-text" ng-hide="studies.length > 0">{{'STUDY_LIST.NO_FOUND' | translate}}</h2>
         <md-card class="custom-pointer" ng-repeat="study in studies | filter:search" ng-click="showDetails(study)"
                  ng-class="{
                      'stuy-not-approved': !study.isApproved,

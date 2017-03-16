@@ -36,14 +36,16 @@
                     </md-checkbox>
                 </md-input-container>
                     <md-autocomplete flex-gt-xs="50" flex="100" ng-show="preferences.student" md-selected-item="ctrl.selectedItem"
-                                     md-search-text="searchText"
-                                     md-items="item in getMatches(searchText)" md-item-text="item" md-min-length="1"
-                                     md-require-match="true" md-autoselect="true"
-                                     md-floating-label="{{'USER_PREFERENCES.I_STUDY' | translate}}">
+                                     ng-value="tt"
+                                     md-search-text="ctrl.searchText"
+                                     md-items="item in getMatches(ctrl.searchText)"
+                                     md-item-text="item"
+                                     md-min-length="1"
+                                     md-autoselect="true"
+                                     md-floating-label="{{'USER_PREFERENCES.I_STUDY' | translate}}"
                         <md-item-template>
-                            <span md-highlight-text="searchText" md-highlight-flags="^i">{{item}}</span>
+                            <span md-highlight-text="searchText">{{item}}</span>
                         </md-item-template>
-                        <md-not-found>{{'USER_PREFERENCES.STUDY_NOT_EXIST' | translate}}</md-not-found>
                     </md-autocomplete>
 
 

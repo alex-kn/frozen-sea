@@ -11,6 +11,7 @@ angular
             $scope.studyIsLoading = true;
 
 
+
             //myStudies
             Participation.find({
                 filter: {
@@ -34,7 +35,9 @@ angular
                     }
                 }}, function(studies){
                     $scope.myStudies=studies;
-                    StudyHighlightService.highlightStudy($scope.myStudies, LoopBackAuth.currentUserId);
+                    StudyHighlightService.highlightStudy($scope.myStudies, LoopBackAuth.currentUserId).then(function(studies) {
+                        $scope.myStudies = studies;
+                    });
                     $scope.studyIsLoading = false;
                 });
             });
@@ -49,7 +52,9 @@ angular
                 }
             }, function(studies) {
                 $scope.createdStudies = studies;
-                StudyHighlightService.highlightStudy($scope.createdStudies, LoopBackAuth.currentUserId);
+                StudyHighlightService.highlightStudy($scope.createdStudies, LoopBackAuth.currentUserId).then(function(studies) {
+                    $scope.createdStudies = studies;
+                });
             });
 
 
@@ -62,7 +67,11 @@ angular
                 }
             }, function(studies) {
                 $scope.advisedStudies = studies;
-                StudyHighlightService.highlightStudy($scope.advisedStudies, LoopBackAuth.currentUserId);
+                StudyHighlightService.highlightStudy($scope.advisedStudies, LoopBackAuth.currentUserId).then(function(studies) {
+                    $scope.advisedStudies = studies;
+                });
+                $scope.thereAreAdvisedStudies = $scope.advisedStudies.length > 0;
+
             });
 
             ByRoleService.getUsersByRole("advisor").then(function(advisors) {

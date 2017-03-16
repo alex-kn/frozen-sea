@@ -73,6 +73,20 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 $scope.studyIsReady = true;
             });
 
+            ByRoleService.getUsersByRole("advisor").then(function(advisors) {
+                advisors.forEach(function(advisor) {
+                    if (LoopBackAuth.currentUserId == advisor.id) {
+                        $scope.isAdvisor = true;
+                    }
+                })
+            });
+
+            /**
+             * @description
+             *
+             * Load StudyDates belonging to the Study and assign respective Participations
+             *
+             */
             function loadDates() {
                 $scope.appointments = Study.dates({id: $scope.study.id}, function (responseDateArray) {
                     responseDateArray.reverse();
@@ -119,6 +133,11 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
             }
 
+            /**
+             * @description
+             *
+             * Load Participations belonging to the Study
+             */
             function loadParticipations() {
                 $scope.participations = Participation.find({
                     filter: {
@@ -142,7 +161,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                 } else if (r.gender == 'male') {
                                     $scope.maleParticipants += 1;
                                 } else {
-                                    console.log("Mr. " + responseUser.lastname + " has not specified a gender");
+                                    console.log("Mr. " + responseUser.secondName + " has not specified a gender");
                                 }
                             });
 
@@ -182,6 +201,12 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             }
 
 
+            /**
+             * @description
+             *
+             * Group StudyDates by day for display and
+             * expand days with participants
+             */
             function groupDatesByDay() {
 
                 $scope.datesGroupedByDay = [];
@@ -210,13 +235,17 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     }));
                     $scope.datesGroupedByDay.push(days);
 
-                    $scope.datesGroupedByDay[0].show = true;
+                    if(!$scope.isOwner){
+                        $scope.datesGroupedByDay[0].show = true;
+                    }
 
                     $scope.datesGroupedByDay.forEach(function (d) {
                         d.forEach(function (date) {
                             if (date.participating) {
                                 $scope.datesGroupedByDay[0].show = false;
-
+                                d.show = true;
+                            }
+                            if ($scope.isOwner && date.participants) {
                                 d.show = true;
                             }
                         })
@@ -224,6 +253,16 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 })
             }
 
+            /**
+             * @description
+             *
+             * Map the reward chosen by the user to the respective
+             * values of the rewards he is getting
+             *
+             * @param testThis the reward as String
+             * @param userChoice the reward chosen by the participant
+             * @returns {*}
+             */
             function mapReward(testThis, userChoice) {
                 switch (testThis) {
                     case "reward_money":
@@ -244,6 +283,11 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 return 0
             }
 
+            /**
+             * @description
+             *
+             * Generate a String for each requirement for displaying on the page
+             */
             function calculateRequirements() {
                 $scope.visualAidArray = [];
                 if ($scope.study.visualAid_required.glasses) {
@@ -284,6 +328,13 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 }
             }
 
+            /**
+             * @description
+             *
+             * Update the chosen reward and save it to the DB
+             *
+             * Called then participant changes his choice of reward
+             */
             $scope.updateReward = function () {
                 if (!$scope.isParticipating) {
                     return
@@ -298,6 +349,13 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
             };
 
+            /**
+             * @description
+             *
+             * Create a Participation for the participant if a reward is chosen and the StudyDate is available
+             *
+             * @param studyDate the StudyDate on which the user wants to participate
+             */
             $scope.participate = function (studyDate) {
                 $scope.waitingForParticipation = true;
 
@@ -351,6 +409,13 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
             };
 
+            /**
+             * @description
+             *
+             * Delete the Participation of the participant for the StudyDate
+             *
+             * @param studyDate the StudyDate the participation is withdrawn from
+             */
             $scope.withdrawParticipation = function (studyDate) {
                 $scope.waitingForParticipation = true;
                 studyDate.waiting = true;
@@ -387,6 +452,14 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 });
             };
 
+            /**
+             * @description
+             *
+             * Update the status of the Participation
+             *
+             * @param participation the Participation
+             * @param status the new status (pending, confirmed, completed, absent, declined)
+             */
             $scope.updateParticipationStatus = function (participation, status) {
                 participation.status = status;
                 var name = participation.name;
@@ -395,7 +468,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     if (status == 'completed') {
                         ToastService.setToastText($filter('translate')('STUDY_DETAILS.COMPLETED'));
                         ToastService.displayToast();
-                        //TODO add VPS to profile
                     }
                 });
             };
@@ -404,50 +476,69 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                 $location.path('/study-details-edit').search({'study': $scope.study.id});
             };
 
+            /**
+             * @description
+             *
+             * Show/hide the StudyDates of a specific day
+             *
+             * @param day
+             */
             $scope.toggleDay = function (day) {
                 day.show = !day.show;
             };
 
-
-            ByRoleService.getUsersByRole("advisor").then(function(advisors) {
-                advisors.forEach(function(advisor) {
-                    if (LoopBackAuth.currentUserId == advisor.id) {
-                        $scope.isAdvisor = true;
-                    }
-                })
-            });
-
+            /**
+             * @description
+             *
+             * Unlock the study (for Supervisors)
+             */
             $scope.unlock = function() {
                 Study.update({where: {id: $scope.study.id}}, {approved: true});
                 $scope.study.approved = true;
             };
 
+            /**
+             * @description
+             *
+             * Relock the study (for Supervisors)
+             */
             $scope.relock = function() {
                 Study.update({where: {id: $scope.study.id}}, {approved: false});
                 $scope.study.approved = false;
             };
 
 
-            var helpDialog = $mdDialog.confirm()
-                .title($filter('translate')('STUDY_DETAILS.HELP'))
-                .htmlContent(
-                    $filter('translate')('CREATE_STUDY.EXPLANATION_1') + "<br>" +
-                    $filter('translate')('CREATE_STUDY.EXPLANATION_2') + "<br>" +
-                    $filter('translate')('CREATE_STUDY.EXPLANATION_3') + " " +
-                    $filter('translate')('CREATE_STUDY.EXPLANATION_4') + " " +
-                    $filter('translate')('CREATE_STUDY.EXPLANATION_5')
-                )
-                .ariaLabel($filter('translate')('CREATE_STUDY.EXPLANATION_1'))
-                .ok($filter('translate')('CREATE_STUDY.EXPLANATION_OK'));
-
-
+            /**
+             * @description
+             *
+             * Show help dialog
+             */
             $scope.help = function () {
+                var helpDialog = $mdDialog.confirm()
+                    .title($filter('translate')('STUDY_DETAILS.HELP'))
+                    .htmlContent(
+                        $filter('translate')('CREATE_STUDY.EXPLANATION_1') + "<br>" +
+                        $filter('translate')('CREATE_STUDY.EXPLANATION_2') + "<br>" +
+                        $filter('translate')('CREATE_STUDY.EXPLANATION_3') + " " +
+                        $filter('translate')('CREATE_STUDY.EXPLANATION_4') + " " +
+                        $filter('translate')('CREATE_STUDY.EXPLANATION_5')
+                    )
+                    .ariaLabel($filter('translate')('CREATE_STUDY.EXPLANATION_1'))
+                    .ok($filter('translate')('CREATE_STUDY.EXPLANATION_OK'));
+
                 $mdDialog.show(helpDialog).then(function () {
                 }, function () {
                 });
             }
 
-
+            /**
+             * @description
+             *
+             * Show details for a participant
+             *
+             * @param participation the Participation of the participant
+             * @param ev
+             */
             $scope.showParticipantDetails = function (participation, ev) {
                 var confirm = $mdDialog.confirm({
                     locals: {data: participation},
@@ -475,7 +566,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             };
 
             $scope.sendMailToParticipants = function () {
-
                 if($scope.isOwner) {
                     $q.all($scope.participations.map(function (participation) {
                         Participation.participant({id: participation.id}, function (subuser) {
