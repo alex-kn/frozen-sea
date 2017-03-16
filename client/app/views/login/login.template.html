@@ -19,19 +19,18 @@
     <section class="login" layout="column" layout-padding flex="100" flex-gt-sm="60">
 
         <!-- START switch to register -->
-        <div class="switch-to-login" layout="row" layout-align="end center">
+        <div class="switch-to-login" layout="row" layout-xs="column" layout-align="end center" layout-align-xs="center end">
 
 
-            <span class="lang" ng-click="changeLanguage('de')">DE
-                <img class="flag" src="../../resc/images/german_lang.svg.png" class="md-card-image" alt="german language">
-            </span>
-
-            <span class="lang spacer" ng-click="changeLanguage('en')">EN
-                <img class="flag" src="../../resc/images/english_lang.svg.png" class="md-card-image" alt="english language">
-            </span>
-
-
-            <span>{{'LOGIN.NO_ACCOUNT' | translate}}</span>
+            <div layout="row">
+                <span class="lang" ng-click="changeLanguage('de')">DE
+                    <img class="flag" src="../../resc/images/german_lang.svg.png" class="md-card-image" alt="german language">
+                </span>
+                <span class="lang spacer" ng-click="changeLanguage('en')">EN
+                    <img class="flag" src="../../resc/images/english_lang.svg.png" class="md-card-image" alt="english language">
+                </span>
+            </div>
+            <span flex-xs="100">{{'LOGIN.NO_ACCOUNT' | translate}}</span>
             <md-button href="#!/register" class="md-accent">{{'LOGIN.REGISTER' | translate}}</md-button>
         </div>
         <!-- END switch to register -->
@@ -39,24 +38,41 @@
         <!-- START login form -->
         <div class="login-form" layout="row" layout-align="center start">
 
-            <form  layout="column" flex-gt-xs="60" flex="100" ng-keyup="$event.keyCode == 13 && loginUser(email, password)">
+            <form  layout="column" name="loginForm" flex-gt-xs="60" flex="100" ng-keyup="$event.keyCode == 13 && loginUser(email, password)">
 
                 <h2>{{'LOGIN.LOGIN_HERE' | translate}}</h2>
-
-                <md-input-container layout="row">
-                    <input type="text" aria-label="{{'LOGIN.MAIL' | translate}}" ng-model="email" placeholder="{{'LOGIN.MAIL' | translate}}">
-                </md-input-container>
-                <md-input-container layout="row">
-                    <input type="password" aria-label="{{'LOGIN.PASSWORD' | translate}}" ng-model="password" placeholder="{{'LOGIN.PASSWORD' | translate}}">
-                </md-input-container>
-                <div layout="row" class="submit">
-                    <md-button ng-click="loginUser(email, password)" class="md-accent md-raised">{{'LOGIN.LOGIN' | translate}}</md-button>
-                    <md-button href="#!/reset-password-request" class="md-accent">{{'RESET_PASSWORD.RESET_PASSWORD' | translate}}</md-button>
-                </div>
 
                 <div layout-align="start center" ng-if="errorMessage" class="error-message">
                     <md-icon class="material-icons">report_problem</md-icon>
                     <span>{{errorMessage}}</span>
+                </div>
+
+                <md-input-container>
+                    <input type="email"
+                           name="username"
+                           required
+                           aria-label="{{'LOGIN.MAIL' | translate}}"
+                           ng-model="email"
+                           placeholder="{{'LOGIN.MAIL' | translate}}">
+                    <div ng-messages="loginForm.username.$error">
+                        <div ng-message="required">{{'LOGIN.USERNAME_ERROR' | translate}}</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <input name="password"
+                           type="password"
+                           flex
+                           required
+                           aria-label="{{'LOGIN.PASSWORD' | translate}}"
+                           ng-model="password"
+                           placeholder="{{'LOGIN.PASSWORD' | translate}}">
+                    <div ng-messages="loginForm.password.$error">
+                        <div ng-message="required">{{'LOGIN.PASSWORD_ERROR' | translate}}</div>
+                    </div>
+                </md-input-container>
+                <div layout="row" layout-xs="column" class="submit">
+                    <md-button ng-disabled="loginForm.$invalid" ng-click="loginUser(email, password)" class="md-accent md-raised">{{'LOGIN.LOGIN' | translate}}</md-button>
+                    <md-button href="#!/reset-password-request" class="md-accent">{{'RESET_PASSWORD.RESET_PASSWORD' | translate}}</md-button>
                 </div>
 
             </form>

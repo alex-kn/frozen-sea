@@ -223,10 +223,12 @@
                                     <input type="text" required name="appointmentTime"
                                            aria-label="{{'CREATE_STUDY.APPOINTMENT_TIME_ARIA_LABEL' | translate}}"
                                            ng-model="appointment.time"
+                                           ng-pattern="^(?:0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
                                            placeholder="{{'CREATE_STUDY.APPOINTMENT_TIME_PLACEHOLDER' | translate}}"
                                            md-select-on-focus>
-                                    <div ng-messages="createStudyForm.appointmentTime.$error">
+                                    <div ng-messages="createStudyForm.appointmentTime.$error" multiple>
                                         <div ng-message="required">{{'CREATE_STUDY.APPOINTMENT_TIME_MESSAGE' | translate}}
+                                        <div ng-message="pattern">{{'CREATE_STUDY.APPOINTMENT_TIME_MESSAGE' | translate}}
                                         </div>
                                     </div>
                                 </md-input-container>

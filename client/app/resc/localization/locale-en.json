@@ -13,6 +13,8 @@
     "ERROR": "Your login credentials are wrong!",
     "REGISTRATION_SUCCESS":"Registration successful! To log in, please click on the verification link in your email.",
     "VERIFICATION_SUCCESS":"Verification successful! You can now log in.",
+    "USERNAME_ERROR": "Please enter your username",
+    "PASSWORD_ERROR": "Please enter your password",
     "MORE_TEXT": "With Frozen Sea you can create and manage or particpiate in studies. Studies are filtered for you personally and experiment hours are registered automatically."
   },
   "REGISTER": {
@@ -24,10 +26,17 @@
     "LOGIN": "Sign in",
     "REGISTER_HERE": "Sign up to Frozen Sea",
     "MAIL" : "E-Mail",
+    "MAIL_MESSAGE_REQUIRED": "Please enter your email address",
+    "MAIL_MESSAGE_PATTERN": "Please enter a valid email address",
     "PASSWORD": "Password",
+    "PASSWORD_MESSAGE_PATTERN": "Please enter a password that consists of at least 8 and a maximum of 15 characters",
+    "PASSWORD_MESSAGE_REQUIRED": "Please enter a password",
     "REGISTER": "Sign up",
     "FIRST_NAME": "First name",
+    "FIRST_NAME_MESSAGE": "Please enter your first name",
     "SECOND_NAME": "Family name",
+    "NAME_MESSAGE_REQUIRED": "Please enter your name",
+
     "ERROR": "Sign up failed, your username might be taken or there is already an account with this e-mail address!",
     "ERROR_USERNAME": "Sign up failed, your username is already taken!",
     "ERROR_EMAIL": "Sign up failed, there already exists an account with this e-mail address!",

@@ -30,11 +30,18 @@
   }
 
   .spacer {
-    margin-right: 2rem;
+    @media (min-width: 600px) {
+      margin-right: 2rem;
+    }
   }
 
   .flag {
     height: 0.9rem;
-    width: 1.3rem
+    width: 1.3rem;
+
+    &:first-of-type {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
   }
 }
