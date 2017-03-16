@@ -10,6 +10,7 @@ angular
 
             $scope.showContactForm = false;
             $scope.participation = data;
+            $scope.isLoading = true;
 
             Participation.participant({id: $scope.participation.id}, function (r) {
                 $scope.user = r;
@@ -20,6 +21,7 @@ angular
                     }else{
                         $scope.pref.genderString = $filter('translate')('STUDY_DETAILS.NOT_SPECIFIED');
                     }
+                    $scope.isLoading = false;
                 });
 
             });

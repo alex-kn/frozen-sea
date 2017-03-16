@@ -115,6 +115,7 @@
     <md-progress-circular ng-show="studyIsLoading || studyIsReLoading" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular>
 
     <div layout="column"  ng-class="{'grey-out': studyIsReLoading}">
+        <h2 layout-padding class="md-subhead not-found-text" ng-hide="studies.length > 0">{{'STUDY_LIST.NO_FOUND' | translate}}</h2>
         <md-card class="custom-pointer" ng-repeat="study in studies | filter:search" ng-click="showDetails(study)"
                  ng-class="{
                      'stuy-not-approved': !study.isApproved,

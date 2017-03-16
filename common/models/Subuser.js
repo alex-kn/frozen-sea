@@ -215,13 +215,11 @@ module.exports = function (Subuser) {
     });
 
 
-    //TODO: Check getVpsByMat
     Subuser.getVpsByMat = function (mat, cb) {
         var loopback = require('loopback');
         var Study = loopback.getModel('Study');
         var Participation = loopback.getModel('Participation');
         var Preference = loopback.getModel('Preference');
-
         var rewardHours = 0;
 
         Preference.find({where: {matriculationNr: mat}}, function (err, preference) {
@@ -235,34 +233,27 @@ module.exports = function (Subuser) {
                         cb(null, {matriculationNr: mat, rewardHours: 0});
                     }
                     else {
-                        for (var i = 0; i < userParticipations.length; i++) {
-                            //get find once get id's with function
-                            /*
-                             for (var i=0; i < myArray.length; i++) {
-                             if (myArray[i].name === nameKey) {
-                             return myArray[i];
-                             }
-                             }
-                             */
-                            Study.find({where: {id: userParticipations[i].studyId}}, function (err, study) {
-                                console.log(userParticipations);
-                                if ((typeof study[0] === 'undefined')) {
-                                    cb(null, {matriculationNr: mat, rewardHours: 0});
-                                }
-                                else {
-                                    if (study.approved == true) {
-                                        if (userParticipations[i].status == 'completed') {
-                                            rewardHours += userParticipations[i].reward_hours;
+                        Study.find({}, function (err, study) {
+                            if ((typeof study[0] === 'undefined')) {
+                                cb(null, {matriculationNr: mat, rewardHours: 0});
+                            }
+                            else {
+                                for (var i = 0; i < study.length; i++) {
+                                    for (var j = 0; j < userParticipations.length; j++) {
+                                        if (study[i].id.toString().trim() == userParticipations[j].studyId.toString().trim()) {
+                                            if (study[i].approved == true) {
+                                                if (userParticipations[j].status == 'completed') {
+                                                    rewardHours += userParticipations[j].reward_hours;
+                                                }
+                                            }
                                         }
                                     }
                                 }
-                            });
-
-                        }
-                        cb(null, {matriculationNr: mat, rewardHours: rewardHours});
+                                cb(null, {matriculationNr: mat, rewardHours: rewardHours});
+                            }
+                        })
                     }
                 });
-
             }
         });
     };

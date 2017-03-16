@@ -115,7 +115,6 @@ angular
                     //filter all studies that don't match user profile
                     $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences);
 
-
                     StudyHighlightService.highlightStudy($scope.studies, LoopBackAuth.currentUserId);
 
                 },function (error){

@@ -34,7 +34,7 @@
   "RESET_PASSWORD": {
     "RESET_PASSWORD": "Passwort zurücksetzen",
     "NO_EMAIL": "Es exisitiert kein Account mit dieser Email",
-    "SUCCESS_EMAIL": "An email for resetting your password was sent to you",
+    "SUCCESS_EMAIL": "Eine Email zum passwort zurücksetzen wurde an Sie geschickt!",
     "SUCCESS_RESET": "Ihr Passwort wurde erfolgreich zurückgesetzt. Sie können sich jetzt mit ihrem neuen Passwort einloggen",
     "NO_MATCH": "Die eingegebenen Passwörter stimmen nicht überein",
     "OLD_TOKEN": "Ihre Email zum Passwort zurücksetzen ist nicht mehr Aktuell. Bitte fordern Sie eine neue an."
@@ -254,6 +254,8 @@
     "FILTER_TIP": "Entscheide welche Studien angezeigt werden",
     "SORT_TIP": "Sortiere die angezeigten Studien",
     "SEARCH_TIP": "Suche nach einer bestimmten Studie"
+    "CAREFUL": "Lese immer die Beschreibung und die Voraussetzungen einer Studie bevor du teilnimmst.",
+    "NO_FOUND": "Wir konnten leider keine passenden Studien finden."
   },
   "ARCHIVE": {
     "TITLE" : "Archiv",
@@ -339,7 +341,8 @@
     "LOCKED_MOUSEOVER" :"Dein Betreuer wurde beim Erstellen der Studie automatisch benachrichtigt. Sollte die Studie nach mehreren Tagen immer noch nicht freigeschaltet sein, schreibe Ihm oder Ihr bitte persönlich eine Nachricht.",
     "GENERAL_INFORMATION" : "Allgemeine Informationen",
     "SUPERVISOR" : "Betreuer",
-    "CONTACT_CREATOR": "Veranstalter kontaktieren"
+    "CONTACT_CREATOR": "Veranstalter kontaktieren",
+    "MOUSEOVER_PARTICIPANT":"Klicke hier für Details zum Teilnehmer oder um den Teilnehmer zu kontaktieren"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",
@@ -410,6 +413,9 @@
     "TITLE": "Meine Studien",
     "MY_STUDIES" : "Meine Teilnahmen",
     "CREATED_STUDIES" : "Meine erstellten Studien",
-    "ADVISED_STUDIES" : "Meine betreute Studien"
+    "ADVISED_STUDIES" : "Meine betreute Studien",
+    "NO_PART_FOUND": "Keine Teilnahmen gefunden.",
+    "NO_CREAT_FOUND": "Es wurden noch keine Studien von dir erstellt.",
+    "NO_ADVISE_FOUND": "Es werden keine Studien von dir betreut."
   }
 }

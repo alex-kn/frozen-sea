@@ -252,6 +252,8 @@
     "FILTER": "Filter by",
     "FILTER_TIP": "Filter the study list",
     "SORT_TIP": "Sort the study list"
+    "CAREFUL": "Always carefully read the description and the requirements of a study before you participate!",
+    "NO_FOUND": "Sorry, we could not find any matching studies."
 
   },
   "ARCHIVE": {
@@ -323,6 +325,9 @@
     "TITLE": "My studies",
     "MY_STUDIES" : "My participations",
     "CREATED_STUDIES" : "My created studies",
-    "ADVISED_STUDIES" : "My advised studies"
+    "ADVISED_STUDIES" : "My advised studies",
+    "NO_PART_FOUND": "No participations found.",
+    "NO_CREAT_FOUND": "There are no studies created by you.",
+    "NO_ADVISE_FOUND": "There are no studies advised by you."
   }
 }

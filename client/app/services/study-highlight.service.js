@@ -20,11 +20,6 @@ angular
                         study.isFinished = new Date(study.endDate) < new Date();
                         study.isApproved = study.approved;
 
-                        study.isThisAStudyISupervise = false; //TODO
-                        study.isThisAStudyISuperviseAndNeedsApproval = false; //TODO
-
-
-
                         study.isThisAStudyISupervise = (study.advisorId == userId) && study.approved;
                         study.isThisAStudyISuperviseAndNeedsApproval = (study.advisorId == userId) && !study.approved;
 
@@ -49,9 +44,9 @@ angular
 
                             });
                         }
-                        return studies;
-                    });
 
+                    });
+                    resolve(studies);
 
                 });
 

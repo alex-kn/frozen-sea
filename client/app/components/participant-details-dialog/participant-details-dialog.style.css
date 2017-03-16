@@ -85,4 +85,8 @@ md-toolbar.toolbar {
   margin-top: .5rem;
   color: #9E9E9E; }
 
+.button-container {
+  margin-bottom: 1rem;
+  margin-right: 1rem; }
+
 /*# sourceMappingURL=participant-details-dialog.style.css.map */

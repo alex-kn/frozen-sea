@@ -17,7 +17,7 @@ angular.module('resetPasswordRequest', ['ngRoute'])
                         console.log('succ');
                         $scope.resetProgress = true;
                         console.log(response);
-                        ToastService.setToastText($filter('translate')('LOGIN.VERIFICATION_SUCCESS'));
+                        ToastService.setToastText($filter('translate')('RESET_PASSWORD.SUCCESS_EMAIL'));
                         ToastService.displayToast();
                         $location.path('/login');
                     }, function (httpResponse) {

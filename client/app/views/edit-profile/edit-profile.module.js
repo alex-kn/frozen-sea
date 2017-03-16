@@ -74,12 +74,12 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
 
             };
 
-
+            //WARNING: Calculation is only correct if there is only ONE Participation per study
             function getRewards(){
                 var rewardMoney = 0;
                 var rewardVouchers = 0;
                 var rewardHours = 0;
-
+                console.log(LoopBackAuth.currentUserId)
                 Participation.find({
                     filter: {
                         where: {
@@ -87,45 +87,25 @@ angular.module('editProfile', ['ngRoute', 'ngMaterial'])
                         }
                     }
                 }, function(userParticipations){
-                    console.log(userParticipations);
-                    for(var i = 0; i < userParticipations.length; i++) {
-                        //get find once get id's with function
-
-                        Study.find({
-                            filter: {
-                                where: {
-                                    id: userParticipations[i].studyId
-                                }
-                            }
-                        }, function(Study){
-                            if(Study.approved == true){
-                                if (userParticipations[i].status == 'completed') {
-                                    rewardMoney += userParticipations[i].reward_money;
-                                    rewardVouchers += userParticipations[i].reward_voucher;
-                                    rewardHours += userParticipations[i].reward_hours;
+                        Study.find({}, function(Study){
+                            for (var i = 0; i < Study.length; i++) {
+                                for(var j = 0; j < userParticipations.length; j++) {
+                                    if (Study[i].id == userParticipations[j].studyId) {
+                                        if (Study[i].approved == true) {
+                                            if (userParticipations[j].status == 'completed') {
+                                                $scope.myRewards = {
+                                                    money: rewardMoney += userParticipations[j].reward_money,
+                                                    vouchers: rewardVouchers += userParticipations[j].reward_voucher,
+                                                    hours: rewardHours += userParticipations[j].reward_hours
+                                                };
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         });
-                    }
-                    $scope.myRewards = {money: rewardMoney, vouchers: rewardVouchers, hours: rewardHours};
-                    $scope.contentsLoaded[1] = true;
                 });
+                $scope.contentsLoaded[1] = true;
             }
-
-            /*
-            $scope.changeUsername = function(){
-                Subuser.prototype$updateAttributes({ id: $scope.userId }, {'username': $scope.input.name}, function(){
-                    $route.reload();
-                    ToastService.setToastText($filter('translate')('EDIT_PROFILE.SUCCESS_USERNAME'));
-                    ToastService.displayToast();
-                },function(err) {
-                    if (err.data.error.status == 422) {
-                        $scope.error.username ='Username existiert bereits.';
-                    } else {
-                        $scope.error.username = err.data.error.message;
-                    }
-                })
-            };
-            */
 
         }]);
