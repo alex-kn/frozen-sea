@@ -2,46 +2,69 @@
 
 <!-- START tool bar -->
 <md-toolbar class="toolbar md-hue-1" layout="row" layout-align="start center" layout-padding>
+
     <div class="md-toolbar-tools" flex-offset-gt-sm="15">
         <h2 class="md-display-3">
             <i class="material-icons">bubble_chart</i>
             {{'STUDY_LIST.TITLE' | translate}}
         </h2>
-
         <span flex></span>
     </div>
-    <md-button ng-click="showCreateStudyPrompt($event)" class="create-study-fab md-fab md-fab-bottom-right" aria-label="{{'STUDY_LIST.CREATE' | translate}}">
+
+    <md-button ng-click="showCreateStudyPrompt($event)"
+               class="create-study-fab md-fab md-fab-bottom-right"
+               aria-label="{{'STUDY_LIST.CREATE' | translate}}">
         <md-icon class="material-icons">add_new</md-icon>
         <md-tooltip>{{'STUDY_LIST.TOOLTIP_NEW' | translate}}</md-tooltip>
     </md-button>
+
 </md-toolbar>
 <!-- END tool bar -->
 
 <!-- START study list -->
 <md-content layout-padding layout="column" flex-offset-gt-md="20" flex-offset-md="10" flex-gt-md="60" flex-md="80" flex>
 
+    <div layout="row" layout-align="start center">
 
-
-
-    <h2 class="md-button align-items" ng-click="toggle()" ng-show="(studyIsReLoading || !studyIsLoading)">
-        {{'STUDY_LIST.SEARCH_OPTIONS' | translate}}
-        <md-button class="md-icon-button md-accent" ng-show="show">
-            <md-icon class="material-icons md-12 md-primary">keyboard_arrow_down</md-icon>
+        <!--
+        <md-button class="md-icon-button" aria-label="Search for studies">
+            <md-icon class="material-icons">search</md-icon>
         </md-button>
-        <md-button class="md-icon-button md-accent" ng-hide="show">
-            <md-icon class="material-icons md-12 md-primary">keyboard_arrow_left</md-icon>
-        </md-button>
-    </h2>
-    <div layout="row" ng-show="(studyIsReLoading || !studyIsLoading) && show" layout-align="start center">
-
-
-
-
-        <md-input-container flex-xs="100" flex-sm="50"  flex-gt-sm="30" >
-            <input type="text" ng-model="search" placeholder="{{'STUDY_LIST.SEARCH' | translate}}" aria-label="{{'STUDY_LIST.SEARCH' | translate}}">
+        <md-input-container flex-xs="100" flex-sm="50"  flex-gt-sm="30" hide>
+            <input type="text"
+                   ng-model="search"
+                   placeholder="{{'STUDY_LIST.SEARCH' | translate}}"
+                   aria-label="{{'STUDY_LIST.SEARCH' | translate}}">
         </md-input-container>
+        -->
+        <md-nav-bar
+                hide-xs
+                md-selected-nav-item="currentNavItem"
+                nav-bar-aria-label="navigation links">
+            <md-nav-item md-nav-click="1" ng-click="showSearch()" name="1">
+                <md-icon class="material-icons">search</md-icon>
+                <input type="text"
+                       id="search"
+                       class="search-input hide"
+                       ng-model="search"
+                       placeholder="{{'STUDY_LIST.SEARCH' | translate}}"
+                       aria-label="{{'STUDY_LIST.SEARCH' | translate}}">
+            </md-nav-item>
+            <md-nav-item md-nav-click="2" ng-click="dynamicOrderFunction('newest')" name="2">
+                Neu
+            </md-nav-item>
+            <md-nav-item md-nav-click="3" ng-click="dynamicOrderFunction('ends_soon')" name="3">
+                Endet bald
+            </md-nav-item>
+            <md-nav-item md-nav-click="4" ng-click="refilter()" name="4">
+                Unpassend
+            </md-nav-item>
+
+        </md-nav-bar>
 
 
+
+        <!--
         <md-input-container class="sort" layout="row" flex-gt-sm="100" >
             <div class="option">{{'STUDY_LIST.SORT_BY' | translate}}</div>
             <md-radio-group ng-model="sort_by" ng-change="dynamicOrderFunction()" layout="column" layout-xs="column">
@@ -49,7 +72,6 @@
                 <md-radio-button value="ends_soon">{{'STUDY_LIST.SOON' | translate}}</md-radio-button>
             </md-radio-group>
         </md-input-container>
-
 
         <md-input-container class="sort" flex-xs="160" flex-sm="80"  flex-gt-sm="40" layout="column">
             <md-checkbox ng-init="show_too_old=false" ng-model="show_too_old" aria-label=" {{'STUDY_LIST.TOO_OLD' | translate}}" ng-click="reloadStudies()">
@@ -59,6 +81,8 @@
                 {{'STUDY_LIST.NO_MATCH' | translate}}
             </md-checkbox>
         </md-input-container>
+        -->
+
     </div>
 
 

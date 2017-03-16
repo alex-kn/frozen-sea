@@ -193,9 +193,12 @@ md-toolbar.toolbar {
   md-toolbar.toolbar .md-button.md-fab.md-fab-bottom-right {
     top: 5.75rem;
     right: 22%; }
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 1279px) {
       md-toolbar.toolbar .md-button.md-fab.md-fab-bottom-right {
-        right: 10%; } }
+        right: 12%; } }
+    @media screen and (max-width: 959px) {
+      md-toolbar.toolbar .md-button.md-fab.md-fab-bottom-right {
+        right: 8%; } }
 
 .align-items {
   display: inline-flex; }
@@ -274,5 +277,25 @@ md-toolbar.toolbar {
   height: 100%;
   background-position: center;
   z-index: 10000000; }
+
+md-nav-bar .md-nav-bar {
+  border-color: #fff; }
+  md-nav-bar .md-nav-bar .md-button {
+    min-width: 64px; }
+  md-nav-bar .md-nav-bar ._md-nav-button {
+    padding: 12px 8px; }
+
+.search-input {
+  margin-left: 8px;
+  width: 120px;
+  border: none;
+  font-size: 16px;
+  font-weight: 300; }
+  .search-input:focus {
+    outline: none;
+    color: #303030; }
+
+.hide {
+  display: none; }
 
 /*# sourceMappingURL=study-list.style.css.map */
