@@ -20,7 +20,7 @@ angular
             if(toastToDisplay) {
 
                 $mdToast.show({
-                    hideDelay: 3000,
+                    hideDelay: 300000,
                     position: 'top right',
                     controller: [function() {
                         this.toastText = $filter('translate')(toastText);
