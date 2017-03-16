@@ -77,10 +77,14 @@
                 <md-subheader ng-show="isOwner && (femaleParticipants + maleParticipants)" flex="25" class="fade">
                     {{'STUDY_DETAILS.GENDER_DISTRIBUTION' | translate}}:
                 </md-subheader>
-                <md-progress-linear value="{{(femaleParticipants / (femaleParticipants + maleParticipants)) * 100}}" class="fade"
-                                    ng-show="isOwner && (femaleParticipants + maleParticipants)" flex="70" aria-label="{{'STUDY_DETAILS.GENDER_DISTRIBUTION' | translate}}">
+                <span flex=75 layout-align="start center" layout="row" class="fade" ng-show="isOwner && (femaleParticipants + maleParticipants)">
+                <span>{{(femaleParticipants / (femaleParticipants + maleParticipants)) * 100}}% &#9792;</span>
+                <md-progress-linear value="{{(femaleParticipants / (femaleParticipants + maleParticipants)) * 100}}"
+                                    flex aria-label="{{'STUDY_DETAILS.GENDER_DISTRIBUTION' | translate}}">
                     {{totalParticipants}}
                 </md-progress-linear>
+                <span>&#9794; {{(maleParticipants / (femaleParticipants + maleParticipants)) * 100}}%</span>
+                    </span>
             </div>
 
 
