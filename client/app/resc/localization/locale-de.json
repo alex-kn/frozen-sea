@@ -361,7 +361,8 @@
     "VIEW_AS" : "Ansicht als",
     "PARTICIPANT" : "Teilnehmer",
     "CREATOR" : "Studienorganisator",
-    "ONLINE_ONLY" : "Diese Studie ist ein Online-Studie und hat keine Termine. Eine Teilnahme ist durch Klicken des Links in der Beschreibung möglich!"
+    "ONLINE_ONLY" : "Diese Studie ist ein Online-Studie und hat keine Termine. Eine Teilnahme ist durch Klicken des Links in der Beschreibung möglich!",
+    "NO_PARTICIPANTS_TO_MAIL" : "Du hast leider noch keine Teilnehmer. Schade."
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

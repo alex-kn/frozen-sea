@@ -361,7 +361,8 @@
     "VIEW_AS" : "View as",
     "PARTICIPANT" : "Participant",
     "CREATOR" : "Study organizer",
-    "ONLINE_ONLY" : "This study is conducted online and has no appointments. Participation is possible by following the link in the description."
+    "ONLINE_ONLY" : "This study is conducted online and has no appointments. Participation is possible by following the link in the description.",
+    "NO_PARTICIPANTS_TO_MAIL" : "You have no participants to send a mail to. So sad."
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Cancel",

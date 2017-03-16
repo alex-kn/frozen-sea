@@ -99,8 +99,8 @@
             </md-subheader>
                 <span ng-show="isAdmin" layout="row" layout-align="start center" flex="75" aria-label="{{'STUDY_DETAILS.VIEW_AS' | translate}}">
                     {{'STUDY_DETAILS.PARTICIPANT' |translate}}
-                    <md-switch class="md-primary padding" ng-model="isOwner">
-
+                    <md-switch class="md-primary padding" ng-model="isOwner"
+                               aria-label="{{'STUDY_DETAILS.VIEW_AS' | translate}}">
                     </md-switch>
                     {{'STUDY_DETAILS.CREATOR' |translate}}
                 </span>
@@ -468,12 +468,12 @@ person_add</i>{{'STUDY_DETAILS.UNTIL' | translate}} {{date.deadlineDate | date: 
                                class="md-accent md-raised">
                         {{'STUDY_DETAILS.EDIT_STUDY' | translate}}
                     </md-button>
-                    <md-button ng-show="isOwner"
+                    <md-button ng-show="isOwner && appointments.length"
                                ng-click="showContactForm()"
                                class="md-accent md-raised">
                         {{'STUDY_DETAILS.CONTACT_PARTICIPANTS' | translate}}
                     </md-button>
-                    <md-button ng-show="!isOwner"
+                    <md-button ng-show="!isOwner && appointments.length"
                                ng-click="showContactForm()"
                                class="md-accent md-raised">
                         {{'STUDY_DETAILS.CONTACT_CREATOR' | translate}}
