@@ -24,13 +24,13 @@
         <!-- START general information -->
         <md-content class="md-padding">
 
-                <md-input-container class="md-block margin-bot-0" flex-gt-xs="100">
+            <md-input-container class="md-block margin-bot-0" flex-gt-xs="100">
 
                 <textarea ng-model="study.description" readonly class="margin-bot-0" md-no-resize
                           aria-label="{{'CREATE_STUDY.DESCRIPTION_ARIA_LABEL' | translate}}">
 
                 </textarea>
-                </md-input-container>
+            </md-input-container>
 
 
             <div class="study-details" layout-gt-xs="row" layout-align="start center" layout-wrap>
@@ -74,10 +74,10 @@
                 <md-subheader ng-show="(isOwner || isAdvisor)" flex="25">
                     {{'STUDY_DETAILS.PARTICIPANTS' | translate}}:
                 </md-subheader>
-                <span ng-show="(isOwner || isAdvisor)" flex="75" aria-label="{{'STUDY_DETAILS.PARTICIPANTS' | translate}}">
+                <span ng-show="(isOwner || isAdvisor)" flex="75"
+                      aria-label="{{'STUDY_DETAILS.PARTICIPANTS' | translate}}">
                     {{totalParticipants}}
                 </span>
-
 
 
                 <md-subheader ng-show="(isOwner || isAdvisor) && (femaleParticipants + maleParticipants)" flex="25"
@@ -95,9 +95,10 @@
                 </span>
 
                 <md-subheader ng-show="isAdmin" flex="25">
-                {{'STUDY_DETAILS.VIEW_AS' | translate}}:
-            </md-subheader>
-                <span ng-show="isAdmin" layout="row" layout-align="start center" flex="75" aria-label="{{'STUDY_DETAILS.VIEW_AS' | translate}}">
+                    {{'STUDY_DETAILS.VIEW_AS' | translate}}:
+                </md-subheader>
+                <span ng-show="isAdmin" layout="row" layout-align="start center" flex="75"
+                      aria-label="{{'STUDY_DETAILS.VIEW_AS' | translate}}">
                     {{'STUDY_DETAILS.PARTICIPANT' |translate}}
                     <md-switch class="md-primary padding" ng-model="isOwner"
                                aria-label="{{'STUDY_DETAILS.VIEW_AS' | translate}}">
@@ -110,7 +111,6 @@
             </div>
         </md-content>
         <!-- END general information -->
-
 
 
         <div class="md-padding" layout="row" layout-align="start center" ng-show="isAdvisor">
@@ -191,7 +191,8 @@
         <md-content class="md-padding" ng-show="appointments.length">
 
 
-            <md-progress-circular ng-hide="datesAreReady || (!study.approved && !isOwner)" class="md-accent" md-mode="indeterminate">
+            <md-progress-circular ng-hide="datesAreReady || (!study.approved && !isOwner)" class="md-accent"
+                                  md-mode="indeterminate">
             </md-progress-circular>
 
 

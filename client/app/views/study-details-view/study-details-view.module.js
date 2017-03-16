@@ -399,6 +399,9 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                             console.log("Participation created.");
                             $scope.waitingForParticipation = false;
                             studyDate.waiting = false;
+                            var subject = "New participant for your study!";
+                            var text = "A new participants has requested to participate in your Study \"" + $scope.study.title + "\" and is awaiting confirmation.";
+                            EmailService.sendEmail($scope.ownerMail, $scope.currentUser.email, subject, text, text, true);
                         }, function (error) {
                             console.log("Participation could not be created.");
                             console.log(error);

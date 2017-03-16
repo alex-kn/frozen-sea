@@ -206,12 +206,14 @@ module.exports = function (Subuser) {
         var rewardHours = 0;
 
         Preference.find({where: {matriculationNr: mat}}, function (err, preference) {
+            console.log(preference);
+
             if ((typeof preference[0] === 'undefined')) {
                 err = 'Could not find matriculationNr';
                 return cb(err);
             }
             else {
-                Participation.find({where: {participantId: preference.subuserId}}, function (err, userParticipations) {
+                Participation.find({where: {participantId: preference[0].subuserId}}, function (err, userParticipations) {
                     if ((typeof userParticipations[0] === 'undefined')) {
                         cb(null, {matriculationNr: mat, rewardHours: 0});
                     }
