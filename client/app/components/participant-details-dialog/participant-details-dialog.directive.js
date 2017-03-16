@@ -38,7 +38,7 @@ angular
 
             $scope.send = function () {
                 console.log("send mail to " + $scope.user.email + " from " + $scope.currentSubuser.email);
-                EmailService.sendEmail($scope.user.email, $scope.currentSubuser.email, $scope.subjectString, $scope.bodyString, $scope.bodyString)
+                EmailService.sendEmail($scope.user.email, $scope.currentSubuser.email, $scope.subjectString, $scope.bodyString, $scope.bodyString, true)
             };
 
             $scope.clearContactForm = function () {

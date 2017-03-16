@@ -422,5 +422,8 @@
     "NO_PART_FOUND": "Keine Teilnahmen gefunden.",
     "NO_CREAT_FOUND": "Es wurden noch keine Studien von dir erstellt.",
     "NO_ADVISE_FOUND": "Es werden keine Studien von dir betreut."
+  },
+  "EMAIL_SERVICE" : {
+    "EMAIL_SENT" : "Email wurde versand!"
   }
 }

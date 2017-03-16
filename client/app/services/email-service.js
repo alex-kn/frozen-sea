@@ -1,6 +1,6 @@
 angular
     .module('EmailService', [])
-    .factory('EmailService', ['Subuser', '$http', 'LoopBackAuth', function (Subuser, $http, LoopBackAuth) {
+    .factory('EmailService', ['Subuser', '$http', 'LoopBackAuth', '$filter','ToastService', function (Subuser, $http, LoopBackAuth, $filter,ToastService) {
         //TODO: Error-Handling, static sender
 
         /**
@@ -12,7 +12,7 @@ angular
          * @param html      Email html (String)
          * @return Object with Success data or Error data
          */
-        function sendEmail(to, from, subject, text, html) {
+        function sendEmail(to, from, subject, text, html, hasToast) {
             var data = {
                 id: LoopBackAuth.currentUserId,
                 to: to,
@@ -24,6 +24,10 @@ angular
 
             $http.post('/api/Subusers/' + data.id + '/sendEmail', data).then(function (response) {
                 console.log(response);
+                if (hasToast){
+                    ToastService.setToastText($filter('translate')('EMAIL_SERVICE.EMAIL_SENT'));
+                    ToastService.displayToast();
+                }
                 return response;
             }, function (err) {
                 console.log(err);
