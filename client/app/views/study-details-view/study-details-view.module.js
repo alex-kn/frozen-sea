@@ -591,5 +591,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     console.log("send mail to " + $scope.ownerMail + " from " + $scope.currentUser.email);
                     EmailService.sendEmail($scope.ownerMail, $scope.currentUser.email, $scope.subjectString, $scope.bodyString, $scope.bodyString, true);
                 }
+                $scope.clearContactForm();
             }
         }]);
