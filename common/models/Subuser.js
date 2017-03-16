@@ -9,8 +9,13 @@ module.exports = function (Subuser) {
      */
     Subuser.afterRemote('create', function (context, Subuser, next) {
         console.log('> user.afterRemote triggered');
+        consle.log(context.res.headers);
+        consle.log(context.res);
 
         var options = {
+            //Set host and port for deployment:
+            //host: 'frozen-sea.herokuapp.com',
+            //port: 80,
             type: 'email',
             to: Subuser.email,
             from: 'frzn.sea@gmail.com',
@@ -51,15 +56,17 @@ module.exports = function (Subuser) {
      */
     Subuser.on('resetPasswordRequest', function (info) {
 
-        //Get Path parameters
         var app = Subuser.app;
         var options = {};
 
         options.protocol = 'http';
-        //options.protocol = 'https';
         options.host = (app && app.get('host')) || 'localhost';
         options.port = (app && app.get('port')) || 3000;
-        options.restApiRoot = (app && app.get('restApiRoot')) || '/api';
+
+        //Set host and port (maybe protocol) for deployment:
+        //options.protocol = 'https';
+        //options.host = 'frozen-sea.herokuapp.com';
+        //options.port = 80;
 
         var displayPort = (
             (options.protocol === 'http' && options.port == '80') ||

@@ -437,7 +437,8 @@
     "CONFIRM_DELETE_ABORT": "Abbrechen",
     "CHANGE_EMAIL":"Email ändern",
     "CHANGE_EMAIL_PLACEHOLDER":"Neue Email",
-    "CHANGE_EMAIL_TEXT":"Neue Email eingeben."
+    "CHANGE_EMAIL_TEXT":"Neue Email eingeben.",
+    "CHANGE_EMAIL_SUCCESS":"Email erfolgreich geändert!"
   },
   "MY_STUDIES": {
     "TITLE": "Meine Studien",
