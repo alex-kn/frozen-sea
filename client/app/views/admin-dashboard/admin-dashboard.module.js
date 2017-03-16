@@ -50,6 +50,36 @@ angular.module('adminDashboard', ['ngRoute', 'ngMaterial'])
                 });
             };
 
+            $scope.emailPrompt = function(ev, user) {
+                var emailUser = user;
+                // Appending dialog to document.body to cover sidenav in docs app
+                var confirm = $mdDialog.prompt()
+                    .title($filter('translate')('ADMIN_DASHBOARD.CHANGE_EMAIL'))
+                    .textContent($filter('translate')('ADMIN_DASHBOARD.CHANGE_EMAIL_TEXT'))
+                    .placeholder($filter('translate')('ADMIN_DASHBOARD.CHANGE_EMAIL_PLACEHOLDER'))
+                    .ariaLabel('change')
+                    .initialValue(user.email)
+                    .targetEvent(ev)
+                    .ok('Ok')
+                    .cancel($filter('translate')('ADMIN_DASHBOARD.CONFIRM_DELETE_ABORT'));
+
+                $mdDialog.show(confirm).then(function(result) {
+                    $scope.usersLoaded = false;
+                    changeEmail(result, emailUser);
+                }, function() {
+                });
+            };
+
+            function changeEmail(email, emailUser) {
+                Subuser.prototype$updateAttributes({id: emailUser.id}, {'email': email}, function () {
+                    ToastService.setToastText($filter('translate')('EDIT_PROFILE.SUCCESS_PASSWORD'));
+                    ToastService.displayToast();
+                    createUserList();
+                }, function (err) {
+                    console.log(err);
+                })
+            }
+
 
             function createUserList() {
                 Subuser.find({}, function (value, responseHeaders) {
@@ -183,7 +213,6 @@ angular.module('adminDashboard', ['ngRoute', 'ngMaterial'])
                             break;
                         }
                     }
-
                     ToastService.setToastText($filter('translate')('ADMIN_DASHBOARD.TOAST_DELETE'));
                     ToastService.displayToast();
                 }, function (err) {
