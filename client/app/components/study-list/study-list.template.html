@@ -24,42 +24,10 @@
 <!-- START study list -->
 <md-content layout-padding layout="column" flex-offset-gt-md="20" flex-offset-md="10" flex-gt-md="60" flex-md="80" flex>
 
-
     <div layout="row" layout-xs="column" layout-align="start center" layout-align-xs="center start">
 
         <div>
-            <md-nav-bar
-                    hide-xs
-                    md-selected-nav-item="currentNavItem"
-                    nav-bar-aria-label="navigation links">
-                <md-nav-item md-nav-click="1" ng-click="showSearch()" name="1">
-                    <md-icon class="material-icons md-primary">search</md-icon>
-                    <input type="text"
-                           id="search-gt-xs"
-                           class="search-input hide"
-                           ng-model="searchStudies"
-                           placeholder="{{'STUDY_LIST.SEARCH' | translate}}"
-                           aria-label="{{'STUDY_LIST.SEARCH' | translate}}">
-                </md-nav-item>
-                <md-nav-item md-nav-click="2" ng-click="dynamicOrderFunction('newest')" name="2">
-                    {{'STUDY_LIST.NEWEST' | translate}}
-                </md-nav-item>
-                <md-nav-item md-nav-click="3" ng-click="dynamicOrderFunction('ends_soon')" name="3">
-                    {{'STUDY_LIST.SOON' | translate}}
-                </md-nav-item>
-                <md-nav-item md-nav-click="4" ng-click="refilter()" name="4">
-                    {{'STUDY_LIST.NO_MATCH' | translate}}
-                </md-nav-item>
-                <md-nav-item ng-if="isAdvisor" md-nav-click="4" ng-click="refilter()" name="5">
-                    {{'STUDY_LIST.TOO_OLD' | translate}}
-                </md-nav-item>
-            </md-nav-bar>
-        </div>
-
-        <div hide-gt-xs>
-            <md-nav-bar
-                    md-selected-nav-item="currentNavItem"
-                    nav-bar-aria-label="navigation links">
+            <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
                 <md-nav-item md-nav-click="1" ng-click="toggleFilterOnMobile('search')" name="1">
                     <md-icon ng-class="{'filter-inActive': !search, 'filter-active': search}" class="material-icons ">search</md-icon>
                 </md-nav-item>
@@ -80,16 +48,18 @@
 
             <div id="filter-xs" ng-show="filter">
                 <h4 md-colors="{color:'primary'}">{{'STUDY_LIST.FILTER' | translate}}</h4>
-                <md-input-container class="sort filter-input" layout="column">
+                <md-input-container class="sort filter-input" layout-xs="column" layout="row">
                     <md-checkbox
                             ng-init="show_too_old=false"
-                            ng-model="show_too_old" aria-label="
-                        {{'STUDY_LIST.TOO_OLD' | translate}}" ng-click="reloadStudies()">
+                            ng-model="show_too_old"
+                            aria-label="{{'STUDY_LIST.TOO_OLD' | translate}}"
+                            ng-click="reloadStudies()">
                         {{'STUDY_LIST.TOO_OLD' | translate}}
                     </md-checkbox>
                     <md-checkbox
                             ng-init="show_non_matches=false"
-                            ng-model="show_non_matches" aria-label=" {{'STUDY_LIST.NO_MATCH' | translate}}"
+                            ng-model="show_non_matches"
+                            aria-label=" {{'STUDY_LIST.NO_MATCH' | translate}}"
                             ng-click="refilter()">
                         {{'STUDY_LIST.NO_MATCH' | translate}}
                     </md-checkbox>
@@ -98,7 +68,7 @@
 
             <div id="sort-xs" ng-show="sort">
                 <h4 md-colors="{color:'primary'}">{{'STUDY_LIST.SORT_BY' | translate}}</h4>
-                <md-input-container class="sort filter-input" layout="column" flex="100" >
+                <md-input-container class="sort filter-input" layout-xs="column" layout="row" flex="100" >
                     <md-radio-group ng-model="sort_by" ng-change="dynamicOrderFunction()" layout="column" layout-xs="column">
                         <md-radio-button value="newest">{{'STUDY_LIST.NEWEST' | translate}}</md-radio-button>
                         <md-radio-button value="ends_soon">{{'STUDY_LIST.SOON' | translate}}</md-radio-button>
@@ -108,14 +78,13 @@
         </div>
 
     </div>
-
     <!-- END filter -->
 
     <md-progress-circular ng-show="studyIsLoading || studyIsReLoading" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular>
 
     <div layout="column"  ng-class="{'grey-out': studyIsReLoading}">
         <h2 layout-padding class="md-subhead not-found-text" ng-hide="studies.length > 0">{{'STUDY_LIST.NO_FOUND' | translate}}</h2>
-        <md-card class="custom-pointer" ng-repeat="study in studies | filter:search" ng-click="showDetails(study)"
+        <md-card class="custom-pointer" ng-repeat="study in studies | filter:searchStudies" ng-click="showDetails(study)"
                  ng-class="{
                      'stuy-not-approved': !study.isApproved,
                      'my-study': study.isThisMyOwnStudy,
