@@ -11,7 +11,7 @@
     "status": {
       "type": "string",
       "required": false,
-      "description": "pending, confirmed, completed, absent"
+      "description": "pending, confirmed, completed, absent, declined"
     },
     "reward_money": {
       "type": "number",
