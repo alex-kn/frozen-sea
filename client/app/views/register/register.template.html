@@ -38,7 +38,7 @@
         <md-progress-circular ng-show="!registerProgress" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular></div>
         <div class="registration-form" layout="row" layout-align="center start" ng-show="registerProgress">
 
-            <form  layout="column" flex-gt-xs="60" flex="100">
+            <form  layout="column" flex-gt-xs="60" flex="100"  ng-keyup="$event.keyCode == 13 && (email && password && firstname && secondname) && register(firstname, secondname, email, password)">
 
                 <h2>{{'REGISTER.REGISTER_HERE' | translate}}</h2>
 

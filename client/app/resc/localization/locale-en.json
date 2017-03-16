@@ -247,7 +247,9 @@
     "STUDY_NAME": "Study name",
     "STUDY_NAME_2":"Name of your study",
     "EXAMPLE":"Example: Driving behaviour after consumption of milk",
-    "WHAT_NAME":"What is the name of your study?"
+    "WHAT_NAME":"What is the name of your study?",
+    "CAREFUL": "Always carefully read the description and the requirements of a study before you participate!"
+
   },
   "ARCHIVE": {
     "TITLE" : "Archive",

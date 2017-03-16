@@ -33,7 +33,7 @@
         <md-list-item class="md-2-line" ng-model="users" ng-repeat="user in users">
             <div class="md-list-item-text" layout="row" layout-align="center center">
                 <span flex>{{user.email}}</span>
-                <span flex>{{user.username}}</span>
+                <span flex>{{user.firstName}} {{user.secondName}}</span>
                 <span flex>
                       <md-button>Admin</md-button>
                         <md-switch ng-disabled="user.current" class="md-primary" aria-label="Switch Admin" ng-model="user.isAdmin" ng-change="onChangeAdmin(user)">

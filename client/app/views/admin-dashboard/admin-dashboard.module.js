@@ -1,4 +1,5 @@
 'use strict';
+'use strict';
 
 angular.module('adminDashboard', ['ngRoute', 'ngMaterial'])
     .controller('AdminDashboardController', ['$scope', 'Subuser', '$route', '$http', '$filter', '$translate', 'ToastService', 'LoopBackAuth', 'Participation', 'ByRoleService','$mdDialog',
@@ -88,6 +89,7 @@ angular.module('adminDashboard', ['ngRoute', 'ngMaterial'])
                             }
                         }
                     });
+                    console.log(value);
                     $scope.users = value;
                     $scope.usersLoaded = true;
                 }, function (err) {
