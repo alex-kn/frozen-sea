@@ -9,8 +9,12 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
             controller: 'CreateStudyController'
         });
     }])
-    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'ByRoleService', '$filter', '$translate', '$document', 'Subuser',
-        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, ByRoleService, $filter, $translate, $document, Subuser) {
+    .controller('CreateStudyController', ['$scope', '$routeParams', '$location', '$mdDialog', 'Study', 'StudyDate', 'LoopBackAuth', '$http', 'ToastService', 'AppointmentService', 'ByRoleService', '$filter', '$translate', '$document', 'Subuser', '$mdConstant',
+        function ($scope, $routeParams, $location, $mdDialog, Study, StudyDate, LoopBackAuth, $http, ToastService, AppointmentService, ByRoleService, $filter, $translate, $document, Subuser, $mdConstant) {
+
+
+            $scope.keySeperatorsKeywords = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, $mdConstant.KEY_CODE.SPACE];
+            $scope.keySeperatorsLocations = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA];
 
             $scope.initialize = function() {
                 ByRoleService.getUsersByRole("advisor").then(function(res) {

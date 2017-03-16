@@ -98,6 +98,7 @@ angular
                 } else {
                     $scope.studies = $scope.studiesTemp;
                 }
+                $scope.thereAreMatchingStudies = $scope.studies.length > 0;
 
                 StudyHighlightService.highlightStudy($scope.studies, LoopBackAuth.currentUserId).then(function(studies) {
                     $scope.studies = studies;
