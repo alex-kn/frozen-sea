@@ -183,6 +183,8 @@ nav-bar .nav, nav-bar .user-profil {
     color: #dce3e7; }
   nav-bar .nav a, nav-bar .user-profil a {
     margin-left: 2rem; }
+    nav-bar .nav a:first-of-type, nav-bar .user-profil a:first-of-type {
+      margin-left: 1rem; }
     nav-bar .nav a:hover, nav-bar .user-profil a:hover {
       color: #dce3e7;
       cursor: pointer; }
