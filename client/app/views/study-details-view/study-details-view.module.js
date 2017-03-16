@@ -402,8 +402,8 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
                             //TODO checkbox to stop this mailspam
                             var subject = "New participant for your study!";
-                            var text = "A new participants has requested to participate in your Study \"" + $scope.study.title + "\" and is awaiting confirmation. Navigate to <a href=" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + ">" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + "</a> to confirm or reject participants.";
-                            EmailService.sendEmail($scope.ownerMail, $scope.currentUser.email, subject, text, text, true);
+                            var text = "A new participant has requested to participate in your Study \"" + $scope.study.title + "\" and is awaiting confirmation. Navigate to <a href=" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + ">" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + "</a> to confirm or reject participants.";
+                            EmailService.sendEmail($scope.ownerMail, "frzn.sea@gmail.com", subject, text, text, false);
                         }, function (error) {
                             console.log("Participation could not be created.");
                             console.log(error);
@@ -449,6 +449,10 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                             $scope.waitingForParticipation = false;
                             studyDate.waiting = false;
                             studyDate.status = "available";
+
+                            var subject = "A participant has canceled his participation!";
+                            var text = "A participant has has canceled hsi participation to your study " + $scope.study.title + " Navigate to <a href=" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + ">" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + "</a> to see the participants of your study.";
+                            EmailService.sendEmail($scope.ownerMail,"frzn.sea@gmail.com", subject, text, text, false);
                         }, function (error) {
                             console.log("Error deleting Participation");
                             console.log(error);
@@ -475,6 +479,13 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     if (status == 'completed') {
                         ToastService.setToastText($filter('translate')('STUDY_DETAILS.COMPLETED'));
                         ToastService.displayToast();
+
+                        Participation.owner({where:{id:participation.ownerId}}).then(function(participant) {
+                            console.log(participant);
+                            var subject = "Your participation in " + +$scope.study.title + " has been confirmed";
+                            var text = "Your participation in " + $scope.study.title + " has been confirmed. If you do not receive your reward in the next few days, please contact the study creator. Experiment hours are registered automatically and you can check them in your profile page.";
+                            EmailService.sendEmail(participant.email, "frzn.sea@gmail.com", subject, text, text, false);
+                        });
                     }
                 });
             };
