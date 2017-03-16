@@ -182,7 +182,7 @@ md-card {
   color: red !important; }
 
 .study-details {
-  margin-top: 1rem; }
+  margin-top: 0rem; }
   .study-details * {
     padding-left: 0.1rem !important; }
 
@@ -215,5 +215,8 @@ md-progress-linear {
 
 md-switch.padding {
   margin: auto 0.8rem; }
+
+.margin-bot-0 {
+  margin-bottom: 0 !important; }
 
 /*# sourceMappingURL=study-details-view.style.css.map */

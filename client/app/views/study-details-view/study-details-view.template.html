@@ -24,14 +24,14 @@
         <!-- START general information -->
         <md-content class="md-padding">
 
-            <div layout-gt-xs="row">
-                <span class="md-block" flex-gt-xs="100"
-                      aria-label="{{'CREATE_STUDY.DESCRIPTION_ARIA_LABEL' | translate}}">
-                    {{study.description}}
-                </span>
+                <md-input-container class="md-block margin-bot-0" flex-gt-xs="100">
 
+                <textarea ng-model="study.description" readonly class="margin-bot-0" md-no-resize
+                          aria-label="{{'CREATE_STUDY.DESCRIPTION_ARIA_LABEL' | translate}}">
 
-            </div>
+                </textarea>
+                </md-input-container>
+
 
             <div class="study-details" layout-gt-xs="row" layout-align="start center" layout-wrap>
 
