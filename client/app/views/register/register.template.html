@@ -9,8 +9,11 @@
             {{'REGISTER.NO_MORE' | translate}} <br/>
             {{'REGISTER.FIND' | translate}}
         </p>
-        <md-button class="md-accent md-raised">{{'REGISTER.MORE' | translate}}</md-button>
+        <md-button class="md-accent md-raised" ng-click="toggleShowMore()">{{'REGISTER.MORE' | translate}}</md-button>
 
+        <div ng-show="showMore" layout-padding layout-margin>
+            {{'REGISTER.MORE_TEXT' | translate}}
+        </div>
     </section>
     <!-- END app introduction -->
 

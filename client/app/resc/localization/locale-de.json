@@ -12,7 +12,8 @@
     "LOGIN": "Einloggen",
     "ERROR": "Ihre Anmeldedaten sind falsch!",
     "REGISTRATION_SUCCESS": "Registration erfolgreich! Um sich einloggen zu können, klicken sie bitte auf den Bestätigungslink in Ihrem Email-Postfach.",
-    "VERIFICATION_SUCCESS": "Email-Verifikation erfolgreich! Sie können sich jetzt einloggen."
+    "VERIFICATION_SUCCESS": "Email-Verifikation erfolgreich! Sie können sich jetzt einloggen.",
+    "MORE_TEXT": "Erstelle und verwalte Studien, oder nimm an für dich vorgefilterten Studien teil."
   },
   "REGISTER": {
     "WELCOME": "Willkommen bei Frozen Sea",
@@ -29,7 +30,8 @@
     "SECOND_NAME": "Familienname",
     "ERROR_USERNAME": "Registrierung fehlgeschlagen, dieser Username existiert bereits!",
     "ERROR_EMAIL": "Registrierung fehlgeschlagen, es existiert bereits ein Account mit dieser Email!",
-    "ERROR_EMAIL_USERNAME": "Registrierung fehlgeschlagen, dieser Username und ein Account mit dieser Email existieren bereits!"
+    "ERROR_EMAIL_USERNAME": "Registrierung fehlgeschlagen, dieser Username und ein Account mit dieser Email existieren bereits!",
+    "MORE_TEXT": "Erstelle und verwalte Studien, oder nimm an für dich vorgefilterten Studien teil."
   },
   "RESET_PASSWORD": {
     "RESET_PASSWORD": "Passwort zurücksetzen",
@@ -347,7 +349,11 @@
     "EXPLANATION_OWNER_5": "Mit einem Klick auf \"Studiendetails editieren\" kannst du im nachhinein noch Änderungen an den Studiendetails vornehmen, Termine ohne Teilnehmer löschen sowie neue Termine hinzufügen.",
     "EXPLANATION_1": "Nach Auswahl einer gewünschten Vergütung kannst du dich hier zu einem Termin bewerben. Nachdem dich der Studienveranstalter bestätigt hat, bist du erfolgreich angemeldet",
     "EXPLANATION_2": "Beachte bitte, dass die Vergütung nur ausgeschüttet werden kann, nachdem der Veranstalter nach dem Termin deine Anwesenheit bestätigt hat.",
-    "PARTICIPANT_DETAILS" : "Teilnehmerdetails"
+    "PARTICIPANT_DETAILS" : "Teilnehmerdetails",
+    "VIEW_AS" : "Ansicht als",
+    "PARTICIPANT" : "Teilnehmer",
+    "CREATOR" : "Studienorganisator",
+    "ONLINE_ONLY" : "Diese Studie ist ein Online-Studie und hat keine Termine. Eine Teilnahme ist durch Klicken des Links in der Beschreibung möglich!"
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",

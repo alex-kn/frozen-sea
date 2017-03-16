@@ -12,7 +12,8 @@
     "LOGIN": "Sign in",
     "ERROR": "Your login credentials are wrong!",
     "REGISTRATION_SUCCESS":"Registration successful! To log in, please click on the verification link in your email.",
-    "VERIFICATION_SUCCESS":"Verification successful! You can now log in."
+    "VERIFICATION_SUCCESS":"Verification successful! You can now log in.",
+    "MORE_TEXT": "With Frozen Sea you can create and manage or particpiate in studies. Studies are filtered for you personally and experiment hours are registered automatically."
   },
   "REGISTER": {
     "WELCOME": "Welcome to Frozen Sea",
@@ -30,7 +31,8 @@
     "ERROR": "Sign up failed, your username might be taken or there is already an account with this e-mail address!",
     "ERROR_USERNAME": "Sign up failed, your username is already taken!",
     "ERROR_EMAIL": "Sign up failed, there already exists an account with this e-mail address!",
-    "ERROR_EMAIL_USERNAME": "Sign up failed, your username is already taken and there exists an account with this e-mail address!"
+    "ERROR_EMAIL_USERNAME": "Sign up failed, your username is already taken and there exists an account with this e-mail address!",
+    "MORE_TEXT": "With Frozen Sea you can create and manage or particpiate in studies. Studies are filtered for you personally and experiment hours are registered automatically."
   },
   "RESET_PASSWORD": {
     "RESET_PASSWORD": "Reset Passwort",
@@ -346,7 +348,11 @@
     "EXPLANATION_OWNER_5": "A click on \"Edit Study Details\" lets you make subsequent changes to the study. Empty appointments can also be deleted and new appointments can be created",
     "EXPLANATION_1": "After choosing a reward, you can apply for an appointment here. You are registered successfully after confirmation by the study organizer.",
     "EXPLANATION_2": "Please note that rewards will only be distributed to participants whose presence was confirmed by the study organizer.",
-    "PARTICIPANT_DETAILS" : "Participant details"
+    "PARTICIPANT_DETAILS" : "Participant details",
+    "VIEW_AS" : "View as",
+    "PARTICIPANT" : "Participant",
+    "CREATOR" : "Study organizer",
+    "ONLINE_ONLY" : "This study is conducted online and has no appointments. Participation is possible by following the link in the description."
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Cancel",

@@ -10,6 +10,12 @@ angular
             $scope.advisedStudies = [];
             $scope.studyIsLoading = true;
 
+            $scope.toggleFilterOnMobile = function(key) {
+                if (key === 'search') {
+                    $scope.search = true;
+                }
+            }
+
 
 
             //myStudies

@@ -24,6 +24,7 @@
 <!-- START study list -->
 <md-content layout-padding layout="column" flex-offset-gt-md="20" flex-offset-md="10" flex-gt-md="60" flex-md="80" flex>
 
+    <!-- START filter options -->
     <div layout="row" layout-xs="column" layout-align="start center" layout-align-xs="center start">
 
         <div>
@@ -78,12 +79,12 @@
         </div>
 
     </div>
-    <!-- END filter -->
+    <!-- END filter options -->
 
     <md-progress-circular ng-show="studyIsLoading || studyIsReLoading" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular>
 
     <div layout="column"  ng-class="{'grey-out': studyIsReLoading}">
-        <h2 layout-padding class="md-subhead not-found-text" ng-hide="studies.length > 0">{{'STUDY_LIST.NO_FOUND' | translate}}</h2>
+        <h2 layout-padding class="md-subhead not-found-text" ng-hide="thereAreMatchingStudies">{{'STUDY_LIST.NO_FOUND' | translate}}</h2>
         <md-card class="custom-pointer" ng-repeat="study in studies | filter:searchStudies" ng-click="showDetails(study)"
                  ng-class="{
                      'stuy-not-approved': !study.isApproved,

@@ -8,6 +8,11 @@ angular.module('register', ['ngRoute'])
 
             $scope.errorMessage = "";
             $scope.registerProgress = true;
+            $scope.showMore = false;
+
+            $scope.toggleShowMore = function() {
+                $scope.showMore = !$scope.showMore;
+            };
 
             $scope.changeLanguage = function (langKey) {
                 $translate.use(langKey);

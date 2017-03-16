@@ -9,6 +9,11 @@ angular.module('login', ['ngRoute'])
             $scope.password="";
             $scope.errorMessage = "";
             $rootScope.currentUser = {};
+            $scope.showMore = false;
+
+            $scope.toggleShowMore = function() {
+                $scope.showMore = !$scope.showMore;
+            };
 
             if($routeParams.param1 == 'verified') {
                 ToastService.setToastText($filter('translate')('LOGIN.VERIFICATION_SUCCESS'));
