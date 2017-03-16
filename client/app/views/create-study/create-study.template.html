@@ -654,7 +654,7 @@
                     <md-input-container>
                         <md-button
                                 ng-click="createStudy()"
-                                ng-disabled="createStudyForm.$invalid" class="md-accent md-raised">
+                                ng-disabled="createStudyForm.$invalid || !appointmentsChecked" class="md-accent md-raised">
                             {{'CREATE_STUDY.CREATE_STUDY_BUTTON' | translate}}
                         </md-button>
                         <md-button ng-click="cancelStudy()">{{'CREATE_STUDY.CANCEL_STUDY_BUTTON' | translate}}

@@ -54,6 +54,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                     locations: []
                 };
                 $scope.appointments = [];
+                $scope.appointmentsChecked = false;
                 $scope.appointment = {
                     date: tomorrow,
                     time: '08:30',
@@ -89,6 +90,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 $scope.appointments.unshift(appointment);
                 console.log($scope.appointments);
                 $scope.appointment.time = AppointmentService.addDurationToAppointmentTime(appointment.time, appointment.duration, appointment.bufferTime);
+                $scope.appointmentsChecked = true;
             };
 
             /**
