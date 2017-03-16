@@ -11,13 +11,17 @@ md-toast {
 }
 
 .md-toast-content {
-
+  padding: 0px !important;
   background-color: #fff !important;
   color: $primary-text-color !important;
 
-  @media (max-width: 959px) {
+  @media all and (max-width: 959px) {
     background-color: $primary-color !important;
     color: #fff !important;
+  }
+
+  @media all and (min-width: 960px) {
+    max-width: 400px !important;
   }
 
   i {

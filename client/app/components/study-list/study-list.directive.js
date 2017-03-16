@@ -7,16 +7,25 @@ angular
     .controller('StudyListController', ['$scope', '$routeParams', 'Participation', 'Study', 'StudyDate', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$translate', '$filter', 'ToastService', 'SetPreferencesService', 'StudyHighlightService',
         function ($scope, $routeParams, Participation, Study, StudyDate, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter, ToastService, SetPreferencesService, StudyHighlightService) {
 
+            $scope.initialize = function() {
 
-            $scope.thereAreMatchingStudies = true;
-            $scope.show = false;
-            $scope.studyIsLoading = true;
-            $scope.studyIsReLoading = false;
-            $scope.studies = [];
-            $scope.show_too_old = true;
-            $scope.show_non_matches = true;
-            $scope.sort_by =  "ends_soon"; //default sort value
+                $scope.isAdvisor = false;
+                $scope.show = false;
+                $scope.studyIsLoading = true;
+                $scope.studyIsReLoading = false;
+                $scope.studies = [];
+                $scope.thereAreMatchingStudies = true;
+                $scope.show_too_old = true;
+                $scope.show_non_matches = true;
+                $scope.sort_by =  "ends_soon"; //default sort value
 
+                $scope.loadStudies(); //initial load
+
+            }
+
+            /**
+             * Filter and search study list
+             */
             $scope.showSearch = function() {
                 var input = document.getElementById('search');
                 input.classList.remove('hide');
@@ -40,11 +49,13 @@ angular
                 hideSearch();
             };
 
+            /**
+             * Load and reload studies
+             */
             $scope.reloadStudies = function() {
                 $scope.studyIsReLoading = true;
                 $scope.loadStudies();
             };
-
             $scope.loadStudies = function() {
                 $scope.myFilter = {};
                 if($scope.show_too_old) { //load all studies that are not finished yet
@@ -55,12 +66,7 @@ angular
                         compareStudyDetailsWithUserPreferences();
                     }
                 );
-
             };
-
-            $scope.loadStudies(); //initial load
-
-
             $scope.refilter = function() {
                 if ($scope.show_non_matches) {
                     //filter all studies that don't match user profile
@@ -73,12 +79,13 @@ angular
                     $scope.studies=studies;
                 });
             };
-
             $scope.toggle = function() {
                 $scope.show = !$scope.show;
             };
 
-
+            /**
+             * Filter study list to match user preferences
+             */
             function compareStudyDetailsWithUserPreferences() {
                 Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
                     $scope.studyIsLoading = false;
@@ -107,84 +114,16 @@ angular
                 });
             }
 
-
-            var options = {
-                weekday: "long", year: "numeric", month: "short",
-                day: "numeric", hour: "2-digit", minute: "2-digit"
-            };
-
-            $scope.datesGroupedByDay = [];
-            $scope.currentStudy = {};
-
-            $scope.showParticipationDialog = function(study) {
-                $scope.currentStudy = study;
-                $scope.dates = StudyDate.find(
-                    {
-                        filter: {
-                            where: {
-                                studyId: study.id
-                            }
-                        }
-                    }, function() {
-
-                        $scope.datesGroupedByDay = [];
-
-                        var days = [];
-                        var day;
-                        var lastDay;
-
-                        var tempDates = $scope.dates;
-
-                        tempDates.sort(function(a,b){
-                            // Turn your strings into dates, and then subtract them
-                            // to get a value that is either negative, positive, or zero.
-                            return new Date(b.startDate) - new Date(a.startDate);
-                        });
-
-                        tempDates.reverse();
-                        tempDates.forEach(function(date) {
-                            day = $filter('date')(date.startDate, "shortDate");
-
-                            if(lastDay == undefined) {
-                                lastDay = day;
-                            }
-                            if(day != lastDay) {
-                                $scope.datesGroupedByDay.push(days);
-                                days = [];
-                                days.push(date);
-                                lastDay = day;
-                            } else {
-                                days.push(date);
-                            }
-                        });
-                        $scope.datesGroupedByDay.push(days);
-                    });
-
-
-                var confirm = $mdDialog.confirm({
-                    controller: "ParticipateDialogController",
-                    template: '<participate-dialog class="container"></participate-dialog>',
-                    scope: $scope,
-                    preserveScope: true,
-                    parent: angular.element(document.body)
-                });
-                $mdDialog.show(confirm).then(function() {
-                    $scope.currentStudy = {};
-                    $scope.datesGroupedByDay = [];
-                });
-            };
-
-
+            /**
+             * Handle user interaction
+             */
             $scope.displayToast = function() {
                 ToastService.displayToast();
             };
 
-
-
             $scope.showDetails = function (study, ev) {
                 $location.path('/study-details-view').search({'study': study.id});
             };
-
             $scope.showCreateStudyPrompt = function(ev) {
                 // Appending dialog to document.body to cover sidenav in docs app
                 var confirm = $mdDialog.prompt()
