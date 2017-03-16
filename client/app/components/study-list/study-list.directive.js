@@ -4,8 +4,8 @@
 
 angular
     .module('studyListDirective', ['participateDialogDirective'])
-    .controller('StudyListController', ['$scope', '$routeParams', 'Participation', 'Study', 'StudyDate', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$translate', '$filter', 'ToastService', 'SetPreferencesService', 'StudyHighlightService',
-        function ($scope, $routeParams, Participation, Study, StudyDate, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter, ToastService, SetPreferencesService, StudyHighlightService) {
+    .controller('StudyListController', ['$scope', '$routeParams', 'Participation', 'Study', 'StudyDate', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$translate', '$filter', 'ToastService', 'SetPreferencesService', 'StudyHighlightService', 'ByRoleService',
+        function ($scope, $routeParams, Participation, Study, StudyDate, $mdDialog, $location, Subuser, LoopBackAuth, $translate, $filter, ToastService, SetPreferencesService, StudyHighlightService, ByRoleService) {
 
             $scope.initialize = function() {
 
@@ -17,23 +17,47 @@ angular
                 $scope.show_too_old = true;
                 $scope.show_non_matches = true;
                 $scope.sort_by =  "ends_soon"; //default sort value
+                $scope.searchGtXs = false;
+                $scope.search = false;
+                $scope.filter = false;
+                $scope.sort = false;
 
+                // Check if user is advisor to display additional filter functionality
+                ByRoleService.getUsersByRole("advisor").then(function(advisors) {
+                    advisors.forEach(function(advisor) {
+                        if (LoopBackAuth.currentUserId == advisor.id) {
+                            $scope.isAdvisor = true;
+                        }
+                    })
+                });
                 $scope.loadStudies(); //initial load
-
-            }
+            };
 
             /**
              * Filter and search study list
              */
             $scope.showSearch = function() {
-                var input = document.getElementById('search');
-                input.classList.remove('hide');
+                document.getElementById('search-gt-xs').classList.remove('hide');
             };
             function hideSearch() {
-                var input = document.getElementById('search');
-                input.classList.add('hide');
-            }
+                document.getElementById('search-gt-xs').classList.add('hide');
 
+            }
+            $scope.toggleFilterOnMobile = function(key) {
+                if (key === 'search') {
+                    $scope.search = true;
+                    $scope.filter = false;
+                    $scope.sort = false;
+                } else if (key === 'filter') {
+                    $scope.search = false;
+                    $scope.filter = true;
+                    $scope.sort = false;
+                } else if (key === 'sort') {
+                    $scope.search = false;
+                    $scope.filter = false;
+                    $scope.sort = true;
+                }
+            };
             $scope.dynamicOrderFunction = function(sortBy) {
                 if (sortBy == 'newest') {
                     $scope.studies.sort(function(a,b) {
@@ -75,11 +99,9 @@ angular
                 }
 
                 StudyHighlightService.highlightStudy($scope.studies, LoopBackAuth.currentUserId).then(function(studies) {
-                    $scope.studies=studies;
+                    $scope.studies = studies;
                 });
-            };
-            $scope.toggle = function() {
-                $scope.show = !$scope.show;
+                hideSearch();
             };
 
             /**

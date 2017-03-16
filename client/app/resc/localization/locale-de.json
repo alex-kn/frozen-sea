@@ -228,10 +228,10 @@
     "REWARD": "Vergütung",
     "REWARD_HOURS": "Stunden",
     "SORT_BY": "Ordne nach",
-    "NEWEST": "Neu",
-    "SOON": "Endet bald",
+    "NEWEST": "Neue Studien",
+    "SOON": "Enden bald",
     "SHOW": "Zeige",
-    "NO_MATCH": "Nicht passende Studien",
+    "NO_MATCH": "Unpassend",
     "TOO_OLD": "Vergangene Studien",
     "NOT_APPROVED_STUDY": "Diese Studie wurde noch nicht von einem Betreuer freigegeben",
     "OWN_STUDY": "Diese Studie wurde von dir erstellt",
@@ -249,7 +249,11 @@
     "STUDY_NAME_2":"Name deiner Studie",
     "EXAMPLE":"Zum Beispiel: Fahrverhalten nach erhöhtem Milchkonsum",
     "WHAT_NAME":"Wie ist der Name deiner Studie?",
-    "CAREFUL": "Lese immer die Beschreibung und die Voraussetzungen einer Studie bevor du teilnimmst."
+    "CAREFUL": "Lese immer die Beschreibung und die Voraussetzungen einer Studie bevor du teilnimmst.",
+    "FILTER": "Filtern nach",
+    "FILTER_TIP": "Entscheide welche Studien angezeigt werden",
+    "SORT_TIP": "Sortiere die angezeigten Studien",
+    "SEARCH_TIP": "Suche nach einer bestimmten Studie"
   },
   "ARCHIVE": {
     "TITLE" : "Archiv",

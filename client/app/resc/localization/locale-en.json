@@ -227,10 +227,10 @@
     "REWARD": "Rewards",
     "REWARD_HOURS": "Hours",
     "SORT_BY": "Sort by",
-    "NEWEST": "Newest",
-    "SOON": "Ends soon",
+    "NEWEST": "Newest studies",
+    "SOON": "Ending soon",
     "SHOW": "Show:",
-    "NO_MATCH": "Not matching studies",
+    "NO_MATCH": "No match",
     "TOO_OLD": "Past studies",
     "NOT_APPROVED_STUDY": "This study has not been approved by an advisor yet",
     "OWN_STUDY": "This is your own study",
@@ -248,7 +248,10 @@
     "STUDY_NAME_2":"Name of your study",
     "EXAMPLE":"Example: Driving behaviour after consumption of milk",
     "WHAT_NAME":"What is the name of your study?",
-    "CAREFUL": "Always carefully read the description and the requirements of a study before you participate!"
+    "CAREFUL": "Always carefully read the description and the requirements of a study before you participate!",
+    "FILTER": "Filter by",
+    "FILTER_TIP": "Filter the study list",
+    "SORT_TIP": "Sort the study list"
 
   },
   "ARCHIVE": {

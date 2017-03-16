@@ -1,3 +1,6 @@
+.hide {
+  display: none; }
+
 html, body {
   font-size: 16px;
   font-family: "Roboto", sans-serif; }
@@ -51,6 +54,9 @@ md-toolbar.toolbar {
 
 .form-control {
   height: 2.5rem; }
+
+.hide {
+  display: none; }
 
 .container {
   padding: 1.5em; }

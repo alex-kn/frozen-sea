@@ -172,9 +172,20 @@ md-nav-bar .md-nav-bar {
   }
 }
 
-.hide {
-  display: none;
+.filter-inActive {
+  color: #9E9E9E !important;
 }
 
+.filter-active {
+  color: #FFAB40 !important;
+}
+
+.filter-input {
+  margin-bottom: 0 !important;
+}
+
+.search-input-mobile {
+  margin: 2rem 0 0 0;
+}
 
 
