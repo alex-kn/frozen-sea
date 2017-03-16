@@ -1,3 +1,6 @@
+.hide {
+  display: none; }
+
 html, body {
   font-size: 16px;
   font-family: "Roboto", sans-serif; }
@@ -51,6 +54,9 @@ md-toolbar.toolbar {
 
 .form-control {
   height: 2.5rem; }
+
+.hide {
+  display: none; }
 
 .container {
   padding: 1.5em; }
@@ -155,7 +161,7 @@ md-card {
 
 md-progress-linear {
   height: 1rem;
-  margin: 0 1rem !important; }
+  margin: 0 .5rem !important; }
   md-progress-linear .md-container {
     background-color: cornflowerblue;
     height: 1rem;

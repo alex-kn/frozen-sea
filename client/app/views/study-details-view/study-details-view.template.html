@@ -38,7 +38,8 @@
                 <md-subheader ng-show="study.keywords_array.length" flex="25">
                     {{'STUDY_DETAILS.KEYWORDS' | translate}}:
                 </md-subheader>
-                <span flex="75" ng-show="study.keywords_array.length" aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
+                <span flex="75" ng-show="study.keywords_array.length"
+                      aria-label="{{'STUDY_DETAILS.KEYWORDS' | translate}}">
                     {{study.keywords_array.join(" | ")}}
                 </span>
 
@@ -55,36 +56,41 @@
                 <span ng-show="ownerReady" flex="75" aria-label="{{'STUDY_DETAILS.BY' | translate}}">
                     {{owner}}
                 </span>
-                <md-progress-circular flex="75" ng-hide="ownerReady" class="md-accent owner-loading" md-mode="indeterminate" md-diameter="20">
+                <md-progress-circular flex="75" ng-hide="ownerReady" class="md-accent owner-loading"
+                                      md-mode="indeterminate" md-diameter="20">
                 </md-progress-circular>
 
                 <md-subheader flex="25" ng-show="isOwner">
                     {{'STUDY_DETAILS.SUPERVISOR' | translate}}:
                 </md-subheader>
-                <span ng-show="advisorReady && isOwner" flex="75" aria-label="{{'STUDY_DETAILS.SUPERVISOR' | translate}}">
+                <span ng-show="advisorReady && isOwner" flex="75"
+                      aria-label="{{'STUDY_DETAILS.SUPERVISOR' | translate}}">
                     {{advisor}}
                 </span>
-                <md-progress-circular flex="75" ng-hide="advisorReady || !isOwner" class="md-accent owner-loading" md-mode="indeterminate" md-diameter="20">
+                <md-progress-circular flex="75" ng-hide="advisorReady || !isOwner" class="md-accent owner-loading"
+                                      md-mode="indeterminate" md-diameter="20">
                 </md-progress-circular>
 
-                <md-subheader ng-show="isOwner" flex="25">
+                <md-subheader ng-show="(isOwner || isAdvisor)" flex="25">
                     {{'STUDY_DETAILS.PARTICIPANTS' | translate}}:
                 </md-subheader>
-                <span ng-show="isOwner" flex="75" aria-label="{{'STUDY_DETAILS.PARTICIPANTS' | translate}}">
+                <span ng-show="(isOwner || isAdvisor)" flex="75" aria-label="{{'STUDY_DETAILS.PARTICIPANTS' | translate}}">
                     {{totalParticipants}}
                 </span>
 
-                <md-subheader ng-show="isOwner && (femaleParticipants + maleParticipants)" flex="25" class="fade">
+                <md-subheader ng-show="(isOwner || isAdvisor) && (femaleParticipants + maleParticipants)" flex="25"
+                              class="fade">
                     {{'STUDY_DETAILS.GENDER_DISTRIBUTION' | translate}}:
                 </md-subheader>
-                <span flex=75 layout-align="start center" layout="row" class="fade" ng-show="isOwner && (femaleParticipants + maleParticipants)">
-                <span>{{(femaleParticipants / (femaleParticipants + maleParticipants)) * 100}}% &#9792;</span>
-                <md-progress-linear value="{{(femaleParticipants / (femaleParticipants + maleParticipants)) * 100}}"
-                                    flex aria-label="{{'STUDY_DETAILS.GENDER_DISTRIBUTION' | translate}}">
-                    {{totalParticipants}}
-                </md-progress-linear>
-                <span>&#9794; {{(maleParticipants / (femaleParticipants + maleParticipants)) * 100}}%</span>
-                    </span>
+                <span flex=75 layout-align="start center" layout="row" class="fade"
+                      ng-show="(isOwner || isAdvisor) && (femaleParticipants + maleParticipants)">
+                    <span>{{femaleParticipants}} ({{Math.round((femaleParticipants / (femaleParticipants + maleParticipants)) * 100)}}%)   &#9792;</span>
+                    <md-progress-linear value="{{(femaleParticipants / (femaleParticipants + maleParticipants)) * 100}}"
+                                        flex aria-label="{{'STUDY_DETAILS.GENDER_DISTRIBUTION' | translate}}">
+                        {{totalParticipants}}
+                    </md-progress-linear>
+                    <span>&#9794;   {{maleParticipants}} ({{Math.round((maleParticipants / (femaleParticipants + maleParticipants)) * 100)}}%)</span>
+                </span>
             </div>
 
 
@@ -101,11 +107,11 @@
             </div>
             <md-button class="md-raised md-accent padding" ng-click="unlock()" ng-hide="study.approved">
                 {{'STUDY_DETAILS.UNLOCK' |translate}}
-                <md-tooltip>{{'STUDY_DETAILS.UNLOCK_MOUSEOVER' |translate}}</md-tooltip>
+                <md-tooltip md-delay="500">{{'STUDY_DETAILS.UNLOCK_MOUSEOVER' |translate}}</md-tooltip>
             </md-button>
             <md-button class="md-primary padding" ng-click="relock()" ng-show="study.approved">
                 {{'STUDY_DETAILS.UNLOCKED' |translate}}
-                <md-tooltip>{{'STUDY_DETAILS.RELOCK' |translate}}</md-tooltip>
+                <md-tooltip md-delay="500">{{'STUDY_DETAILS.RELOCK' |translate}}</md-tooltip>
             </md-button>
         </div>
 
@@ -157,14 +163,13 @@
                     {{'STUDY_DETAILS.UNLOCKED' |translate}}
                 </md-button>
                 <div flex>
-                    <md-divider ></md-divider>
+                    <md-divider></md-divider>
                 </div>
                 <md-button class="md-accent" ng-click="help()">
                     <div layout="row" layout-align="center center">
                         <span hide-xs>{{'STUDY_DETAILS.MOUSEOVER_HELP_1' |translate}}</span>
-                    <i class="material-icons md-24 md-primary">help_outline</i>
+                        <i class="material-icons md-24 md-primary">help_outline</i>
                     </div>
-                    <md-tooltip>{{'STUDY_DETAILS.MOUSEOVER_HELP' |translate}}</md-tooltip>
                 </md-button>
             </div>
 
@@ -189,7 +194,8 @@
                 <div layout="row" layout-xs="column" layout-wrap ng-show="day.show">
 
                     <md-card ng-repeat="date in day" flex="100" flex-gt-xs="{{flexGtXs}}" flex-gt-md="{{flexGtMd}}"
-                             flex-gt-lg="{{flexGtLg}}" ng-class="[{'participating': date.participating}, myParticipation.status]">
+                             flex-gt-lg="{{flexGtLg}}"
+                             ng-class="[{'participating': date.participating}, myParticipation.status]">
                         <md-card-header style>
                             <md-card-avatar>
                                 <md-icon ng-show="date.participating"
@@ -206,9 +212,12 @@
                         <md-card-content layout="column">
 
                             <span class="align-items margin-bot-5"><i class="material-icons"
-                                                         md-colors="{color: 'accent'}">timelapse</i>{{ date.duration }} {{'STUDY_DETAILS.MINUTES' | translate}}</span>
-                            <span class="align-items margin-bot-5"><i class="material-icons" md-colors="{color: 'accent'}">room</i>{{ date.location }} </span>
-                            <span class="align-items margin-bot-5"><i class="material-icons" md-colors="{color: 'accent'}">person_add</i>{{'STUDY_DETAILS.UNTIL' | translate}} {{date.deadlineDate | date: 'dd.MM.yyyy, HH:mm'}}</span>
+                                                                      md-colors="{color: 'accent'}">timelapse</i>{{ date.duration }} {{'STUDY_DETAILS.MINUTES' | translate}}</span>
+                            <span class="align-items margin-bot-5"><i class="material-icons"
+                                                                      md-colors="{color: 'accent'}">room</i>{{ date.location }} </span>
+                            <span class="align-items margin-bot-5"><i class="material-icons"
+                                                                      md-colors="{color: 'accent'}">  <md-tooltip>Play Music</md-tooltip>
+person_add</i>{{'STUDY_DETAILS.UNTIL' | translate}} {{date.deadlineDate | date: 'dd.MM.yyyy, HH:mm'}}</span>
                             <md-divider ng-show="isOwner"></md-divider>
 
                             <!-- start participant list -->
@@ -220,9 +229,7 @@
                                               ng-click="showParticipantDetails(participation, $event)">
 
                                     <md-icon class="material-icons">person</md-icon>
-                                    <md-button>{{participation.name}}
-                                        <md-tooltip>{{'STUDY_DETAILS.MOUSEOVER_PARTICIPANT' | translate}}</md-tooltip>
-                                    </md-button>
+                                    <span>{{participation.name}}</span>
                                     <span ng-hide="date.status == 'finished'" class="md-secondary">
                                         <md-button ng-click="updateParticipationStatus(participation, 'confirmed')"
                                                    class="card-button md-raised md-accent"
@@ -238,7 +245,7 @@
                                         </md-button>
                                         <md-button ng-click="updateParticipationStatus(participation, 'declined')"
                                                    class="md-warn card-button"
-                                                   ng-hide="participation.status == 'declined'"
+                                                   ng-hide="participation.status == 'declined' || participation.status == 'confirmed'"
                                                    aria-label="{{'STUDY_DETAILS.DECLINE_PARTICIPANT' | translate}}">
                                             {{'STUDY_DETAILS.DECLINE_PARTICIPANT' | translate}}
                                         </md-button>
@@ -319,7 +326,8 @@
                                 {{'STUDY_DETAILS.WITHDRAW_PARTICIPATION' |
                                 translate}}
                             </md-button>
-                            <md-progress-circular class="md-accent" ng-show="date.waiting" md-diameter="25"></md-progress-circular>
+                            <md-progress-circular class="md-accent" ng-show="date.waiting"
+                                                  md-diameter="25"></md-progress-circular>
                         </md-card-action>
                     </md-card>
 
@@ -394,7 +402,7 @@
 
         <md-content class="md-padding" ng-show="showMailForm">
             <div>
-                <md-divider ></md-divider>
+                <md-divider></md-divider>
                 <md-subheader>{{'STUDY_DETAILS.CONTACT_PARTICIPANT' | translate}}:</md-subheader>
 
                 <form name="contactForm">
@@ -421,7 +429,8 @@
                             <md-button ng-click="clearContactForm()">{{'STUDY_DETAILS.CANCEL' | translate}}</md-button>
                             <md-button
                                     ng-click="sendMailToParticipants()"
-                                    ng-disabled="contactForm.$invalid" class="md-accent md-raised">{{'STUDY_DETAILS.SEND' |
+                                    ng-disabled="contactForm.$invalid" class="md-accent md-raised">
+                                {{'STUDY_DETAILS.SEND' |
                                 translate}}
                             </md-button>
                         </md-input-container>
@@ -438,18 +447,18 @@
 
                 <md-input-container>
                     <md-button ng-show="isOwner"
-                            ng-click="editStudy()"
-                            class="md-accent md-raised">
+                               ng-click="editStudy()"
+                               class="md-accent md-raised">
                         {{'STUDY_DETAILS.EDIT_STUDY' | translate}}
                     </md-button>
                     <md-button ng-show="isOwner"
-                            ng-click="showContactForm()"
-                            class="md-accent md-raised">
+                               ng-click="showContactForm()"
+                               class="md-accent md-raised">
                         {{'STUDY_DETAILS.CONTACT_PARTICIPANTS' | translate}}
                     </md-button>
                     <md-button ng-show="!isOwner"
-                            ng-click="showContactForm()"
-                            class="md-accent md-raised">
+                               ng-click="showContactForm()"
+                               class="md-accent md-raised">
                         {{'STUDY_DETAILS.CONTACT_CREATOR' | translate}}
                     </md-button>
                 </md-input-container>
