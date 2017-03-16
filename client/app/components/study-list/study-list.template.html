@@ -24,13 +24,13 @@
 <!-- START study list -->
 <md-content layout-padding layout="column" flex-offset-gt-md="20" flex-offset-md="10" flex-gt-md="60" flex-md="80" flex>
 
+    <!-- START filter options -->
     <div layout="row" layout-xs="column" layout-align="start center" layout-align-xs="center start">
 
         <div>
             <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
                 <md-nav-item md-nav-click="1" ng-click="toggleFilterOnMobile('search')" name="1">
                     <md-icon ng-class="{'filter-inActive': !search, 'filter-active': search}" class="material-icons ">search</md-icon>
-                    <md-tooltip>test</md-tooltip>
                 </md-nav-item>
                 <md-nav-item md-nav-click="2" ng-click="toggleFilterOnMobile('filter')" name="2">
                     <md-icon ng-class="{'filter-inActive': !filter, 'filter-active': filter}" class="material-icons">filter_list</md-icon>
@@ -79,7 +79,7 @@
         </div>
 
     </div>
-    <!-- END filter -->
+    <!-- END filter options -->
 
     <md-progress-circular ng-show="studyIsLoading || studyIsReLoading" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular>
 

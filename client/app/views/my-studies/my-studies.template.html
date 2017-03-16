@@ -20,24 +20,24 @@
 
     <div layout-padding layout="column" flex-offset-gt-md="20" flex-offset-md="10" flex-gt-md="60" flex-md="80" flex ng-hide="studyIsLoading">
 
-        <h2 class="md-button align-items" ng-click="toggle()">
-            {{'STUDY_LIST.SEARCH_OPTIONS' | translate}}
-            <md-button class="md-icon-button md-accent" ng-show="show">
-                <md-icon class="material-icons md-12 md-primary">keyboard_arrow_down</md-icon>
-            </md-button>
-            <md-button class="md-icon-button md-accent" ng-hide="show">
-                <md-icon class="material-icons md-12 md-primary">keyboard_arrow_left</md-icon>
-            </md-button>
-        </h2>
+        <!-- START filter options -->
+        <div layout="row" layout-xs="column" layout-align="start center" layout-align-xs="center start">
 
-        <div layout="row" layout-align="start center" ng-show="show">
+            <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+                <md-nav-item md-nav-click="1" ng-click="toggleFilterOnMobile('search')" name="1">
+                    <md-icon ng-class="{'filter-inActive': !search, 'filter-active': search}" class="material-icons ">search</md-icon>
+                </md-nav-item>
+            </md-nav-bar>
 
-            <md-input-container flex-xs="100" flex-sm="50"  flex-gt-sm="30">
-                <input type="text" ng-model="search" placeholder="Search" aria-label="Search">
+            <md-input-container class="md-block search-input-mobile" ng-show="search" flex="100">
+                <input type="text"
+                       ng-model="searchStudies"
+                       placeholder="{{'STUDY_LIST.SEARCH' | translate}}"
+                       aria-label="{{'STUDY_LIST.SEARCH' | translate}}">
             </md-input-container>
 
         </div>
-        <md-divider flex-xs="100" flex-sm="50"  flex-gt-sm="30"></md-divider>
+        <!-- END filter options -->
 
     </div>
 
@@ -53,7 +53,7 @@
                 </md-tab-label>
                 <md-tab-body>
                     <h2 layout-padding layout-align="center center" class="md-subhead not-found-text" ng-hide="myStudies.length > 0">{{'MY_STUDIES.NO_PART_FOUND' | translate}}</h2>
-                    <md-card ng-repeat="study in myStudies | filter:search" class="custom-pointer" ng-click="showDetails(study)"
+                    <md-card ng-repeat="study in myStudies | filter:searchStudies" class="custom-pointer" ng-click="showDetails(study)"
                              ng-class="{
                      'stuy-not-approved': !study.isApproved,
                      'my-study': study.isThisMyOwnStudy,
@@ -111,7 +111,7 @@
                 </md-tab-label>
                 <md-tab-body>
                     <h2 layout-padding class="md-subhead not-found-text" layout-align="center center" ng-hide="createdStudies.length > 0">{{'MY_STUDIES.NO_CREAT_FOUND' | translate}}</h2>
-                    <md-card ng-repeat="study in createdStudies | filter:search" class="custom-pointer" ng-click="showDetails(study)"
+                    <md-card ng-repeat="study in createdStudies | filter:searchStudies" class="custom-pointer" ng-click="showDetails(study)"
                              ng-class="{
                      'stuy-not-approved': !study.isApproved,
                      'my-study': study.isThisMyOwnStudy,
@@ -164,13 +164,13 @@
 
 
             <md-tab layout="column" data-ng-if="isAdvisor"">
-                <md-tab-label>
-                    {{'MY_STUDIES.ADVISED_STUDIES' | translate}}
-                </md-tab-label>
-                <md-tab-body>
-                    <h2 layout-padding class="md-subhead not-found-text" layout-align="center center" ng-hide="advisedStudies.length > 0">{{'MY_STUDIES.NO_ADVISE_FOUND' | translate}}</h2>
-                    <md-card ng-repeat="study in advisedStudies | filter:search" class="custom-pointer" ng-click="showDetails(study)"
-                    ng-class="{
+            <md-tab-label>
+                {{'MY_STUDIES.ADVISED_STUDIES' | translate}}
+            </md-tab-label>
+            <md-tab-body>
+                <h2 layout-padding class="md-subhead not-found-text" layout-align="center center" ng-hide="advisedStudies.length > 0">{{'MY_STUDIES.NO_ADVISE_FOUND' | translate}}</h2>
+                <md-card ng-repeat="study in advisedStudies | filter:searchStudies" class="custom-pointer" ng-click="showDetails(study)"
+                         ng-class="{
                     'stuy-not-approved': !study.isApproved,
                     'my-study': study.isThisMyOwnStudy,
                     'advised-study': study.isThisAStudyISupervise,
@@ -181,42 +181,42 @@
                     'participated-study-not-finished':study.isThisAStudyIParticipateInAndIDIDNTFinishedIt,
                     'study-is-over': study.isFinished
                     }">
-                        <md-card-title>
-                            <md-card-title-text>
-                                <div class="title-box">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <div class="title-box">
 
-                                    <span class="md-headline box-title">{{ study.title }}</span>
+                                <span class="md-headline box-title">{{ study.title }}</span>
 
-                                    <div layout="column" class="info-box">
-                                        <div ng-show="!study.isApproved">{{'STUDY_LIST.NOT_APPROVED_STUDY' | translate}}</div>
-                                        <div ng-show="study.isThisMyOwnStudy">{{'STUDY_LIST.OWN_STUDY' | translate}}</div>
-                                        <div ng-show="study.isThisAStudyISupervise">{{'STUDY_LIST.SUPERVISED_STUDY' | translate}}</div>
-                                        <div ng-show="study.isThisAStudyISuperviseAndNeedsApproval">{{'STUDY_LIST.SUPERVISED_STUDY_AND_APPROVAL' | translate}}</div>
-                                        <div ng-show="study.isThisAStudyIParticipateInAndIAmApproved">{{'STUDY_LIST.READY_TO_GO' | translate}}</div>
-                                        <div ng-show="study.isThisAStudyIParticipateInAndIAmNotApproved">{{'STUDY_LIST.NEEDS_CONFIRM' | translate}}</div>
-                                        <div ng-show="study.isThisAStudyIParticipateInAndIFinishedIt">{{'STUDY_LIST.SUCCESS' | translate}}</div>
-                                        <div ng-show="study.isThisAStudyIParticipateInAndIDIDNTFinishedIt">{{'STUDY_LIST.FAIL' | translate}}</div>
-                                        <div ng-show="study.isFinished">{{'STUDY_LIST.FINI' | translate}}</div>
-                                    </div>
+                                <div layout="column" class="info-box">
+                                    <div ng-show="!study.isApproved">{{'STUDY_LIST.NOT_APPROVED_STUDY' | translate}}</div>
+                                    <div ng-show="study.isThisMyOwnStudy">{{'STUDY_LIST.OWN_STUDY' | translate}}</div>
+                                    <div ng-show="study.isThisAStudyISupervise">{{'STUDY_LIST.SUPERVISED_STUDY' | translate}}</div>
+                                    <div ng-show="study.isThisAStudyISuperviseAndNeedsApproval">{{'STUDY_LIST.SUPERVISED_STUDY_AND_APPROVAL' | translate}}</div>
+                                    <div ng-show="study.isThisAStudyIParticipateInAndIAmApproved">{{'STUDY_LIST.READY_TO_GO' | translate}}</div>
+                                    <div ng-show="study.isThisAStudyIParticipateInAndIAmNotApproved">{{'STUDY_LIST.NEEDS_CONFIRM' | translate}}</div>
+                                    <div ng-show="study.isThisAStudyIParticipateInAndIFinishedIt">{{'STUDY_LIST.SUCCESS' | translate}}</div>
+                                    <div ng-show="study.isThisAStudyIParticipateInAndIDIDNTFinishedIt">{{'STUDY_LIST.FAIL' | translate}}</div>
+                                    <div ng-show="study.isFinished">{{'STUDY_LIST.FINI' | translate}}</div>
                                 </div>
-                                <div layout-gt-sm="row" layout="column" layout-align="start start">
-                                    <span flex-gt-sm="25" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">date_range</i>{{study.startDate | date:'dd.MM.yy'}} - {{study.endDate | date:'dd.MM.yy'}}</span>
-                                    <span flex-gt-sm="20" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">timelapse</i>{{study.duration}} {{'STUDY_LIST.DURATION' | translate}}</span>
-                                    <span flex></span>
-                                    <span flex-sm="20" flex-gt-sm="10" ng-if="study.reward.reward_money != null" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">attach_money</i>{{ study.reward.reward_money }}€</span>
-                                    <span flex-sm="20" flex-gt-sm="10" ng-if="study.reward.reward_voucher != null" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">pages</i>{{ study.reward.reward_voucher }}€</span>
-                                    <span flex-sm="20" flex-gt-sm="15" ng-if="study.reward.reward_hours != null" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">access_time</i>{{ study.reward.reward_hours }} {{'STUDY_LIST.REWARD_HOURS' | translate}}</span>
-                                </div>
-                            </md-card-title-text>
-                        </md-card-title>
-                        <md-card-content>
-                            {{ study.description }}
-                        </md-card-content>
-                        <md-card-actions layout="row" layout-align="end center">
-                            <md-button>{{'STUDY_LIST.DETAILS' | translate}}</md-button>
-                        </md-card-actions>
-                    </md-card>
-                </md-tab-body>
+                            </div>
+                            <div layout-gt-sm="row" layout="column" layout-align="start start">
+                                <span flex-gt-sm="25" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">date_range</i>{{study.startDate | date:'dd.MM.yy'}} - {{study.endDate | date:'dd.MM.yy'}}</span>
+                                <span flex-gt-sm="20" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">timelapse</i>{{study.duration}} {{'STUDY_LIST.DURATION' | translate}}</span>
+                                <span flex></span>
+                                <span flex-sm="20" flex-gt-sm="10" ng-if="study.reward.reward_money != null" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">attach_money</i>{{ study.reward.reward_money }}€</span>
+                                <span flex-sm="20" flex-gt-sm="10" ng-if="study.reward.reward_voucher != null" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">pages</i>{{ study.reward.reward_voucher }}€</span>
+                                <span flex-sm="20" flex-gt-sm="15" ng-if="study.reward.reward_hours != null" class="align-items"><i class="material-icons" md-colors="{color: 'accent'}">access_time</i>{{ study.reward.reward_hours }} {{'STUDY_LIST.REWARD_HOURS' | translate}}</span>
+                            </div>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        {{ study.description }}
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <md-button>{{'STUDY_LIST.DETAILS' | translate}}</md-button>
+                    </md-card-actions>
+                </md-card>
+            </md-tab-body>
             </md-tab>
         </md-tabs>
     </div>
