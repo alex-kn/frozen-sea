@@ -198,23 +198,6 @@ module.exports = function (Subuser) {
 
     };
 
-    /**
-     * exposes sendEmail method to api
-     */
-    Subuser.remoteMethod('sendEmail', {
-        http: {path: '/:id/sendEmail', verb: 'post', status: 200, errorStatus: 500},
-        accepts: [
-            {arg: 'id', type: 'string', required: true},
-            {arg: 'to', type: 'string', required: true},
-            {arg: 'from', type: 'string', required: true},
-            {arg: 'subject', type: 'string', required: true},
-            {arg: 'text', type: 'string', required: true},
-            {arg: 'html', type: 'string'}
-        ],
-        returns: {arg: 'mail', type: 'object'}
-    });
-
-
     Subuser.getVpsByMat = function (mat, cb) {
         var loopback = require('loopback');
         var Study = loopback.getModel('Study');
@@ -224,7 +207,7 @@ module.exports = function (Subuser) {
 
         Preference.find({where: {matriculationNr: mat}}, function (err, preference) {
             if ((typeof preference[0] === 'undefined')) {
-                var err = 'Could not find matriculationNr';
+                err = 'Could not find matriculationNr';
                 return cb(err);
             }
             else {
@@ -258,6 +241,21 @@ module.exports = function (Subuser) {
         });
     };
 
+    /**
+     * exposes sendEmail method to api
+     */
+    Subuser.remoteMethod('sendEmail', {
+        http: {path: '/:id/sendEmail', verb: 'post', status: 200, errorStatus: 500},
+        accepts: [
+            {arg: 'id', type: 'string', required: true},
+            {arg: 'to', type: 'string', required: true},
+            {arg: 'from', type: 'string', required: true},
+            {arg: 'subject', type: 'string', required: true},
+            {arg: 'text', type: 'string', required: true},
+            {arg: 'html', type: 'string'}
+        ],
+        returns: {arg: 'mail', type: 'object'}
+    });
 
     /**
      * exposes getUsersByRole method to api

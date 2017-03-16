@@ -148,50 +148,9 @@ md-toolbar.toolbar {
   z-index:10000000;
 }
 
-md-nav-bar .md-nav-bar {
-  border-color: #fff;
-
-  .md-button {
-    min-width: 64px;
-  }
-
-  ._md-nav-button {
-    padding: 12px 8px;
-  }
-}
-
 .not-found-text{
   margin-top: 4rem;
   text-align: center;
-}
-
-.search-input {
-  margin-left: 8px;
-  width: 120px;
-  border: none;
-  font-size: 16px;
-  font-weight: 300;
-
-  &:focus {
-    outline: none;
-    color: #303030;
-  }
-}
-
-.filter-inActive {
-  color: #9E9E9E !important;
-}
-
-.filter-active {
-  color: #FFAB40 !important;
-}
-
-.filter-input {
-  margin-bottom: 0 !important;
-}
-
-.search-input-mobile {
-  margin: 2rem 0 0 0;
 }
 
 

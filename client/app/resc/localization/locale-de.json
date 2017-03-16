@@ -195,7 +195,7 @@
     "ANDROID": "Android",
     "WINDOWS": "Windows Phone",
     "OTHER": "sonstiges",
-    "I_WEAR": "Ich trage",
+    "I_WEAR": "Ich trage ...",
     "NO_GLASSES": "keine Sehhilfe",
     "GLASSES": "eine Brille",
     "CONTACTS": "Kontaktlinsen",
@@ -322,7 +322,7 @@
     "DELETE_DATE_FAILED": "Das Löschen eines Termins mit angemeldeten Teilnehmern ist nicht möglich.",
     "DELETE_DATE_SUCCESSFUL": "Termin erfolgreich gelöscht",
     "ADD_DATE_SUCCESSFUL": "Termin erfolgreich hinzugefügt!",
-    "HOURS_IN_ADVANCE": "Stunden vorher (Deadline)",
+    "HOURS_IN_ADVANCE": "Stunde(n) vorher (Deadline)",
     "HELP": "Hilfestellung zu dieser Seite",
     "MOUSEOVER_HELP_1": "Hilfestellung",
     "NOT_SPECIFIED": "keine Angabe",
@@ -424,5 +424,8 @@
     "NO_PART_FOUND": "Keine Teilnahmen gefunden.",
     "NO_CREAT_FOUND": "Es wurden noch keine Studien von dir erstellt.",
     "NO_ADVISE_FOUND": "Es werden keine Studien von dir betreut."
+  },
+  "EMAIL_SERVICE" : {
+    "EMAIL_SENT" : "Email wurde versand!"
   }
 }
