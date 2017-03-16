@@ -22,11 +22,22 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                     $scope.advisors = res;
                 });
 
+                //Init dates
                 $scope.today = new Date();
                 $scope.tomorrow = new Date();
                 $scope.tomorrow.setDate($scope.today.getDate() + 1);
 
+                //Init dates
+                $scope.isReward = false;
+                $scope.reward = {
+                    money: false,
+                    voucher: false,
+                    hours: false
+                };
+
                 $scope.tabIndex = 0;
+
+                //Init preferences
                 $scope.preferences = {
                     studyPrograms: [],
                     age: null,
@@ -43,8 +54,9 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                     ios: null
                 };
                 $scope.readonly = false;
-                $scope.title = $filter('translate')('CREATE_STUDY.CREATE_STUDY_BUTTON');
 
+                //Init study
+                $scope.title = $filter('translate')('CREATE_STUDY.CREATE_STUDY_BUTTON');
                 $scope.study = {
                     name: $routeParams.study,
                     duration: 30,
@@ -60,6 +72,8 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                     locations: [],
                     link: ''
                 };
+
+                //Init appointments
                 $scope.appointments = [];
                 $scope.appointmentsChecked = false;
                 $scope.appointment = {
@@ -76,10 +90,30 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 $scope.keySeperatorsLocations = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA];
             };
 
-            /* Switch between general and requirements tab on button click */
+            /**
+             *  Switch between general and requirements tab on button click
+             */
             $scope.selectTab = function() {
                 $scope.tabIndex === 1 ? $scope.tabIndex = 0 : $scope.tabIndex = 1;
                 $document.scrollTop(0, 500);
+            };
+
+            /**
+             * Check if at least one reward is selected
+             */
+            $scope.checkReward = function(key) {
+                if($scope.reward.money || $scope.reward.voucher || $scope.reward.hours) {
+                    $scope.isReward = true;
+                } else {
+                    $scope.isReward = false;
+                }
+                if (key === 'money') {
+                    $scope.study.money = null;
+                } else if (key === 'voucher') {
+                    $scope.study.voucher = null;
+                } else if (key === 'hours') {
+                    $scope.study.hours = null;
+                }
             };
 
             /**
