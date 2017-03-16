@@ -17,18 +17,14 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                   LoopBackAuth, $http, ToastService, AppointmentService, ByRoleService,
                   $filter, $translate, $document, Subuser, $mdConstant, EmailService) {
 
-
-            $scope.keySeperatorsKeywords = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, $mdConstant.KEY_CODE.SPACE];
-            $scope.keySeperatorsLocations = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA];
-
             $scope.initialize = function() {
                 ByRoleService.getUsersByRole("advisor").then(function(res) {
                     $scope.advisors = res;
                 });
 
-                var today = new Date();
-                var tomorrow = new Date();
-                tomorrow.setDate(today.getDate() + 1);
+                $scope.today = new Date();
+                $scope.tomorrow = new Date();
+                $scope.tomorrow.setDate($scope.today.getDate() + 1);
 
                 $scope.tabIndex = 0;
                 $scope.preferences = {
@@ -55,17 +51,19 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                     location: null,
                     tags: [],
                     description: '',
-                    advisor: '',
+                    endDate: $scope.tomorrow,
+                    adviser: '',
                     money: null,
                     voucher: null,
                     hours: null,
                     keywords: [],
-                    locations: []
+                    locations: [],
+                    link: ''
                 };
                 $scope.appointments = [];
                 $scope.appointmentsChecked = false;
                 $scope.appointment = {
-                    date: tomorrow,
+                    date: $scope.tomorrow,
                     time: '08:30',
                     bufferTime: null,
                     duration: $scope.study.duration,
@@ -73,6 +71,9 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                     location: null,
                     participants: 1
                 };
+
+                $scope.keySeperatorsKeywords = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, $mdConstant.KEY_CODE.SPACE];
+                $scope.keySeperatorsLocations = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA];
             };
 
             /* Switch between general and requirements tab on button click */
@@ -110,6 +111,48 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
             $scope.removeAppointment= function(item) {
                 var index = $scope.appointments.indexOf(item);
                 $scope.appointments.splice(index, 1);
+            };
+
+            $scope.createOnlineStudy = function() {
+              return Study
+                  .create({
+                      title: $scope.study.name,
+                      description: $scope.study.description,
+                      startDate: $scope.today,
+                      endDate: $scope.study.endDate,
+                      link: $scope.study.link,
+                      ownerId: LoopBackAuth.currentUserId,
+                      advisorId: JSON.parse($scope.study.adviser).id,
+                      required_study_programs_array: $scope.preferences.studyPrograms,
+                      minimum_age: $scope.preferences.age,
+                      minimum_height: $scope.preferences.height,
+                      required_handedness: $scope.preferences.handedness,
+                      required_gender: {
+                          male: $scope.preferences.gender === "male",
+                          female: $scope.preferences.gender === "female"
+                      },
+                      language_required: {
+                          english: $scope.preferences.language,
+                          german:$scope.preferences.german
+                      },
+                      visualAid_required: {
+                          glasses: $scope.preferences.glasses,
+                          contactLenses: $scope.preferences.contacts,
+                          none: $scope.preferences.no_visual_aid
+                      },
+                      operatingSystem_required: {
+                          android: $scope.preferences.android,
+                          ios: $scope.preferences.ios,
+                          windows: $scope.preferences.windows
+                      },
+                      approved: false
+                  })
+                  .$promise
+                  .then(function(response) {
+                      console.log(response)
+                      ToastService.setToastText($filter('translate')('TOAST.CREATE_STUDY'));
+                      $location.path('/home');
+                  });
             };
 
             /**
@@ -162,7 +205,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                         .$promise
                         .then(function (response) {
                             // log study title to show in toast on home
-                            ToastService.setToastText('TOAST.CREATE_STUDY');
+                            ToastService.setToastText($filter('translate')('TOAST.CREATE_STUDY'));
 
                             $scope.emailText = "A new study with you as supervisor was created. Please navigate to <a href=" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +response.id + ">" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +response.id + "</a> to check and unlock the study.";
                             EmailService.sendEmail(JSON.parse($scope.study.adviser).email,

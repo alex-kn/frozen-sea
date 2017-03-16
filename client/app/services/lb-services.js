@@ -1435,15 +1435,15 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "PUT",
             },
 
-            // INTERNAL. Use Study.advisor() instead.
-            "prototype$__get__advisor": {
-              url: urlBase + "/Studies/:id/advisor",
-              method: "GET",
-            },
-
             // INTERNAL. Use Study.owner() instead.
             "prototype$__get__owner": {
               url: urlBase + "/Studies/:id/owner",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Study.advisor() instead.
+            "prototype$__get__advisor": {
+              url: urlBase + "/Studies/:id/advisor",
               method: "GET",
             },
 
@@ -3061,42 +3061,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
             /**
              * @ngdoc method
-             * @name lbServices.Study#advisor
-             * @methodOf lbServices.Study
-             *
-             * @description
-             *
-             * Fetches belongsTo relation advisor.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             *  - `refresh` – `{boolean=}` -
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Subuser` object.)
-             * </em>
-             */
-        R.advisor = function() {
-          var TargetResource = $injector.get("Subuser");
-          var action = TargetResource["::get::Study::advisor"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
              * @name lbServices.Study#owner
              * @methodOf lbServices.Study
              *
@@ -3128,6 +3092,42 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         R.owner = function() {
           var TargetResource = $injector.get("Subuser");
           var action = TargetResource["::get::Study::owner"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Study#advisor
+             * @methodOf lbServices.Study
+             *
+             * @description
+             *
+             * Fetches belongsTo relation advisor.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `refresh` – `{boolean=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Subuser` object.)
+             * </em>
+             */
+        R.advisor = function() {
+          var TargetResource = $injector.get("Subuser");
+          var action = TargetResource["::get::Study::advisor"];
           return action.apply(R, arguments);
         };
 
@@ -7058,15 +7058,84 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "POST",
             },
 
-            // INTERNAL. Use Study.advisor() instead.
-            "::get::Study::advisor": {
-              url: urlBase + "/Studies/:id/advisor",
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser#getVpsByMat
+             * @methodOf lbServices.Subuser
+             *
+             * @description
+             *
+             * <em>
+             * (The remote method definition does not provide any description.)
+             * </em>
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `mat` – `{number}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `vps` – `{object=}` -
+             */
+            "getVpsByMat": {
+              url: urlBase + "/Subusers/getVpsByMat/:mat",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Subuser#getAllVps
+             * @methodOf lbServices.Subuser
+             *
+             * @description
+             *
+             * <em>
+             * (The remote method definition does not provide any description.)
+             * </em>
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `vps` – `{*=}` -
+             */
+            "getAllVps": {
+              url: urlBase + "/Subusers/getAllVps/",
               method: "GET",
             },
 
             // INTERNAL. Use Study.owner() instead.
             "::get::Study::owner": {
               url: urlBase + "/Studies/:id/owner",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Study.advisor() instead.
+            "::get::Study::advisor": {
+              url: urlBase + "/Studies/:id/advisor",
               method: "GET",
             },
 
