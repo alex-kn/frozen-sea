@@ -399,8 +399,10 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                             console.log("Participation created.");
                             $scope.waitingForParticipation = false;
                             studyDate.waiting = false;
+
+                            //TODO checkbox to stop this mailspam
                             var subject = "New participant for your study!";
-                            var text = "A new participants has requested to participate in your Study \"" + $scope.study.title + "\" and is awaiting confirmation.";
+                            var text = "A new participants has requested to participate in your Study \"" + $scope.study.title + "\" and is awaiting confirmation. Navigate to <a href=" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + ">" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + "</a> to confirm or reject participants.";
                             EmailService.sendEmail($scope.ownerMail, $scope.currentUser.email, subject, text, text, true);
                         }, function (error) {
                             console.log("Participation could not be created.");
@@ -500,6 +502,19 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
             $scope.unlock = function () {
                 Study.update({where: {id: $scope.study.id}}, {approved: true});
                 $scope.study.approved = true;
+
+                Study.owner({id: $scope.study.id}, function (res) {
+                        $scope.emailText = "Your study was unlocked by your supervisor. Navigate to <a href=" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + ">" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + "</a> to confirm or reject participants.";
+                        EmailService.sendEmail(
+                            res.email,
+                            "frzn.sea@gmail.com",
+                            "Your study was unlocked by your supervisor",
+                            $scope.emailText,
+                            $scope.emailText,
+                            false);
+                });
+
+
             };
 
             /**
