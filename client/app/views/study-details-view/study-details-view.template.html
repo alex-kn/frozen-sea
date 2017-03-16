@@ -84,12 +84,12 @@
                 </md-subheader>
                 <span flex=75 layout-align="start center" layout="row" class="fade"
                       ng-show="(isOwner || isAdvisor) && (femaleParticipants + maleParticipants)">
-                    <span>{{Math.round((femaleParticipants / (femaleParticipants + maleParticipants)) * 100)}}% &#9792;</span>
+                    <span>{{femaleParticipants}} ({{Math.round((femaleParticipants / (femaleParticipants + maleParticipants)) * 100)}}%)   &#9792;</span>
                     <md-progress-linear value="{{(femaleParticipants / (femaleParticipants + maleParticipants)) * 100}}"
                                         flex aria-label="{{'STUDY_DETAILS.GENDER_DISTRIBUTION' | translate}}">
                         {{totalParticipants}}
                     </md-progress-linear>
-                    <span>&#9794; {{Math.round((maleParticipants / (femaleParticipants + maleParticipants)) * 100)}}%</span>
+                    <span>&#9794;   {{maleParticipants}} ({{Math.round((maleParticipants / (femaleParticipants + maleParticipants)) * 100)}}%)</span>
                 </span>
             </div>
 
