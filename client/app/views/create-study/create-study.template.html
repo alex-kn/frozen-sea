@@ -45,6 +45,8 @@
                                              aria-label="{{'CREATE_STUDY.ONLINE' | translate}}">
                                 {{'CREATE_STUDY.ONLINE' | translate}}
                                 </md-checkbox>
+                                <md-tooltip>{{'CREATE_STUDY.ONLINE_TIP' | translate}}</md-tooltip>
+                            </md-input-container>
                             <p ng-if="study.online" style="margin-top: 0">{{'CREATE_STUDY.ONLINE_DESCRIPTION' | translate}}</p>
 
                         </div>
@@ -101,6 +103,7 @@
                                     <div ng-message="required">{{'CREATE_STUDY.LINK_REQUIRED' | translate}}</div>
                                     <div ng-message="pattern">{{'CREATE_STUDY.LINK_PATTERN' | translate}}</div>
                                 </div>
+                                <md-tooltip>{{'CREATE_STUDY.LINK_REQUIRED' | translate}}</md-tooltip>
                             </md-input-container>
 
                             <md-input-container class="md-block margin-btm-0">
@@ -131,6 +134,7 @@
                                     <div ng-message="required">{{'CREATE_STUDY.DURATION_MESSAGE' | translate}}</div>
                                     <div ng-message="min">{{'CREATE_STUDY.DURATION_MIN' | translate}}</div>
                                 </div>
+                                <md-tooltip>{{'CREATE_STUDY.DURATION_TIP' | translate}}</md-tooltip>
                             </md-input-container>
 
                             <md-chips class="md-block negative-mg-on-mobile"
@@ -193,32 +197,32 @@
                         <md-input-container class="md-block" layout-gt-xs="row">
                             <md-checkbox flex="100"
                                          flex-gt-xs="33"
-                                         ng-model="money"
-                                         ng-change="study.money = null"
+                                         ng-model="reward.money"
+                                         ng-change="checkReward('money')"
                                          aria-label="{{'CREATE_STUDY.MONEY_ARIA_LABEL' | translate}}">
                                 {{'CREATE_STUDY.MONEY' | translate}}
                             </md-checkbox>
                             <md-checkbox flex-xs="100"
                                          flex-gt-xs="33"
-                                         ng-model="voucher"
-                                         ng-change="study.voucher = null"
+                                         ng-model="reward.voucher"
+                                         ng-change="checkReward('voucher')"
                                          aria-label="{{'CREATE_STUDY.VOUCHER_ARIA_LABEL' | translate}}">
                                 {{'CREATE_STUDY.VOUCHER' | translate}}
                             </md-checkbox>
 
                             <md-checkbox flex-xs="100"
                                          flex-gt-xs="33"
-                                         ng-model="hours"
-                                         ng-change="study.hours = null"
+                                         ng-model="reward.hours"
+                                         ng-change="checkReward('hours')"
                                          aria-label="{{'CREATE_STUDY.HOURS_ARIA_LABEL' | translate}}">
                                 {{'CREATE_STUDY.HOURS' | translate}}
                             </md-checkbox>
-                            <div ng-messages ng-if="(!money && !voucher && !hours)">{{'CREATE_STUDY.REWARD_REQUIRED' | translate}}</div>
+                            <div ng-messages ng-if="!isReward">{{'CREATE_STUDY.REWARD_REQUIRED' | translate}}</div>
                         </md-input-container>
 
                         <div layout-gt-xs="row">
 
-                            <md-input-container class="md-block" ng-if="money" flex="100" flex-gt-xs="33">
+                            <md-input-container class="md-block" ng-if="reward.money" flex="100" flex-gt-xs="33">
                                 <input required
                                        type="number"
                                        ng-model="study.money"
@@ -229,7 +233,7 @@
                                 </div>
                             </md-input-container>
 
-                            <md-input-container class="md-block" ng-if="voucher" flex="100"
+                            <md-input-container class="md-block" ng-if="reward.voucher" flex="100"
                                                 flex-gt-xs="33">
                                 <input required
                                        type="number"
@@ -241,7 +245,7 @@
                                 </div>
                             </md-input-container>
 
-                            <md-input-container class="md-block" ng-if="hours" flex="100" flex-gt-xs="33">
+                            <md-input-container class="md-block" ng-if="reward.hours" flex="100" flex-gt-xs="33">
                                 <input required
                                        type="number"
                                        ng-model="study.hours"
@@ -269,11 +273,11 @@
                                            aria-label="{{'CREATE_STUDY.APPOINTMENT_TIME_ARIA_LABEL' | translate}}"
                                            ng-model="appointment.time"
                                            ng-pattern="/^(?:0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/"
-                                           placeholder="{{'CREATE_STUDY.APPOINTMENT_TIME_PLACEHOLDER' | translate}}"
+                                           placeholder="{{'CREATE_STUDY.APPOINTMENT_TIME' | translate}}"
                                            md-select-on-focus>
                                     <div ng-messages="createStudyForm.appointmentTime.$error" multiple>
                                         <div ng-message="required">{{'CREATE_STUDY.APPOINTMENT_TIME_MESSAGE' | translate}}</div>
-                                        <div ng-message="pattern">{{'CREATE_STUDY.APPOINTMENT_TIME_MESSAGE' | translate}}</div>
+                                        <div ng-message="pattern">{{'CREATE_STUDY.APPOINTMENT_TIME_PATTERN' | translate}}</div>
                                     </div>
                                 </md-input-container>
 
@@ -283,9 +287,11 @@
                                            ng-model="appointment.bufferTime"
                                            placeholder="{{'CREATE_STUDY.APPOINTMENT_BUFFER_PLACEHOLDER' | translate}}"
                                            md-select-on-focus>
+                                    <md-tooltip>{{'CREATE_STUDY.APPOINTMENT_BUFFER_TIP' | translate}}</md-tooltip>
                                 </md-input-container>
 
                                 <md-input-container class="md-block margin-btm-0" flex="100" flex-gt-xs="33">
+                                    <label>{{'CREATE_STUDY.APPOINTMENT_DAY' | translate}}</label>
                                     <md-datepicker required
                                                    name="appointmentDate"
                                                    ng-model="appointment.date"
@@ -326,6 +332,7 @@
                                     <input required
                                            min="1"
                                            name="appointmentDeadline"
+                                           aria-label="{{'CREATE_STUDY.APPOINTMENT_DEADLINE' | translate}}"
                                            type="number"
                                            ng-model="appointment.deadline">
                                     <div ng-messages="createStudyForm.appointmentDeadline.$error">
@@ -695,7 +702,7 @@
                     <md-input-container ng-if="!study.online">
                         <md-button
                                 ng-click="createStudy()"
-                                ng-disabled="createStudyForm.$invalid || !appointmentsChecked || (!money && !voucher && !hours)" class="md-accent md-raised">
+                                ng-disabled="createStudyForm.$invalid || !appointmentsChecked || !isReward" class="md-accent md-raised">
                             {{'CREATE_STUDY.CREATE_STUDY_BUTTON' | translate}}
                         </md-button>
                         <md-button ng-click="cancelStudy()">{{'CREATE_STUDY.CANCEL_STUDY_BUTTON' | translate}}
