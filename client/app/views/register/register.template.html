@@ -21,17 +21,16 @@
     <section class="registration" layout="column" layout-padding flex="100" flex-gt-sm="60">
 
         <!-- START switch to login -->
-        <div class="switch-to-login" layout="row" layout-align="end center">
+        <div class="switch-to-login" layout="row" layout-xs="column" layout-align="end center" layout-align-xs="center end">
 
-            <span class="lang" ng-click="changeLanguage('de')">DE
-                <img class="flag" src="../../resc/images/german_lang.svg.png" class="md-card-image" alt="german language">
-            </span>
-
-            <span class="lang spacer" ng-click="changeLanguage('en')">EN
-                <img class="flag" src="../../resc/images/english_lang.svg.png" class="md-card-image" alt="english language">
-            </span>
-
-
+            <div layout="row">
+                <span class="lang" ng-click="changeLanguage('de')">DE
+                    <img class="flag" src="../../resc/images/german_lang.svg.png" class="md-card-image" alt="german language">
+                </span>
+                <span class="lang spacer" ng-click="changeLanguage('en')">EN
+                    <img class="flag" src="../../resc/images/english_lang.svg.png" class="md-card-image" alt="english language">
+                </span>
+            </div>
             <span>{{'REGISTER.ACCOUNT' | translate}}</span>
             <md-button href="#!/login" class="md-accent">{{'REGISTER.LOGIN' | translate}}</md-button>
         </div>
@@ -41,25 +40,59 @@
         <md-progress-circular ng-show="!registerProgress" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular></div>
         <div class="registration-form" layout="row" layout-align="center start" ng-show="registerProgress">
 
-            <form  layout="column" flex-gt-xs="60" flex="100"  ng-keyup="$event.keyCode == 13 && (email && password && firstname && secondname) && register(firstname, secondname, email, password)">
+            <form  layout="column" name="registerForm" flex-gt-xs="60" flex="100" ng-keyup="$event.keyCode == 13 && (email && password && firstname && secondname) && register(firstname, secondname, email, password)">
 
                 <h2>{{'REGISTER.REGISTER_HERE' | translate}}</h2>
-
-
-                <md-input-container layout="row">
-                    <input type="email" aria-label="{{'REGISTER.MAIL' | translate}}" ng-model="email" placeholder="{{'REGISTER.MAIL' | translate}}"required>
+                <md-input-container>
+                    <input type="email"
+                           name="email"
+                           ng-pattern="/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/"
+                           aria-label="{{'REGISTER.MAIL' | translate}}"
+                           ng-model="email"
+                           placeholder="{{'REGISTER.MAIL' | translate}}"
+                           required>
+                    <div ng-messages="registerForm.email.$error" multiple>
+                        <div ng-message="required">{{'REGISTER.MAIL_MESSAGE_REQUIRED' | translate}}</div>
+                        <div ng-message="pattern">{{'REGISTER.MAIL_MESSAGE_PATTERN' | translate}}</div>
+                    </div>
                 </md-input-container>
-                <md-input-container layout="row">
-                    <input type="password" aria-label="{{'REGISTER.PASSWORD' | translate}}" ng-model="password" placeholder="{{'REGISTER.PASSWORD' | translate}}" required>
+                <md-input-container>
+                    <input type="password"
+                           name="password"
+                           ng-pattern="/^([a-zA-Z0-9@*#]{8,15})$/"
+                           aria-label="{{'REGISTER.PASSWORD' | translate}}"
+                           ng-model="password"
+                           placeholder="{{'REGISTER.PASSWORD' | translate}}"
+                           required>
+                    <div ng-messages="registerForm.password.$error">
+                        <div ng-message="required">{{'REGISTER.PASSWORD_MESSAGE_REQUIRED' | translate}}</div>
+                        <div ng-message="pattern">{{'REGISTER.PASSWORD_MESSAGE_PATTERN' | translate}}</div>
+                    </div>
                 </md-input-container>
-                <md-input-container layout="row">
-                    <input type="text" aria-label="{{'REGISTER.FIRST_NAME' | translate}}" ng-model="firstname" placeholder="{{'REGISTER.FIRST_NAME' | translate}}" required>
+                <md-input-container>
+                    <input type="text"
+                           name="firstname"
+                           aria-label="{{'REGISTER.FIRST_NAME' | translate}}"
+                           ng-model="firstname"
+                           placeholder="{{'REGISTER.FIRST_NAME' | translate}}"
+                           required>
+                    <div ng-messages="registerForm.firstname.$error">
+                        <div ng-message="required">{{'REGISTER.FIRST_NAME_MESSAGE' | translate}}</div>
+                    </div>
                 </md-input-container>
-                <md-input-container layout="row">
-                    <input type="text" aria-label="{{'REGISTER.SECOND_NAME' | translate}}" ng-model="secondname" placeholder="{{'REGISTER.SECOND_NAME' | translate}}" required>
+                <md-input-container>
+                    <input type="text"
+                           name="name"
+                           aria-label="{{'REGISTER.SECOND_NAME' | translate}}"
+                           ng-model="name"
+                           placeholder="{{'REGISTER.SECOND_NAME' | translate}}"
+                           required>
+                    <div ng-messages="registerForm.name.$error">
+                        <div ng-message="required">{{'REGISTER.NAME_MESSAGE_REQUIRED' | translate}}</div>
+                    </div>
                 </md-input-container>
                 <div layout="row" class="submit">
-                    <md-button ng-disabled="!(email && password && firstname && secondname)" ng-click="register(firstname, secondname, email, password)" class="md-accent md-raised">{{'REGISTER.REGISTER' | translate}}</md-button>
+                    <md-button ng-disabled="registerForm.$invalid" ng-click="register(firstname, name, email, password)" class="md-accent md-raised">{{'REGISTER.REGISTER' | translate}}</md-button>
                 </div>
                 <div layout-align="start center" ng-if="errorMessage" class="error-message">
                     <md-icon class="material-icons">report_problem</md-icon>

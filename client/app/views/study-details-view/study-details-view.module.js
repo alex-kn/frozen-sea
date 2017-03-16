@@ -576,6 +576,11 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
 
             $scope.sendMailToParticipants = function () {
                 if ($scope.isOwner) {
+                    if(!$scope.participations.length) {
+                        ToastService.setToastText($filter('translate')('STUDY_DETAILS.NO_PARTICIPANTS_TO_MAIL'));
+                        ToastService.displayToast();
+                        return;
+                    }
                     $q.all($scope.participations.map(function (participation) {
                         Participation.participant({id: participation.id}, function (subuser) {
                             if (typeof subuser.email == 'undefined') {
@@ -591,5 +596,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     console.log("send mail to " + $scope.ownerMail + " from " + $scope.currentUser.email);
                     EmailService.sendEmail($scope.ownerMail, $scope.currentUser.email, $scope.subjectString, $scope.bodyString, $scope.bodyString, true);
                 }
+                $scope.clearContactForm();
             }
         }]);

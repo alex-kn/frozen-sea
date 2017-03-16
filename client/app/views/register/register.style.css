@@ -133,11 +133,15 @@ md-nav-bar .md-nav-bar {
 .registration md-icon {
   margin-right: .5rem;
   color: #EF5350; }
-.registration .spacer {
-  margin-right: 2rem; }
+@media (min-width: 600px) {
+  .registration .spacer {
+    margin-right: 2rem; } }
 .registration .flag {
   height: 0.9rem;
   width: 1.3rem; }
+  .registration .flag:first-of-type {
+    margin-left: 5px;
+    margin-right: 5px; }
 .registration .loading-animation {
   position: fixed;
   left: 50%;

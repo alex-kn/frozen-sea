@@ -159,10 +159,14 @@ md-toast {
   .login .error-message md-icon {
     margin-right: .5rem;
     color: #EF5350; }
-.login .spacer {
-  margin-right: 2rem; }
+@media (min-width: 600px) {
+  .login .spacer {
+    margin-right: 2rem; } }
 .login .flag {
   height: 0.9rem;
   width: 1.3rem; }
+  .login .flag:first-of-type {
+    margin-left: 5px;
+    margin-right: 5px; }
 
 /*# sourceMappingURL=login.style.css.map */

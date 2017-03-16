@@ -15,13 +15,10 @@
         </div>
     </md-toolbar>
 
-
-
-
     <div layout-padding layout="column" flex-offset-gt-md="20" flex-offset-md="10" flex-gt-md="60" flex-md="80" flex ng-hide="studyIsLoading">
 
         <!-- START filter options -->
-        <div layout="row" layout-xs="column" layout-align="start center" layout-align-xs="center start">
+        <div layout="column" layout-align="center start">
 
             <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
                 <md-nav-item md-nav-click="1" ng-click="toggleFilterOnMobile('search')" name="1">
@@ -29,7 +26,7 @@
                 </md-nav-item>
             </md-nav-bar>
 
-            <md-input-container class="md-block search-input-mobile" ng-show="search" flex="100">
+            <md-input-container class="md-block search-input-mobile" ng-if="search">
                 <input type="text"
                        ng-model="searchStudies"
                        placeholder="{{'STUDY_LIST.SEARCH' | translate}}"
@@ -42,8 +39,6 @@
     </div>
 
     <md-progress-circular ng-show="studyIsLoading" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular>
-
-
 
     <div layout-padding flex-offset-gt-md="20" flex-offset-md="10" flex-gt-md="60" flex-md="80" flex ng-hide="studyIsLoading">
         <md-tabs md-dynamic-height="true" flex md-stretch-tabs="always">

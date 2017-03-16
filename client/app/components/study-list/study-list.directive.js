@@ -17,7 +17,7 @@ angular
                 $scope.thereAreMatchingStudies = true;
                 $scope.show_too_old = true;
                 $scope.show_non_matches = true;
-                $scope.sort_by =  "ends_soon"; //default sort value
+                $scope.sort_by =  "newest"; //default sort value
                 $scope.searchGtXs = false;
                 $scope.search = false;
                 $scope.filter = false;
@@ -76,6 +76,9 @@ angular
                 $scope.myFilter = {};
                 if($scope.show_too_old) { //load all studies that are not finished yet
                     $scope.myFilter = {filter: {where: {endDate:  {gte: new Date()}}}};
+                    console.log("NEW ONLY");
+                } else {
+                    console.log("OLD");
                 }
                 $scope.studiesTemp = Study.find($scope.myFilter,
                     function(list) {
@@ -84,11 +87,13 @@ angular
                 );
             };
             $scope.refilter = function() {
+                $scope.studies = $scope.studiesTemp;
+
                 if ($scope.show_non_matches) {
-                    //filter all studies that don't match user profile
-                    $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences);
+                    $scope.studies = $filter('filterStudies')($scope.studies, $scope.preferences);
+                    console.log("MATCHES ONLY");
                 } else {
-                    $scope.studies = $scope.studiesTemp;
+                    console.log("NON MATCHES");
                 }
                 $scope.thereAreMatchingStudies = $scope.studies.length > 0;
 
