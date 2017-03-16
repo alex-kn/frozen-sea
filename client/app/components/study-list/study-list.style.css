@@ -169,12 +169,16 @@ md-toast {
       padding: 0; } }
 
 .md-toast-content {
+  padding: 0px !important;
   background-color: #fff !important;
   color: #212121 !important; }
-  @media (max-width: 959px) {
+  @media all and (max-width: 959px) {
     .md-toast-content {
       background-color: #263238 !important;
       color: #fff !important; } }
+  @media all and (min-width: 960px) {
+    .md-toast-content {
+      max-width: 400px !important; } }
   .md-toast-content i {
     padding: 1rem;
     background-color: #FFAB40;
