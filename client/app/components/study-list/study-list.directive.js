@@ -14,14 +14,13 @@ angular
                 $scope.studyIsLoading = true;
                 $scope.studyIsReLoading = false;
                 $scope.studies = [];
-                $scope.thereAreMatchingStudies = true;
                 $scope.show_too_old = true;
                 $scope.show_non_matches = true;
                 $scope.sort_by =  "ends_soon"; //default sort value
 
                 $scope.loadStudies(); //initial load
 
-            }
+            };
 
             /**
              * Filter and search study list
@@ -93,8 +92,6 @@ angular
                     $scope.preferences = response;
                     //filter all studies that don't match user profile
                     $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences);
-
-                    $scope.thereAreMatchingStudies = $scope.studies.length > 0;
 
                     StudyHighlightService.highlightStudy($scope.studies, LoopBackAuth.currentUserId);
 

@@ -9,9 +9,7 @@ angular
             $scope.createdStudies = [];
             $scope.advisedStudies = [];
             $scope.studyIsLoading = true;
-            $scope.thereAreCreatedStudies = true;
-            $scope.thereAreAdvisedStudies = true;
-            $scope.thereAreParticipations = true;
+
 
 
             //myStudies
@@ -37,9 +35,10 @@ angular
                     }
                 }}, function(studies){
                     $scope.myStudies=studies;
-                    StudyHighlightService.highlightStudy($scope.myStudies, LoopBackAuth.currentUserId);
+                    StudyHighlightService.highlightStudy($scope.myStudies, LoopBackAuth.currentUserId).then(function(studies) {
+                        $scope.myStudies = studies;
+                    });
                     $scope.studyIsLoading = false;
-                    $scope.thereAreParticipations = $scope.myStudies.length > 0;
                 });
             });
 
@@ -53,8 +52,9 @@ angular
                 }
             }, function(studies) {
                 $scope.createdStudies = studies;
-                StudyHighlightService.highlightStudy($scope.createdStudies, LoopBackAuth.currentUserId);
-                $scope.thereAreCreatedStudies = $scope.createdStudies.length > 0;
+                StudyHighlightService.highlightStudy($scope.createdStudies, LoopBackAuth.currentUserId).then(function(studies) {
+                    $scope.createdStudies = studies;
+                });
             });
 
 
@@ -67,7 +67,9 @@ angular
                 }
             }, function(studies) {
                 $scope.advisedStudies = studies;
-                StudyHighlightService.highlightStudy($scope.advisedStudies, LoopBackAuth.currentUserId);
+                StudyHighlightService.highlightStudy($scope.advisedStudies, LoopBackAuth.currentUserId).then(function(studies) {
+                    $scope.advisedStudies = studies;
+                });
                 $scope.thereAreAdvisedStudies = $scope.advisedStudies.length > 0;
 
             });

@@ -52,7 +52,7 @@
                     {{'MY_STUDIES.MY_STUDIES' | translate}}
                 </md-tab-label>
                 <md-tab-body>
-                    <h2 layout-padding layout-align="center center" class="md-subhead not-found-text" ng-hide="thereAreParticipations">{{'MY_STUDIES.NO_PART_FOUND' | translate}}</h2>
+                    <h2 layout-padding layout-align="center center" class="md-subhead not-found-text" ng-hide="myStudies.length > 0">{{'MY_STUDIES.NO_PART_FOUND' | translate}}</h2>
                     <md-card ng-repeat="study in myStudies | filter:search" class="custom-pointer" ng-click="showDetails(study)"
                              ng-class="{
                      'stuy-not-approved': !study.isApproved,
@@ -110,7 +110,7 @@
                     {{'MY_STUDIES.CREATED_STUDIES' | translate}}
                 </md-tab-label>
                 <md-tab-body>
-                    <h2 layout-padding class="md-subhead not-found-text" layout-align="center center" ng-hide="thereAreCreatedStudies">{{'MY_STUDIES.NO_CREAT_FOUND' | translate}}</h2>
+                    <h2 layout-padding class="md-subhead not-found-text" layout-align="center center" ng-hide="createdStudies.length > 0">{{'MY_STUDIES.NO_CREAT_FOUND' | translate}}</h2>
                     <md-card ng-repeat="study in createdStudies | filter:search" class="custom-pointer" ng-click="showDetails(study)"
                              ng-class="{
                      'stuy-not-approved': !study.isApproved,
@@ -168,7 +168,7 @@
                     {{'MY_STUDIES.ADVISED_STUDIES' | translate}}
                 </md-tab-label>
                 <md-tab-body>
-                    <h2 layout-padding class="md-subhead not-found-text" layout-align="center center" ng-hide="thereAreAdvisedStudies">{{'MY_STUDIES.NO_ADVISE_FOUND' | translate}}</h2>
+                    <h2 layout-padding class="md-subhead not-found-text" layout-align="center center" ng-hide="advisedStudies.length > 0">{{'MY_STUDIES.NO_ADVISE_FOUND' | translate}}</h2>
                     <md-card ng-repeat="study in advisedStudies | filter:search" class="custom-pointer" ng-click="showDetails(study)"
                     ng-class="{
                     'stuy-not-approved': !study.isApproved,
