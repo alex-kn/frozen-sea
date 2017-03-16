@@ -34,7 +34,7 @@
   "RESET_PASSWORD": {
     "RESET_PASSWORD": "Passwort zurücksetzen",
     "NO_EMAIL": "Es exisitiert kein Account mit dieser Email",
-    "SUCCESS_EMAIL": "An email for resetting your password was sent to you",
+    "SUCCESS_EMAIL": "Eine Email zum passwort zurücksetzen wurde an Sie geschickt!",
     "SUCCESS_RESET": "Ihr Passwort wurde erfolgreich zurückgesetzt. Sie können sich jetzt mit ihrem neuen Passwort einloggen",
     "NO_MATCH": "Die eingegebenen Passwörter stimmen nicht überein",
     "OLD_TOKEN": "Ihre Email zum Passwort zurücksetzen ist nicht mehr Aktuell. Bitte fordern Sie eine neue an."
