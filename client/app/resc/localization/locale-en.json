@@ -412,5 +412,8 @@
     "NO_PART_FOUND": "No participations found.",
     "NO_CREAT_FOUND": "There are no studies created by you.",
     "NO_ADVISE_FOUND": "There are no studies advised by you."
+  },
+  "EMAIL_SERVICE" : {
+    "EMAIL_SENT" : "Email has been sent!"
   }
 }

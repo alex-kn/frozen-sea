@@ -584,13 +584,13 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                 return;
                             }
 
-                            EmailService.sendEmail(subuser.email, $scope.currentUser.email, $scope.subjectString, $scope.bodyString, $scope.bodyString);
+                            EmailService.sendEmail(subuser.email, $scope.currentUser.email, $scope.subjectString, $scope.bodyString, $scope.bodyString, true);
                             console.log("send mail to " + subuser.email + " from " + $scope.currentUser.email);
                         })
                     }))
                 } else {
                     console.log("send mail to " + $scope.ownerMail + " from " + $scope.currentUser.email);
-                    EmailService.sendEmail($scope.ownerMail, $scope.currentUser.email, $scope.subjectString, $scope.bodyString, $scope.bodyString);
+                    EmailService.sendEmail($scope.ownerMail, $scope.currentUser.email, $scope.subjectString, $scope.bodyString, $scope.bodyString, true);
                 }
             }
         }]);
