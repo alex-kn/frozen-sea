@@ -110,7 +110,8 @@
                                 <label>{{'CREATE_STUDY.STUDY_END' | translate}}</label>
                                 <md-datepicker required
                                                name="onlineEnd"
-                                               ng-model="study.endDate">
+                                               md-min-date="today"
+                                               ng-model="fortnight">
                                 </md-datepicker>
                                 <div ng-messages="createStudyForm.onlineEnd.$error">
                                     <div ng-message="required">{{'CREATE_STUDY."STUDY_END_MESSAGE"' | translate}}</div>
@@ -295,7 +296,8 @@
                                     <md-datepicker required
                                                    name="appointmentDate"
                                                    ng-model="appointment.date"
-                                                   md-min-date="study.startDate">
+                                                   ng-change="appointment.time = '08:30'"
+                                                   md-min-date="today">
                                     </md-datepicker>
                                     <div ng-messages="createStudyForm.appointmentDate.$error">
                                         <div ng-message="required">{{'CREATE_STUDY.APPOINTMENT_DAY_MESSAGE' | translate}}</div>

@@ -26,6 +26,8 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
                 $scope.today = new Date();
                 $scope.tomorrow = new Date();
                 $scope.tomorrow.setDate($scope.today.getDate() + 1);
+                $scope.fortnight = new Date();
+                $scope.fortnight.setDate($scope.today.getDate() + 14);
 
                 //Init dates
                 $scope.isReward = false;
