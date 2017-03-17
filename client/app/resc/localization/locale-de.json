@@ -64,7 +64,7 @@
     "DESCRIPTION_PLACEHOLDER": "Beschreibung",
     "DESCRIPTION_ARIA_LABEL": "Beschreibung",
     "DESCRIPTION_MESSAGE": "Bitte gib eine aussagekräftige Beschreibung an",
-    "DESCRIPTION_LENGTH": "Bitte verfasse deine Beschreibung in bis zu 600 Zeichen",
+    "DESCRIPTION_LENGTH": "Bitte verfasse deine Beschreibung in bis zu 1337 Zeichen",
     "DURATION": "Dauer (in Minuten)",
     "DURATION_PLACEHOLDER": "Dauer eines Termins (in Minuten)",
     "DURATION_ARIA_LABEL": "Dauer (in Minuten)",
