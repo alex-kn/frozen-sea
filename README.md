@@ -65,6 +65,9 @@ To participate in a study the user needs to choose a reward, which is either Mon
 ##### Applying for an appointment
 
 Users can browse through appointments and apply for an appointment of their liking. After confirmation by the study organizer the user is registered for this specific appointment. The user might also be rejected by the study organizer.
+***
+![](./readme-img/participate-card.png)
+***
 
 ##### Modifying the participation
 
@@ -85,6 +88,10 @@ The **Study Detail Page** shows additional imformation and provides additional o
 * contact all participants using the contact form at the bottom of the page
 * contact a specific participant by clicking on the participant's name
 
+***
+![](./readme-img/confirm-attendance-full.png)
+***
+
 ##### Additional Information
 
 * Number of participants
@@ -95,6 +102,10 @@ The **Study Detail Page** shows additional imformation and provides additional o
 
 Study organizers can edit some properties of the study as well as appointments, if the changes do not interfere with already registered participants.
 
+***
+![](./readme-img/edit-study-add-appointment.png)
+***
+
 # Supervising a study
 
 * To prevent misuse, every newly created study needs to be unlocked by a supervisor.
@@ -103,11 +114,14 @@ Study organizers can edit some properties of the study as well as appointments, 
 * Every supervisor is able to unlock a study, but only the supervisor specified in the study-creation process will be notified by email.
 
 ***
-![](./readme-img/release-study.png)
+![](./readme-img/unlock-study.png)
 ***
 
 # Admin Dashboard
 
 An Admin receives access to a dashboard, which allows him or her to grant admin status and supervisor status to a specific user.
 
+***
+![](./readme-img/admin-dashboard.png)
+***
 
