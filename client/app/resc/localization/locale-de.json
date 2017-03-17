@@ -373,7 +373,8 @@
     "PARTICIPANT" : "Teilnehmer",
     "CREATOR" : "Studienorganisator",
     "ONLINE_ONLY" : "Diese Studie ist eine Online-Studie und hat keine Termine. Eine Teilnahme ist durch Klicken des folgenden Links möglich:",
-    "NO_PARTICIPANTS_TO_MAIL" : "Du hast leider noch keine Teilnehmer. Schade."
+    "NO_PARTICIPANTS_TO_MAIL" : "Du hast leider noch keine Teilnehmer. Schade.",
+    "VPS_NOT_FOR_YOU": "Nur Studenten könnten Versuchspersonenstunden auswählen. Wenn dies die einzige angebotene Vergütungsart ist, kannst du leider nicht teilnehmen."
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",
