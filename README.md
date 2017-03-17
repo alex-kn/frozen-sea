@@ -1,7 +1,5 @@
 # Getting Started
 
-## Home
-
 The **Study List** is displayed after logging in for the first time, which shows all available studies for the user. Users can filter this list according to their wishes and click on a study will take them to the detail page of the respective study.
 
 ![](./readme-img/my-studies.png)
@@ -11,7 +9,7 @@ The user's relation to the study is indicated by color:
 * **blue:** the user is participating in this study and was not yet confirmed
 * ...
 
-## Preferences
+# Preferences
 
 The user can specifiy details about himself on the preference page. These preferences are are used to filter studies accordingly. For isntance, a study requiring an android phone is not shown to a user who has specified that he has no such phone.
 
@@ -19,7 +17,7 @@ The user can specifiy details about himself on the preference page. These prefer
 
 Note that only users who have their student number specified can choose experimental hours as a reward.
 
-## Creating a new Study
+# Creating a new Study
 
 All user's can create a new study by clicking the "Create Study"-Button. The subsequently appearing page consists of two tabs in which users can modify and adjust their study to their needs.
 
@@ -50,7 +48,7 @@ In this tab, requirements for participating in the study can be specified. These
 
 Studies which are conducted online do not require appointments and rewards. By checking this box, a new input field for the URL of the study will appear, which is necessary for possible applicants to participate.
 
-## Participating in a study
+# Participating in a study
 
 By clicking on a study in the list the user ist directied to the **Study Detail Page**, showing more detailed information about the study. Users can register for the study here.
 
@@ -71,7 +69,7 @@ Users can browse through appointments and apply for an appointment of their liki
 
 Users can contact the study organizer using the contact form at the bottom of the page.
 
-## Managing a created study
+# Managing a created study
 
 The **Study Detail Page** shows additional imformation and provides additional options for the creator of the study. The creator can manage the participants and edit non-intrusive properties of the study
 
@@ -91,7 +89,7 @@ The **Study Detail Page** shows additional imformation and provides additional o
 
 Study organizers can edit some properties of the study as well as appointments, if the changes do not interfere with already registered participants.
 
-## Supervising a study
+# Supervising a study
 
 * To prevent misuse, every newly created study needs to be unlocked by a supervisor.
 * The supervisor can do so by clicking the "Unlock Study"-Button on the **Study Detail Page**.
@@ -101,7 +99,7 @@ Study organizers can edit some properties of the study as well as appointments, 
 ![](./readme-img/release-study.png)
 
 
-## Admin Dashboard
+# Admin Dashboard
 
 An Admin receives access to a dashboard, which allows him or her to grant admin status and supervisor status to a specific user.
 
