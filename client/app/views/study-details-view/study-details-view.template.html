@@ -45,10 +45,10 @@
                     {{study.keywords_array.join(" | ")}}
                 </span>
 
-                <md-subheader flex="25">
+                <md-subheader flex="25" ng-hide="study.link">
                     {{'CREATE_STUDY.LOCATION' | translate}}:
                 </md-subheader>
-                <span flex="75" aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
+                <span ng-hide="study.link" flex="75" aria-label="{{'CREATE_STUDY.LOCATION_ARIA_LABEL' | translate}}">
                     {{study.locations_array.join(" | ")}}
                 </span>
 
@@ -69,14 +69,14 @@
                       aria-label="{{'STUDY_DETAILS.SUPERVISOR' | translate}}">
                     {{advisor}}
                 </span>
-                <md-progress-circular flex="75" ng-hide="advisorReady || !isOwner" class="md-accent owner-loading"
+                <md-progress-circular flex="75" ng-hide="advisorReady" class="md-accent owner-loading"
                                       md-mode="indeterminate" md-diameter="20">
                 </md-progress-circular>
 
-                <md-subheader ng-show="(isOwner || isAdvisor)" flex="25">
+                <md-subheader ng-show="(isOwner || isAdvisor) && !study.link" flex="25">
                     {{'STUDY_DETAILS.PARTICIPANTS' | translate}}:
                 </md-subheader>
-                <span ng-show="(isOwner || isAdvisor)" flex="75"
+                <span ng-show="(isOwner || isAdvisor) && !study.link" flex="75"
                       aria-label="{{'STUDY_DETAILS.PARTICIPANTS' | translate}}">
                     {{totalParticipants}}
                 </span>
@@ -120,7 +120,7 @@
             </md-button>
             <md-button flex-xs="100" class="md-raised danger" ng-click="relock()" ng-show="study.approved">
                 <md-icon class="material-icons">lock_outline</md-icon>
-                {{'STUDY_DETAILS.UNLOCKED' |translate}}
+                {{'STUDY_DETAILS.RELOCK' |translate}}
                 <md-tooltip md-delay="500">{{'STUDY_DETAILS.RELOCK' |translate}}</md-tooltip>
             </md-button>
         </div>
@@ -186,12 +186,13 @@
             <a ng-show="study.link != ''" ng-href="{{study.link}}" target="_blank">{{study.link}}</a>
         </md-content>
 
-        <md-content class="md-padding" ng-show="appointments.length">
 
 
-            <md-progress-circular ng-hide="datesAreReady || (!study.approved && !isOwner)" class="md-accent"
+            <md-progress-circular ng-hide="study.link || datesAreReady || (!study.approved && !isOwner)" class="md-accent"
                                   md-mode="indeterminate">
             </md-progress-circular>
+
+            <md-content class="md-padding" ng-show="appointments.length">
 
 
             <div ng-repeat="day in datesGroupedByDay" ng-hide="!study.approved && !isOwner">
