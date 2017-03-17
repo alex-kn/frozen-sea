@@ -4,6 +4,12 @@
 
 .hide-on-iphone-5 {
   @media (max-width: 320px) {
-    display: none;;
+    display: none;
+  }
+}
+
+.hide-gt-iphone-5 {
+  @media (min-width: 321px) {
+    display: none;
   }
 }

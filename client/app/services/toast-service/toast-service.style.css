@@ -5,6 +5,10 @@
   .hide-on-iphone-5 {
     display: none; } }
 
+@media (min-width: 321px) {
+  .hide-gt-iphone-5 {
+    display: none; } }
+
 html, body {
   font-size: 16px;
   font-family: "Roboto", sans-serif; }
@@ -130,6 +134,10 @@ md-nav-bar .md-nav-bar {
 
 @media (max-width: 320px) {
   .hide-on-iphone-5 {
+    display: none; } }
+
+@media (min-width: 321px) {
+  .hide-gt-iphone-5 {
     display: none; } }
 
 .container {
