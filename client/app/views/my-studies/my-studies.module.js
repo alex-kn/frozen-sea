@@ -14,7 +14,7 @@ angular
                 if (key === 'search') {
                     $scope.search = true;
                 }
-            }
+            };
 
 
 

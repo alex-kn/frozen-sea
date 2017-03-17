@@ -52,9 +52,9 @@ angular.module('userPreferences', ['ngRoute', 'ngMaterial'])
 
         $scope.getMatches = function (text) {
             text = angular.lowercase(text);
-            var ret = $scope.studyPrograms.filter(function (d) {
+            return $scope.studyPrograms.filter(function (d) {
                 return angular.lowercase(d).startsWith(text);
             });
-            return ret;
+
         }
     }]);

@@ -31,7 +31,7 @@ angular.module('resetPassword', ['ngRoute'])
                         }
                     });
                 }
-            }
+            };
 
             $scope.changeLanguage = function (langKey) {
                 $translate.use(langKey);
