@@ -160,6 +160,6 @@ Information for deployment, datasource change and mail distributor changes can b
 
 ***
 # Contributors
-The website was designed and built by Alexander Knittel, Fabian Plett, Jan Mayer and Mathis Gales, with the help and supervision of Juliane Franze and Tobias Seitz
+The website was designed and built by Alexander Knittel, Fabian Plett, Jan Mayer and Mathis Gales, with the help and supervision of Juliane Franze and Tobias Seitz.  
 For more information or help, please contact: mathis.gales@gmail.com.
 
