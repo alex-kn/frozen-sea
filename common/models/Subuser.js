@@ -11,6 +11,7 @@ module.exports = function (Subuser) {
     Subuser.afterRemote('create', function (context, Subuser, next) {
         console.log('> user.afterRemote triggered');
 
+
         var options = {
             //Set host and port for deployment:
             //host: 'frozen-sea.herokuapp.com',

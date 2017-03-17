@@ -15,8 +15,8 @@ angular
                 $scope.studyIsReLoading = false;
                 $scope.studies = [];
                 $scope.thereAreMatchingStudies = true;
-                $scope.show_too_old = true;
-                $scope.show_non_matches = true;
+                $scope.show_too_old = false;
+                $scope.show_non_matches = false;
                 $scope.sort_by =  "newest"; //default sort value
                 $scope.searchGtXs = false;
                 $scope.search = false;
@@ -32,6 +32,16 @@ angular
                     })
                 });
                 $scope.loadStudies(); //initial load
+            };
+
+            $scope.toggleShowOld = function() {
+                $scope.show_too_old = ! $scope.show_too_old;
+                $scope.reloadStudies();
+            };
+
+            $scope.toggleShowNonMatches = function() {
+                $scope.show_non_matches = ! $scope.show_non_matches;
+                $scope.reloadStudies();
             };
 
             /**
@@ -74,7 +84,7 @@ angular
             };
             $scope.loadStudies = function() {
                 $scope.myFilter = {};
-                if($scope.show_too_old) { //load all studies that are not finished yet
+                if(!$scope.show_too_old) { //load all studies that are not finished yet
                     $scope.myFilter = {filter: {where: {endDate:  {gte: new Date()}}}};
                 }
                 $scope.studiesTemp = Study.find($scope.myFilter,
@@ -84,10 +94,11 @@ angular
                 );
             };
             $scope.refilter = function() {
-                $scope.studies = $scope.studiesTemp;
 
-                if ($scope.show_non_matches) {
-                    $scope.studies = $filter('filterStudies')($scope.studies, $scope.preferences);
+                if (!$scope.show_non_matches) {
+                    $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences);
+                } else {
+                    $scope.studies = $scope.studiesTemp;
                 }
                 $scope.thereAreMatchingStudies = $scope.studies.length > 0;
 
@@ -105,11 +116,7 @@ angular
                     $scope.studyIsReLoading = false;
                     $scope.preferences = response;
                     //filter all studies that don't match user profile
-                    $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences);
-
-                    $scope.thereAreMatchingStudies = $scope.studies.length > 0;
-
-                    StudyHighlightService.highlightStudy($scope.studies, LoopBackAuth.currentUserId);
+                    $scope.refilter();
 
                 },function (error){
                     if(error.status == 404){

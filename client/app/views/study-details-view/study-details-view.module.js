@@ -113,7 +113,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                                     }
                                 });
 
-                                if (responseDate.participants >= responseDate.maxParticipants) {
+                                if (responseDate.participants >= responseDate.maxParticipants && responseDate.status != "finished") {
                                     responseDate.status = "reserved";
                                 }
 
@@ -221,7 +221,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         return a.startDate - b.startDate;
                     });
                     $q.all(res.map(function (date) {
-
+console.log(date.status);
                         day = $filter('date')(date.startDate, "shortDate");
                         if (lastDay == undefined) {
                             lastDay = day;
@@ -237,6 +237,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                     }));
                     $scope.datesGroupedByDay.push(days);
 
+                    console.log($scope.datesGroupedByDay);
                     if (!$scope.isOwner) {
                         $scope.datesGroupedByDay[0].show = true;
                     }
@@ -451,7 +452,7 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                             studyDate.status = "available";
 
                             var subject = "A participant has canceled his participation!";
-                            var text = "A participant has has canceled hsi participation to your study " + $scope.study.title + " Navigate to <a href=" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + ">" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + "</a> to see the participants of your study.";
+                            var text = "A participant has has canceled his participation to your study " + $scope.study.title + " Navigate to <a href=" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + ">" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + "</a> to see the participants of your study.";
                             EmailService.sendEmail($scope.ownerMail,"frzn.sea@gmail.com", subject, text, text, false);
                         }, function (error) {
                             console.log("Error deleting Participation");
@@ -480,10 +481,25 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         ToastService.setToastText($filter('translate')('STUDY_DETAILS.COMPLETED'));
                         ToastService.displayToast();
 
-                        Participation.owner({where:{id:participation.ownerId}}).then(function(participant) {
-                            console.log(participant);
-                            var subject = "Your participation in " + +$scope.study.title + " has been confirmed";
-                            var text = "Your participation in " + $scope.study.title + " has been confirmed. If you do not receive your reward in the next few days, please contact the study creator. Experiment hours are registered automatically and you can check them in your profile page.";
+                        Participation.participant({id:participation.id},function(participant) {
+                            var subject = "Your participation in " + $scope.study.title + " has been completed successfully";
+                            var text = "Your participation in " + $scope.study.title + " has been completed. If you do not receive your reward in the next few days, please contact the study creator. Experiment hours are registered automatically and you can check them in your profile page.";
+                            EmailService.sendEmail(participant.email, "frzn.sea@gmail.com", subject, text, text, false);
+                        });
+                    }
+
+                    if(status == 'confirmed') {
+                        Participation.participant({id:participation.id},function(participant) {
+                            var subject = "Your registration for " + $scope.study.title + " has been confirmed";
+                            var text = "Your registration for " + $scope.study.title + " has been confirmed. Check <a href=" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + ">" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + "</a> for information on the location and time.";
+                            EmailService.sendEmail(participant.email, "frzn.sea@gmail.com", subject, text, text, false);
+                        });
+                    }
+
+                    if(status == 'declined') {
+                        Participation.participant({id:participation.id},function(participant) {
+                            var subject = "Your participation in " + $scope.study.title + " has been declined";
+                            var text = "We are sorry that your participation in " + $scope.study.title + " has been declined by the study creator.";
                             EmailService.sendEmail(participant.email, "frzn.sea@gmail.com", subject, text, text, false);
                         });
                     }
