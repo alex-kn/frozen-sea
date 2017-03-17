@@ -86,8 +86,9 @@ to
     "mountPath": "/explorer"
   }
 }  
-For retrieving experiment hours of students, call https://#path-to-api#/getVPSFrom(matrikelnummer).  
-For retrieving experiment hours of all students, call https://#path-to-api#/getAllVps.  
+For retrieving experiment hours of one student, call https://#path-to-api#/Subusers/getVpsByMat/:mat    
+For retrieving experiment hours of all students, call https://#path-to-api#/Subusers/getAllVps  
+
 
 
 In the original version #path-to-website# resolves to https://frozen-sea.herokuapp.com and #path-to-api# to https://frozen-sea.herokuapp.com/api.
@@ -97,4 +98,72 @@ The website was designed and built by Alexander Knittel, Fabian Plett, Jan Mayer
 For more information or help, please contact: mathis.gales@gmail.com.
 
 
+***
+
+# Getting Started
+
+Frozen Sea is a website designated to create, manage and participate in user studies at Ludwig-Maximilians Universität Munich.
+
+## Home
+
+The **Study List** is displayed after logging in for the first time, which shows all available studies for the user. Users can filter this list according to their wishes and click on a study will take them to the detail page of the respective study.
+
+The user's relation to the study is indicated by color:
+* **green:** the user is participating in this study and was confirmed by the study organizer
+* **blue:** the user is participating in this study and was not yet confirmed
+* ...
+
+## Preferences
+
+The user can specifiy details about himself on the preference page. These preferences are are used to filter studies accordingly. For isntance, a study requiring an android phone is not shown to a user who has specified that he has no such phone.
+
+Note that only users who have their student number specified can choose experimental hours as a reward.
+
+## Creating a new Study
+
+All user's can create a new study by clicking the **Create Study** Button. The subsequently appearing page consists of two tabs in which users can modify and adjust their study to their needs.
+
+##### General Information
+* General details about the study
+    * Title
+    * Description
+    * Standard duration of one appointment
+    * Keywords
+    * All distinct locations of the study appointments
+    * The supervisor of the study (needs to unlock the study)
+* Possible rewards
+* Adding appointments
+    * Start time
+    * Buffer between appointments (only used to increment start time after adding for convenience, not saved)
+    * Date
+    * Location
+    * Maximumn number of participants
+    * Deadline for registering (hours in advance)
+
+##### Requirements
+
+In this tab, requirements for participating in the study can be specified. These requirements are used to help showing the study to suiting applicants.
+
+##### Online Study
+
+Studies which are conducted online do not require appointments and rewards. By checking this box, a new input field for the URL of the study will appear, which is necessary for possible applicants to participate.
+
+## Participating in a study
+
+Clicking on a specific study directs the user to the detail page of the respective study. More detailed information about the study can be found here.
+
+After choosing a reward users can browse through the appointments and apply for an appointment of their liking. After confirmation by the study organizer the user is registered for this specific appointment. The user might also be rejected by the study organizer.
+
+Users can withdraw their participation at any time before the deadline has passed, for instance to apply for another appointment.
+The chosen reward can also be changed until the deadline has passed.
+
+Additionally users can contact the study organizer using the contact form at the bottom of the page.
+
+## Managing a created study
+
+### Managing participants
+
+### Editing study deatils
+
+## Supervising a study
 
