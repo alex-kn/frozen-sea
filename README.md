@@ -98,4 +98,47 @@ The website was designed and built by Alexander Knittel, Fabian Plett, Jan Mayer
 For more information or help, please contact: mathis.gales@gmail.com.
 
 
+***
+
+# Getting Started
+
+Frozen Sea is a website designated to create, manage and participate in user studies at Ludwig-Maximilians Universität Munich.
+
+## Home (Study List)
+
+On the home screen the user will see:
+
+* the Navigation Area
+    * **Studies:** a list of available studies
+    * **My Studies:**
+        * studies the user is participating in
+        * studies the user has created
+        * studies the user is supervising
+    * **My Preferences:** the preferences and information about the user 
+* the Study List (the user's relation to the study is indicated by color)
+    * **green** the user is participating in this study and was confirmed by the study organizer
+    * **blue** the user is participating in this study and was not yet confirmed
+    * ...
+
+## Preferences
+
+The preferences provide details about the user and are used filter studies accordingly.
+
+Only users who have their student number specified can choose experimental hours as a reward.
+
+## Creating a new Study
+
+## Participating in a study
+
+## Managing a created study
+
+### Managing participants
+
+### Editing study deatils
+
+## Supervising a study
+
+
+
+
 
