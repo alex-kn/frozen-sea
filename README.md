@@ -121,6 +121,9 @@ Note that only users who have their student number specified can choose experime
 
 ## Creating a new Study
 
+![](./readme-img/create-study.png)
+
+
 All user's can create a new study by clicking the **Create Study** Button. The subsequently appearing page consists of two tabs in which users can modify and adjust their study to their needs.
 
 ##### General Information
@@ -150,16 +153,28 @@ Studies which are conducted online do not require appointments and rewards. By c
 
 ## Participating in a study
 
-Clicking on a specific study directs the user to the detail page of the respective study. More detailed information about the study can be found here.
+By clicking on a study in the list the user ist directied to the **Study Detail Page**, showing more detailed information about the study. Users can register for the study here.
 
-After choosing a reward users can browse through the appointments and apply for an appointment of their liking. After confirmation by the study organizer the user is registered for this specific appointment. The user might also be rejected by the study organizer.
+##### Choosing a reward
 
-Users can withdraw their participation at any time before the deadline has passed, for instance to apply for another appointment.
-The chosen reward can also be changed until the deadline has passed.
+To participate in a study the user needs to choose a reward, which is either Money, an Amazon gift card or experimental hours. Note that experimental hours can only be chosen if the user specified his student number in the preferences.
 
-Additionally users can contact the study organizer using the contact form at the bottom of the page.
+##### Applying for an appointment
+
+Users can browse through appointments and apply for an appointment of their liking. After confirmation by the study organizer the user is registered for this specific appointment. The user might also be rejected by the study organizer.
+
+##### Modifying the participation
+
+* Users can withdraw their participation at any time until the deadline has passed, for instance to apply for another appointment.
+* Users can change the chosen reward until the deadline has passed.
+
+##### Contacting the study organizer
+
+Users can contact the study organizer using the contact form at the bottom of the page.
 
 ## Managing a created study
+
+The **Study Detail Page** shows additional 
 
 ### Managing participants
 
