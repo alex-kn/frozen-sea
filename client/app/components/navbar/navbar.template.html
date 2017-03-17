@@ -17,7 +17,7 @@
         <a flex href="#!/home">{{'NAVBAR.STUDIES' | translate}}</a>
         <a flex href="#!/my-studies">{{'NAVBAR.MY_STUDIES' | translate}}</a>
         <a flex href="#!/user-preferences">{{'NAVBAR.MY_PREFERENCES' | translate}}</a>
-        <a ng-show="isAdmin" flex href="#!/admin-dashboard">{{'ADMIN_DASHBOARD.ADMIN_DASHBOARD' | translate}}</a>
+        <a hide-xs hide-sm ng-show="isAdmin" flex href="#!/admin-dashboard">{{'ADMIN_DASHBOARD.ADMIN_DASHBOARD' | translate}}</a>
     </md-content>
 
 </md-sidenav>

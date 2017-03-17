@@ -354,9 +354,9 @@
     "BACK": "Zurück",
     "STUDY_DELETION_FAILED": "Eine Studie mit bereits angemeldeten Teilnehmern kann nicht gelöscht werden",
     "UNLOCK": "Studie freischalten",
-    "UNLOCKED": "Studie sperren",
+    "UNLOCKED": "Studie freigeschaltet",
     "UNLOCK_MOUSEOVER": "Als Betreuer kannst du diese Studie freischalten",
-    "RELOCK": "Freigabe zurückziehen",
+    "RELOCK": "Studie sperren",
     "LOCKED": "Nicht freigeschaltet",
     "LOCKED_MOUSEOVER": "Dein Betreuer wurde beim Erstellen der Studie automatisch benachrichtigt. Sollte die Studie nach mehreren Tagen immer noch nicht freigeschaltet sein, schreibe Ihm oder Ihr bitte persönlich eine Nachricht.",
     "GENERAL_INFORMATION": "Allgemeine Informationen",
@@ -428,7 +428,7 @@
     "CANCEL": "Abbrechen"
   },
   "ADMIN_DASHBOARD": {
-    "ADMIN_DASHBOARD": "Administratoren Instrumententafel",
+    "ADMIN_DASHBOARD": "Administratoreninstrumententafel",
     "ROLES": "Rollen",
     "ACTIONS": "Aktionen",
     "ON": "An",
