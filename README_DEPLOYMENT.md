@@ -4,6 +4,7 @@ When deploying the project to a new server you need to follow these steps:
 2) Perform "npm install" in the parent directory as well as in the "client" directory.  
 3) If "bower install" is not performed automatically by "npm install" you need to perform this command in both folders too.  
 4) Change the API URL in the client/app/app.config.js inside   
+
     * LoopBackResourceProvider.setUrlBase('http://localhost:3000/api') 
     to the the new API URL.  
 5) Edit common/models/Subuser.js:  
@@ -76,6 +77,7 @@ To do so, you first you need to change \server\component-config.json from
     *   "loopback-component-explorer": null
     * }  
  to  
+ 
     * {
     *   "loopback-component-explorer": {
     *     "mountPath": "/explorer"
