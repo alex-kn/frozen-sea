@@ -86,8 +86,9 @@ to
     "mountPath": "/explorer"
   }
 }  
-For retrieving experiment hours of students, call https://#path-to-api#/getVPSFrom(matrikelnummer).  
-For retrieving experiment hours of all students, call https://#path-to-api#/getAllVps.  
+For retrieving experiment hours of one student, call https://#path-to-api#/Subusers/getVpsByMat/:mat    
+For retrieving experiment hours of all students, call https://#path-to-api#/Subusers/getAllVps  
+
 
 
 In the original version #path-to-website# resolves to https://frozen-sea.herokuapp.com and #path-to-api# to https://frozen-sea.herokuapp.com/api.
