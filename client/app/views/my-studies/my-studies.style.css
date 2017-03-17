@@ -187,6 +187,11 @@ md-toolbar.toolbar {
       font-size: 2rem;
       margin-right: 1rem; }
 
+.align-items {
+  display: inline-flex; }
+  .align-items i {
+    margin-right: .5rem; }
+
 .title-box {
   margin-bottom: 1em; }
 

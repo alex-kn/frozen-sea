@@ -209,7 +209,7 @@
     "BIRTHDAY": "Geburtsdatum",
     "HEIGHT": "Meine Körpergröße beträgt ungefähr ...",
     "CM": "in cm",
-    "OS": "Das Betriebsystem meines Mobilgeräts ist ...",
+    "OS": "Das Betriebssystem meines Mobilgeräts ist ...",
     "IOS": "iOS",
     "ANDROID": "Android",
     "WINDOWS": "Windows Phone",
@@ -275,7 +275,8 @@
     "SORT_TIP": "Sortiere die angezeigten Studien",
     "SEARCH_TIP": "Suche nach einer bestimmten Studie",
     "CAREFUL": "Lese immer die Beschreibung und die Voraussetzungen einer Studie bevor du teilnimmst.",
-    "NO_FOUND": "Wir konnten leider keine passenden Studien finden."
+    "NO_FOUND": "Wir konnten leider keine passenden Studien finden.",
+    "ONLINE_STUDY": "Online-Studie"
   },
   "ARCHIVE": {
     "TITLE": "Archiv",
@@ -353,9 +354,9 @@
     "BACK": "Zurück",
     "STUDY_DELETION_FAILED": "Eine Studie mit bereits angemeldeten Teilnehmern kann nicht gelöscht werden",
     "UNLOCK": "Studie freischalten",
-    "UNLOCKED": "Studie sperren",
+    "UNLOCKED": "Studie freigeschaltet",
     "UNLOCK_MOUSEOVER": "Als Betreuer kannst du diese Studie freischalten",
-    "RELOCK": "Freigabe zurückziehen",
+    "RELOCK": "Studie sperren",
     "LOCKED": "Nicht freigeschaltet",
     "LOCKED_MOUSEOVER": "Dein Betreuer wurde beim Erstellen der Studie automatisch benachrichtigt. Sollte die Studie nach mehreren Tagen immer noch nicht freigeschaltet sein, schreibe Ihm oder Ihr bitte persönlich eine Nachricht.",
     "GENERAL_INFORMATION": "Allgemeine Informationen",
@@ -427,7 +428,7 @@
     "CANCEL": "Abbrechen"
   },
   "ADMIN_DASHBOARD": {
-    "ADMIN_DASHBOARD": "Administratoren Instrumententafel",
+    "ADMIN_DASHBOARD": "Administratoreninstrumententafel",
     "ROLES": "Rollen",
     "ACTIONS": "Aktionen",
     "ON": "An",
