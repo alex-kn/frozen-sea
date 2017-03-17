@@ -22,7 +22,8 @@ angular.module('register', ['ngRoute'])
             /**
              * Create new user in data base
              *
-             * @param name - contains the full name of the new user (String)
+             * @param firstname - contains the email, serves as username (String)
+             * @param secondname - contains the email, serves as username (String)
              * @param email - contains the email, serves as username (String)
              * @param password - contains the password (Hash)
              */

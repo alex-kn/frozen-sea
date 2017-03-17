@@ -13,6 +13,13 @@ When deploying the project to a new server you need to follow these steps:
 2) Perform "npm install" in the parent directory as well as in the "client" directory.  
 3) If "bower install" is not performed automatically by "npm install" you need to perform this command in both folders too.  
 4) Change the API URL in the client/app/app.config.js inside LoopBackResourceProvider.setUrlBase('http://localhost:3000/api') to the the new API URL.  
+5) Edit common/models/Subuser.js:  
+    5.1)Change the options object in the Subuser.afterRemote('create', function (context, Subuser, next) function.  
+        Set options.host to your hostadress (in our deployed version 'frozen-sea.herokuapp.com'):  
+        Set options.port to 80.  
+    5.2)Change the options object in the Subuser.on('resetPasswordRequest', function (info) function:  
+        Set options.host to your hostadress (in our deployed version 'frozen-sea.herokuapp.com').  
+        Set options.port to 80.  
 
 # Changing the datasource
 1) You need to change the \server\datasources.json file to point to the new database.  
@@ -80,6 +87,8 @@ to
   }
 }  
 For retrieving experiment hours of students, call https://#path-to-api#/getVPSFrom(matrikelnummer).  
+For retrieving experiment hours of all students, call https://#path-to-api#/getAllVps.  
+
 
 In the original version #path-to-website# resolves to https://frozen-sea.herokuapp.com and #path-to-api# to https://frozen-sea.herokuapp.com/api.
 

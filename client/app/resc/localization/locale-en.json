@@ -433,7 +433,8 @@
     "CONFIRM_DELETE_ABORT": "Abort",
     "CHANGE_EMAIL":"Change email",
     "CHANGE_EMAIL_PLACEHOLDER":"New email",
-    "CHANGE_EMAIL_TEXT":"Enter new email."
+    "CHANGE_EMAIL_TEXT":"Enter new email.",
+    "CHANGE_EMAIL_SUCCESS":"Email changed successfully!"
   },
   "MY_STUDIES" : {
     "TITLE": "My studies",

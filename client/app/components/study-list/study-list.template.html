@@ -57,17 +57,13 @@
                     <h4 md-colors="{color:'primary'}">{{'STUDY_LIST.FILTER' | translate}}</h4>
                     <md-input-container class="sort filter-input" layout-xs="column" layout="row">
                         <md-checkbox
-                                ng-init="show_too_old=false"
-                                ng-model="show_too_old"
                                 aria-label="{{'STUDY_LIST.TOO_OLD' | translate}}"
-                                ng-click="reloadStudies()">
+                                ng-click="toggleShowOld()">
                             {{'STUDY_LIST.TOO_OLD' | translate}}
                         </md-checkbox>
                         <md-checkbox
-                                ng-init="show_non_matches=false"
-                                ng-model="show_non_matches"
                                 aria-label=" {{'STUDY_LIST.NO_MATCH' | translate}}"
-                                ng-click="refilter()">
+                                ng-click="toggleShowNonMatches()">
                             {{'STUDY_LIST.NO_MATCH' | translate}}
                         </md-checkbox>
                     </md-input-container>

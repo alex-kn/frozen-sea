@@ -6,11 +6,16 @@ module.exports = function (Subuser) {
 
     /**
      * Called after user creation, will send verification email
+     *
      */
     Subuser.afterRemote('create', function (context, Subuser, next) {
         console.log('> user.afterRemote triggered');
 
+
         var options = {
+            //Set host and port for deployment:
+            //host: 'frozen-sea.herokuapp.com',
+            //port: 80,
             type: 'email',
             to: Subuser.email,
             from: 'frzn.sea@gmail.com',
@@ -46,20 +51,23 @@ module.exports = function (Subuser) {
 
 
     /**
-     * Handles reset password request.
+     * Called on reset password request.
      * Sends email with password reset link
+     *
      */
     Subuser.on('resetPasswordRequest', function (info) {
 
-        //Get Path parameters
         var app = Subuser.app;
         var options = {};
 
         options.protocol = 'http';
-        //options.protocol = 'https';
         options.host = (app && app.get('host')) || 'localhost';
         options.port = (app && app.get('port')) || 3000;
-        options.restApiRoot = (app && app.get('restApiRoot')) || '/api';
+
+        //Set host and port (maybe protocol) for deployment:
+        //options.protocol = 'https';
+        //options.host = 'frozen-sea.herokuapp.com';
+        //options.port = 80;
 
         var displayPort = (
             (options.protocol === 'http' && options.port == '80') ||
@@ -83,6 +91,9 @@ module.exports = function (Subuser) {
 
     /**
      * sendEmail method for Subuser
+     *
+     * see remoteMethod 'sendEmail'
+     *
      */
     Subuser.sendEmail = function (id, to, from, subject, text, html, cb) {
         Subuser.app.models.Email.send({
@@ -100,6 +111,12 @@ module.exports = function (Subuser) {
 
     };
 
+    /**
+     * getUsersByRole method for Subuser
+     *
+     * see remoteMethod 'getUsersByRole'
+     *
+     */
     Subuser.getUsersByRole = function (id, role, cb) {
         var loopback = require('loopback');
         var Role = loopback.getModel('Role');
@@ -154,6 +171,13 @@ module.exports = function (Subuser) {
         });
     };
 
+
+    /**
+     * setRole method for Subuser
+     *
+     * see remoteMethod 'setRole'
+     *
+     */
     Subuser.setRole = function (id, role, userId, cb) {
         var loopback = require('loopback');
         var Role = loopback.getModel('Role');
@@ -172,12 +196,19 @@ module.exports = function (Subuser) {
                 principalId: userId
             }, function (err, principal) {
                 if (err) return cb(err);
+                console.log(principal);
 
                 cb(null, principal);
             });
         });
     };
 
+    /**
+     * revokeRole method for Subuser
+     *
+     * see remoteMethod 'revokeRole'
+     *
+     */
     Subuser.revokeRole = function (id, role, userId, cb) {
         var loopback = require('loopback');
         var Role = loopback.getModel('Role');
@@ -198,6 +229,12 @@ module.exports = function (Subuser) {
 
     };
 
+    /**
+     * getVpsByMat method for Subuser
+     *
+     * see remoteMethod 'getVpsByMat'
+     *
+     */
     Subuser.getVpsByMat = function (mat, cb) {
         var loopback = require('loopback');
         var Study = loopback.getModel('Study');
@@ -243,6 +280,12 @@ module.exports = function (Subuser) {
         });
     };
 
+    /**
+     * getAllVps method for Subuser
+     *
+     * see remoteMethod 'getAllVps'
+     *
+     */
     Subuser.getAllVps = function (cb) {
         var loopback = require('loopback');
         var Study = loopback.getModel('Study');
@@ -278,8 +321,17 @@ module.exports = function (Subuser) {
     };
 
     /**
-     * exposes sendEmail method to api
+     * exposes sendEmail method to api: '/:id/sendEmail'
+     *
+     * @param id            id of current user (for authentification) (String)
+     * @param to            Email receiver (String)
+     * @param from          Email sender (String)
+     * @param subject       Email Subject (String)
+     * @param text          Email text (String)
+     * @param html          Email html (String)
+     * @return Object with Email data
      */
+
     Subuser.remoteMethod('sendEmail', {
         http: {path: '/:id/sendEmail', verb: 'post', status: 200, errorStatus: 500},
         accepts: [
@@ -294,7 +346,12 @@ module.exports = function (Subuser) {
     });
 
     /**
-     * exposes getUsersByRole method to api
+     * exposes getUsersByRole method to api: '/:id/byrole/:role'
+     *
+     * @param id    id of current user (for authentification) (String)
+     * @param role  role to get users by (String)
+     * @return array with user objects
+     *
      */
     Subuser.remoteMethod('getUsersByRole', {
         accepts: [
@@ -310,6 +367,15 @@ module.exports = function (Subuser) {
         }
     });
 
+    /**
+     * exposes setRole method to api: '/:id/setRole/'
+     *
+     * @param id        id of current user (for authentification) (String)
+     * @param role      role to set user to (String)
+     * @param userId    id of the user who's role to set(String)
+     * @return return set principal object
+     *
+     */
     Subuser.remoteMethod('setRole', {
         accepts: [
             {arg: 'id', type: 'string', required: true},
@@ -325,6 +391,15 @@ module.exports = function (Subuser) {
         }
     });
 
+    /**
+     * exposes revokeRole method to api: '/:id/revokeRole/'
+     *
+     * @param id        id of current user (for authentification) (String)
+     * @param role      role to revoke from user to (String)
+     * @param userId    id of the user who's role to revoke(String)
+     * @return return number of revoked roles
+     *
+     */
     Subuser.remoteMethod('revokeRole', {
         accepts: [
             {arg: 'id', type: 'string', required: true},
@@ -340,6 +415,14 @@ module.exports = function (Subuser) {
         }
     });
 
+    /**
+     * exposes getVpsByMat method to api: '/getVpsByMat/:mat'
+     * Gets 'versuchspersonenstunden' by matriculation number
+     *
+     * @param mat       matriculation number (String)
+     * @return returns object with matriculation number and vps
+     *
+     */
     Subuser.remoteMethod('getVpsByMat', {
         accepts: [
             {arg: 'mat', type: 'number', required: true},
@@ -353,6 +436,13 @@ module.exports = function (Subuser) {
         }
     });
 
+    /**
+     * exposes getAllVps method to api: '/getAllVps/'
+     * Gets all 'versuchspersonenstunden' assigned to matriculation numbers
+     *
+     * @return returns array ob objects with matriculation number and vps
+     *
+     */
     Subuser.remoteMethod('getAllVps', {
         returns: {arg: 'vps', type: 'array'},
         http: {
