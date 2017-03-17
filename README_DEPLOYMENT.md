@@ -8,9 +8,10 @@ When deploying the project to a new server you need to follow these steps:
 ```
 LoopBackResourceProvider.setUrlBase('http://localhost:3000/api') 
 ```   
-to the the new API URL.  
+to the the new API URL. 
+
 5. Edit *common/models/Subuser.js* :  
-    5.1.Change the options object in the 
+5.1. Change the options object in the 
 
 ```
 Subuser.afterRemote('create', function (context, Subuser, next))
@@ -19,7 +20,7 @@ function.
 Set options.host to your hostadress (in our deployed version 'frozen-sea.herokuapp.com'):  
 Set options.port to 80.  
 
-    5.2. Change the options object in the Subuser.on('resetPasswordRequest', function (info) function: 
+5.2. Change the options object in the Subuser.on('resetPasswordRequest', function (info) function: 
     
 Set options.host to your hostadress (in our deployed version 'frozen-sea.herokuapp.com').  
 Set options.port to 80.  
