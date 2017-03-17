@@ -80,12 +80,10 @@ angular.module('adminDashboard', ['ngRoute', 'ngMaterial'])
                 })
             }
 
-
             function createUserList() {
                 Subuser.find({}, function (value, responseHeaders) {
 
                     ByRoleService.getUsersByRole("admin").then(function (res) {
-                        // if scope.admins not needed - delete
                         $scope.admins = res;
                         console.log($scope.admins);
 
@@ -162,6 +160,8 @@ angular.module('adminDashboard', ['ngRoute', 'ngMaterial'])
 
             function setRole(role, user) {
                 var roleId = '';
+
+                //Check if roleIds are correct!!
                 if (role == 'admin') {
                     roleId = '58bc42e50435dc1f661f62ec'
                 }

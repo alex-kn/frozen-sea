@@ -11,6 +11,7 @@ angular.module('resetPassword', ['ngRoute'])
                     $scope.errorMessage = $filter('translate')('RESET_PASSWORD.NO_MATCH');
                 }
                 else {
+                    //Sets temporaray access token
                     $http.defaults.headers.common.authorization = $routeParams.token;
 
                     return Subuser.prototype$updateAttributes({id: $routeParams.id}, {

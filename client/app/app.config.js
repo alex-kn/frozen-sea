@@ -53,6 +53,8 @@ angular
 
             }).otherwise({redirectTo: '/login'});
 
+            //Disable console.log
+            console.log = function(){};
 
             // Use a custom auth header instead of the default 'Authorization'
             LoopBackResourceProvider.setAuthHeader('X-Access-Token');

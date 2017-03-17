@@ -1,0 +1,31 @@
+.my-study {
+  background-color: $my-study;
+}
+
+.advised-study {
+  background-color: $advised-study;
+}
+
+.participated-study-not-approved {
+  background-color:	$participated-study-not-approved;
+}
+
+.participated-study-approved {
+  background-color:	$participated-study-approved;
+}
+
+.study-not-approved {
+  opacity : 0.9;
+}
+
+.advised-study-needs-approval {
+  background-color:	$advised-study-needs-approval;
+}
+
+.participated-study-finished{
+  background-color:	$participated-finished;
+}
+
+.study-is-over {
+  opacity : 0.5;
+}

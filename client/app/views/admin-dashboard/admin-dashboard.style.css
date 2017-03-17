@@ -35,6 +35,18 @@ html, body {
 .material-icons.md-48 {
   font-size: 48px; }
 
+.danger {
+  background-color: #F44336 !important;
+  color: #fff !important; }
+  .danger md-icon {
+    color: #fff !important; }
+
+.success {
+  background-color: #4CAF50 !important;
+  color: #fff !important; }
+  .success md-icon {
+    color: #fff !important; }
+
 .nav li {
   float: left; }
 
@@ -85,6 +97,30 @@ md-nav-bar .md-nav-bar {
 .form-control {
   height: 2.5rem; }
 
+.my-study {
+  background-color: #80DEEA; }
+
+.advised-study {
+  background-color: #9FA8DA; }
+
+.participated-study-not-approved {
+  background-color: #C5E1A5; }
+
+.participated-study-approved {
+  background-color: #FFE082; }
+
+.study-not-approved {
+  opacity: 0.9; }
+
+.advised-study-needs-approval {
+  background-color: #80CBC4; }
+
+.participated-study-finished {
+  background-color: #A5D6A7; }
+
+.study-is-over {
+  opacity: 0.5; }
+
 .hide {
   display: none; }
 
@@ -127,5 +163,8 @@ md-nav-bar .md-nav-bar {
   height: 100%;
   background-position: center;
   z-index: 10000000; }
+
+.role-switch {
+  display: inline-flex; }
 
 /*# sourceMappingURL=admin-dashboard.style.css.map */

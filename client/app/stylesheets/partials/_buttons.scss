@@ -3,3 +3,21 @@
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
 
+.danger {
+  background-color: $danger !important;
+  color: #fff !important;
+
+  md-icon {
+    color: #fff !important;
+  }
+}
+
+.success {
+  background-color: $success !important;
+  color: #fff !important;
+
+  md-icon {
+    color: #fff !important;
+  }
+}
+
