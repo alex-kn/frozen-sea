@@ -309,6 +309,7 @@
                                 <md-input-container class="md-block margin-btm-0" flex="100" flex-gt-xs="33">
                                     <md-select required
                                                name="appointmentLocation"
+                                               placeholder="{{'CREATE_STUDY.APPOINTMENT_LOCATION' | translate}}"
                                                ng-model="appointment.location"
                                                aria-label="{{'CREATE_STUDY.APPOINTMENT_LOCATION' | translate}}">
                                         <md-option ng-repeat="location in study.locations" value="{{ location }}">{{
@@ -333,12 +334,14 @@
                                            min="1"
                                            name="appointmentDeadline"
                                            aria-label="{{'CREATE_STUDY.APPOINTMENT_DEADLINE' | translate}}"
+                                           placeholder="{{'CREATE_STUDY.APPOINTMENT_DEADLINE' | translate}}"
                                            type="number"
                                            ng-model="appointment.deadline">
                                     <div ng-messages="createStudyForm.appointmentDeadline.$error">
                                         <div ng-message="required">{{'CREATE_STUDY.APPOINTMENT_DEADLINE_MESSAGE' | translate}}</div>
                                         <div ng-message="min">{{'CREATE_STUDY.APPOINTMENT_DEADLINE_MIN' | translate}}</div>
                                     </div>
+                                    <md-tooltip>{{'CREATE_STUDY.APPOINTMENT_DEADLINE_MESSAGE' | translate}}</md-tooltip>
                                 </md-input-container>
 
                                 <md-input-container class="md-block" flex="100" style="margin-top:0">
@@ -390,21 +393,6 @@
 
                     </md-content>
                     <!-- END add dates -->
-
-                    <!-- START switch to requirements tab -->
-                    <md-content class="md-padding">
-
-                        <div layout="row" layout-xs="column" layout-wrap>
-
-                            <md-button class="md-primary md-raised" ng-click="selectTab()">
-                                {{'CREATE_STUDY.SET_PREFERENCES' | translate}}
-                                <md-tooltip>{{'CREATE_STUDY.SET_PREFERENCES_2' | translate}}</md-tooltip>
-                            </md-button>
-
-                        </div>
-
-                    </md-content>
-                    <!-- END switch to requirements tab -->
 
                 </md-tab>
                 <!-- END general tab -->
@@ -680,15 +668,6 @@
                     </md-content>
                     <!-- END technical requirements -->
 
-                    <md-content class="md-padding">
-                        <div layout="row" layout-xs="column" layout-wrap>
-                            <md-button class="md-primary md-raised" ng-click="selectTab()">
-                                {{'CREATE_STUDY.SET_GENERAL_INFORMATION' | translate}}
-                                <md-tooltip>{{'CREATE_STUDY.SET_GENERAL_INFORMATION_2' | translate}}</md-tooltip>
-                            </md-button>
-                        </div>
-                    </md-content>
-
                 </md-tab>
                 <!-- END requirements tab -->
 
@@ -699,30 +678,40 @@
 
                 <div layout="row" layout-xs="column">
 
-                    <md-input-container ng-if="!study.online">
+                    <md-input-container>
                         <md-button
+                                ng-if="!study.online"
                                 ng-click="createStudy()"
                                 ng-disabled="createStudyForm.$invalid || !appointmentsChecked || !isReward" class="md-accent md-raised">
                             {{'CREATE_STUDY.CREATE_STUDY_BUTTON' | translate}}
                         </md-button>
-                        <md-button ng-click="cancelStudy()">{{'CREATE_STUDY.CANCEL_STUDY_BUTTON' | translate}}
-                        </md-button>
-                    </md-input-container>
 
-                    <md-input-container ng-if="study.online">
                         <md-button
+                                ng-if="study.online"
                                 ng-click="createOnlineStudy()"
                                 ng-disabled="study.description == '' || study.link == '' || study.adviser == null" class="md-accent md-raised">
                             {{'CREATE_STUDY.CREATE_STUDY_BUTTON' | translate}}
                         </md-button>
-                        <md-button ng-click="cancelStudy()">{{'CREATE_STUDY.CANCEL_STUDY_BUTTON' | translate}}
+
+                        <!-- Switch to requirements tab -->
+                        <md-button class="md-primary md-raised" ng-click="selectTab()" ng-if="tabIndex == 0">
+                            {{'CREATE_STUDY.SET_PREFERENCES' | translate}}
+                            <md-tooltip>{{'CREATE_STUDY.SET_PREFERENCES_2' | translate}}</md-tooltip>
                         </md-button>
+
+                        <!-- Switch to info tab -->
+                        <md-button class="md-primary md-raised" ng-click="selectTab()" ng-if="tabIndex == 1">
+                            {{'CREATE_STUDY.SET_GENERAL_INFORMATION' | translate}}
+                            <md-tooltip>{{'CREATE_STUDY.SET_GENERAL_INFORMATION_2' | translate}}</md-tooltip>
+                        </md-button>
+
+                        <md-button ng-click="cancelStudy()">{{'CREATE_STUDY.CANCEL_STUDY_BUTTON' | translate}}</md-button>
                     </md-input-container>
 
                 </div>
 
                 <div layout="row" layout-xs="column" ng-if="createStudyForm.$invalid">
-                    <p>{{'CREATE_STUDY.REQUIRED_FIELDS' | translate}}</p>
+                    <p style="color: rgb(221,44,0)">{{'CREATE_STUDY.REQUIRED_FIELDS' | translate}}</p>
                 </div>
 
             </md-content>

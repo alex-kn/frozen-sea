@@ -100,6 +100,7 @@ angular.module('createStudy', ['ngRoute', 'ngMaterial'])
 
             /**
              * Check if at least one reward is selected
+             * @param key string
              */
             $scope.checkReward = function(key) {
                 if($scope.reward.money || $scope.reward.voucher || $scope.reward.hours) {

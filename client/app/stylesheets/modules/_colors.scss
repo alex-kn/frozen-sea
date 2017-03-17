@@ -9,3 +9,17 @@ $secondary-text-color: #9E9E9E;
 $h1-color: $primary-color;
 $h2-color: lighten($h1-color, 20%);
 $h3-color: lighten($h1-color, 30%);
+
+//Button colors
+$success: #4CAF50;
+$danger: #F44336;
+$warning: #FF5722;
+
+//Study card colors
+$my-study: #80DEEA;
+$study-not-approved: #EF9A9A;
+$advised-study: #9FA8DA;
+$advised-study-needs-approval: #80CBC4;
+$participated-study-approved: #FFE082;
+$participated-study-not-approved: #C5E1A5;
+$participated-finished: #A5D6A7;

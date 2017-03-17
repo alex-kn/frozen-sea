@@ -524,8 +524,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                             $scope.emailText,
                             false);
                 });
-
-
             };
 
             /**

@@ -7,7 +7,7 @@
 <section ng-controller="StudyDetailsViewController as ctrl">
     <!-- START tool bar -->
     <md-toolbar class="toolbar md-hue-1" layout="row" layout-align="start center">
-        <div class="md-toolbar-tools" flex-offset-gt-sm="20" flex-offset-md="10">
+        <div class="md-toolbar-tools" flex flex-md="80" flex-gt-md="60" flex-offset-md="10" flex-offset-gt-md="20" >
             <h2 class="md-display-3 image-header">
                 <i class="material-icons">bubble_chart</i>
                 {{study.title}}
@@ -19,14 +19,16 @@
     <md-progress-circular ng-hide="studyIsReady" class="md-accent" md-mode="indeterminate">
     </md-progress-circular>
     <!-- START view study form -->
-    <md-content ng-show="studyIsReady" flex-offset-gt-sm="20" flex-gt-sm="60" flex="100">
+    <md-content ng-show="studyIsReady" flex-offset-md="10" flex-md="80" flex-offset-gt-md="20" flex-gt-md="60" flex="100">
 
         <!-- START general information -->
         <md-content class="md-padding">
 
             <md-input-container class="md-block margin-bot-0" flex-gt-xs="100">
 
-                <textarea ng-model="study.description" readonly class="margin-bot-0" md-no-resize
+                <textarea ng-model="study.description"
+                          style="border:none"
+                          readonly class="margin-bot-0" md-no-resize
                           aria-label="{{'CREATE_STUDY.DESCRIPTION_ARIA_LABEL' | translate}}">
 
                 </textarea>
@@ -106,28 +108,22 @@
                     {{'STUDY_DETAILS.CREATOR' |translate}}
                 </span>
             </div>
-
-
-            </div>
         </md-content>
         <!-- END general information -->
 
 
         <div class="md-padding" layout="row" layout-align="start center" ng-show="isAdvisor">
-            <div hide-xs flex>
-                <md-divider></md-divider>
-            </div>
-            <md-button flex-xs="100" class="md-raised md-accent padding" ng-click="unlock()" ng-hide="study.approved">
+            <md-button flex-xs="100" class="md-raised success" ng-click="unlock()" ng-hide="study.approved">
+                <md-icon class="material-icons">lock_open</md-icon>
                 {{'STUDY_DETAILS.UNLOCK' |translate}}
                 <md-tooltip md-delay="500">{{'STUDY_DETAILS.UNLOCK_MOUSEOVER' |translate}}</md-tooltip>
             </md-button>
-            <md-button flex-xs="100" class="md-primary padding" ng-click="relock()" ng-show="study.approved">
+            <md-button flex-xs="100" class="md-raised danger" ng-click="relock()" ng-show="study.approved">
+                <md-icon class="material-icons">lock_outline</md-icon>
                 {{'STUDY_DETAILS.UNLOCKED' |translate}}
                 <md-tooltip md-delay="500">{{'STUDY_DETAILS.RELOCK' |translate}}</md-tooltip>
             </md-button>
         </div>
-
-        <md-divider ng-hide="isAdvisor || (!study.approved && !isOwner)"></md-divider>
 
         <!-- START rewards -->
         <md-content class="md-padding" ng-hide="!appointments.length || (!isOwner && !study.approved)">
@@ -226,7 +222,7 @@
                             <md-card-header-text>
                                 <span class="md-title">{{ date.startDate | date:'HH:mm' }} -
                                 {{ date.endDate | date: 'HH:mm'}}</span>
-                                <span class="md-subhead">{{date.participants}} / {{date.maxParticipants}}</span>
+                                <span class="md-subhead">{{date.participants}} / {{date.maxParticipants}} {{'STUDY_DETAILS.PARTICIPANTS' | translate}}</span>
                             </md-card-header-text>
                         </md-card-header>
                         <md-card-content layout="column">
@@ -467,17 +463,20 @@ person_add</i>{{'STUDY_DETAILS.UNTIL' | translate}} {{date.deadlineDate | date: 
                 <md-input-container>
                     <md-button ng-show="isOwner"
                                ng-click="editStudy()"
-                               class="md-accent md-raised">
+                               class="md-accent">
+                        <md-icon class="material-icons">edit</md-icon>
                         {{'STUDY_DETAILS.EDIT_STUDY' | translate}}
                     </md-button>
                     <md-button ng-show="isOwner && appointments.length"
                                ng-click="showContactForm()"
-                               class="md-accent md-raised">
+                               class="md-accent">
+                        <md-icon class="material-icons">email</md-icon>
                         {{'STUDY_DETAILS.CONTACT_PARTICIPANTS' | translate}}
                     </md-button>
                     <md-button ng-show="!isOwner && appointments.length"
                                ng-click="showContactForm()"
-                               class="md-accent md-raised">
+                               class="md-accent">
+                        <md-icon class="material-icons">email</md-icon>
                         {{'STUDY_DETAILS.CONTACT_CREATOR' | translate}}
                     </md-button>
                 </md-input-container>

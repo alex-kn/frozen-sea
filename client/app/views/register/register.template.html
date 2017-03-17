@@ -9,7 +9,7 @@
             {{'REGISTER.NO_MORE' | translate}} <br/>
             {{'REGISTER.FIND' | translate}}
         </p>
-        <md-button class="md-accent md-raised" ng-click="toggleShowMore()">{{'REGISTER.MORE' | translate}}</md-button>
+        <md-button class="md-accent md-raised" href="https://gitlab.lrz.de/isso/frozen-sea/tree/master" target="_blank">{{'REGISTER.MORE' | translate}}</md-button>
 
         <div ng-show="showMore" layout-padding layout-margin>
             {{'REGISTER.MORE_TEXT' | translate}}
@@ -37,7 +37,7 @@
         <!-- END switch to login -->
 
         <!-- START registration form -->
-        <md-progress-circular ng-show="!registerProgress" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular></div>
+        <md-progress-circular ng-show="!registerProgress" class="md-accent loading-animation" md-mode="indeterminate"></md-progress-circular>
         <div class="registration-form" layout="row" layout-align="center start" ng-show="registerProgress">
 
             <form  layout="column" name="registerForm" flex-gt-xs="60" flex="100" ng-keyup="$event.keyCode == 13 && (email && password && firstname && secondname) && register(firstname, secondname, email, password)">
