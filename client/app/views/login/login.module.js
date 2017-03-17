@@ -26,8 +26,6 @@ angular.module('login', ['ngRoute'])
 
             $scope.loginUser = function(email, password) {
 
-
-                //TODO change username to email
                 Subuser.login({username: email, password: password}, function(response, header) {
                     $rootScope.currentUser = {
                         id: response.user.id,
