@@ -13,12 +13,12 @@ to the the new API URL.
     
         * Subuser.afterRemote('create', function (context, Subuser, next) 
         
-        function.  
-        Set options.host to your hostadress (in our deployed version 'frozen-sea.herokuapp.com'):  
-        Set options.port to 80.  
-    5.2)Change the options object in the Subuser.on('resetPasswordRequest', function (info) function:  
-        Set options.host to your hostadress (in our deployed version 'frozen-sea.herokuapp.com').  
-        Set options.port to 80.  
+function.  
+Set options.host to your hostadress (in our deployed version 'frozen-sea.herokuapp.com'):  
+Set options.port to 80.  
+5.2)Change the options object in the Subuser.on('resetPasswordRequest', function (info) function:  
+Set options.host to your hostadress (in our deployed version 'frozen-sea.herokuapp.com').  
+Set options.port to 80.  
 
 # Changing the datasource
 1) You need to change the *\server\datasources.json* file to point to the new database.  
@@ -86,6 +86,7 @@ To do so, you first you need to change *\server\component-config.json* from
     *     "mountPath": "/explorer"
     *   }
     * }  
+    
 For retrieving experiment hours of one student, call https://#path-to-api#/Subusers/getVpsByMat/:mat    
 For retrieving experiment hours of all students, call https://#path-to-api#/Subusers/getAllVps  
 
