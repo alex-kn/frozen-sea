@@ -24,49 +24,50 @@ Set options.port to 80.
 1) You need to change the *\server\datasources.json* file to point to the new database.  
 2) You need to create (e.g. copy) the following roles in the database, inside a collection named "Role":   
 
-```
-     {
-         "_id": {
-           "$oid": "58bc4281b4660d0d66daeb90"
-         },
-         "name": "advisor",
-         "created": {
-             "$date": "2017-03-05T16:53:21.425Z"
-         },
-         "modified": {
-             "$date": "2017-03-05T16:53:21.425Z"
-         }
-     }
+```json
+{
+    "_id": {
+         "$oid": "58bc4281b4660d0d66daeb90"
+    },
+    "name": "advisor",
+    "created": {
+        "$date": "2017-03-05T16:53:21.425Z"
+    },
+    "modified": {
+        "$date": "2017-03-05T16:53:21.425Z"
+    }
+}
 ```
 
 AND  
 
-```
-     {
-         "_id": {
-             "$oid": "58bc42e50435dc1f661f62ec"
-         },
-         "name": "admin",
-         "created": {
-             "$date": "2017-03-05T16:55:00.962Z"
-         },
-         "modified": {
-             "$date": "2017-03-05T16:55:00.962Z"
-         }
+```json
+{
+    "_id": {
+        "$oid": "58bc42e50435dc1f661f62ec"
+    },
+    "name": "admin",
+    "created": {
+        "$date": "2017-03-05T16:55:00.962Z"
+    },
+    "modified": {
+        "$date": "2017-03-05T16:55:00.962Z"
+    }
      }  
 
 3) You need at least one admin account. First register a new account and then create a collection named "RoleMapping". Elevate the account to admin by adding
-```
-     {
-         "_id": {
-             "$oid": "58c89db9bdc0119431742940"
-         },
-         "principalType": "USER",
-         "principalId": "58b5be7e6efdc2e829839ac5",
-         "roleId": {
-             "$oid": "58bc42e50435dc1f661f62ec"
-         }
-     }  
+
+```json
+ {
+    "_id": {
+        "$oid": "58c89db9bdc0119431742940"
+    },
+    "principalType": "USER",
+    "principalId": "58b5be7e6efdc2e829839ac5",
+    "roleId": {
+        "$oid": "58bc42e50435dc1f661f62ec"
+    }
+}  
 ```
 where principalId is the id of your new admin account, roldeId is the id of the role and id is a random new id for the RoleMapping instance.  
 The calculation of experiment hours is tied to the Subuser, Preference and Participation objects, so all three need to be migrated if no experiment hours should be lost.
@@ -77,20 +78,23 @@ Additionally you need to change all mentions of the old email in all the localiz
 
 # API Reference
 A complete API Reference is provided by navigating to *https://#path-to-website#/explorer*
-To do so, you first you need to change *\server\component-config.json* from  
+To do so, you first you need to change *\server\component-config.json* from
+
+```json
+{
+    "loopback-component-explorer": null
+}  
 ```
-     {
-       "loopback-component-explorer": null
-     }  
-```
- to  
+
+ to 
  
-```
-     {
-       "loopback-component-explorer": {
-         "mountPath": "/explorer"
-       }
-     } 
+ 
+```json
+{
+    "loopback-component-explorer": {
+        "mountPath": "/explorer"
+    }
+} 
 ```
     
 For retrieving experiment hours of one student, call https://#path-to-api#/Subusers/getVpsByMat/:mat    
