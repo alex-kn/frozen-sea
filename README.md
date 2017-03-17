@@ -2,7 +2,9 @@
 
 The **Study List** is displayed after logging in for the first time, which shows all available studies for the user. Users can filter this list according to their wishes and click on a study will take them to the detail page of the respective study.
 
+***
 ![](./readme-img/my-studies.png)
+***
 
 The user's relation to the study is indicated by color:
 * **green:** the user is participating in this study and was confirmed by the study organizer
@@ -13,7 +15,9 @@ The user's relation to the study is indicated by color:
 
 The user can specifiy details about himself on the preference page. These preferences are are used to filter studies accordingly. For isntance, a study requiring an android phone is not shown to a user who has specified that he has no such phone.
 
+***
 ![](./readme-img/my-preferences.png)
+***
 
 Note that only users who have their student number specified can choose experimental hours as a reward.
 
@@ -21,7 +25,9 @@ Note that only users who have their student number specified can choose experime
 
 All user's can create a new study by clicking the "Create Study"-Button. The subsequently appearing page consists of two tabs in which users can modify and adjust their study to their needs.
 
+***
 ![](./readme-img/create-study.png)
+***
 
 ##### General Information
 * General details about the study
@@ -95,9 +101,10 @@ Study organizers can edit some properties of the study as well as appointments, 
 * The supervisor can do so by clicking the "Unlock Study"-Button on the **Study Detail Page**.
 * Studies are only eligible for participation if unlocked.
 * Every supervisor is able to unlock a study, but only the supervisor specified in the study-creation process will be notified by email.
-* 
-![](./readme-img/release-study.png)
 
+***
+![](./readme-img/release-study.png)
+***
 
 # Admin Dashboard
 
