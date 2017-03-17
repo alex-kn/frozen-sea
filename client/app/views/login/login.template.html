@@ -30,8 +30,8 @@
                     <img class="flag" src="../../resc/images/english_lang.svg.png" class="md-card-image" alt="english language">
                 </span>
             </div>
-            <span flex-xs="100">{{'LOGIN.NO_ACCOUNT' | translate}}</span>
-            <md-button href="#!/register" class="md-accent">{{'LOGIN.REGISTER' | translate}}</md-button>
+            <span class="hide-on-iphone-5" flex-xs="100">{{'LOGIN.NO_ACCOUNT' | translate}}</span>
+            <md-button class="hide-on-iphone-5 md-accent" href="#!/register">{{'LOGIN.REGISTER' | translate}}</md-button>
         </div>
         <!-- END switch to register -->
 
@@ -73,6 +73,7 @@
                 <div layout="row" layout-xs="column" class="submit">
                     <md-button ng-disabled="loginForm.$invalid" ng-click="loginUser(email, password)" class="md-accent md-raised">{{'LOGIN.LOGIN' | translate}}</md-button>
                     <md-button href="#!/reset-password-request" class="md-accent">{{'RESET_PASSWORD.RESET_PASSWORD' | translate}}</md-button>
+                    <md-button href="#!/register" class="md-accent">{{'LOGIN.REGISTER' | translate}}</md-button>
                 </div>
 
             </form>
