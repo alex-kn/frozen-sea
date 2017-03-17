@@ -13,6 +13,8 @@ module.exports = function (Subuser) {
 
 
         var options = {
+            host: 'localhost',
+            port: 3000,
             //Set host and port for deployment:
             //host: 'frozen-sea.herokuapp.com',
             //port: 80,
