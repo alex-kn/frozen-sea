@@ -37,6 +37,7 @@ Set options.port to 80.
         "$date": "2017-03-05T16:53:21.425Z"
     }
 }
+
 ```
 
 AND  
@@ -53,7 +54,8 @@ AND
     "modified": {
         "$date": "2017-03-05T16:55:00.962Z"
     }
-     }  
+}  
+```
 
 3) You need at least one admin account. First register a new account and then create a collection named "RoleMapping". Elevate the account to admin by adding
 
