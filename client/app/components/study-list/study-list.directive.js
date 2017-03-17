@@ -34,15 +34,6 @@ angular
                 $scope.loadStudies(); //initial load
             };
 
-            $scope.toggleShowOld = function() {
-                $scope.show_too_old = ! $scope.show_too_old;
-                $scope.reloadStudies();
-            };
-
-            $scope.toggleShowNonMatches = function() {
-                $scope.show_non_matches = ! $scope.show_non_matches;
-                $scope.reloadStudies();
-            };
 
             /**
              * Filter and search study list
@@ -62,6 +53,9 @@ angular
                     $scope.sort = true;
                 }
             };
+
+
+
             $scope.dynamicOrderFunction = function() {
                 if ($scope.sort_by == 'newest') {
                     $scope.studies.sort(function(a,b) {
@@ -75,13 +69,28 @@ angular
                 }
             };
 
+
+            $scope.toggleShowOld = function() {
+                $scope.show_too_old = ! $scope.show_too_old;
+                $scope.reloadStudies();
+            };
+
+
+            $scope.toggleShowNonMatches = function() {
+                $scope.show_non_matches = ! $scope.show_non_matches;
+                $scope.reloadStudies();
+            };
+
+
             /**
-             * Load and reload studies
+             * Load and reload studies (reload only sets an additional boolean for different loading animation)
              */
             $scope.reloadStudies = function() {
                 $scope.studyIsReLoading = true;
                 $scope.loadStudies();
             };
+
+
             $scope.loadStudies = function() {
                 $scope.myFilter = {};
                 if(!$scope.show_too_old) { //load all studies that are not finished yet
@@ -89,13 +98,16 @@ angular
                 }
                 $scope.studiesTemp = Study.find($scope.myFilter,
                     function(list) {
-                        compareStudyDetailsWithUserPreferences();
+                        compareStudyDetailsWithUserPreferences(); //<-- filters all the studies that not match the user
                     }
                 );
             };
-            $scope.refilter = function() {
 
-                if (!$scope.show_non_matches) {
+
+
+
+            $scope.refilter = function() {
+                if (!$scope.show_non_matches) { //filter all studies that don't match user profile
                     $scope.studies = $filter('filterStudies')($scope.studiesTemp, $scope.preferences);
                 } else {
                     $scope.studies = $scope.studiesTemp;
@@ -107,20 +119,22 @@ angular
                 });
             };
 
+
+
             /**
              * Filter study list to match user preferences
              */
             function compareStudyDetailsWithUserPreferences() {
                 Subuser.preferences({"id": LoopBackAuth.currentUserId}, function (response) {
                     $scope.studyIsLoading = false;
-                    $scope.studyIsReLoading = false;
+                    $scope.studyIsReLoading = false; //stop loading animation
                     $scope.preferences = response;
-                    //filter all studies that don't match user profile
                     $scope.refilter();
 
                 },function (error){
                     if(error.status == 404){
-
+                        //If no preference object is found for this user, create one
+                        //and redirect user to the preferences page
                         SetPreferencesService.showPreferencesDialog();
                         //if no preference object can be found, create it
                         Subuser.preferences
@@ -134,6 +148,7 @@ angular
                 });
             }
 
+
             /**
              * Handle user interaction
              */
@@ -141,9 +156,13 @@ angular
                 ToastService.displayToast();
             };
 
+
+
             $scope.showDetails = function (study, ev) {
                 $location.path('/study-details-view').search({'study': study.id});
             };
+
+
             $scope.showCreateStudyPrompt = function(ev) {
                 // Appending dialog to document.body to cover sidenav in docs app
                 var confirm = $mdDialog.prompt()

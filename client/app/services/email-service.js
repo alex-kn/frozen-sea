@@ -1,7 +1,6 @@
 angular
     .module('EmailService', [])
     .factory('EmailService', ['Subuser', '$http', 'LoopBackAuth', '$filter','ToastService', function (Subuser, $http, LoopBackAuth, $filter,ToastService) {
-        //TODO: Error-Handling, static sender
 
         /**
          * Sends Email

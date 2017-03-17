@@ -2,6 +2,9 @@
  * Created by Mathis on 02-Feb-17.
  */
 
+/**
+ * @deprecated
+ */
 angular
     .module('participateDialogDirective', [])
     .controller('ParticipateDialogController', ['$scope', 'Participation', 'Study', '$mdDialog', '$location', 'Subuser', 'LoopBackAuth', '$translate', '$filter', 'ToastService',

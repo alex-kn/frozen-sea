@@ -30,8 +30,8 @@
     "MAIL_MESSAGE_REQUIRED": "Bitte gib deine Email-Adresse an",
     "MAIL_MESSAGE_PATTERN": "Bitte gib eine gültige Email-Adresse an",
     "PASSWORD": "Passwort",
-    "PASSWORD_MESSAGE_PATTERN": "Bitte geben ein Passwort ein, das zwischen 8 und 15 Zeichen lang ist",
-    "PASSWORD_MESSAGE_REQUIRED": "Bitte gebe ein Passwort ein",
+    "PASSWORD_MESSAGE_PATTERN": "Bitte gib ein Passwort ein, das zwischen 8 und 15 Zeichen lang ist",
+    "PASSWORD_MESSAGE_REQUIRED": "Bitte geib ein Passwort ein",
     "REGISTER": "Registrieren",
     "FIRST_NAME": "Vorname",
     "FIRST_NAME_MESSAGE": "Bitte gib deinen Vornamen an",
@@ -45,16 +45,16 @@
   "RESET_PASSWORD": {
     "RESET_PASSWORD": "Passwort zurücksetzen",
     "NO_EMAIL": "Es exisitiert kein Account mit dieser Email",
-    "SUCCESS_EMAIL": "Eine Email zum passwort zurücksetzen wurde an Sie geschickt!",
+    "SUCCESS_EMAIL": "Eine Email zum Zurücksetzen des Passworts wurde versendet!",
     "SUCCESS_RESET": "Ihr Passwort wurde erfolgreich zurückgesetzt. Sie können sich jetzt mit ihrem neuen Passwort einloggen",
     "NO_MATCH": "Die eingegebenen Passwörter stimmen nicht überein",
-    "OLD_TOKEN": "Ihre Email zum Passwort zurücksetzen ist nicht mehr Aktuell. Bitte fordern Sie eine neue an."
+    "OLD_TOKEN": "Ihre Link zum Zurücksetzen des Passworts ist nicht mehr aktuell. Bitte fordern Sie eine neue E-Mail an."
   },
   "CREATE_STUDY": {
     "GENERAL_TAB_LABEL": "Allgemein",
     "HEADLINE_GENERAL_INFORMATION": "Allgemeine Informationen zu ",
-    "ONLINE": "Ist deine Studie eine Online-Studie?",
-    "ONLINE_DESCRIPTION": "Bitte gib den Link zu deiner Online-Studie in der Beschreibung an. Online-sStudien haben keine Termine.",
+    "ONLINE": "Ist deine Studie eine reine Online-Studie?",
+    "ONLINE_DESCRIPTION": "Bitte gib den Link zu deiner Online-Studie mit an. Online-Studien haben keine Termine.",
     "ONLINE_TIP": "Für eine Online-Studie benötigst du nur einen Link",
     "TITLE": "Titel",
     "TITLE_PLACEHOLDER": "Titel",
@@ -98,7 +98,7 @@
     "VOUCHER_AMOUNT": "Amazon Gutschein",
     "VOUCHER_AMOUNT_PLACEHOLDER": "Wert des Gutscheins",
     "VOUCHER_AMOUNT_ARIA_LABEL": "Wert des Gutscheins",
-    "VOUCHER_AMOUNT_MESSAGE": "Bitte gib die Höhe des Gutschein an",
+    "VOUCHER_AMOUNT_MESSAGE": "Bitte gib die Höhe des Gutscheins an",
     "HOURS_AMOUNT": "Versuchspersonenstunden",
     "HOURS_AMOUNT_PLACEHOLDER": "Versuchspersonenstunden",
     "HOURS_AMOUNT_ARIA_LABEL": "Versuchspersonenstunden",
@@ -106,9 +106,9 @@
     "REWARD_REQUIRED": "Bitte gib mindestens eine Form der Vergütung an",
     "ADD_DATES": "Termine hinzufügen",
     "STUDY_START": "Studienbeginn",
-    "STUDY_START_MESSAGE": "Bitte gib den Studienbeginn so TT.MM.JJJJ an",
+    "STUDY_START_MESSAGE": "Bitte gib den Studienbeginn im Format TT.MM.JJJJ an",
     "STUDY_END": "Studienende",
-    "STUDY_END_MESSAGE": "Bitte gib das Studienende so TT.MM.JJJJ an",
+    "STUDY_END_MESSAGE": "Bitte gib das Studienende im Format TT.MM.JJJJ an",
     "APPOINTMENT_TIME": "Beginn des Studientermins",
     "APPOINTMENT_TIME_MESSAGE": "Bitte gib die Uhrzeit des Studientermins an",
     "APPOINTMENT_TIME_PATTERN": "Bitte gib die Startzeit des Termins in folgendem Format an: HH:MM",
@@ -122,7 +122,7 @@
     "APPOINTMENT_DAY": "Tag",
     "APPOINTMENT_DAY_MESSAGE": "Bitte gib das Datum des Studientermins an",
     "APPOINTMENT_DEADLINE": "Anmeldefrist (in Stunden)",
-    "APPOINTMENT_DEADLINE_MESSAGE": "Bitte gib an, bis wann man sich für den Studientermin anmelden kann",
+    "APPOINTMENT_DEADLINE_MESSAGE": "Bitte gib an, bis wann man sich für den Studientermin anmelden kann (in Stunden vor dem jeweiligen Termin)",
     "APPOINTMENT_DEADLINE_MIN": "Bitte gib eine minimale Deadline von einer Stunde vor Beginn des Studientermins an",
     "APPOINTMENT_LOCATION": "Ort",
     "APPOINTMENT_LOCATION_MESSAGE": "Bitte wähle einen der Studienorte aus, die du oben festgelegt hast",
@@ -187,7 +187,7 @@
     "DELETE_2": " löschen?",
     "DELETE_3": "Dein gesamter Fortschritt wird gelöscht",
     "DELETE_OK": "Studie löschen",
-    "ADVISER_NOT_LISTED": "Wenn dein Betruer nicht gelistet ist, schicke ihm oder ihr eine E-Mail",
+    "ADVISER_NOT_LISTED": "Wenn dein Betreuer nicht gelistet ist, schicke Ihm oder Ihr eine Nachricht",
     "DELETE_CANCEL": "Abbrechen",
     "SET_PREFERENCES": "Voraussetzungen festlegen",
     "SET_PREFERENCES_2": "Wähle Voraussetzungen aus, welche die Teilnehmer erfüllen müssen",
@@ -308,7 +308,7 @@
     "PARTICIPATED": "Teilgenommen!",
     "WAS_NOT_HERE": "War nicht da",
     "LOADING_PARTICIPANT": "Lade Teilnehmer...",
-    "PARTICIPATION_SUCCESSFUL": "Termin erfolgreich reserviert. Eine Terminbestätigung folgt per E-Mail.",
+    "PARTICIPATION_SUCCESSFUL": "Termin erfolgreich reserviert. Eine Terminbestätigung folgt per E-Mail sobald der Studienersteller deine Anmeldung bestätigt.",
     "PARTICIPATION_FAILED": "Teilnahme fehlgeschlagen. Du nimmst bereits an dieser Studie teil!",
     "PARTICIPATION_WITHDRAWN": "Deine Teilnahme wurde erfolgreich zurückgezogen.",
     "WITHDRAWING_PARTICIPATION": "Deine Teilnahme wird zurückgezogen ...",
@@ -362,18 +362,19 @@
     "SUPERVISOR": "Betreuer",
     "CONTACT_CREATOR": "Veranstalter kontaktieren",
     "EXPLANATION_OWNER_1": "Bevor sich Teilnehmer für deine Studie bewerben können, muss deine Studie von deinem Betreuer freigeschaltet werden. Dein Betreuer wurde automatisch benachrichtigt.",
-    "EXPLANATION_OWNER_2": "In dieser Detailansicht kannst du Teilnehmer bestätigen oder ablehnen. Mit einem Klick auf den Namen eines Teilnehmers erscheinen seine Kontaktinformationen sowie seine gewählte Vergütung.",
+    "EXPLANATION_OWNER_2": "In dieser Detailansicht kannst du Teilnehmer bestätigen oder ablehnen. Mit einem Klick auf den Namen eines Teilnehmers erscheinen seine Kontaktinformationen, sowie seine gewählte Vergütungsart.",
     "EXPLANATION_OWNER_3": "Bestätige bitte nach erfolgreicher Teilnahme die Anwesenheit des Teilnehmers und schütte im Anschluss die gewünschte Belohnung aus. Versuchspersonenstunden werden automatisch verbucht.",
     "EXPLANATION_OWNER_4": "Sollte ein Teilnehmer hingegen nicht erschienen sein, kannst du das auch hier vermerken.",
     "EXPLANATION_OWNER_5": "Mit einem Klick auf \"Studiendetails editieren\" kannst du im nachhinein noch Änderungen an den Studiendetails vornehmen, Termine ohne Teilnehmer löschen sowie neue Termine hinzufügen.",
-    "EXPLANATION_1": "Nach Auswahl einer gewünschten Vergütung kannst du dich hier zu einem Termin bewerben. Nachdem dich der Studienveranstalter bestätigt hat, bist du erfolgreich angemeldet",
-    "EXPLANATION_2": "Beachte bitte, dass die Vergütung nur ausgeschüttet werden kann, nachdem der Veranstalter nach dem Termin deine Anwesenheit bestätigt hat.",
+    "EXPLANATION_1": "Nach Auswahl einer gewünschten Vergütung kannst du dich hier zu einem Termin bewerben. Nachdem der Studienveranstalter deine Anmeldung bestätigt hat, bist du angehalten am entsprechenden Termin und Ort zu erscheinen",
+    "EXPLANATION_2": "Beachte bitte, dass die Vergütung nur ausgeschüttet werden kann, nachdem der Veranstalter nach deinem Termin deine Anwesenheit bestätigt hat.",
     "PARTICIPANT_DETAILS" : "Teilnehmerdetails",
     "VIEW_AS" : "Ansicht als",
     "PARTICIPANT" : "Teilnehmer",
     "CREATOR" : "Studienorganisator",
     "ONLINE_ONLY" : "Diese Studie ist eine Online-Studie und hat keine Termine. Eine Teilnahme ist durch Klicken des folgenden Links möglich:",
-    "NO_PARTICIPANTS_TO_MAIL" : "Du hast leider noch keine Teilnehmer. Schade."
+    "NO_PARTICIPANTS_TO_MAIL" : "Du hast leider noch keine Teilnehmer. Schade.",
+    "VPS_NOT_FOR_YOU": "Nur Studenten können Versuchspersonenstunden auswählen. Wenn dies die einzige angebotene Vergütungsart ist, kannst du leider nicht teilnehmen."
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Abbrechen",
@@ -420,13 +421,13 @@
   },
   "PREFERENCES": {
     "TITLE": "Studienkriterien",
-    "DESCRIPTION": "Bitte gib die Kriterien an, mit denen wir deine Studienliste filtern.",
-    "ARIA-LABEL": "Bitte gib die Kriterien an, mit denen wir deine Studienliste filtern.",
+    "DESCRIPTION": "Bitte gib die Kriterien an, mit denen wir dann die Liste der vorgeschlagenen Studien filtern.",
+    "ARIA-LABEL": "Bitte gib die Kriterien an, mit denen wir dann die Liste der vorgeschlagenen Studien filtern.",
     "OK": "Kriterien angeben",
     "CANCEL": "Abbrechen"
   },
   "ADMIN_DASHBOARD": {
-    "ADMIN_DASHBOARD": "Instrumententafel",
+    "ADMIN_DASHBOARD": "Administratoren Instrumententafel",
     "ROLES": "Rollen",
     "ACTIONS": "Aktionen",
     "ON": "An",
@@ -454,6 +455,6 @@
     "NO_ADVISE_FOUND": "Es werden keine Studien von dir betreut."
   },
   "EMAIL_SERVICE" : {
-    "EMAIL_SENT" : "Email wurde versand!"
+    "EMAIL_SENT" : "Email wurde versandt!"
   }
 }

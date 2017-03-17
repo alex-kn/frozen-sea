@@ -22,20 +22,20 @@ angular.module('register', ['ngRoute'])
             /**
              * Create new user in data base
              *
-             * @param firstname - contains the email, serves as username (String)
-             * @param secondname - contains the email, serves as username (String)
+             * @param firstName - contains the firstName of the new user (String)
+             * @param secondName - contains the secondName of the new user (String)
              * @param email - contains the email, serves as username (String)
              * @param password - contains the password (Hash)
              */
 
-            $scope.register = function (firstname, secondname, email, password) {
+            $scope.register = function (firstName, secondName, email, password) {
                 $scope.registerProgress = false;
 
                 return Subuser.create({
                     username: email,
                     email: email,
-                    firstName: firstname,
-                    secondName: secondname,
+                    firstName: firstName,
+                    secondName: secondName,
                     password: password
                 }, function (value, responseHeaders) {
                     console.log('succ');

@@ -149,10 +149,12 @@
                 </md-radio-button>
 
                 <md-radio-button flex-xs="100" flex-gt-xs="33" value="reward_hours"
-                                 ng-show="study.reward.reward_hours && isStudent"
+                                 ng-show="study.reward.reward_hours"
+                                 ng-disabled="!isStudent"
                                  aria-label="{{'CREATE_STUDY.HOURS_ARIA_LABEL' | translate}}">
                     {{study.reward.reward_hours}}
                     {{'STUDY_DETAILS.CHOOSE_REWARD_HOURS' | translate}}
+                    <md-tooltip ng-show="!isStudent">{{'STUDY_DETAILS.VPS_NOT_FOR_YOU' | translate}}</md-tooltip>
                 </md-radio-button>
 
             </md-radio-group>
@@ -179,8 +181,7 @@
         </div>
 
         <!-- START dates -->
-
-        <md-content class="md-padding" ng-hide="appointments.length" layout-align="center center">
+        <md-content class="md-padding" ng-show="study.link.length>0" layout-align="center center">
             <p>{{'STUDY_DETAILS.ONLINE_ONLY' | translate}}</p>
             <a ng-show="study.link != ''" ng-href="{{study.link}}" target="_blank">{{study.link}}</a>
         </md-content>

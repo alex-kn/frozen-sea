@@ -221,7 +221,6 @@ angular.module('studyDetailsView', ['ngRoute', 'ngMaterial'])
                         return a.startDate - b.startDate;
                     });
                     $q.all(res.map(function (date) {
-console.log(date.status);
                         day = $filter('date')(date.startDate, "shortDate");
                         if (lastDay == undefined) {
                             lastDay = day;
@@ -237,7 +236,6 @@ console.log(date.status);
                     }));
                     $scope.datesGroupedByDay.push(days);
 
-                    console.log($scope.datesGroupedByDay);
                     if (!$scope.isOwner) {
                         $scope.datesGroupedByDay[0].show = true;
                     }
@@ -401,7 +399,7 @@ console.log(date.status);
                             $scope.waitingForParticipation = false;
                             studyDate.waiting = false;
 
-                            //TODO checkbox to stop this mailspam
+                            //TODO no-more-mails checkbox to stop mailspam
                             var subject = "New participant for your study!";
                             var text = "A new participant has requested to participate in your Study \"" + $scope.study.title + "\" and is awaiting confirmation. Navigate to <a href=" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + ">" + $location.protocol() +"://" + $location.host()+ ":" + $location.port() + "/#!/study-details-view?study=" +$scope.study.id + "</a> to confirm or reject participants.";
                             EmailService.sendEmail($scope.ownerMail, "frzn.sea@gmail.com", subject, text, text, false);
@@ -413,8 +411,6 @@ console.log(date.status);
                         });
                     }
                 });
-
-
             };
 
             /**
@@ -559,15 +555,16 @@ console.log(date.status);
              * Show help dialog
              */
             $scope.help = function () {
+                var html;
                 if ($scope.isOwner) {
-                    var html = "<p>" +
+                    html = "<p>" +
                         $filter('translate')('STUDY_DETAILS.EXPLANATION_OWNER_1') + "</p><p> " +
                         $filter('translate')('STUDY_DETAILS.EXPLANATION_OWNER_2') + "</p><p>" +
                         $filter('translate')('STUDY_DETAILS.EXPLANATION_OWNER_3') + "</p><p>" +
                         $filter('translate')('STUDY_DETAILS.EXPLANATION_OWNER_4') + "</p><p>" +
                         $filter('translate')('STUDY_DETAILS.EXPLANATION_OWNER_5') + "</p>"
                 } else {
-                    var html = "<p>" +
+                    html = "<p>" +
                         $filter('translate')('STUDY_DETAILS.EXPLANATION_1') + "</p><p> " +
                         $filter('translate')('STUDY_DETAILS.EXPLANATION_2') + "</p>"
                 }
@@ -581,7 +578,7 @@ console.log(date.status);
                 $mdDialog.show(helpDialog).then(function () {
                 }, function () {
                 });
-            }
+            };
 
             /**
              * @description

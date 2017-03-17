@@ -3,7 +3,6 @@
 angular.module('login', ['ngRoute'])
     .controller('LoginController', ['$rootScope', '$scope', 'Subuser', 'ToastService', '$location','$translate', '$filter','$routeParams', 'ByRoleService', 'LoopBackAuth',
         function($rootScope, $scope, Subuser, ToastService, $location, $translate, $filter, $routeParams, ByRoleService, LoopBackAuth) {
-            //TODO: Error-Handling
 
             $scope.email="";
             $scope.password="";
@@ -25,6 +24,7 @@ angular.module('login', ['ngRoute'])
             };
 
             $scope.loginUser = function(email, password) {
+
 
                 Subuser.login({username: email, password: password}, function(response, header) {
                     $rootScope.currentUser = {

@@ -374,7 +374,8 @@
     "PARTICIPANT" : "Participant",
     "CREATOR" : "Study organizer",
     "ONLINE_ONLY" : "This study is conducted online and has no appointments. Participation is possible by following the following link:",
-    "NO_PARTICIPANTS_TO_MAIL" : "You have no participants to send a mail to. So sad."
+    "NO_PARTICIPANTS_TO_MAIL" : "You have no participants to send a mail to. So sad.",
+    "VPS_NOT_FOR_YOU": "Only students can choose experiment hours as reward. If this is the only possible reward type, you can not participate."
   },
   "PARTICIPATION_DIALOG": {
     "CANCEL": "Cancel",
