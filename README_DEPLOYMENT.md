@@ -3,20 +3,24 @@ When deploying the project to a new server you need to follow these steps:
 1. Install node and npm.  
 2. Perform "npm install" in the parent directory as well as in the "client" directory.  
 3. If "bower install" is not performed automatically by "npm install" you need to perform this command in both folders too.  
-4. Change the API URL in the *client/app/app.config.js* inside   
-```js
+4. Change the API URL in the *client/app/app.config.js* inside
+
+```
 LoopBackResourceProvider.setUrlBase('http://localhost:3000/api') 
 ```   
 to the the new API URL.  
 5. Edit *common/models/Subuser.js* :  
-    1.Change the options object in the 
-```js
+    5.1.Change the options object in the 
+
+```
 Subuser.afterRemote('create', function (context, Subuser, next))
 ```      
 function.  
 Set options.host to your hostadress (in our deployed version 'frozen-sea.herokuapp.com'):  
 Set options.port to 80.  
-    2. Change the options object in the Subuser.on('resetPasswordRequest', function (info) function:  
+
+    5.2. Change the options object in the Subuser.on('resetPasswordRequest', function (info) function: 
+    
 Set options.host to your hostadress (in our deployed version 'frozen-sea.herokuapp.com').  
 Set options.port to 80.  
 
