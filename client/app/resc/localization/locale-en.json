@@ -276,7 +276,8 @@
     "FILTER_TIP": "Filter the study list",
     "SORT_TIP": "Sort the study list",
     "CAREFUL": "Always carefully read the description and the requirements of a study before you participate!",
-    "NO_FOUND": "Sorry, we could not find any matching studies."
+    "NO_FOUND": "Sorry, we could not find any matching studies.",
+    "ONLINE_STUDY": "Online study"
   },
   "ARCHIVE": {
     "TITLE" : "Archive",
